@@ -16,10 +16,10 @@
  *
  * Copyright (C) 2017 Renesas Electronics Corporation. All rights reserved.
  ***********************************************************************************************************************/
+#include <Titan.h>
 #include "USBMain_thread.h"
 #include "board_cfg.h"
 #include "fx_api.h"
-#include "Helix.h"
 
 static UX_SLAVE_CLASS_CDC_ACM *g_cdc;
 #define SEMI_HOSTING

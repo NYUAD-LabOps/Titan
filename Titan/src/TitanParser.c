@@ -5,9 +5,9 @@
 #include <ctype.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include "Helix.h"
+#include <Titan.h>
+#include <TitanMain.h>
 //#include "HelixParser.h"
-#include "helix_main_thread.h"
 
 //extern struct node *current;
 //extern struct node *input;

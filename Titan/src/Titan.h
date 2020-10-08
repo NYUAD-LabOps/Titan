@@ -1,7 +1,5 @@
+#include <TitanParser.h>
 #include "hal_data.h"
-#include "HelixParser.h"
-
-#include "../../../Ganymede/Ganymede/src/HelixLibrary.h"
 //#include "r_timer_api.h"
 #define DEBUGGER 0
 #define DEBUG 0

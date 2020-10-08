@@ -438,8 +438,8 @@
       <stack module="module.driver.timer_on_gpt.392727502"/>
     </context>
     <context id="rtos.threadx.thread.265113385">
-      <property id="_symbol" value="helix_main_thread"/>
-      <property id="rtos.threadx.thread.name" value="Helix Main"/>
+      <property id="_symbol" value="TitanMain"/>
+      <property id="rtos.threadx.thread.name" value="TitanMain"/>
       <property id="rtos.threadx.thread.stack" value="2048"/>
       <property id="rtos.threadx.thread.priority" value="1"/>
       <property id="rtos.threadx.thread.autostart" value="rtos.threadx.thread.autostart.enabled"/>
@@ -777,7 +777,6 @@
   </synergyModuleConfiguration>
   <synergyPinConfiguration>
     <pincfg active="true" name="S7G2-SK.pincfg" symbol="g_bsp_pin_cfg"/>
-    <pincfg active="false" name="R7FS7G27G2A01CBD.pincfg" symbol="g_bsp_pin_cfg"/>
     <pincfg active="false" name="R7FS7G27H3A01CFC.pincfg" symbol="g_bsp_pin_cfg"/>
   </synergyPinConfiguration>
 </synergyConfiguration>

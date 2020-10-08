@@ -2,8 +2,8 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include "Helix.h"
-#include "helix_main_thread.h"
+#include <Titan.h>
+#include <TitanMain.h>
 #include "math.h"
 
 extern struct node *head;

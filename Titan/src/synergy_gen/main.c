@@ -2,7 +2,7 @@
 #include "bsp_api.h"
 #include "tx_api.h"
 
-extern void helix_main_thread_create(void);
+extern void TitanMain_create(void);
 extern void USBMain_thread_create(void);
 extern void posCalc_create(void);
 extern void UDP_create(void);
@@ -60,7 +60,7 @@ void tx_application_define(void *first_unused_memory)
         tx_startup_err_callback (&g_ssp_common_initialized_semaphore, 0);
     }
 
-    helix_main_thread_create ();
+    TitanMain_create ();
     USBMain_thread_create ();
     posCalc_create ();
     UDP_create ();

@@ -2,8 +2,8 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include "Helix.h"
-#include "helix_main_thread.h"
+#include <Titan.h>
+#include <TitanMain.h>
 #include "math.h"
 
 void setDir(struct motorController *motorBlock, ioport_level_t targetDir)

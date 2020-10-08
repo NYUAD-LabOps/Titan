@@ -55,7 +55,7 @@
 #define SSP_VERSION_STRING                  ("1.7.5")
 
 /** Unique SSP version ID. */
-#define SSP_VERSION_BUILD_STRING            ("Built with Renesas Synergy (TM) Software Package version 1.7.5+build.7141aa81a814")
+#define SSP_VERSION_BUILD_STRING            ("Built with Renesas Synergy (TM) Software Package version 1.7.5+build.ef3d84eef70d")
 
 /**********************************************************************************************************************
  * Typedef definitions

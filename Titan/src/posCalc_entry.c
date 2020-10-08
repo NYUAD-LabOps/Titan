@@ -1,5 +1,5 @@
+#include <Titan.h>
 #include "posCalc.h"
-#include "Helix.h"
 
 /* Position Calculator entry function */
 extern struct node *head;

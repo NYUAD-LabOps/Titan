@@ -1,5 +1,5 @@
-#include "helix_main_thread.h"
-#include "Helix.h"
+#include <Titan.h>
+#include <TitanMain.h>
 //#include "HelixParser.h"
 
 void motorInit(struct motorController *motorBlock);
@@ -7,7 +7,7 @@ void motorInit(struct motorController *motorBlock);
 extern struct node *head;
 extern struct node *tail;
 /* Helix Main entry function */
-void helix_main_thread_entry(void)
+void TitanMain_entry(void)
 {
     ssp_err_t err;
 
