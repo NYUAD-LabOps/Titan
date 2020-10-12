@@ -99,14 +99,7 @@ UINT usb_host_plug_event_notification(ULONG usb_event, UX_HOST_CLASS *host_class
 }
 
 /* USB Thread entry function */
-/* The application project demonstrates the typical use of the USBX Host Class Mass Storage module APIs.
- * The application project main thread entry waits for the connection from the callback function, reads the
- * firstdir\gcodeHelix.txt file in the USB memory, and updates the described number. If firstdir does not exist,
- * the directory information is ignored. If this file does not exist, creates a file. After updating the file,
- * the application waits until the USB memory is unplugged. The application uses LED2 LED1 and LED0 in sequence
- * to provide status of the application. (When all three or two (depends upon evaluation board) lights up, it
- * indicates operation is complete and user can disconnect the attached mass storage device.The application uses
- * SEMI-HOSTING feature, it displays relevant messages and errors to the user. */
+
 void USBMain_thread_entry(void)
 {
 
