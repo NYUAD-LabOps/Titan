@@ -104,7 +104,7 @@ struct instruction parseLine(struct node *input)
     }
     else
     {
-        if(DEBUG) printf ("\nInvalid instruction - Parser");
+        if(DEBUGGER) printf ("\nInvalid instruction - Parser");
     }
     return data;
 }

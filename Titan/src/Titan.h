@@ -2,7 +2,7 @@
 //#include <Ganymede.h>
 #include "hal_data.h"
 //#include "r_timer_api.h"
-#define DEBUGGER 0
+#define DEBUGGER 1
 #define DEBUG 0
 #define IPADDSTRING "192.168.10.181"
 #define NXD_MQTT_MAX_MESSAGE_LENGTH 50
@@ -75,6 +75,8 @@ struct node
 struct node * insertLink(char *content);
 struct node * removeLink(struct node *link);
 
+
+
 /**The motorController struct is stored in a block pool
 there are no #define elements which describe the motor
 instead, all constant and variable motor information is stored in the motorController block
@@ -97,6 +99,11 @@ struct motorController
     ///While in homing mode, the motor handler will ignore the state of the limit pins.
     /// Because of this, during a homing routine, the G28 command handler is responsible
     /// for directing motor activity.
+
+    ///ipAdd holds the IP address of the controller associated with this motor or axis
+    ULONG ipAdd;
+
+
     int homing;
     ///Flag used to indicate whether the speed of the motor is to be set according
     /// to a velocity or frequency.

@@ -254,7 +254,7 @@ struct node *insertLink(char *content)
     }
 
     machineGlobalsBlock->linkedListNodeCount++;
-    if (DEBUG)
+    if (DEBUGGER)
         if (!link)
             printf ("Build Link Fail.");
 
@@ -364,26 +364,26 @@ void commandHandler(struct instruction *data)
     }
     else if (strcmp (data->cmd, "G54") == 0)
     {
-        if (DEBUG)
+        if (DEBUGGER)
             printf ("G54...");
         //set axes offsets
         UDPZeroAxes ();
     }
     else if (strcmp (data->cmd, "G90") == 0)
     {
-        if (DEBUG)
+        if (DEBUGGER)
             printf ("G90...");
         machineGlobalsBlock->relativePositioningEN = 0;
     }
     else if (strcmp (data->cmd, "G91") == 0)
     {
-        if (DEBUG)
+        if (DEBUGGER)
             printf ("G91...");
         machineGlobalsBlock->relativePositioningEN = 1;
     }
     else if (strcmp (data->cmd, "MSS") == 0)
     {
-        if (DEBUG)
+        if (DEBUGGER)
             printf ("MSS...");
         //set motor step sizes
 
@@ -528,7 +528,7 @@ void commandHandler(struct instruction *data)
     {
         ssp_err_t err;
 
-        if (DEBUG)
+        if (DEBUGGER)
             printf ("\nRelay instruction...");
 
         if (strchr (data->cmdString, 'a') || strchr (data->cmdString, 'A'))
@@ -599,7 +599,7 @@ void commandHandler(struct instruction *data)
     else if (strcmp (data->cmd, "CAL") == 0)
     {
 
-        if (DEBUG)
+        if (DEBUGGER)
             printf ("\nCAL Run Start...");
 
         calCmdHandler (data);
@@ -607,7 +607,7 @@ void commandHandler(struct instruction *data)
     else if (strcmp (data->cmd, "M03") == 0)
     {
 
-        if (DEBUG)
+        if (DEBUGGER)
             printf ("\nMotor RUN FWD...");
 
         if (strchr (data->cmdString, 'x') || strchr (data->cmdString, 'X'))
@@ -652,7 +652,7 @@ void commandHandler(struct instruction *data)
     else if (strcmp (data->cmd, "M04") == 0)
     {
 
-        if (DEBUG)
+        if (DEBUGGER)
             printf ("\nMotor RUN REV...");
 
         if (strchr (data->cmdString, 'x') || strchr (data->cmdString, 'X'))
@@ -694,7 +694,7 @@ void commandHandler(struct instruction *data)
     }
     else
     {
-        if (DEBUG)
+        if (DEBUGGER)
             printf ("\nInvalid instruction - Main");
     }
 }

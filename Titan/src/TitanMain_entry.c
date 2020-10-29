@@ -11,13 +11,10 @@ void TitanMain_entry(void)
 {
     ssp_err_t err;
 
-    /* Prepare the system for debug output. */
-//    if (CoreDebug->DHCSR & CoreDebug_DHCSR_C_DEBUGEN_Msk)
-//    {
-//        initialise_monitor_handles ();
-//    }
+    if (DEBUGGER)
+        initialise_monitor_handles ();
 
-    if (DEBUG)
+    if (DEBUGGER)
     {
         printf ("\nHelix controller initializing...");
     }
@@ -28,7 +25,7 @@ void TitanMain_entry(void)
     initGlobalsBlock ();
     initBuff ();
     machineGlobalsBlock->USBBufferB = initUSBBuffer_PoolB (512);
-    if (DEBUG)
+    if (DEBUGGER)
     {
         printf ("\nMotor registers initializing...");
     }
@@ -42,7 +39,7 @@ void TitanMain_entry(void)
 
     err = g_timer0.p_api->periodSet (g_timer0.p_ctrl, 1, TIMER_UNIT_PERIOD_SEC);
 
-    if (DEBUG)
+    if (DEBUGGER)
     {
         printf ("\nPrimary initialization complete.");
     }

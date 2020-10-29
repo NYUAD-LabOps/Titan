@@ -27,12 +27,12 @@ void UDP_entry(void)
     while (machineGlobalsBlock->globalsInit != 1)
         tx_thread_sleep (1);
     status = nx_ip_status_check (&g_ip0, NX_IP_INITIALIZE_DONE, &link_status, NX_WAIT_FOREVER);
-    if (DEBUG)
+    if (DEBUGGER)
     {
         printf ("\nIP initialization complete. IP:%s", IPADDSTRING);
     }
 
-    if (DEBUG)
+    if (DEBUGGER)
     {
         printf ("\nUDP initializing...");
     }
@@ -50,7 +50,7 @@ void UDP_entry(void)
     }
     status = nx_udp_socket_create(&g_ip0, &machineGlobalsBlock->g_udp_sck, "UDP Socket", NX_IP_NORMAL, NX_DONT_FRAGMENT,
                                   NX_IP_TIME_TO_LIVE, 512);
-    if (DEBUG)
+    if (DEBUGGER)
     {
         if (NX_SUCCESS != status)
         {
@@ -63,7 +63,7 @@ void UDP_entry(void)
     }
     status = nx_udp_socket_bind (&machineGlobalsBlock->g_udp_sck, APP_UDP_PORT_BASE,
     NX_NO_WAIT);
-    if (DEBUG)
+    if (DEBUGGER)
     {
         if (NX_SUCCESS != status)
         {
@@ -75,7 +75,7 @@ void UDP_entry(void)
         }
     }
     status = nx_udp_socket_receive_notify (&machineGlobalsBlock->g_udp_sck, g_udp_sck_receive_cb);
-    if (DEBUG)
+    if (DEBUGGER)
     {
         if (NX_SUCCESS != status)
         {
@@ -91,7 +91,7 @@ void UDP_entry(void)
     ///Clear the event flags
     status = tx_event_flags_get (&g_udp_echo_received, 1, TX_AND_CLEAR, &event, NX_NO_WAIT);
 
-    if (DEBUG)
+    if (DEBUGGER)
     {
         printf ("\nUDP initialization complete.");
     }
@@ -330,7 +330,7 @@ void UDPHomeMotor(char axis)
 
 void UDPSendINIX()
 {
-    if (DEBUG)
+    if (DEBUGGER)
     {
         printf ("\nSending X INI data.");
     }
@@ -376,7 +376,7 @@ void UDPSendINIX()
 
 void UDPSendINIY()
 {
-    if (DEBUG)
+    if (DEBUGGER)
     {
         printf ("\nSending Y INI data.");
     }
@@ -422,7 +422,7 @@ void UDPSendINIY()
 
 void UDPSendINIZ()
 {
-    if (DEBUG)
+    if (DEBUGGER)
     {
         printf ("\nSending Z INI data.");
     }
@@ -468,7 +468,7 @@ void UDPSendINIZ()
 
 void UDPSendINIA()
 {
-    if (DEBUG)
+    if (DEBUGGER)
     {
         printf ("\nSending A INI data.");
     }
@@ -619,7 +619,7 @@ static void g_udp_sck_receive_cb(NX_UDP_SOCKET *p_sck)
 //    status = nx_udp_socket_send(p_sck, p_packet, ip, client_port);
     if (NULL != p_packet)
     {
-        if (DEBUG)
+        if (DEBUGGER)
         {
             printf ("\nUDP packet Received:%s.", p_packet->nx_packet_prepend_ptr);
         }
