@@ -176,6 +176,8 @@ void initGlobalsBlock()
     machineGlobalsBlock->UDPFlowControl = 0;
     machineGlobalsBlock->motorFreqSet = 0xFF;
     machineGlobalsBlock->getUpdate = 0;
+    machineGlobalsBlock->nextIP = IP_ADDRESS(192,168,10,183);
+    machineGlobalsBlock->UDPRxIP = 0;
 
     ///Relay init
     err = g_ioport.p_api->pinWrite (IOPORT_PORT_02_PIN_03, IOPORT_LEVEL_HIGH);

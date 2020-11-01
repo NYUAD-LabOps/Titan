@@ -103,19 +103,31 @@ void UDP_entry(void)
     char tmp[15];
     while (1)
     {
-        tx_thread_sleep (1000);
+//        if (machineGlobalsBlock->UDPRxIP != 0)
+//        {
+//            machineGlobalsBlock->UDPBuffer[0] = 'a';
+//            machineGlobalsBlock->UDPBuffer[1] = 'a';
+
+
+//            UDPSend (machineGlobalsBlock->UDPRxIP);
+
+//            machineGlobalsBlock->UDPRxIP = 0;
+//        }
+        tx_thread_sleep (500);
         //        tx_thread_suspend (tx_thread_identify ());
     }
 }
 
 ///This function sends the contents of the UDP buffer to a target slave device.
-void UDPSend()
+void UDPSend(ULONG ip_address)
 {
     UINT status;
-    ULONG tmp = 0;
+    ULONG event = 0;
     char echoACK = 0;
     ioport_level_t level;
     NX_PACKET *my_packet;
+    ///Clear event flags.
+//    status = tx_event_flags_get (&g_udp_echo_received, 1, TX_AND_CLEAR, &event, NX_NO_WAIT);
     do
     {
         status = nx_packet_allocate (&g_packet_pool0, &my_packet, NX_UDP_PACKET, NX_WAIT_FOREVER);
@@ -128,7 +140,7 @@ void UDPSend()
             printf ("\nSending:%s...", machineGlobalsBlock->UDPBuffer);
         }
 
-        status = nx_udp_socket_send(&machineGlobalsBlock->g_udp_sck, my_packet, IP_ADDRESS(192,168,10,182), 5000);
+        status = nx_udp_socket_send(&machineGlobalsBlock->g_udp_sck, my_packet, SECONDARYIP, 5000);
 
         if (NX_SUCCESS == status)
         {
@@ -147,9 +159,9 @@ void UDPSend()
         }
 
 //        machineGlobalsBlock->echoWaitStart = 1;
-        status = tx_event_flags_get (&g_udp_echo_received, 1, TX_AND_CLEAR, &tmp, 300);
+        status = tx_event_flags_get (&g_udp_echo_received, 1, TX_AND_CLEAR, &event, 300);
     }
-    while (tmp == 0);
+    while (event == 0);
     if (DEBUG)
     {
         printf ("\nSend complete.");
@@ -157,6 +169,8 @@ void UDPSend()
     memset (machineGlobalsBlock->UDPBuffer, 0, UDPMSGLENGTH);
 }
 
+///This function checks Secondaries for active homing operations. It's necessary to check for homing operations prior to any movement, since
+/// print jobs begin with a homing operation, and failing to check for this would interrupt it. The G01 function begins with this.
 char UDPGetStatus()
 {
     UINT status;
@@ -165,7 +179,7 @@ char UDPGetStatus()
     do
     {
         machineGlobalsBlock->UDPBuffer[0] = 't';
-        UDPSend ();
+        UDPSend (SECONDARYIP);
         status = tx_event_flags_get (&g_udp_data_received, 1, TX_AND_CLEAR, &tmp, 300);
     }
     while (tmp == 0);
@@ -180,7 +194,7 @@ UDPSetTemperature(char toolID, double temp)
     machineGlobalsBlock->UDPBuffer[1] = toolID;
     memcpy ((machineGlobalsBlock->UDPBuffer + 2), &temp, 8);
 
-    UDPSend ();
+//    UDPSend ();
 }
 
 ///This function is used to get the current position of a target axis.
@@ -200,7 +214,7 @@ double UDPGetTemp(char toolID)
             default:
             break;
         }
-        UDPSend ();
+        UDPSend (SECONDARYIP);
 
         status = tx_event_flags_get (&g_udp_data_received, 1, TX_AND_CLEAR, &tmp, 300);
         memcpy (&data, (machineGlobalsBlock->UDPRxBuff + 2), 8);
@@ -223,14 +237,45 @@ void processUDPRx(NX_PACKET *p_packet)
     UINT status;
     if (memcmp (machineGlobalsBlock->UDPBuffer, p_packet->nx_packet_prepend_ptr, UDPMSGLENGTH) == 0)
     {
-///An echo packet was received.
+        ///An echo packet was received.
         status = tx_event_flags_set (&g_udp_echo_received, 1, TX_OR);
+        nx_packet_release(p_packet);
+    }
+    else if (p_packet->nx_packet_prepend_ptr[0] == 'a' && p_packet->nx_packet_prepend_ptr[1] == 'a')
+    {
+        ///This is some kind of IP assignment packet.
+
+//        if (p_packet->nx_packet_prepend_ptr[1] == 'a')
+//        {
+
+///This packet is a request for the next available IP address
+//        ULONG srcIP;
+//        ULONG testIP;
+//        printf("\nNewIP...");
+        ULONG srcIP;
+        UINT srcPort;
+
+        nx_udp_source_extract (p_packet, &srcIP, &srcPort);
+
+        memcpy ((p_packet->nx_packet_prepend_ptr + 2), &machineGlobalsBlock->nextIP, 8);
+
+        status = nx_udp_socket_send(&machineGlobalsBlock->g_udp_sck, p_packet, srcIP, srcPort);
+
+        machineGlobalsBlock->nextIP++;
+//        }
+//        else if (p_packet->nx_packet_prepend_ptr[1] == 'b')
+//        {
+//            ///This is a Secondary reporting its new IP.
+//
+//        }
+
     }
     else
     {
 ///A data packet was received.
         memcpy (machineGlobalsBlock->UDPRxBuff, p_packet->nx_packet_prepend_ptr, UDPMSGLENGTH);
         status = tx_event_flags_set (&g_udp_data_received, 1, TX_OR);
+        nx_packet_release(p_packet);
     }
 }
 
@@ -241,7 +286,7 @@ void UDPRunMotorFrequency(char axis, double freq)
     machineGlobalsBlock->UDPBuffer[1] = axis;
     memcpy ((machineGlobalsBlock->UDPBuffer + 2), &freq, 8);
 
-    UDPSend ();
+    UDPSend (SECONDARYIP);
     machineGlobalsBlock->motorFreqSet = 1;
 }
 
@@ -250,7 +295,7 @@ void UDPStopMotor(char axis)
 
     machineGlobalsBlock->UDPBuffer[0] = 's';
     machineGlobalsBlock->UDPBuffer[1] = axis;
-    UDPSend ();
+    UDPSend (SECONDARYIP);
 }
 
 void UDPZeroAxes()
@@ -258,7 +303,7 @@ void UDPZeroAxes()
 
     machineGlobalsBlock->UDPBuffer[0] = 'z';
     machineGlobalsBlock->UDPBuffer[1] = 'z';
-    UDPSend ();
+    UDPSend (SECONDARYIP);
 }
 
 void UDPSetMotorDir(char axis, int fwd)
@@ -277,7 +322,7 @@ void UDPSetMotorDir(char axis, int fwd)
         machineGlobalsBlock->UDPBuffer[2] = 'r';
     }
 
-    UDPSend ();
+    UDPSend (SECONDARYIP);
 }
 
 ///Sets relay high or low. Level is 'h' or 'l'.
@@ -304,7 +349,7 @@ void UDPSetRelay(char axis, char relay, char level)
 
     machineGlobalsBlock->UDPBuffer[3] = level;
 
-    UDPSend ();
+    UDPSend (SECONDARYIP);
 }
 
 void UDPHomeMotor(char axis)
@@ -325,7 +370,7 @@ void UDPHomeMotor(char axis)
         default:
         break;
     }
-    UDPSend ();
+    UDPSend (SECONDARYIP);
 }
 
 void UDPSendINIX()
@@ -339,7 +384,7 @@ void UDPSendINIX()
 
     memcpy ((machineGlobalsBlock->UDPBuffer + 2), &motorBlockX->stepSize, 8);
 
-    UDPSend ();
+    UDPSend (SECONDARYIP);
 
     machineGlobalsBlock->UDPBuffer[0] = '1';
     machineGlobalsBlock->UDPBuffer[1] = 'x';
@@ -352,7 +397,7 @@ void UDPSendINIX()
         machineGlobalsBlock->UDPBuffer[2] = 'l';
     }
 
-    UDPSend ();
+    UDPSend (SECONDARYIP);
 
     machineGlobalsBlock->UDPBuffer[0] = '2';
     machineGlobalsBlock->UDPBuffer[1] = 'x';
@@ -365,13 +410,13 @@ void UDPSendINIX()
         machineGlobalsBlock->UDPBuffer[2] = 'l';
     }
 
-    UDPSend ();
+    UDPSend (SECONDARYIP);
 
     machineGlobalsBlock->UDPBuffer[0] = '3';
     machineGlobalsBlock->UDPBuffer[1] = 'x';
     memcpy ((machineGlobalsBlock->UDPBuffer + 2), &motorBlockX->homeSpeed, 8);
 
-    UDPSend ();
+    UDPSend (SECONDARYIP);
 }
 
 void UDPSendINIY()
@@ -385,7 +430,7 @@ void UDPSendINIY()
 
     memcpy ((machineGlobalsBlock->UDPBuffer + 2), &motorBlockY->stepSize, 8);
 
-    UDPSend ();
+    UDPSend (SECONDARYIP);
 
     machineGlobalsBlock->UDPBuffer[0] = '1';
     machineGlobalsBlock->UDPBuffer[1] = 'y';
@@ -398,7 +443,7 @@ void UDPSendINIY()
         machineGlobalsBlock->UDPBuffer[2] = 'l';
     }
 
-    UDPSend ();
+    UDPSend (SECONDARYIP);
 
     machineGlobalsBlock->UDPBuffer[0] = '2';
     machineGlobalsBlock->UDPBuffer[1] = 'y';
@@ -411,13 +456,13 @@ void UDPSendINIY()
         machineGlobalsBlock->UDPBuffer[2] = 'l';
     }
 
-    UDPSend ();
+    UDPSend (SECONDARYIP);
 
     machineGlobalsBlock->UDPBuffer[0] = '3';
     machineGlobalsBlock->UDPBuffer[1] = 'y';
     memcpy ((machineGlobalsBlock->UDPBuffer + 2), &motorBlockY->homeSpeed, 8);
 
-    UDPSend ();
+    UDPSend (SECONDARYIP);
 }
 
 void UDPSendINIZ()
@@ -431,7 +476,7 @@ void UDPSendINIZ()
 
     memcpy ((machineGlobalsBlock->UDPBuffer + 2), &motorBlockZ->stepSize, 8);
 
-    UDPSend ();
+    UDPSend (SECONDARYIP);
 
     machineGlobalsBlock->UDPBuffer[0] = '1';
     machineGlobalsBlock->UDPBuffer[1] = 'z';
@@ -444,7 +489,7 @@ void UDPSendINIZ()
         machineGlobalsBlock->UDPBuffer[2] = 'l';
     }
 
-    UDPSend ();
+    UDPSend (SECONDARYIP);
 
     machineGlobalsBlock->UDPBuffer[0] = '2';
     machineGlobalsBlock->UDPBuffer[1] = 'z';
@@ -457,13 +502,13 @@ void UDPSendINIZ()
         machineGlobalsBlock->UDPBuffer[2] = 'l';
     }
 
-    UDPSend ();
+    UDPSend (SECONDARYIP);
 
     machineGlobalsBlock->UDPBuffer[0] = '3';
     machineGlobalsBlock->UDPBuffer[1] = 'z';
     memcpy ((machineGlobalsBlock->UDPBuffer + 2), &motorBlockZ->homeSpeed, 8);
 
-    UDPSend ();
+    UDPSend (SECONDARYIP);
 }
 
 void UDPSendINIA()
@@ -477,7 +522,7 @@ void UDPSendINIA()
 
     memcpy ((machineGlobalsBlock->UDPBuffer + 2), &toolBlockA->motorBlock->stepSize, 8);
 
-    UDPSend ();
+    UDPSend (SECONDARYIP);
 
     machineGlobalsBlock->UDPBuffer[0] = '1';
     machineGlobalsBlock->UDPBuffer[1] = 'a';
@@ -490,7 +535,7 @@ void UDPSendINIA()
         machineGlobalsBlock->UDPBuffer[2] = 'l';
     }
 
-    UDPSend ();
+    UDPSend (SECONDARYIP);
 
     machineGlobalsBlock->UDPBuffer[0] = '2';
     machineGlobalsBlock->UDPBuffer[1] = 'a';
@@ -503,13 +548,13 @@ void UDPSendINIA()
         machineGlobalsBlock->UDPBuffer[2] = 'l';
     }
 
-    UDPSend ();
+    UDPSend (SECONDARYIP);
 
     machineGlobalsBlock->UDPBuffer[0] = '3';
     machineGlobalsBlock->UDPBuffer[1] = 'a';
     memcpy ((machineGlobalsBlock->UDPBuffer + 2), &toolBlockA->motorBlock->homeSpeed, 8);
 
-    UDPSend ();
+    UDPSend (SECONDARYIP);
 }
 
 void UDPCalibrateMotor(char axis, double freq, double distance, int dir)
@@ -521,7 +566,7 @@ void UDPCalibrateMotor(char axis, double freq, double distance, int dir)
     machineGlobalsBlock->UDPBuffer[0] = 'c';
     machineGlobalsBlock->UDPBuffer[1] = axis;
     machineGlobalsBlock->motorFreqSet = 1;
-    UDPSend ();
+    UDPSend (SECONDARYIP);
 }
 
 ///This function is used to set a target frequency for a motor.
@@ -532,7 +577,7 @@ void UDPSetMotorFrequency(char axis, double freq)
 
     memcpy ((machineGlobalsBlock->UDPBuffer + 2), &freq, 8);
 
-    UDPSend ();
+    UDPSend (SECONDARYIP);
 }
 
 ///This function is used to set a target position in steps for a motor.
@@ -543,7 +588,7 @@ void UDPSetMotorTargetSteps(char axis, double steps)
 
     memcpy ((machineGlobalsBlock->UDPBuffer + 2), &steps, 8);
 
-    UDPSend ();
+    UDPSend (SECONDARYIP);
 }
 
 ///This function is used to set the freqSet setting for a target motor.
@@ -552,7 +597,7 @@ void UDPSetMotorFreqSet(int freqSet)
     machineGlobalsBlock->UDPBuffer[0] = 'i';
     machineGlobalsBlock->UDPBuffer[2] = freqSet;
 
-    UDPSend ();
+    UDPSend (SECONDARYIP);
 
     machineGlobalsBlock->motorFreqSet = freqSet;
 }
@@ -565,7 +610,7 @@ void UDPSetTargetVelocity(char axis, double velocity)
 
     memcpy ((machineGlobalsBlock->UDPBuffer + 2), &velocity, 8);
 
-    UDPSend ();
+    UDPSend (SECONDARYIP);
 }
 
 ///This function is used to get the current position of a target axis.
@@ -591,13 +636,13 @@ double UDPGetPosition(char axis)
             default:
             break;
         }
-        UDPSend ();
+        UDPSend (SECONDARYIP);
 
         status = tx_event_flags_get (&g_udp_data_received, 1, TX_AND_CLEAR, &tmp, 300);
         memcpy (&data, (machineGlobalsBlock->UDPRxBuff + 2), 8);
     }
     while (tmp == 0);
-    ///Reset receive flag after retrieval of received data.
+///Reset receive flag after retrieval of received data.
 //    machineGlobalsBlock->UDPRX = 0;
 
     return data;
@@ -615,17 +660,19 @@ static void g_udp_sck_receive_cb(NX_UDP_SOCKET *p_sck)
     /* Receive data here */
     nx_udp_socket_receive (p_sck, &p_packet, NX_NO_WAIT);
 ///No echo from the master
+
 //    nx_udp_source_extract (p_packet, &ip, &client_port);
 //    status = nx_udp_socket_send(p_sck, p_packet, ip, client_port);
     if (NULL != p_packet)
     {
-        if (DEBUGGER)
+        if (DEBUG)
         {
             printf ("\nUDP packet Received:%s.", p_packet->nx_packet_prepend_ptr);
         }
+
 //        nx_packet_data_retrieve (p_packet, &machineGlobalsBlock->UDPRxBuff, length);
 
         processUDPRx (p_packet);
-        nx_packet_release(p_packet);
+
     }
 }

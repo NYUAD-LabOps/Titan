@@ -4,6 +4,7 @@
 //#include "r_timer_api.h"
 #define DEBUGGER 1
 #define DEBUG 0
+#define SECONDARYIP IP_ADDRESS(192,168,10,183)
 #define IPADDSTRING "192.168.10.181"
 #define NXD_MQTT_MAX_MESSAGE_LENGTH 50
 ///Number of bytes in each UDP message. UDP packet:
@@ -254,8 +255,15 @@ struct machineGlobals
     char *USBBufferB;
     char USBBufferHasData;
 
+    ///Stores the next available Secondary IP address.
+    ULONG nextIP;
+
     char UDPBuffer[UDPMSGLENGTH];
     char UDPRxBuff[UDPMSGLENGTH];
+
+    ///Used for storing the IP of the sender.
+    ULONG UDPRxIP;
+
     char UDPFlowControl;
     UINT UDPTimeout;
     NX_UDP_SOCKET g_udp_sck;
@@ -307,4 +315,4 @@ char UDPGetStatus();
 void processUDPRx(NX_PACKET *p_packet);
 void UDPGetToolUpdate();
 void initToolBlocks();
-void UDPSend();
+void UDPSend(ULONG ip_address);
