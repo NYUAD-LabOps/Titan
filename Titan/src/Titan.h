@@ -229,6 +229,13 @@ struct machineGlobals
 {
     char globalsInit;
     char motorsInit;
+
+    ///Array of pointers to motor controller blocks, in series XYZABC.
+    struct motorController *controllerBlocks[4];
+    ///How many controller blocks there are.
+    int numOfControllers;
+    ///Current index number for controller list.
+    int controllerIndex;
     ///motorFreqSet is a flag which is set to indicate that a freqSet value of 1 has already been
     /// sent to the slave.
     char motorFreqSet;
@@ -316,3 +323,4 @@ void processUDPRx(NX_PACKET *p_packet);
 void UDPGetToolUpdate();
 void initToolBlocks();
 void UDPSend(ULONG ip_address);
+void setupMode();

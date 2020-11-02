@@ -110,23 +110,28 @@ void initMotorBlocks()
     UINT status;
     unsigned char *memory_ptr;
 
-    status = tx_block_pool_create(&my_pool2, "motorblocks", sizeof(struct motorController), (VOID *) 0x20040000, 10000);
-
-    status = tx_block_allocate (&my_pool2, (VOID **) &memory_ptr, TX_NO_WAIT);
-    motorBlockZ = (struct motorController *) memory_ptr;
-    motorBlockZ->init = 1;
+    status = tx_block_pool_create(&my_pool2, "cntrlblocks", sizeof(struct motorController), (VOID *) 0x20040000, 10000);
 
     status = tx_block_allocate (&my_pool2, (VOID **) &memory_ptr, TX_NO_WAIT);
     motorBlockX = (struct motorController *) memory_ptr;
+    machineGlobalsBlock->controllerBlocks[0] = motorBlockX;
     motorBlockX->init = 1;
 
     status = tx_block_allocate (&my_pool2, (VOID **) &memory_ptr, TX_NO_WAIT);
     motorBlockY = (struct motorController *) memory_ptr;
+    machineGlobalsBlock->controllerBlocks[1] = motorBlockY;
     motorBlockY->init = 1;
+
+    status = tx_block_allocate (&my_pool2, (VOID **) &memory_ptr, TX_NO_WAIT);
+    motorBlockZ = (struct motorController *) memory_ptr;
+    machineGlobalsBlock->controllerBlocks[2] = motorBlockZ;
+    motorBlockZ->init = 1;
 
     status = tx_block_allocate (&my_pool2, (VOID **) &memory_ptr, TX_NO_WAIT);
     motorBlockA = (struct motorController *) memory_ptr;
     motorBlockA->init = 1;
+
+    machineGlobalsBlock->numOfControllers = 3;
 
 //    status = tx_block_allocate (&my_pool2, (VOID **) &memory_ptr, TX_NO_WAIT);
 //    motorBlock3 = (struct motorController *) memory_ptr;
@@ -176,7 +181,7 @@ void initGlobalsBlock()
     machineGlobalsBlock->UDPFlowControl = 0;
     machineGlobalsBlock->motorFreqSet = 0xFF;
     machineGlobalsBlock->getUpdate = 0;
-    machineGlobalsBlock->nextIP = IP_ADDRESS(192,168,10,183);
+    machineGlobalsBlock->nextIP = IP_ADDRESS(192, 168, 10, 183);
     machineGlobalsBlock->UDPRxIP = 0;
 
     ///Relay init
@@ -904,6 +909,19 @@ char isInRange(char in)
     }
 }
 
+///setupMode handles the Setup Mode process, which associates IP addresses with axes.
+void setupMode()
+{
+    ///Reset the index to 0.
+    machineGlobalsBlock->controllerIndex = 0;
+
+    ///Wait until the index reaches the end.
+    /// The UDP receive function will handle assigning IP addresses and incrementing the index.
+    while(machineGlobalsBlock->controllerIndex < machineGlobalsBlock->numOfControllers){
+        tx_thread_sleep(1);
+    }
+}
+
 void processReceivedMsg(char *message_buffer)
 {
     if (machineGlobalsBlock->receivingMsg != 1)
@@ -939,6 +957,10 @@ void processReceivedMsg(char *message_buffer)
             USB_Buffer_Transfer ();
         }
         machineGlobalsBlock->receivingMsg = 0;
+    }
+    else if (message_buffer[0] == 'S' && message_buffer[1] == 'T' && message_buffer[2] == 'P')
+    {
+
     }
     else if (message_buffer[0] == 'H' && message_buffer[1] == 'L' && message_buffer[2] == 'X')
     {

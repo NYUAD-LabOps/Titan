@@ -108,7 +108,6 @@ void UDP_entry(void)
 //            machineGlobalsBlock->UDPBuffer[0] = 'a';
 //            machineGlobalsBlock->UDPBuffer[1] = 'a';
 
-
 //            UDPSend (machineGlobalsBlock->UDPRxIP);
 
 //            machineGlobalsBlock->UDPRxIP = 0;
@@ -241,9 +240,11 @@ void processUDPRx(NX_PACKET *p_packet)
         status = tx_event_flags_set (&g_udp_echo_received, 1, TX_OR);
         nx_packet_release(p_packet);
     }
-    else if (p_packet->nx_packet_prepend_ptr[0] == 'a' && p_packet->nx_packet_prepend_ptr[1] == 'a')
+    else if (p_packet->nx_packet_prepend_ptr[0] == 'a')
     {
-        ///This is some kind of IP assignment packet.
+        if (p_packet->nx_packet_prepend_ptr[1] == 'a')
+        {
+            ///This is some kind of IP assignment packet.
 
 //        if (p_packet->nx_packet_prepend_ptr[1] == 'a')
 //        {
@@ -252,23 +253,34 @@ void processUDPRx(NX_PACKET *p_packet)
 //        ULONG srcIP;
 //        ULONG testIP;
 //        printf("\nNewIP...");
-        ULONG srcIP;
-        UINT srcPort;
+            ULONG srcIP;
+            UINT srcPort;
 
-        nx_udp_source_extract (p_packet, &srcIP, &srcPort);
+            nx_udp_source_extract (p_packet, &srcIP, &srcPort);
 
-        memcpy ((p_packet->nx_packet_prepend_ptr + 2), &machineGlobalsBlock->nextIP, 8);
+            memcpy ((p_packet->nx_packet_prepend_ptr + 2), &machineGlobalsBlock->nextIP, 8);
 
-        status = nx_udp_socket_send(&machineGlobalsBlock->g_udp_sck, p_packet, srcIP, srcPort);
+            status = nx_udp_socket_send(&machineGlobalsBlock->g_udp_sck, p_packet, srcIP, srcPort);
 
-        machineGlobalsBlock->nextIP++;
+            machineGlobalsBlock->nextIP++;
 //        }
 //        else if (p_packet->nx_packet_prepend_ptr[1] == 'b')
 //        {
 //            ///This is a Secondary reporting its new IP.
 //
 //        }
+        }
+        else if (p_packet->nx_packet_prepend_ptr[1] == 'b')
+        {
+            ///This is a Setup Mode packet.
+            ULONG srcIP;
+            UINT srcPort;
 
+            nx_udp_source_extract (p_packet, &srcIP, &srcPort);
+
+            machineGlobalsBlock->controllerBlocks[machineGlobalsBlock->controllerIndex]->ipAdd = srcIP;
+            machineGlobalsBlock->controllerIndex++;
+        }
     }
     else
     {

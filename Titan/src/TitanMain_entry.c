@@ -70,6 +70,9 @@ void TitanMain_entry(void)
 //        else if(machineGlobalsBlock->USBBufferHasData == 1 && machineGlobalsBlock->receivingMsg == 0){
 //            machineGlobalsBlock->rebuildLinkedList = 1;
 //        }
+        setupMode ();
+
+
 
         if (machineGlobalsBlock->getUpdate)
         {
