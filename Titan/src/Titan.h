@@ -1,3 +1,4 @@
+#include "UDP.h"
 #include <TitanParser.h>
 //#include <Ganymede.h>
 #include "hal_data.h"
@@ -324,3 +325,4 @@ void UDPGetToolUpdate();
 void initToolBlocks();
 void UDPSend(ULONG ip_address);
 void setupMode();
+void UDPHomeMotor(struct motorController *motorBlock);

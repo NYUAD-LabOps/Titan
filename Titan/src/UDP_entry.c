@@ -20,8 +20,6 @@ void UDP_entry(void)
      * to get initialized.
      */
     ///Should be replaced with a proper wait flag.
-    tx_thread_sleep (50);
-
     ip_init0 ();
     tx_thread_sleep (50);
     while (machineGlobalsBlock->globalsInit != 1)
@@ -280,6 +278,13 @@ void processUDPRx(NX_PACKET *p_packet)
 
             machineGlobalsBlock->controllerBlocks[machineGlobalsBlock->controllerIndex]->ipAdd = srcIP;
             machineGlobalsBlock->controllerIndex++;
+            printf("\nSetup Packet.");
+            if (machineGlobalsBlock->controllerIndex >= machineGlobalsBlock->numOfControllers)
+            {
+                status = tx_event_flags_set (&g_setup_mode_complete, 1, TX_OR);
+                machineGlobalsBlock->controllerIndex = 0;
+                printf("\nSetup Complete Event.");
+            }
         }
     }
     else
@@ -292,38 +297,43 @@ void processUDPRx(NX_PACKET *p_packet)
 }
 
 ///This function is used to run a motor at a target frequency.
-void UDPRunMotorFrequency(char axis, double freq)
+void UDPRunMotorFrequency(struct motorController *motorBlock, double freq)
 {
     machineGlobalsBlock->UDPBuffer[0] = 'f';
-    machineGlobalsBlock->UDPBuffer[1] = axis;
+    machineGlobalsBlock->UDPBuffer[1] = 'x';
     memcpy ((machineGlobalsBlock->UDPBuffer + 2), &freq, 8);
 
-    UDPSend (SECONDARYIP);
+    UDPSend (motorBlock->ipAdd);
     machineGlobalsBlock->motorFreqSet = 1;
 }
 
-void UDPStopMotor(char axis)
+void UDPStopMotor(struct motorController *motorBlock)
 {
 
     machineGlobalsBlock->UDPBuffer[0] = 's';
-    machineGlobalsBlock->UDPBuffer[1] = axis;
-    UDPSend (SECONDARYIP);
+    machineGlobalsBlock->UDPBuffer[1] = 'x';
+    UDPSend (motorBlock->ipAdd);
 }
 
 void UDPZeroAxes()
 {
 
-    machineGlobalsBlock->UDPBuffer[0] = 'z';
-    machineGlobalsBlock->UDPBuffer[1] = 'z';
-    UDPSend (SECONDARYIP);
+    int i;
+
+    for (i = 0; i < machineGlobalsBlock->numOfControllers; i++)
+    {
+        machineGlobalsBlock->UDPBuffer[0] = 'z';
+        machineGlobalsBlock->UDPBuffer[1] = 'z';
+        UDPSend (machineGlobalsBlock->controllerBlocks[i]->ipAdd);
+    }
 }
 
-void UDPSetMotorDir(char axis, int fwd)
+void UDPSetMotorDir(struct motorController *motorBlock, int fwd)
 {
 
     machineGlobalsBlock->UDPBuffer[0] = 'd';
 
-    machineGlobalsBlock->UDPBuffer[1] = axis;
+    machineGlobalsBlock->UDPBuffer[1] = 'x';
 
     if (fwd)
     {
@@ -334,7 +344,7 @@ void UDPSetMotorDir(char axis, int fwd)
         machineGlobalsBlock->UDPBuffer[2] = 'r';
     }
 
-    UDPSend (SECONDARYIP);
+    UDPSend (motorBlock->ipAdd);
 }
 
 ///Sets relay high or low. Level is 'h' or 'l'.
@@ -364,25 +374,27 @@ void UDPSetRelay(char axis, char relay, char level)
     UDPSend (SECONDARYIP);
 }
 
-void UDPHomeMotor(char axis)
+void UDPHomeMotor(struct motorController *motorBlock)
 {
 
     machineGlobalsBlock->UDPBuffer[0] = 'h';
-    switch (axis)
-    {
-        case 'x':
-            machineGlobalsBlock->UDPBuffer[1] = 'x';
-        break;
-        case 'y':
-            machineGlobalsBlock->UDPBuffer[1] = 'y';
-        break;
-        case 'z':
-            machineGlobalsBlock->UDPBuffer[1] = 'z';
-        break;
-        default:
-        break;
-    }
-    UDPSend (SECONDARYIP);
+    machineGlobalsBlock->UDPBuffer[1] = 'x';
+
+//    switch (axis)
+//    {
+//        case 'x':
+//            machineGlobalsBlock->UDPBuffer[1] = 'x';
+//        break;
+//        case 'y':
+//            machineGlobalsBlock->UDPBuffer[1] = 'y';
+//        break;
+//        case 'z':
+//            machineGlobalsBlock->UDPBuffer[1] = 'z';
+//        break;
+//        default:
+//        break;
+//    }
+    UDPSend (motorBlock->ipAdd);
 }
 
 void UDPSendINIX()

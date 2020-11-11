@@ -358,15 +358,15 @@ void commandHandler(struct instruction *data)
     {
         if (strchr (data->cmdString, 'x') || strchr (data->cmdString, 'X'))
         {
-            UDPHomeMotor ('x');
+            UDPHomeMotor (motorBlockX);
         }
         if (strchr (data->cmdString, 'y') || strchr (data->cmdString, 'Y'))
         {
-            UDPHomeMotor ('y');
+            UDPHomeMotor (motorBlockY);
         }
         if (strchr (data->cmdString, 'z') || strchr (data->cmdString, 'Z'))
         {
-            UDPHomeMotor ('z');
+            UDPHomeMotor (motorBlockZ);
         }
     }
     else if (strcmp (data->cmd, "G54") == 0)
@@ -912,14 +912,18 @@ char isInRange(char in)
 ///setupMode handles the Setup Mode process, which associates IP addresses with axes.
 void setupMode()
 {
+    UINT status;
+    ULONG event;
+
+    status = tx_event_flags_get (&g_setup_mode_complete, 1, TX_AND_CLEAR, &event, NX_NO_WAIT);
+
     ///Reset the index to 0.
     machineGlobalsBlock->controllerIndex = 0;
 
     ///Wait until the index reaches the end.
     /// The UDP receive function will handle assigning IP addresses and incrementing the index.
-    while(machineGlobalsBlock->controllerIndex < machineGlobalsBlock->numOfControllers){
-        tx_thread_sleep(1);
-    }
+    status = tx_event_flags_get (&g_setup_mode_complete, 1, TX_AND_CLEAR, &event, NX_WAIT_FOREVER);
+    printf("\nSetup Complete.");
 }
 
 void processReceivedMsg(char *message_buffer)

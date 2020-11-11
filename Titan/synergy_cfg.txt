@@ -733,4 +733,8 @@ Synergy Configuration
       Name: UDP Data Received
       Symbol: g_udp_data_received
       
+    Object "g_setup_mode_complete Event Flags"
+      Name: Setup Mode Event Flag
+      Symbol: g_setup_mode_complete
+      
   Messaging

@@ -16,6 +16,7 @@ extern "C"
 extern TX_EVENT_FLAGS_GROUP g_udp_ready;
 extern TX_EVENT_FLAGS_GROUP g_udp_echo_received;
 extern TX_EVENT_FLAGS_GROUP g_udp_data_received;
+extern TX_EVENT_FLAGS_GROUP g_setup_mode_complete;
 #ifdef __cplusplus
 } /* extern "C" */
 #endif

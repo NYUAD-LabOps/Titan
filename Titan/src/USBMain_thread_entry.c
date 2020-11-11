@@ -300,6 +300,20 @@ void USBMain_thread_entry(void)
                         snprintf (tmpUSBOut + 3, 8, "%f", toolBlockA->tempRead);
                         status = _ux_device_class_cdc_acm_write (g_cdc, (UCHAR *) tmpUSBOut, 12, &actual_length);
                     }
+                    else if (machineGlobalsBlock->USBBufferB[0] == 'S' && machineGlobalsBlock->USBBufferB[1] == 'T'
+                            && machineGlobalsBlock->USBBufferB[2] == 'P')
+                    {
+                        setupMode ();
+
+                        char tmpUSBOut[12];
+                        memset (tmpUSBOut, 0, 12);
+                        tmpUSBOut[0] = 'S';
+                        tmpUSBOut[1] = 'T';
+                        tmpUSBOut[2] = 'P';
+
+//                        snprintf (tmpUSBOut + 3, 8, "%f", toolBlockA->tempRead);
+                        status = _ux_device_class_cdc_acm_write (g_cdc, (UCHAR *) tmpUSBOut, 12, &actual_length);
+                    }
                     else
                     {
                         processReceivedMsg (machineGlobalsBlock->USBBufferB);

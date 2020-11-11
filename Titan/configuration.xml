@@ -528,6 +528,10 @@
         <property id="rtos.threadx.object.flags.name" value="UDP Data Received"/>
         <property id="rtos.threadx.object.flags.symbol" value="g_udp_data_received"/>
       </object>
+      <object id="rtos.threadx.object.flags.1176245156">
+        <property id="rtos.threadx.object.flags.name" value="Setup Mode Event Flag"/>
+        <property id="rtos.threadx.object.flags.symbol" value="g_setup_mode_complete"/>
+      </object>
     </context>
     <config id="config.el.ux_v2"/>
     <config id="config.el.ux_device">

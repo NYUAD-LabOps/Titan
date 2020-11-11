@@ -34,10 +34,10 @@ void TitanMain_entry(void)
     initMotors ();
     initTools ();
 
-    err = g_timer0.p_api->open (g_timer0.p_ctrl, g_timer0.p_cfg); // Open timers
-    g_timer0.p_api->start (g_timer0.p_ctrl);
-
-    err = g_timer0.p_api->periodSet (g_timer0.p_ctrl, 1, TIMER_UNIT_PERIOD_SEC);
+//    err = g_timer0.p_api->open (g_timer0.p_ctrl, g_timer0.p_cfg); // Open timers
+//    g_timer0.p_api->start (g_timer0.p_ctrl);
+//
+//    err = g_timer0.p_api->periodSet (g_timer0.p_ctrl, 1, TIMER_UNIT_PERIOD_SEC);
 
     if (DEBUGGER)
     {
@@ -70,9 +70,6 @@ void TitanMain_entry(void)
 //        else if(machineGlobalsBlock->USBBufferHasData == 1 && machineGlobalsBlock->receivingMsg == 0){
 //            machineGlobalsBlock->rebuildLinkedList = 1;
 //        }
-        setupMode ();
-
-
 
         if (machineGlobalsBlock->getUpdate)
         {

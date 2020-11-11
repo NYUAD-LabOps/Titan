@@ -10,6 +10,7 @@ void tx_startup_common_init(void);
 TX_EVENT_FLAGS_GROUP g_udp_ready;
 TX_EVENT_FLAGS_GROUP g_udp_echo_received;
 TX_EVENT_FLAGS_GROUP g_udp_data_received;
+TX_EVENT_FLAGS_GROUP g_setup_mode_complete;
 extern bool g_ssp_common_initialized;
 extern uint32_t g_ssp_common_thread_count;
 extern TX_SEMAPHORE g_ssp_common_initialized_semaphore;
@@ -37,6 +38,12 @@ void UDP_create(void)
     if (TX_SUCCESS != err_g_udp_data_received)
     {
         tx_startup_err_callback (&g_udp_data_received, 0);
+    }
+    UINT err_g_setup_mode_complete;
+    err_g_setup_mode_complete = tx_event_flags_create (&g_setup_mode_complete, (CHAR *) "Setup Mode Event Flag");
+    if (TX_SUCCESS != err_g_setup_mode_complete)
+    {
+        tx_startup_err_callback (&g_setup_mode_complete, 0);
     }
 
     UINT err;
