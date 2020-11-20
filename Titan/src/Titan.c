@@ -184,6 +184,8 @@ void initGlobalsBlock()
     machineGlobalsBlock->nextIP = IP_ADDRESS(192, 168, 10, 183);
     machineGlobalsBlock->UDPRxIP = 0;
 
+    machineGlobalsBlock->controllerIndex = 0;
+
     ///Relay init
     err = g_ioport.p_api->pinWrite (IOPORT_PORT_02_PIN_03, IOPORT_LEVEL_HIGH);
     err = g_ioport.p_api->pinWrite (IOPORT_PORT_02_PIN_03, IOPORT_LEVEL_HIGH);
@@ -914,8 +916,8 @@ void setupMode()
 {
     UINT status;
     ULONG event;
-
-    status = tx_event_flags_get (&g_setup_mode_complete, 1, TX_AND_CLEAR, &event, NX_NO_WAIT);
+    printf("\nSetup Start.");
+    status = tx_event_flags_set (&g_udp_echo_received, 1, TX_AND);
 
     ///Reset the index to 0.
     machineGlobalsBlock->controllerIndex = 0;
@@ -923,7 +925,7 @@ void setupMode()
     ///Wait until the index reaches the end.
     /// The UDP receive function will handle assigning IP addresses and incrementing the index.
     status = tx_event_flags_get (&g_setup_mode_complete, 1, TX_AND_CLEAR, &event, NX_WAIT_FOREVER);
-    printf("\nSetup Complete.");
+    printf("\nSetup Complete1.");
 }
 
 void processReceivedMsg(char *message_buffer)

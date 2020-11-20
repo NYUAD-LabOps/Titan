@@ -277,6 +277,7 @@ void USBMain_thread_entry(void)
             while (1)
             {
                 memset (machineGlobalsBlock->USBBufferB, 0, 49);
+                printf("\nRead Device.");
                 status = _ux_device_class_cdc_acm_read (g_cdc, machineGlobalsBlock->USBBufferB, 49, &actual_length);
                 if (status == UX_SUCCESS)
                 {
@@ -313,6 +314,7 @@ void USBMain_thread_entry(void)
 
 //                        snprintf (tmpUSBOut + 3, 8, "%f", toolBlockA->tempRead);
                         status = _ux_device_class_cdc_acm_write (g_cdc, (UCHAR *) tmpUSBOut, 12, &actual_length);
+                        printf("\nSetup Complete2.");
                     }
                     else
                     {

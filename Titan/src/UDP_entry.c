@@ -281,7 +281,7 @@ void processUDPRx(NX_PACKET *p_packet)
             printf("\nSetup Packet.");
             if (machineGlobalsBlock->controllerIndex >= machineGlobalsBlock->numOfControllers)
             {
-                status = tx_event_flags_set (&g_setup_mode_complete, 1, TX_OR);
+//                status = tx_event_flags_set (&g_setup_mode_complete, 1, TX_OR);
                 machineGlobalsBlock->controllerIndex = 0;
                 printf("\nSetup Complete Event.");
             }

@@ -22,6 +22,7 @@ void posCalc_entry(void)
 //
 //            machineGlobalsBlock->rebuildLinkedList = 0;
 //        }
+
         tx_thread_sleep (10);
     }
 //    while(machineGlobalsBlock->motorsInit != 1) tx_thread_sleep(1);
