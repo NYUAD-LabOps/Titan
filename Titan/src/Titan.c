@@ -426,7 +426,7 @@ void commandHandler(struct instruction *data)
                     motorBlockX->homeSpeed = data->f;
                 }
 
-                UDPSendINIX ();
+                UDPSendINI (motorBlockX);
             }
 
         }
@@ -459,7 +459,7 @@ void commandHandler(struct instruction *data)
                     motorBlockY->homeSpeed = data->f;
                 }
 
-                UDPSendINIY ();
+                UDPSendINI (motorBlockY);
             }
 
         }
@@ -492,7 +492,7 @@ void commandHandler(struct instruction *data)
                     motorBlockZ->homeSpeed = data->f;
                 }
 
-                UDPSendINIZ ();
+                UDPSendINI (motorBlockZ);
             }
 
         }
@@ -526,7 +526,7 @@ void commandHandler(struct instruction *data)
                     toolBlockA->motorBlock->homeSpeed = data->f;
                 }
 
-                UDPSendINIA ();
+                UDPSendINI (motorBlockA);
             }
 
         }
@@ -623,8 +623,8 @@ void commandHandler(struct instruction *data)
         {
             if (data->x != ~0)
             {
-                UDPSetMotorDir ('x', 1);
-                UDPRunMotorFrequency ('x', data->x);
+                UDPSetMotorDir (motorBlockX, 1);
+                UDPRunMotorFrequency (motorBlockX, data->x);
 
 //                motorBlockX->targetDir = motorBlockX->fwdDir;
             }
@@ -634,8 +634,8 @@ void commandHandler(struct instruction *data)
         {
             if (data->y != ~0)
             {
-                UDPSetMotorDir ('y', 1);
-                UDPRunMotorFrequency ('y', data->y);
+                UDPSetMotorDir (motorBlockY, 1);
+                UDPRunMotorFrequency (motorBlockY, data->y);
             }
 
         }
@@ -643,8 +643,8 @@ void commandHandler(struct instruction *data)
         {
             if (data->z != ~0)
             {
-                UDPSetMotorDir ('z', 1);
-                UDPRunMotorFrequency ('z', data->z);
+                UDPSetMotorDir (motorBlockZ, 1);
+                UDPRunMotorFrequency (motorBlockZ, data->z);
             }
 
         }
@@ -652,8 +652,8 @@ void commandHandler(struct instruction *data)
         {
             if (data->a != ~0)
             {
-                UDPSetMotorDir ('a', 1);
-                UDPRunMotorFrequency ('a', data->a);
+                UDPSetMotorDir (motorBlockA, 1);
+                UDPRunMotorFrequency (motorBlockA, data->a);
             }
 
         }
@@ -668,8 +668,8 @@ void commandHandler(struct instruction *data)
         {
             if (data->x != ~0)
             {
-                UDPSetMotorDir ('x', 0);
-                UDPRunMotorFrequency ('x', data->x);
+                UDPSetMotorDir (motorBlockX, 0);
+                UDPRunMotorFrequency (motorBlockX, data->x);
             }
 
         }
@@ -677,8 +677,8 @@ void commandHandler(struct instruction *data)
         {
             if (data->y != ~0)
             {
-                UDPSetMotorDir ('y', 0);
-                UDPRunMotorFrequency ('y', data->y);
+                UDPSetMotorDir (motorBlockY, 0);
+                UDPRunMotorFrequency (motorBlockY, data->y);
             }
 
         }
@@ -686,8 +686,8 @@ void commandHandler(struct instruction *data)
         {
             if (data->z != ~0)
             {
-                UDPSetMotorDir ('z', 0);
-                UDPRunMotorFrequency ('z', data->z);
+                UDPSetMotorDir (motorBlockZ, 0);
+                UDPRunMotorFrequency (motorBlockZ, data->z);
             }
 
         }
@@ -695,8 +695,8 @@ void commandHandler(struct instruction *data)
         {
             if (data->a != ~0)
             {
-                UDPSetMotorDir ('a', 0);
-                UDPRunMotorFrequency ('a', data->a);
+                UDPSetMotorDir (motorBlockA, 0);
+                UDPRunMotorFrequency (motorBlockA, data->a);
             }
 
         }
@@ -737,7 +737,7 @@ void calCmdHandler(struct instruction *data)
                     targetPosSteps = -targetPosSteps;
                 }
 
-                UDPCalibrateMotor ('x', data->f, targetPosSteps, dir);
+                UDPCalibrateMotor (motorBlockX, data->f, targetPosSteps, dir);
                 ///There is a valid target position. Run the calibration process for this axis.
 //                calRoutine (data, motorBlockX, (long int) data->x, (int) data->f);
             }
@@ -761,7 +761,7 @@ void calCmdHandler(struct instruction *data)
                     targetPosSteps = -targetPosSteps;
                 }
 
-                UDPCalibrateMotor ('y', data->f, targetPosSteps, dir);
+                UDPCalibrateMotor (motorBlockY, data->f, targetPosSteps, dir);
             }
         }
         else if (strchr (data->cmdString, 'z') || strchr (data->cmdString, 'Z'))
@@ -783,7 +783,7 @@ void calCmdHandler(struct instruction *data)
                     targetPosSteps = -targetPosSteps;
                 }
 
-                UDPCalibrateMotor ('z', data->f, targetPosSteps, dir);
+                UDPCalibrateMotor (motorBlockZ, data->f, targetPosSteps, dir);
             }
         }
         else if (strchr (data->cmdString, 'a') || strchr (data->cmdString, 'A'))
@@ -805,7 +805,7 @@ void calCmdHandler(struct instruction *data)
                     targetPosSteps = -targetPosSteps;
                 }
 
-                UDPCalibrateMotor ('a', data->f, targetPosSteps, dir);
+                UDPCalibrateMotor (motorBlockA, data->f, targetPosSteps, dir);
             }
         }
     }

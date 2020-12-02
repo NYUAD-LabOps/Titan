@@ -20,22 +20,23 @@ void setDir(struct motorController *motorBlock, ioport_level_t targetDir)
 /// reset the speed and frequency information to zero.
 void stopMotor(struct motorController *motorBlock)
 {
+    UDPStopMotor(motorBlock);
 
-    if (motorBlock == motorBlockX)
-    {
-        UDPStopMotor ('x');
-    }
-    else if (motorBlock == motorBlockY)
-    {
-        UDPStopMotor ('y');
-    }
-    else if (motorBlock == motorBlockZ)
-    {
-        UDPStopMotor ('z');
-    }
-    else if (motorBlock == motorBlockA)
-    {
-        UDPStopMotor ('a');
-    }
+//    if (motorBlock == motorBlockX)
+//    {
+//        UDPStopMotor ('x');
+//    }
+//    else if (motorBlock == motorBlockY)
+//    {
+//        UDPStopMotor ('y');
+//    }
+//    else if (motorBlock == motorBlockZ)
+//    {
+//        UDPStopMotor ('z');
+//    }
+//    else if (motorBlock == motorBlockA)
+//    {
+//        UDPStopMotor ('a');
+//    }
 
 }

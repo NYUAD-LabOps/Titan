@@ -3,7 +3,7 @@
 //#include <Ganymede.h>
 #include "hal_data.h"
 //#include "r_timer_api.h"
-#define DEBUGGER 1
+#define DEBUGGER 0
 #define DEBUG 0
 #define SECONDARYIP IP_ADDRESS(192,168,10,183)
 #define IPADDSTRING "192.168.10.181"
@@ -318,7 +318,7 @@ void stopMotor(struct motorController *motorBlock);
 //void G01(struct motorController *motorBlock);
 //void G28(struct motorController *motorBlock);
 double percentError(double target, double source);
-double UDPGetPosition(char axis);
+double UDPGetPosition(struct motorController *motorBlock);
 char UDPGetStatus();
 void processUDPRx(NX_PACKET *p_packet);
 void UDPGetToolUpdate();
