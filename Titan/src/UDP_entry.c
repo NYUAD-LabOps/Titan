@@ -263,7 +263,7 @@ void processUDPRx(NX_PACKET *p_packet)
     {
         if (p_packet->nx_packet_prepend_ptr[1] == 'C' && p_packet->nx_packet_prepend_ptr[2] == 'K')
         {
-            ///An echo packet was received.
+            ///An ACK packet was received.
             status = tx_event_flags_set (&g_udp_echo_received, 1, TX_OR);
             nx_packet_release(p_packet);
         }

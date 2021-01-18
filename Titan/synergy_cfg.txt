@@ -135,7 +135,7 @@ Synergy Configuration
       P409 42 CTSU0_TS05 Cap_Touch_Sensing_Unit_TS05 Low None "Peripheral mode" CMOS None "CTSU0: TS05; ETHERC0: RX_ER; GPT10: GTIOCA; IRQ0: IRQ06; OPS0: GTOWUP; SCI3: SDA; SCI3: TXD_MOSI; USBFS0: EXICEN; USBHS0: EXICEN" 
       P410 41 SCI0_RXD_MISO SCI0_RXD0_SCL0_MISO0 Medium None "Peripheral mode" CMOS None "AGT1: AGTOB; CTSU0: TS06; ETHERC0: RXD1; GPT9: GTIOCB; IRQ0: IRQ05; OPS0: GTOVLO; SCI0: RXD_MISO; SCI0: SCL; SCI3: SCK; SDHI0: DAT1; SPI0: MISO" 
       P411 40 SCI0_TXD_MOSI SCI0_TXD0_SDA0_MOSI0 Medium None "Peripheral mode" CMOS None "AGT1: AGTOA; CTSU0: TS07; ETHERC0: RXD0; GPT9: GTIOCA; IRQ0: IRQ04; OPS0: GTOVUP; SCI0: SDA; SCI0: TXD_MOSI; SCI3: CTS_RTS_SS; SDHI0: DAT0; SPI0: MOSI" 
-      P412 39 SCI0_SCK SCI0_SCK0 High - "Peripheral mode" CMOS None "CTSU0: TS08; ETHERC0: REF50CK; OPS0: GTOULO; SCI0: SCK; SDHI0: CMD; SPI0: RSPCK" 
+      P412 39 - - - - Disabled - - "CTSU0: TS08; ETHERC0: REF50CK; OPS0: GTOULO; SCI0: SCK; SDHI0: CMD; SPI0: RSPCK" 
       P413 38 GPIO GPIO15 Medium - "Output mode (Initial Low)" CMOS None "CTSU0: TS09; ETHERC0: TXD0; OPS0: GTOUUP; SCI0: CTS_RTS_SS; SDHI0: CLK; SPI0: SSL0" 
       P414 37 CTSU0_TS10 Cap_Touch_Sensing_Unit_TS10 Low - "Peripheral mode" CMOS None "CTSU0: TS10; ETHERC0: TXD1; SDHI0: WP; SPI0: SSL1" 
       P415 36 CTSU0_TS11 Cap_Touch_Sensing_Unit_TS11 Low - "Peripheral mode" CMOS None "CTSU0: TS11; ETHERC0: TXD_EN; SPI0: SSL2" 
@@ -329,12 +329,10 @@ Synergy Configuration
     TX_SEMAPHORE_DELETE_EXTENSION(semaphore_ptr): 
     TX_TIMER_DELETE_EXTENSION(timer_ptr): 
     
-  Module "FileX on USB Mass Storage"
   Module "USBX Host Class Mass Storage"
   Module "USBX Host Configuration"
   Module "USBX on ux"
   Module "FileX Common on fx"
-  Module "USBX Device Class CDC-ACM"
   Module "USBX Device Configuration"
     Composite Device: Disable
     
@@ -432,6 +430,23 @@ Synergy Configuration
   Module "Timer Driver on r_gpt"
     Parameter Checking: Default (BSP)
     
+  Module "Communications Framework on sf_uart_comms"
+    Parameter Checking: Default (BSP)
+    Read Input Queue Size (4-Byte Words): 15
+    
+  Module "UART Driver on r_sci_uart"
+    External RTS Operation: Disable
+    Reception: Enable
+    Transmission: Enable
+    Parameter Checking: Default (BSP)
+    
+  Module "Transfer Driver on r_dtc"
+    Parameter Checking: Default (BSP)
+    Software Start: Enabled
+    Linker section to keep DTC vector table: .ssp_dtc_vector_table
+    
+  Module "USBX Device Class CDC-ACM"
+  Module "FileX on USB Mass Storage"
   HAL
     Instance "g_cgc CGC Driver on r_cgc"
       Name [Fixed]: g_cgc
@@ -473,97 +488,150 @@ Synergy Configuration
     Auto start: Enabled
     Time slicing interval (ticks): 1
     
-  Thread "USBMain"
-    Symbol: USBMain_thread
-    Name: USBMain
-    Stack size (bytes): 4096
+  Thread "Position Calculator"
+    Symbol: posCalc
+    Name: Position Calculator
+    Stack size (bytes): 2048
+    Priority: 1
+    Auto start: Enabled
+    Time slicing interval (ticks): 1
+    
+  Thread "UDP"
+    Symbol: UDP
+    Name: UDP
+    Stack size (bytes): 1024
+    Priority: 2
+    Auto start: Enabled
+    Time slicing interval (ticks): 1
+    
+    Instance "g_ip0 NetX Duo IP Instance"
+      Name: g_ip0
+      IPv4 Address: 192.168.10.181
+      Subnet Mask: 255.255.255.0
+      Default Gateway Address: 0.0.0.0
+      IPv6 Global Address: 2001:0:0:0:0:0:0:1
+      IPv6 Link Local Address (All zeros means use MAC address): 0:0:0:0:0:0:0:0
+      IP Helper Thread Stack Size (bytes): 2048
+      IP Helper Thread Priority: 0
+      ARP: Enable
+      ARP cache storage units: Bytes
+          ARP cache size (in storage units): 520
+      Reverse ARP: Disable
+      TCP: Enable
+      UDP: Enable
+      ICMP: Enable
+      IGMP: Enable
+      IP fragmentation: Disable
+      Name of generated initialization function: ip_init0
+      Auto Initialization: Disable
+      Link status change callback: NULL
+      
+      Instance "NetX Duo Common on nxd"
+        Name of generated initialization function: nx_common_init0
+        Auto Initialization: Enable
+        
+      Instance "g_packet_pool0 NetX Duo Packet Pool Instance"
+        Name: g_packet_pool0
+        Packet Size (bytes): 1568
+        Number of Packets in Pool: 16
+        Name of generated initialization function: packet_pool_init0
+        Auto Initialization: Enable
+        
+        Instance "NetX Duo Common on nxd"
+          Name of generated initialization function: nx_common_init0
+          Auto Initialization: Enable
+          
+      Instance "g_sf_el_nx NetX Port ETHER on sf_el_nx"
+        Name: g_sf_el_nx
+        Channel: 1
+        MAC address change callback: NULL
+        Unknown packet receive Callback: NULL
+        
+    Object "g_udp_ready Event Flags"
+      Name: UDP Ready
+      Symbol: g_udp_ready
+      
+    Object "g_udp_echo_received Event Flags"
+      Name: UDP Echo Received
+      Symbol: g_udp_echo_received
+      
+    Object "g_udp_data_received Event Flags"
+      Name: UDP Data Received
+      Symbol: g_udp_data_received
+      
+    Object "g_setup_mode_complete Event Flags"
+      Name: Setup Mode Event Flag
+      Symbol: g_setup_mode_complete
+      
+  Thread "UARTWIFI"
+    Symbol: UARTWIFI
+    Name: UARTWIFI
+    Stack size (bytes): 1024
+    Priority: 1
+    Auto start: Enabled
+    Time slicing interval (ticks): 1
+    
+    Instance "g_sf_comms0 Communications Framework on sf_uart_comms"
+      Name: g_sf_comms0
+      Name of generated initialization function: sf_comms_init0
+      Auto Initialization: Enable
+      
+      Instance "g_uart0 UART Driver on r_sci_uart"
+        Name: g_uart0
+        Channel: 0
+        Baud Rate: 9600
+        Data Bits: 8bits
+        Parity: None
+        Stop Bits: 1bit
+        CTS/RTS Selection: RTS (CTS is disabled)
+        Name of UART callback function to be defined by user: NULL
+        Name of UART callback function for the RTS external pin control to be defined by user: NULL
+        Clock Source: Internal Clock
+        Baudrate Clock Output from SCK pin: Disable
+        Start bit detection: Falling Edge
+        Noise Cancel: Disable
+        Bit Rate Modulation Enable: Enable
+        Receive FIFO Trigger Level: Max
+        Receive Interrupt Priority: Priority 12
+        Transmit Interrupt Priority: Priority 12
+        Transmit End Interrupt Priority: Priority 12
+        Error Interrupt Priority: Priority 12
+        Baudrate Percent Error: 2.0
+        UART Communication Mode: RS232
+        UART RS485 Communication Mode: Half Duplex
+        RS485 DE Port: 09
+        RS485 DE Pin: 14
+        
+        Instance "g_transfer4 Transfer Driver on r_dtc SCI0 TXI"
+          Name: g_transfer4
+          Mode: Normal
+          Transfer Size: 1 Byte
+          Destination Address Mode: Fixed
+          Source Address Mode: Incremented
+          Repeat Area (Unused in Normal Mode): Source
+          Interrupt Frequency: After all transfers have completed
+          Destination Pointer: NULL
+          Source Pointer: NULL
+          Number of Transfers: 0
+          Number of Blocks (Valid only in Block Mode): 0
+          Activation Source (Must enable IRQ): SCI0 TXI
+          Auto Enable: False
+          Callback (Only valid with Software start): NULL
+          ELC Software Event Interrupt Priority: Disabled
+          
+  Thread "USBDevice"
+    Symbol: USBDevice
+    Name: USBDevice
+    Stack size (bytes): 1024
     Priority: 6
     Auto start: Enabled
     Time slicing interval (ticks): 1
     
-    Instance "g_fx_media0 FileX on USB Mass Storage"
-      Name: g_fx_media0
-      Name of FileX Media Control block initialization: fx_media_init_function0
-      Auto Media Initialization: Disable
-      Timeout ticks for Media Initialization (Specify 0 if no need of thread suspension): 1000
-      
-      Instance "g_ux_host_class_storage0 USBX Host Class Mass Storage"
-        Name: g_ux_host_class_storage0
-        
-        Instance "USBX Host Class Mass Storage Source"
-          Show linkage warning: Disabled
-          
-        Instance "USBX Host Configuration g_ux_host_0"
-          Name: g_ux_host_0
-          Name of generated initialization function: ux_host_init0
-          Auto Initialization: Enable
-          
-          Instance "g_sf_el_ux_hcd_hs_0 USBX Port HCD on sf_el_ux for USBHS"
-            Name: g_sf_el_ux_hcd_hs_0
-            USB Controller Selection: USBHS
-            
-            Instance "g_transfer0 Transfer Driver on r_dmac ELC SOFTWARE EVENT 0"
-              Name: g_transfer0
-              Channel: 0
-              Mode: Block
-              Transfer Size: 1 Byte
-              Destination Address Mode: Fixed
-              Source Address Mode: Incremented
-              Repeat Area (Unused in Normal Mode): Source
-              Destination Pointer: NULL
-              Source Pointer: NULL
-              Number of Transfers: 0
-              Number of Blocks (Valid only in Repeat and Block Mode): 0
-              Offset value: 0
-              Activation Source: ELC SOFTWARE EVENT 0
-              Auto Enable: False
-              Callback: NULL
-              Transfer End Interrupt Priority: Priority 1
-              
-            Instance "g_transfer1 Transfer Driver on r_dmac ELC SOFTWARE EVENT 1"
-              Name: g_transfer1
-              Channel: 1
-              Mode: Block
-              Transfer Size: 1 Byte
-              Destination Address Mode: Incremented
-              Source Address Mode: Fixed
-              Repeat Area (Unused in Normal Mode): Destination
-              Destination Pointer: NULL
-              Source Pointer: NULL
-              Number of Transfers: 0
-              Number of Blocks (Valid only in Repeat and Block Mode): 0
-              Offset value: 0
-              Activation Source: ELC SOFTWARE EVENT 1
-              Auto Enable: False
-              Callback: NULL
-              Transfer End Interrupt Priority: Priority 1
-              
-          Instance "USBX on ux"
-            USBX Pool Memory Name: g_ux_pool_memory
-            USBX Pool Memory Size: 65536
-            User Callback for Host Event Notification(Only valid for USB Host): usb_host_plug_event_notification
-            User Callback for Device Event Notification(Only valid for USB Device): NULL
-            Name of generated initialization function: ux_common_init0
-            Auto Initialization: Enable
-            
-            Instance "USBX Source"
-              Show linkage warning: Disabled
-              
-      Instance "FileX Common on fx"
-        Name of generated initialization function: fx_common_init0
-        Auto Initialization: Enable
-        
-        Instance "FileX Source"
-          Show linkage warning: Disabled
-          
-          Instance "ThreadX Source"
-            Show linkage warning: Disabled
-            
-    Instance "g_ux_device_class_cdc_acm0 USBX Device Class CDC-ACM"
-      Name: g_ux_device_class_cdc_acm0
-      USBX CDC-ACM instance_activate Function Callback: ux_cdc_device0_instance_activate
-      USBX CDC-ACM instance_deactivate Function Callback: ux_cdc_device0_instance_deactivate
-      Name of generated initialization function: ux_device_class_cdc_acm_init0
+    Instance "g_ux_device_class_cdc_acm1 USBX Device Class CDC-ACM"
+      Name: g_ux_device_class_cdc_acm1
+      USBX CDC-ACM instance_activate Function Callback: ux_cdc_device1_instance_activate
+      USBX CDC-ACM instance_deactivate Function Callback: ux_cdc_device1_instance_deactivate
+      Name of generated initialization function: ux_device_class_cdc_acm_init1
       Auto Initialization: Enable
       
       Instance "USBX Device Class CDC-ACM Source"
@@ -658,83 +726,94 @@ Synergy Configuration
       Symbol: g_cdc_activate_semaphore
       Initial count: 0
       
+  Thread "USBHost"
+    Symbol: USBHost
+    Name: USBHost
+    Stack size (bytes): 4096
+    Priority: 6
+    Auto start: Enabled
+    Time slicing interval (ticks): 1
+    
+    Instance "g_fx_media1 FileX on USB Mass Storage"
+      Name: g_fx_media1
+      Name of FileX Media Control block initialization: fx_media_init_function1
+      Auto Media Initialization: Disable
+      Timeout ticks for Media Initialization (Specify 0 if no need of thread suspension): 1000
+      
+      Instance "g_ux_host_class_storage0 USBX Host Class Mass Storage"
+        Name: g_ux_host_class_storage0
+        
+        Instance "USBX Host Class Mass Storage Source"
+          Show linkage warning: Disabled
+          
+        Instance "USBX Host Configuration g_ux_host_0"
+          Name: g_ux_host_0
+          Name of generated initialization function: ux_host_init0
+          Auto Initialization: Enable
+          
+          Instance "g_sf_el_ux_hcd_hs_0 USBX Port HCD on sf_el_ux for USBHS"
+            Name: g_sf_el_ux_hcd_hs_0
+            USB Controller Selection: USBHS
+            
+            Instance "g_transfer0 Transfer Driver on r_dmac ELC SOFTWARE EVENT 0"
+              Name: g_transfer0
+              Channel: 0
+              Mode: Block
+              Transfer Size: 1 Byte
+              Destination Address Mode: Fixed
+              Source Address Mode: Incremented
+              Repeat Area (Unused in Normal Mode): Source
+              Destination Pointer: NULL
+              Source Pointer: NULL
+              Number of Transfers: 0
+              Number of Blocks (Valid only in Repeat and Block Mode): 0
+              Offset value: 0
+              Activation Source: ELC SOFTWARE EVENT 0
+              Auto Enable: False
+              Callback: NULL
+              Transfer End Interrupt Priority: Priority 1
+              
+            Instance "g_transfer1 Transfer Driver on r_dmac ELC SOFTWARE EVENT 1"
+              Name: g_transfer1
+              Channel: 1
+              Mode: Block
+              Transfer Size: 1 Byte
+              Destination Address Mode: Incremented
+              Source Address Mode: Fixed
+              Repeat Area (Unused in Normal Mode): Destination
+              Destination Pointer: NULL
+              Source Pointer: NULL
+              Number of Transfers: 0
+              Number of Blocks (Valid only in Repeat and Block Mode): 0
+              Offset value: 0
+              Activation Source: ELC SOFTWARE EVENT 1
+              Auto Enable: False
+              Callback: NULL
+              Transfer End Interrupt Priority: Priority 1
+              
+          Instance "USBX on ux"
+            USBX Pool Memory Name: g_ux_pool_memory
+            USBX Pool Memory Size: 65536
+            User Callback for Host Event Notification(Only valid for USB Host): usb_host_plug_event_notification
+            User Callback for Device Event Notification(Only valid for USB Device): NULL
+            Name of generated initialization function: ux_common_init0
+            Auto Initialization: Enable
+            
+            Instance "USBX Source"
+              Show linkage warning: Disabled
+              
+      Instance "FileX Common on fx"
+        Name of generated initialization function: fx_common_init0
+        Auto Initialization: Enable
+        
+        Instance "FileX Source"
+          Show linkage warning: Disabled
+          
+          Instance "ThreadX Source"
+            Show linkage warning: Disabled
+            
     Object "g_usb_plug_events Event Flags"
       Name: USB Plug Event Flags
       Symbol: g_usb_plug_events
-      
-  Thread "Position Calculator"
-    Symbol: posCalc
-    Name: Position Calculator
-    Stack size (bytes): 2048
-    Priority: 1
-    Auto start: Enabled
-    Time slicing interval (ticks): 1
-    
-  Thread "UDP"
-    Symbol: UDP
-    Name: UDP
-    Stack size (bytes): 1024
-    Priority: 2
-    Auto start: Enabled
-    Time slicing interval (ticks): 1
-    
-    Instance "g_ip0 NetX Duo IP Instance"
-      Name: g_ip0
-      IPv4 Address: 192.168.10.181
-      Subnet Mask: 255.255.255.0
-      Default Gateway Address: 0.0.0.0
-      IPv6 Global Address: 2001:0:0:0:0:0:0:1
-      IPv6 Link Local Address (All zeros means use MAC address): 0:0:0:0:0:0:0:0
-      IP Helper Thread Stack Size (bytes): 2048
-      IP Helper Thread Priority: 0
-      ARP: Enable
-      ARP cache storage units: Bytes
-          ARP cache size (in storage units): 520
-      Reverse ARP: Disable
-      TCP: Enable
-      UDP: Enable
-      ICMP: Enable
-      IGMP: Enable
-      IP fragmentation: Disable
-      Name of generated initialization function: ip_init0
-      Auto Initialization: Disable
-      Link status change callback: NULL
-      
-      Instance "NetX Duo Common on nxd"
-        Name of generated initialization function: nx_common_init0
-        Auto Initialization: Enable
-        
-      Instance "g_packet_pool0 NetX Duo Packet Pool Instance"
-        Name: g_packet_pool0
-        Packet Size (bytes): 1568
-        Number of Packets in Pool: 16
-        Name of generated initialization function: packet_pool_init0
-        Auto Initialization: Enable
-        
-        Instance "NetX Duo Common on nxd"
-          Name of generated initialization function: nx_common_init0
-          Auto Initialization: Enable
-          
-      Instance "g_sf_el_nx NetX Port ETHER on sf_el_nx"
-        Name: g_sf_el_nx
-        Channel: 1
-        MAC address change callback: NULL
-        Unknown packet receive Callback: NULL
-        
-    Object "g_udp_ready Event Flags"
-      Name: UDP Ready
-      Symbol: g_udp_ready
-      
-    Object "g_udp_echo_received Event Flags"
-      Name: UDP Echo Received
-      Symbol: g_udp_echo_received
-      
-    Object "g_udp_data_received Event Flags"
-      Name: UDP Data Received
-      Symbol: g_udp_data_received
-      
-    Object "g_setup_mode_complete Event Flags"
-      Name: Setup Mode Event Flag
-      Symbol: g_setup_mode_complete
       
   Messaging

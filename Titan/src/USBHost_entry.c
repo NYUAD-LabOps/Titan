@@ -1,28 +1,7 @@
-/***********************************************************************************************************************
- * DISCLAIMER
- * This software is supplied by Renesas Electronics Corporation and is only intended for use with Renesas products. No
- * other uses are authorized. This software is owned by Renesas Electronics Corporation and is protected under all
- * applicable laws, including copyright laws.
- * THIS SOFTWARE IS PROVIDED "AS IS" AND RENESAS MAKES NO WARRANTIES REGARDING
- * THIS SOFTWARE, WHETHER EXPRESS, IMPLIED OR STATUTORY, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. ALL SUCH WARRANTIES ARE EXPRESSLY DISCLAIMED. TO THE MAXIMUM
- * EXTENT PERMITTED NOT PROHIBITED BY LAW, NEITHER RENESAS ELECTRONICS CORPORATION NOR ANY OF ITS AFFILIATED COMPANIES
- * SHALL BE LIABLE FOR ANY DIRECT, INDIRECT, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES FOR ANY REASON RELATED TO THIS
- * SOFTWARE, EVEN IF RENESAS OR ITS AFFILIATES HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
- * Renesas reserves the right, without notice, to make changes to this software and to discontinue the availability of
- * this software. By using this software, you agree to the additional terms and conditions found by accessing the
- * following link:
- * http://www.renesas.com/disclaimer
- *
- * Copyright (C) 2017 Renesas Electronics Corporation. All rights reserved.
- ***********************************************************************************************************************/
+#include "USBHost.h"
 #include <Titan.h>
-#include "USBMain_thread.h"
 #include "board_cfg.h"
 #include "fx_api.h"
-
-static UX_SLAVE_CLASS_CDC_ACM *g_cdc;
-#define SEMI_HOSTING
 
 #define     MAX_NUM_OF_TRY              (1000000)
 #define     UX_STORAGE_BUFFER_SIZE      (64*1024)
@@ -98,11 +77,9 @@ UINT usb_host_plug_event_notification(ULONG usb_event, UX_HOST_CLASS *host_class
     return UX_SUCCESS;
 }
 
-/* USB Thread entry function */
-
-void USBMain_thread_entry(void)
+/* USBHost entry function */
+void USBHost_entry(void)
 {
-
     CHAR volume[32];
     FX_MEDIA *p_media;
     ULONG actual_length = 0;
@@ -117,244 +94,164 @@ void USBMain_thread_entry(void)
     local_buffer = initUSBBuffer_Pool (UX_STORAGE_BUFFER_SIZE);
     machineGlobalsBlock->local_buffer = local_buffer;
 
-    while (1)
+    while (machineGlobalsBlock->globalsInit != 1)
     {
+        tx_thread_sleep (500);
+    }
 
-        while (machineGlobalsBlock->globalsInit != 1)
+    while (machineGlobalsBlock->USBPlugIn == 0)
+    {
+        tx_thread_sleep (500);
+    }
+
+    // Get the pointer to FileX Media Control Block for a USB flash device
+    p_media = g_fx_media1_ptr;
+    machineGlobalsBlock->p_media = p_media;
+
+    // Retrieve the volume name of the opened media from the Data sector
+    fx_return = fx_media_volume_get (machineGlobalsBlock->p_media, volume, FX_DIRECTORY_SECTOR);
+
+    if (fx_return == FX_SUCCESS)
+    {
+        // Set the default directory in the opened media, arbitrary name called "firstdir"
+        fx_directory_default_set (machineGlobalsBlock->p_media, "firstdir");
+
+        // Suspend this thread for 200 time-ticks
+        tx_thread_sleep (100);
+
+        // Try to open the file, 'gcodeHelix.txt'.
+        fx_return = fx_file_open(machineGlobalsBlock->p_media, &my_file, "gcodeHelix.txt",
+                                 FX_OPEN_FOR_READ | FX_OPEN_FOR_WRITE);
+
+        if (fx_return != FX_SUCCESS)
         {
-            tx_thread_sleep (500);
-        }
+            //The 'gcodeHelix.txt' file is not found, so create a new file
+            fx_return = fx_file_create (machineGlobalsBlock->p_media, "gcodeHelix.txt");
+            if (fx_return != FX_SUCCESS)
+            {
+                // Blink the LED 1 to report an error
 
-        while (machineGlobalsBlock->USBPlugIn == 0)
-        {
-            tx_thread_sleep (500);
-        }
-
-        // Get the pointer to FileX Media Control Block for a USB flash device
-        p_media = g_fx_media1_ptr;
-        machineGlobalsBlock->p_media = p_media;
-
-        // Retrieve the volume name of the opened media from the Data sector
-        fx_return = fx_media_volume_get (machineGlobalsBlock->p_media, volume, FX_DIRECTORY_SECTOR);
-
-        if (fx_return == FX_SUCCESS)
-        {
-            // Set the default directory in the opened media, arbitrary name called "firstdir"
-            fx_directory_default_set (machineGlobalsBlock->p_media, "firstdir");
-
-            // Suspend this thread for 200 time-ticks
-            tx_thread_sleep (100);
-
-            // Try to open the file, 'gcodeHelix.txt'.
+                tx_thread_suspend (tx_thread_identify ());
+            }
+            fx_return = fx_media_flush (machineGlobalsBlock->p_media);
+            // Open that file
             fx_return = fx_file_open(machineGlobalsBlock->p_media, &my_file, "gcodeHelix.txt",
                                      FX_OPEN_FOR_READ | FX_OPEN_FOR_WRITE);
-
             if (fx_return != FX_SUCCESS)
             {
-                //The 'gcodeHelix.txt' file is not found, so create a new file
-                fx_return = fx_file_create (machineGlobalsBlock->p_media, "gcodeHelix.txt");
-                if (fx_return != FX_SUCCESS)
+                if (DEBUGGER)
                 {
-                    // Blink the LED 1 to report an error
-
-                    break;
+                    printf ("\nCould not open G-code buffer.");
                 }
-                fx_return = fx_media_flush (machineGlobalsBlock->p_media);
-                // Open that file
-                fx_return = fx_file_open(machineGlobalsBlock->p_media, &my_file, "gcodeHelix.txt",
-                                         FX_OPEN_FOR_READ | FX_OPEN_FOR_WRITE);
-                if (fx_return != FX_SUCCESS)
-                {
-                    if (DEBUGGER)
-                    {
-                        printf ("\nCould not open G-code buffer.");
-                    }
-                    break;
-                }
-                else
-                {
-                    if (DEBUGGER)
-                    {
-                        printf ("\nG-code buffer ready.");
-                    }
-                }
+                tx_thread_suspend (tx_thread_identify ());
             }
             else
             {
                 if (DEBUGGER)
                 {
-                    printf ("\nG-code buffer already found - rebuilding...");
-                }
-                ///File already exists - rebuild it for a clean slate
-                fx_return = fx_file_close (&my_file);
-                fx_return = fx_file_delete (machineGlobalsBlock->p_media, "gcodeHelix.txt");
-                fx_return = fx_media_flush (machineGlobalsBlock->p_media);
-
-                fx_return = fx_file_create (machineGlobalsBlock->p_media, "gcodeHelix.txt");
-                fx_return = fx_media_flush (machineGlobalsBlock->p_media);
-                if (fx_return != FX_SUCCESS)
-                {
-                    if (DEBUGGER)
-                    {
-                        printf ("\nCould not create G-code buffer.");
-                    }
-
-                    break;
-                }
-                // Open that file
-                fx_return = fx_file_open(machineGlobalsBlock->p_media, &my_file, "gcodeHelix.txt",
-                                         FX_OPEN_FOR_READ | FX_OPEN_FOR_WRITE);
-                if (fx_return != FX_SUCCESS)
-                {
-                    if (DEBUGGER)
-                    {
-                        printf ("\nCould not open G-code buffer.");
-                    }
-                    break;
-                }
-                else
-                {
-                    if (DEBUGGER)
-                        printf ("\nG-code buffer ready.");
-
+                    printf ("\nG-code buffer ready.");
                 }
             }
-
-            ///Wait for default motor data to be ready
-            while (machineGlobalsBlock->motorsInit == 0)
-            {
-                tx_thread_sleep (50);
-            }
-            // Try to open the file, 'Helix.ini'.
-            fx_return = fx_file_open(machineGlobalsBlock->p_media, &ini_file, "Helix.ini",
-                                     FX_OPEN_FOR_READ | FX_OPEN_FOR_WRITE);
-
-            if (fx_return != FX_SUCCESS)
-            {
-                if (DEBUGGER)
-                    printf ("\nHelix.ini not found. Creating...");
-                //The 'Helix.ini' file is not found, so create a new file
-                fx_return = fx_file_create (machineGlobalsBlock->p_media, "Helix.ini");
-                if (fx_return != FX_SUCCESS)
-                {
-
-                }
-                else
-                {
-                    if (DEBUGGER)
-                        printf ("\nHelix.ini created. Initiating INI save...");
-                }
-                // Open that file
-                fx_return = fx_file_open(machineGlobalsBlock->p_media, &ini_file, "Helix.ini",
-                                         FX_OPEN_FOR_READ | FX_OPEN_FOR_WRITE);
-                if (fx_return != FX_SUCCESS)
-                {
-                    if (DEBUGGER)
-                        printf ("\nCannot open Helix.ini.");
-                }
-                else
-                {
-                    saveINI ();
-                }
-            }
-            else
-            {
-                ///Helix.ini is already present. Load INI settings
-                if (DEBUGGER)
-                    printf ("\nHelix.ini present. Initiating INI load...");
-                loadINI ();
-            }
-
-            // Already open a file, then read the file in blocks
-            // Set a specified byte offset for reading
-            fx_return = fx_file_seek (&my_file, 0);
-
-            machineGlobalsBlock->USBBufferOpen = 1;
+        }
+        else
+        {
             if (DEBUGGER)
-                printf ("\nUSB buffer ready.");
-            if (DEBUGGER)
-                printf ("\nController ready.");
-
-            while (1)
             {
-                memset (machineGlobalsBlock->USBBufferB, 0, 49);
-                printf("\nRead Device.");
-                status = _ux_device_class_cdc_acm_read (g_cdc, machineGlobalsBlock->USBBufferB, 49, &actual_length);
-                if (status == UX_SUCCESS)
-                {
-//                    if(DEBUG) printf ("\nDevice received...");
-                    //printf(topic_buffer);
-//                    if(DEBUG) printf (machineGlobalsBlock->USBBufferB);
-                    if (machineGlobalsBlock->USBBufferB[0] == 'U' && machineGlobalsBlock->USBBufferB[1] == 'S'
-                            && machineGlobalsBlock->USBBufferB[2] == 'B')
-                    {
-                        status = _ux_device_class_cdc_acm_write (g_cdc, (UCHAR *) "USB", 4, &actual_length);
-                    }
-                    else if (machineGlobalsBlock->USBBufferB[0] == 'T' && machineGlobalsBlock->USBBufferB[1] == 'M'
-                            && machineGlobalsBlock->USBBufferB[2] == 'P')
-                    {
-                        char tmpUSBOut[12];
-                        memset (tmpUSBOut, 0, 12);
-                        tmpUSBOut[0] = 'T';
-                        tmpUSBOut[1] = 'M';
-                        tmpUSBOut[2] = 'P';
-
-                        snprintf (tmpUSBOut + 3, 8, "%f", toolBlockA->tempRead);
-                        status = _ux_device_class_cdc_acm_write (g_cdc, (UCHAR *) tmpUSBOut, 12, &actual_length);
-                    }
-                    else if (machineGlobalsBlock->USBBufferB[0] == 'S' && machineGlobalsBlock->USBBufferB[1] == 'T'
-                            && machineGlobalsBlock->USBBufferB[2] == 'P')
-                    {
-                        setupMode ();
-
-                        char tmpUSBOut[12];
-                        memset (tmpUSBOut, 0, 12);
-                        tmpUSBOut[0] = 'S';
-                        tmpUSBOut[1] = 'T';
-                        tmpUSBOut[2] = 'P';
-
-//                        snprintf (tmpUSBOut + 3, 8, "%f", toolBlockA->tempRead);
-                        status = _ux_device_class_cdc_acm_write (g_cdc, (UCHAR *) tmpUSBOut, 12, &actual_length);
-                        printf("\nSetup Complete2.");
-                    }
-                    else
-                    {
-                        processReceivedMsg (machineGlobalsBlock->USBBufferB);
-                    }
-                }
-                else
-                {
-
-                }
-                tx_thread_sleep (1);
+                printf ("\nG-code buffer already found - rebuilding...");
             }
-
-            //Close already opened file
+            ///File already exists - rebuild it for a clean slate
             fx_return = fx_file_close (&my_file);
-
-            tx_thread_sleep (200);
-
-            /* flush the media */
+            fx_return = fx_file_delete (machineGlobalsBlock->p_media, "gcodeHelix.txt");
             fx_return = fx_media_flush (machineGlobalsBlock->p_media);
 
-            /* close the media */
-            fx_return = fx_media_close (machineGlobalsBlock->p_media);
-
-#ifdef SEMI_HOSTING
-            if (CoreDebug->DHCSR & CoreDebug_DHCSR_C_DEBUGEN_Msk)
+            fx_return = fx_file_create (machineGlobalsBlock->p_media, "gcodeHelix.txt");
+            fx_return = fx_media_flush (machineGlobalsBlock->p_media);
+            if (fx_return != FX_SUCCESS)
             {
-                /* Debugger is connected */
-                /* Call this before any calls to printf() */
-                printf ("Disconnect the device \n");
+                if (DEBUGGER)
+                {
+                    printf ("\nCould not create G-code buffer.");
+                }
+
+                tx_thread_suspend (tx_thread_identify ());
             }
-#endif
+            // Open that file
+            fx_return = fx_file_open(machineGlobalsBlock->p_media, &my_file, "gcodeHelix.txt",
+                                     FX_OPEN_FOR_READ | FX_OPEN_FOR_WRITE);
+            if (fx_return != FX_SUCCESS)
+            {
+                if (DEBUGGER)
+                {
+                    printf ("\nCould not open G-code buffer.");
+                }
+                tx_thread_suspend (tx_thread_identify ());
+            }
+            else
+            {
+                if (DEBUGGER)
+                    printf ("\nG-code buffer ready.");
 
+            }
         }
 
-        while (machineGlobalsBlock->USBPlugIn == 1)
+        ///Wait for default motor data to be ready
+        while (machineGlobalsBlock->motorsInit == 0)
         {
-            tx_thread_sleep (500);
+            tx_thread_sleep (50);
         }
+        // Try to open the file, 'Helix.ini'.
+        fx_return = fx_file_open(machineGlobalsBlock->p_media, &ini_file, "Helix.ini",
+                                 FX_OPEN_FOR_READ | FX_OPEN_FOR_WRITE);
+
+        if (fx_return != FX_SUCCESS)
+        {
+            if (DEBUGGER)
+                printf ("\nHelix.ini not found. Creating...");
+            //The 'Helix.ini' file is not found, so create a new file
+            fx_return = fx_file_create (machineGlobalsBlock->p_media, "Helix.ini");
+            if (fx_return != FX_SUCCESS)
+            {
+
+            }
+            else
+            {
+                if (DEBUGGER)
+                    printf ("\nHelix.ini created. Initiating INI save...");
+            }
+            // Open that file
+            fx_return = fx_file_open(machineGlobalsBlock->p_media, &ini_file, "Helix.ini",
+                                     FX_OPEN_FOR_READ | FX_OPEN_FOR_WRITE);
+            if (fx_return != FX_SUCCESS)
+            {
+                if (DEBUGGER)
+                    printf ("\nCannot open Helix.ini.");
+            }
+            else
+            {
+                saveINI ();
+            }
+        }
+        else
+        {
+            ///Helix.ini is already present. Load INI settings
+            if (DEBUGGER)
+                printf ("\nHelix.ini present. Initiating INI load...");
+            loadINI ();
+        }
+
+        // Already open a file, then read the file in blocks
+        // Set a specified byte offset for reading
+        fx_return = fx_file_seek (&my_file, 0);
+
+        machineGlobalsBlock->USBBufferOpen = 1;
+        if (DEBUGGER)
+            printf ("\nUSB buffer ready.");
+        if (DEBUGGER)
+            printf ("\nController ready.");
+    }
+    while (1)
+    {
+        tx_thread_sleep (1);
     }
 }
 
@@ -599,18 +496,4 @@ void loadINI()
         printf ("\nINI data loaded.");
 ///Clear local buffer to prevent errors with other USB operations
     memset (machineGlobalsBlock->local_buffer, 0, (4 * length_tmp));
-}
-
-void ux_cdc_device0_instance_activate(VOID *cdc_instance)
-{
-    /* Save the CDC instance.  */
-    g_cdc = (UX_SLAVE_CLASS_CDC_ACM *) cdc_instance;
-    tx_semaphore_put (&g_cdc_activate_semaphore);
-}
-
-void ux_cdc_device0_instance_deactivate(VOID *cdc_instance)
-{
-    SSP_PARAMETER_NOT_USED(cdc_instance);
-
-    g_cdc = UX_NULL;
 }

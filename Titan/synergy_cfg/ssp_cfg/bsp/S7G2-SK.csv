@@ -378,7 +378,7 @@ SCI0: TXD_MOSI
 SCI3: CTS_RTS_SS
 SDHI0: DAT0
 SPI0: MOSI"
-"P412","39","SCI0_SCK","SCI0_SCK0","High","","Peripheral mode","CMOS","None","CTSU0: TS08
+"P412","39","","","","","Disabled","","","CTSU0: TS08
 ETHERC0: REF50CK
 OPS0: GTOULO
 SCI0: SCK

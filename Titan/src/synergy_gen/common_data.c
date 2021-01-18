@@ -1,6 +1,9 @@
 /* generated common source file - do not edit */
 #include "common_data.h"
 
+#define UX_HOST_INITIALIZE
+#define USB_HOST_STORAGE_CLASS_REGISTER
+
 #ifndef NX_DISABLE_IPV6
 #ifndef FILL_NXD_IPV6_ADDRESS
 #define FILL_NXD_IPV6_ADDRESS(ipv6,f0,f1,f2,f3,f4,f5,f6,f7) do { \
@@ -12,273 +15,89 @@
                                                                    } while(0);
 #endif /* FILL_NXD_IPV6_ADDRESS */
 #endif
-
-#define UX_HOST_INITIALIZE
-#define USB_HOST_STORAGE_CLASS_REGISTER
-NX_REC nx_record1;
-static NX_CALLBACK_REC g_sf_el_nx_callbacks =
-{ .nx_ether_unknown_packet_receive_callback = NULL, .nx_ether_mac_address_change_callback = NULL, };
-static sf_el_nx_cfg_t sf_el_nx1_cfg =
-{ .channel = 1, .nx_mac_address =
-{ .nx_mac_address_h = SF_EL_NX_CFG_ENET1_MAC_H, .nx_mac_address_l = SF_EL_NX_CFG_ENET1_MAC_L },
-  .p_callback_rec = &g_sf_el_nx_callbacks, .etherc_ptr = R_ETHERC1, .edmac_ptr = R_EDMAC1, };
-#if SF_EL_NX_CFG_IRQ_IPL != BSP_IRQ_DISABLED
-#if !defined(SSP_SUPPRESS_ISR_g_sf_el_nx) && !defined(SSP_SUPPRESS_ISR_EDMAC1)
-SSP_VECTOR_DEFINE_CHAN(edmac_eint_isr, EDMAC, EINT, 1);
+#if (1) != BSP_IRQ_DISABLED
+#if !defined(SSP_SUPPRESS_ISR_g_transfer1) && !defined(SSP_SUPPRESS_ISR_DMACELC_EVENT_ELC_SOFTWARE_EVENT_1)
+SSP_VECTOR_DEFINE_CHAN(dmac_int_isr, DMAC, INT, 1);
 #endif
 #endif
-
-void nx_ether_driver_eth1(NX_IP_DRIVER *driver_req_ptr)
-{
-    nx_ether_driver (driver_req_ptr, &nx_record1, &sf_el_nx1_cfg);
-}
-
-/** Make user given name point to correct driver entry point. */
-VOID (*g_sf_el_nx)(NX_IP_DRIVER *driver_req_ptr) = nx_ether_driver_eth1;
-/*******************************************************************************************************************//**
- * @brief     Initialization function that the user can choose to have called automatically during thread entry.
- *            The user can call this function at a later time if desired using the prototype below.
- *            - void nx_common_init0(void)
+dmac_instance_ctrl_t g_transfer1_ctrl;
+transfer_info_t g_transfer1_info =
+{ .dest_addr_mode = TRANSFER_ADDR_MODE_INCREMENTED,
+  .repeat_area = TRANSFER_REPEAT_AREA_DESTINATION,
+  .irq = TRANSFER_IRQ_EACH,
+  .chain_mode = TRANSFER_CHAIN_MODE_DISABLED,
+  .src_addr_mode = TRANSFER_ADDR_MODE_FIXED,
+  .size = TRANSFER_SIZE_1_BYTE,
+  .mode = TRANSFER_MODE_BLOCK,
+  .p_dest = (void *) NULL,
+  .p_src = (void const *) NULL,
+  .num_blocks = 0,
+  .length = 0, };
+const transfer_on_dmac_cfg_t g_transfer1_extend =
+{ .channel = 1, .offset_byte = 0, };
+const transfer_cfg_t g_transfer1_cfg =
+{ .p_info = &g_transfer1_info, .activation_source = ELC_EVENT_ELC_SOFTWARE_EVENT_1, .auto_enable = false, .p_callback =
+          NULL,
+  .p_context = &g_transfer1, .irq_ipl = (1), .p_extend = &g_transfer1_extend, };
+/* Instance structure to use this module. */
+const transfer_instance_t g_transfer1 =
+{ .p_ctrl = &g_transfer1_ctrl, .p_cfg = &g_transfer1_cfg, .p_api = &g_transfer_on_dmac };
+#if (1) != BSP_IRQ_DISABLED
+#if !defined(SSP_SUPPRESS_ISR_g_transfer0) && !defined(SSP_SUPPRESS_ISR_DMACELC_EVENT_ELC_SOFTWARE_EVENT_0)
+SSP_VECTOR_DEFINE_CHAN(dmac_int_isr, DMAC, INT, 0);
+#endif
+#endif
+dmac_instance_ctrl_t g_transfer0_ctrl;
+transfer_info_t g_transfer0_info =
+{ .dest_addr_mode = TRANSFER_ADDR_MODE_FIXED,
+  .repeat_area = TRANSFER_REPEAT_AREA_SOURCE,
+  .irq = TRANSFER_IRQ_EACH,
+  .chain_mode = TRANSFER_CHAIN_MODE_DISABLED,
+  .src_addr_mode = TRANSFER_ADDR_MODE_INCREMENTED,
+  .size = TRANSFER_SIZE_1_BYTE,
+  .mode = TRANSFER_MODE_BLOCK,
+  .p_dest = (void *) NULL,
+  .p_src = (void const *) NULL,
+  .num_blocks = 0,
+  .length = 0, };
+const transfer_on_dmac_cfg_t g_transfer0_extend =
+{ .channel = 0, .offset_byte = 0, };
+const transfer_cfg_t g_transfer0_cfg =
+{ .p_info = &g_transfer0_info, .activation_source = ELC_EVENT_ELC_SOFTWARE_EVENT_0, .auto_enable = false, .p_callback =
+          NULL,
+  .p_context = &g_transfer0, .irq_ipl = (1), .p_extend = &g_transfer0_extend, };
+/* Instance structure to use this module. */
+const transfer_instance_t g_transfer0 =
+{ .p_ctrl = &g_transfer0_ctrl, .p_cfg = &g_transfer0_cfg, .p_api = &g_transfer_on_dmac };
+/***********************************************************************************************************************
+ * Registers Interrupt Vector for USBHS Controller.
  **********************************************************************************************************************/
-void nx_common_init0(void)
-{
-    /** Initialize the NetX Duo system. */
-    nx_system_initialize ();
-}
-NX_PACKET_POOL g_packet_pool0;
-uint8_t g_packet_pool0_pool_memory[(16 * (1568 + sizeof(NX_PACKET)))];
-#if defined(__ICCARM__)
-#define g_packet_pool0_err_callback_WEAK_ATTRIBUTE
-#pragma weak g_packet_pool0_err_callback  = g_packet_pool0_err_callback_internal
-#elif defined(__GNUC__)
-#define g_packet_pool0_err_callback_WEAK_ATTRIBUTE   __attribute__ ((weak, alias("g_packet_pool0_err_callback_internal")))
+#if (SF_EL_UX_HCD_CFG_HS_IRQ_IPL != BSP_IRQ_DISABLED)
+/* USBHS ISR vector registering. */
+#if !defined(SSP_SUPPRESS_ISR_g_sf_el_ux_hcd_hs_0) && !defined(SSP_SUPPRESS_ISR_USB)
+SSP_VECTOR_DEFINE_UNIT(usbhs_usb_int_resume_isr, USB, HS, USB_INT_RESUME, 0);
 #endif
-void g_packet_pool0_err_callback(void *p_instance, void *p_data)
-g_packet_pool0_err_callback_WEAK_ATTRIBUTE;
-/*******************************************************************************************************************//**
- * @brief      This is a weak example initialization error function.  It should be overridden by defining a user  function
- *             with the prototype below.
- *             - void g_packet_pool0_err_callback(void * p_instance, void * p_data)
- *
- * @param[in]  p_instance arguments used to identify which instance caused the error and p_data Callback arguments used to identify what error caused the callback.
- **********************************************************************************************************************/
-void g_packet_pool0_err_callback_internal(void *p_instance, void *p_data);
-void g_packet_pool0_err_callback_internal(void *p_instance, void *p_data)
-{
-    /** Suppress compiler warning for not using parameters. */
-    SSP_PARAMETER_NOT_USED (p_instance);
-    SSP_PARAMETER_NOT_USED (p_data);
+#endif
 
-    /** An error has occurred. Please check function arguments for more information. */
-    BSP_CFG_HANDLE_UNRECOVERABLE_ERROR (0);
-}
-/*******************************************************************************************************************//**
- * @brief     Initialization function that the user can choose to have called automatically during thread entry.
- *            The user can call this function at a later time if desired using the prototype below.
- *            - void packet_pool_init0(void)
- **********************************************************************************************************************/
-void packet_pool_init0(void)
-{
-    UINT g_packet_pool0_err;
-    /* Create Client packet pool. */
-    g_packet_pool0_err = nx_packet_pool_create (&g_packet_pool0, "g_packet_pool0 Packet Pool", 1568,
-                                                &g_packet_pool0_pool_memory[0], (16 * (1568 + sizeof(NX_PACKET))));
-    if (NX_SUCCESS != g_packet_pool0_err)
-    {
-        g_packet_pool0_err_callback ((void *) &g_packet_pool0, &g_packet_pool0_err);
-    }
-}
-NX_IP g_ip0;
-#ifndef NX_DISABLE_IPV6
-UINT g_ip0_interface_index = 0;
-UINT g_ip0_address_index;
-NXD_ADDRESS g_ip0_global_ipv6_address;
-NXD_ADDRESS g_ip0_local_ipv6_address;
-#endif            
-uint8_t g_ip0_stack_memory[2048] BSP_PLACE_IN_SECTION_V2(".stack.g_ip0") BSP_ALIGN_VARIABLE_V2(BSP_STACK_ALIGNMENT);
-#if 1 == 1                       // Check for ARP is enabled
-#if (0 == 0)    // Check for ARP cache storage units is in bytes
-#define    NX_ARP_CACHE_SIZE    (520)
-#else
-#define    NX_ARP_CACHE_SIZE    (520 * sizeof(NX_ARP))
-#endif
-uint8_t g_ip0_arp_cache_memory[NX_ARP_CACHE_SIZE] BSP_ALIGN_VARIABLE(4);
-#endif
-ULONG g_ip0_actual_status;
-
-#ifndef NULL
-#define NULL_DEFINE
-void NULL(struct NX_IP_STRUCT *ip_ptr, UINT interface_index, UINT link_up);
-#endif            
-#if defined(__ICCARM__)
-#define g_ip0_err_callback_WEAK_ATTRIBUTE
-#pragma weak g_ip0_err_callback  = g_ip0_err_callback_internal
-#elif defined(__GNUC__)
-#define g_ip0_err_callback_WEAK_ATTRIBUTE   __attribute__ ((weak, alias("g_ip0_err_callback_internal")))
-#endif
-void g_ip0_err_callback(void *p_instance, void *p_data)
-g_ip0_err_callback_WEAK_ATTRIBUTE;
-/*******************************************************************************************************************//**
- * @brief      This is a weak example initialization error function.  It should be overridden by defining a user  function
- *             with the prototype below.
- *             - void g_ip0_err_callback(void * p_instance, void * p_data)
- *
- * @param[in]  p_instance arguments used to identify which instance caused the error and p_data Callback arguments used to identify what error caused the callback.
- **********************************************************************************************************************/
-void g_ip0_err_callback_internal(void *p_instance, void *p_data);
-void g_ip0_err_callback_internal(void *p_instance, void *p_data)
-{
-    /** Suppress compiler warning for not using parameters. */
-    SSP_PARAMETER_NOT_USED (p_instance);
-    SSP_PARAMETER_NOT_USED (p_data);
-
-    /** An error has occurred. Please check function arguments for more information. */
-    BSP_CFG_HANDLE_UNRECOVERABLE_ERROR (0);
-}
-
-/*******************************************************************************************************************//**
- * @brief     Initialization function that the user can choose to have called automatically during thread entry.
- *            The user can call this function at a later time if desired using the prototype below.
- *            - void ip_init0(void)
- **********************************************************************************************************************/
-void ip_init0(void)
-{
-    UINT g_ip0_err;
-#ifndef NX_DISABLE_IPV6
-    FILL_NXD_IPV6_ADDRESS(g_ip0_global_ipv6_address, 0x2001, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x1);
-    FILL_NXD_IPV6_ADDRESS(g_ip0_local_ipv6_address, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0);
-
-#endif
-    /* Create an IP instance. */
-    g_ip0_err = nx_ip_create (&g_ip0, "g_ip0 IP Instance", IP_ADDRESS (192, 168, 10, 181),
-                              IP_ADDRESS (255, 255, 255, 0), &g_packet_pool0, g_sf_el_nx, &g_ip0_stack_memory[0], 2048,
-                              0);
-    if (NX_SUCCESS != g_ip0_err)
-    {
-        g_ip0_err_callback ((void *) &g_ip0, &g_ip0_err);
-    }
-#define SYNERGY_NOT_DEFINED     (0xFFFFFFFF)
-#if (SYNERGY_NOT_DEFINED != 1)
-    g_ip0_err = nx_arp_enable (&g_ip0, &g_ip0_arp_cache_memory[0], NX_ARP_CACHE_SIZE);
-    if (NX_SUCCESS != g_ip0_err)
-    {
-        g_ip0_err_callback ((void *) &g_ip0, &g_ip0_err);
-    }
-#endif
-#if (SYNERGY_NOT_DEFINED != SYNERGY_NOT_DEFINED)
-    g_ip0_err = nx_rarp_enable(&g_ip0);
-    if (NX_SUCCESS != g_ip0_err)
-    {
-        g_ip0_err_callback((void *)&g_ip0,&g_ip0_err);
-    }
-#endif
-#if (SYNERGY_NOT_DEFINED != 1)
-    g_ip0_err = nx_tcp_enable (&g_ip0);
-    if (NX_SUCCESS != g_ip0_err)
-    {
-        g_ip0_err_callback ((void *) &g_ip0, &g_ip0_err);
-    }
-#endif
-#if (SYNERGY_NOT_DEFINED != 1)
-    g_ip0_err = nx_udp_enable (&g_ip0);
-    if (NX_SUCCESS != g_ip0_err)
-    {
-        g_ip0_err_callback ((void *) &g_ip0, &g_ip0_err);
-    }
-#endif
-#if (SYNERGY_NOT_DEFINED != 1)
-    g_ip0_err = nx_icmp_enable (&g_ip0);
-    if (NX_SUCCESS != g_ip0_err)
-    {
-        g_ip0_err_callback ((void *) &g_ip0, &g_ip0_err);
-    }
-#endif
-#if (SYNERGY_NOT_DEFINED != 1)
-    g_ip0_err = nx_igmp_enable (&g_ip0);
-    if (NX_SUCCESS != g_ip0_err)
-    {
-        g_ip0_err_callback ((void *) &g_ip0, &g_ip0_err);
-    }
-#endif
-#if (SYNERGY_NOT_DEFINED != SYNERGY_NOT_DEFINED)
-    g_ip0_err = nx_ip_fragment_enable(&g_ip0);
-    if (NX_SUCCESS != g_ip0_err)
-    {
-        g_ip0_err_callback((void *)&g_ip0,&g_ip0_err);
-    }
-#endif            
 #undef SYNERGY_NOT_DEFINED
-
-#ifndef NX_DISABLE_IPV6
-    /** Here's where IPv6 is enabled. */
-    g_ip0_err = nxd_ipv6_enable (&g_ip0);
-    if (NX_SUCCESS != g_ip0_err)
-    {
-        g_ip0_err_callback ((void *) &g_ip0, &g_ip0_err);
-    }
-    g_ip0_err = nxd_icmp_enable (&g_ip0);
-    if (NX_SUCCESS != g_ip0_err)
-    {
-        g_ip0_err_callback ((void *) &g_ip0, &g_ip0_err);
-    }
-    /* Wait for link to be initialized so MAC address is valid. */
-    /** Wait for init to finish. */
-    g_ip0_err = nx_ip_interface_status_check (&g_ip0, 0, NX_IP_INITIALIZE_DONE, &g_ip0_actual_status, NX_WAIT_FOREVER);
-    if (NX_SUCCESS != g_ip0_err)
-    {
-        g_ip0_err_callback ((void *) &g_ip0, &g_ip0_err);
-    }
-    /** Setting link local address */
-    if (0x0
-            == (g_ip0_local_ipv6_address.nxd_ip_address.v6[0] | g_ip0_local_ipv6_address.nxd_ip_address.v6[1]
-                    | g_ip0_local_ipv6_address.nxd_ip_address.v6[2] | g_ip0_local_ipv6_address.nxd_ip_address.v6[3]))
-    {
-        g_ip0_err = nxd_ipv6_address_set (&g_ip0, g_ip0_interface_index, NX_NULL, 10, NX_NULL);
-    }
-    else
-    {
-        g_ip0_err = nxd_ipv6_address_set (&g_ip0, g_ip0_interface_index, &g_ip0_local_ipv6_address, 10,
-                                          &g_ip0_address_index);
-    }
-    if (NX_SUCCESS != g_ip0_err)
-    {
-        g_ip0_err_callback ((void *) &g_ip0, &g_ip0_err);
-    }
-    if (0x0
-            != (g_ip0_global_ipv6_address.nxd_ip_address.v6[0] | g_ip0_global_ipv6_address.nxd_ip_address.v6[1]
-                    | g_ip0_global_ipv6_address.nxd_ip_address.v6[2] | g_ip0_global_ipv6_address.nxd_ip_address.v6[3]))
-    {
-        g_ip0_err = nxd_ipv6_address_set (&g_ip0, g_ip0_interface_index, &g_ip0_global_ipv6_address, 64,
-                                          &g_ip0_address_index);
-    }
-    if (NX_SUCCESS != g_ip0_err)
-    {
-        g_ip0_err_callback ((void *) &g_ip0, &g_ip0_err);
-    }
+#define SYNERGY_NOT_DEFINED (1)
+/***********************************************************************************************************************
+ * The definition of wrapper interface for USBX Synergy Port HCD Driver.
+ **********************************************************************************************************************/
+static UINT g_sf_el_ux_hcd_hs_0_initialize(UX_HCD *hcd)
+{
+#if ((SYNERGY_NOT_DEFINED != g_transfer0) && (SYNERGY_NOT_DEFINED != g_transfer1))
+    /* DMA support */
+    UX_HCD_SYNERGY_TRANSFER hcd_transfer;
+    hcd_transfer.ux_synergy_transfer_tx = (transfer_instance_t *) &g_transfer0;
+    hcd_transfer.ux_synergy_transfer_rx = (transfer_instance_t *) &g_transfer1;
+    return (UINT) ux_hcd_synergy_initialize_transfer_support (hcd, (UX_HCD_SYNERGY_TRANSFER *) &hcd_transfer);
+#else
+    /* Non DMA support */
+    return (UINT)ux_hcd_synergy_initialize(hcd);
 #endif
-
-#ifdef NULL_DEFINE
-    g_ip0_err = nx_ip_link_status_change_notify_set (&g_ip0, NULL);
-    if (NX_SUCCESS != g_ip0_err)
-    {
-        g_ip0_err_callback ((void *) &g_ip0, &g_ip0_err);
-    }
-#endif
-
-    /* Gateway IP Address */
-#define IP_VALID(a,b,c,d)     (a|b|c|d)
-#if IP_VALID(0,0,0,0)
-    g_ip0_err = nx_ip_gateway_address_set(&g_ip0,
-            IP_ADDRESS(0,0,0,0));
-
-    if (NX_SUCCESS != g_ip0_err)
-    {
-        g_ip0_err_callback((void *)&g_ip0,&g_ip0_err);
-    }
-#endif         
-#undef IP_VALID
-
-}
+} /* End of function g_sf_el_ux_hcd_hs_0_initialize() */
+#undef SYNERGY_NOT_DEFINED
 /***********************************************************************************************************************
  * USB CDC-ACM Interface Descriptor for FS mode g_usb_interface_desc_cdcacm_0
  **********************************************************************************************************************/
@@ -552,136 +371,6 @@ __root static const unsigned char g_usb_interface_desc_cdcacm_0_high_speed[] BSP
 #endif
 #endif
 #endif
-#if (1) != BSP_IRQ_DISABLED
-#if !defined(SSP_SUPPRESS_ISR_g_transfer3) && !defined(SSP_SUPPRESS_ISR_DMACELC_EVENT_USBFS_FIFO_1)
-SSP_VECTOR_DEFINE_CHAN(dmac_int_isr, DMAC, INT, 3);
-#endif
-#endif
-dmac_instance_ctrl_t g_transfer3_ctrl;
-transfer_info_t g_transfer3_info =
-{ .dest_addr_mode = TRANSFER_ADDR_MODE_INCREMENTED,
-  .repeat_area = TRANSFER_REPEAT_AREA_DESTINATION,
-  .irq = TRANSFER_IRQ_EACH,
-  .chain_mode = TRANSFER_CHAIN_MODE_DISABLED,
-  .src_addr_mode = TRANSFER_ADDR_MODE_FIXED,
-  .size = TRANSFER_SIZE_1_BYTE,
-  .mode = TRANSFER_MODE_BLOCK,
-  .p_dest = (void *) NULL,
-  .p_src = (void const *) NULL,
-  .num_blocks = 0,
-  .length = 0, };
-const transfer_on_dmac_cfg_t g_transfer3_extend =
-{ .channel = 3, .offset_byte = 0, };
-const transfer_cfg_t g_transfer3_cfg =
-{ .p_info = &g_transfer3_info,
-  .activation_source = ELC_EVENT_USBFS_FIFO_1,
-  .auto_enable = false,
-  .p_callback = NULL,
-  .p_context = &g_transfer3,
-  .irq_ipl = (1),
-  .p_extend = &g_transfer3_extend, };
-/* Instance structure to use this module. */
-const transfer_instance_t g_transfer3 =
-{ .p_ctrl = &g_transfer3_ctrl, .p_cfg = &g_transfer3_cfg, .p_api = &g_transfer_on_dmac };
-#if (1) != BSP_IRQ_DISABLED
-#if !defined(SSP_SUPPRESS_ISR_g_transfer2) && !defined(SSP_SUPPRESS_ISR_DMACELC_EVENT_USBFS_FIFO_0)
-SSP_VECTOR_DEFINE_CHAN(dmac_int_isr, DMAC, INT, 2);
-#endif
-#endif
-dmac_instance_ctrl_t g_transfer2_ctrl;
-transfer_info_t g_transfer2_info =
-{ .dest_addr_mode = TRANSFER_ADDR_MODE_FIXED,
-  .repeat_area = TRANSFER_REPEAT_AREA_SOURCE,
-  .irq = TRANSFER_IRQ_EACH,
-  .chain_mode = TRANSFER_CHAIN_MODE_DISABLED,
-  .src_addr_mode = TRANSFER_ADDR_MODE_INCREMENTED,
-  .size = TRANSFER_SIZE_1_BYTE,
-  .mode = TRANSFER_MODE_BLOCK,
-  .p_dest = (void *) NULL,
-  .p_src = (void const *) NULL,
-  .num_blocks = 0,
-  .length = 0, };
-const transfer_on_dmac_cfg_t g_transfer2_extend =
-{ .channel = 2, .offset_byte = 0, };
-const transfer_cfg_t g_transfer2_cfg =
-{ .p_info = &g_transfer2_info,
-  .activation_source = ELC_EVENT_USBFS_FIFO_0,
-  .auto_enable = false,
-  .p_callback = NULL,
-  .p_context = &g_transfer2,
-  .irq_ipl = (1),
-  .p_extend = &g_transfer2_extend, };
-/* Instance structure to use this module. */
-const transfer_instance_t g_transfer2 =
-{ .p_ctrl = &g_transfer2_ctrl, .p_cfg = &g_transfer2_cfg, .p_api = &g_transfer_on_dmac };
-#if defined(__ICCARM__)
-#define g_sf_el_ux_dcd_fs_0_err_callback_WEAK_ATTRIBUTE
-#pragma weak g_sf_el_ux_dcd_fs_0_err_callback  = g_sf_el_ux_dcd_fs_0_err_callback_internal
-#elif defined(__GNUC__)
-#define g_sf_el_ux_dcd_fs_0_err_callback_WEAK_ATTRIBUTE   __attribute__ ((weak, alias("g_sf_el_ux_dcd_fs_0_err_callback_internal")))
-#endif
-void g_sf_el_ux_dcd_fs_0_err_callback(void *p_instance, void *p_data)
-g_sf_el_ux_dcd_fs_0_err_callback_WEAK_ATTRIBUTE;
-#if (SF_EL_UX_CFG_FS_IRQ_IPL != BSP_IRQ_DISABLED)
-/* USBFS ISR vector registering. */
-#if !defined(SSP_SUPPRESS_ISR_g_sf_el_ux_dcd_fs_0) && !defined(SSP_SUPPRESS_ISR_USB)
-SSP_VECTOR_DEFINE_UNIT(usbfs_int_isr, USB, FS, INT, 0);
-#endif
-#endif
-
-/* Prototype function for USBX DCD Initializer. */
-void ux_dcd_initialize(void);
-
-#undef SYNERGY_NOT_DEFINED
-#define SYNERGY_NOT_DEFINED (1)
-/*******************************************************************************************************************//**
- * @brief      This is a weak example initialization error function.  It should be overridden by defining a user  function 
- *             with the prototype below.
- *             - void g_sf_el_ux_dcd_fs_0_err_callback(void * p_instance, void * p_data)
- *
- * @param[in]  p_instance arguments used to identify which instance caused the error and p_data Callback arguments used to identify what error caused the callback.
- **********************************************************************************************************************/
-void g_sf_el_ux_dcd_fs_0_err_callback_internal(void *p_instance, void *p_data);
-void g_sf_el_ux_dcd_fs_0_err_callback_internal(void *p_instance, void *p_data)
-{
-    /** Suppress compiler warning for not using parameters. */
-    SSP_PARAMETER_NOT_USED (p_instance);
-    SSP_PARAMETER_NOT_USED (p_data);
-
-    /** An error has occurred. Please check function arguments for more information. */
-    BSP_CFG_HANDLE_UNRECOVERABLE_ERROR (0);
-}
-#if ((SYNERGY_NOT_DEFINED != g_transfer2) && (SYNERGY_NOT_DEFINED != g_transfer3))
-/***********************************************************************************************************************
- * The definition of wrapper interface for USBX Synergy Port DCD Driver to get a transfer module instance.
- **********************************************************************************************************************/
-static UINT g_sf_el_ux_dcd_fs_0_initialize_transfer_support(ULONG dcd_io)
-{
-    UX_DCD_SYNERGY_TRANSFER dcd_transfer;
-    dcd_transfer.ux_synergy_transfer_tx = (transfer_instance_t *) &g_transfer2;
-    dcd_transfer.ux_synergy_transfer_rx = (transfer_instance_t *) &g_transfer3;
-    return (UINT) ux_dcd_synergy_initialize_transfer_support (dcd_io, (UX_DCD_SYNERGY_TRANSFER *) &dcd_transfer);
-} /* End of function g_sf_el_ux_dcd_fs_0_initialize_transfer_support() */
-#endif
-
-/***********************************************************************************************************************
- * Initializes USBX Device Controller Driver.
- **********************************************************************************************************************/
-void ux_dcd_initialize(void)
-{
-    UINT status;
-    /* Initializes the USB device controller, enabling DMA transfer if transfer module instances are given. */
-#if ((SYNERGY_NOT_DEFINED == g_transfer2) || (SYNERGY_NOT_DEFINED == g_transfer3))
-    status = (UINT)ux_dcd_synergy_initialize(R_USBFS_BASE);
-#else
-    status = g_sf_el_ux_dcd_fs_0_initialize_transfer_support (R_USBFS_BASE);
-#endif
-#undef SYNERGY_NOT_DEFINED
-    if (UX_SUCCESS != status)
-    {
-        g_sf_el_ux_dcd_fs_0_err_callback (NULL, &status);
-    }
-} /* End of function ux_dcd_initialize() */
 #if defined(__ICCARM__)
 #define ux_v2_err_callback_WEAK_ATTRIBUTE
 #pragma weak ux_v2_err_callback  = ux_v2_err_callback_internal
@@ -943,6 +632,179 @@ void ux_common_init0(void)
 
 #endif /* UX_HOST_INITIALIZE */
 }
+#if defined(__ICCARM__)
+#define g_ux_host_0_err_callback_WEAK_ATTRIBUTE
+#pragma weak g_ux_host_0_err_callback  = g_ux_host_0_err_callback_internal
+#elif defined(__GNUC__)
+#define g_ux_host_0_err_callback_WEAK_ATTRIBUTE   __attribute__ ((weak, alias("g_ux_host_0_err_callback_internal")))
+#endif
+void g_ux_host_0_err_callback(void *p_instance, void *p_data)
+g_ux_host_0_err_callback_WEAK_ATTRIBUTE;
+/*******************************************************************************************************************//**
+ * @brief      This is a weak example initialization error function.  It should be overridden by defining a user  function 
+ *             with the prototype below.
+ *             - void g_ux_host_0_err_callback(void * p_instance, void * p_data)
+ *
+ * @param[in]  p_instance arguments used to identify which instance caused the error and p_data Callback arguments used to identify what error caused the callback.
+ **********************************************************************************************************************/
+void g_ux_host_0_err_callback_internal(void *p_instance, void *p_data);
+void g_ux_host_0_err_callback_internal(void *p_instance, void *p_data)
+{
+    /** Suppress compiler warning for not using parameters. */
+    SSP_PARAMETER_NOT_USED (p_instance);
+    SSP_PARAMETER_NOT_USED (p_data);
+
+    /** An error has occurred. Please check function arguments for more information. */
+    BSP_CFG_HANDLE_UNRECOVERABLE_ERROR (0);
+}
+/*******************************************************************************************************************//**
+ * @brief     Initialization function that the user can choose to have called automatically during thread entry.
+ *            The user can call this function at a later time if desired using the prototype below.
+ *            - void ux_host_init0(void)
+ **********************************************************************************************************************/
+void ux_host_init0(void)
+{
+    /** Register a USB host controller. */
+    UINT status_g_ux_host_0 = ux_host_stack_hcd_register ((UCHAR *) "g_sf_el_ux_hcd_hs_0",
+                                                          g_sf_el_ux_hcd_hs_0_initialize, R_USBHS_BASE,
+                                                          UX_SYNERGY_CONTROLLER);
+    if (UX_SUCCESS != status_g_ux_host_0)
+    {
+        g_ux_host_0_err_callback (NULL, &status_g_ux_host_0);
+    }
+}
+/* Pointer to a USBX Host Mass Storage Class Instance */
+UX_HOST_CLASS_STORAGE *g_ux_host_class_storage0;
+#if (1) != BSP_IRQ_DISABLED
+#if !defined(SSP_SUPPRESS_ISR_g_transfer3) && !defined(SSP_SUPPRESS_ISR_DMACELC_EVENT_USBFS_FIFO_1)
+SSP_VECTOR_DEFINE_CHAN(dmac_int_isr, DMAC, INT, 3);
+#endif
+#endif
+dmac_instance_ctrl_t g_transfer3_ctrl;
+transfer_info_t g_transfer3_info =
+{ .dest_addr_mode = TRANSFER_ADDR_MODE_INCREMENTED,
+  .repeat_area = TRANSFER_REPEAT_AREA_DESTINATION,
+  .irq = TRANSFER_IRQ_EACH,
+  .chain_mode = TRANSFER_CHAIN_MODE_DISABLED,
+  .src_addr_mode = TRANSFER_ADDR_MODE_FIXED,
+  .size = TRANSFER_SIZE_1_BYTE,
+  .mode = TRANSFER_MODE_BLOCK,
+  .p_dest = (void *) NULL,
+  .p_src = (void const *) NULL,
+  .num_blocks = 0,
+  .length = 0, };
+const transfer_on_dmac_cfg_t g_transfer3_extend =
+{ .channel = 3, .offset_byte = 0, };
+const transfer_cfg_t g_transfer3_cfg =
+{ .p_info = &g_transfer3_info,
+  .activation_source = ELC_EVENT_USBFS_FIFO_1,
+  .auto_enable = false,
+  .p_callback = NULL,
+  .p_context = &g_transfer3,
+  .irq_ipl = (1),
+  .p_extend = &g_transfer3_extend, };
+/* Instance structure to use this module. */
+const transfer_instance_t g_transfer3 =
+{ .p_ctrl = &g_transfer3_ctrl, .p_cfg = &g_transfer3_cfg, .p_api = &g_transfer_on_dmac };
+#if (1) != BSP_IRQ_DISABLED
+#if !defined(SSP_SUPPRESS_ISR_g_transfer2) && !defined(SSP_SUPPRESS_ISR_DMACELC_EVENT_USBFS_FIFO_0)
+SSP_VECTOR_DEFINE_CHAN(dmac_int_isr, DMAC, INT, 2);
+#endif
+#endif
+dmac_instance_ctrl_t g_transfer2_ctrl;
+transfer_info_t g_transfer2_info =
+{ .dest_addr_mode = TRANSFER_ADDR_MODE_FIXED,
+  .repeat_area = TRANSFER_REPEAT_AREA_SOURCE,
+  .irq = TRANSFER_IRQ_EACH,
+  .chain_mode = TRANSFER_CHAIN_MODE_DISABLED,
+  .src_addr_mode = TRANSFER_ADDR_MODE_INCREMENTED,
+  .size = TRANSFER_SIZE_1_BYTE,
+  .mode = TRANSFER_MODE_BLOCK,
+  .p_dest = (void *) NULL,
+  .p_src = (void const *) NULL,
+  .num_blocks = 0,
+  .length = 0, };
+const transfer_on_dmac_cfg_t g_transfer2_extend =
+{ .channel = 2, .offset_byte = 0, };
+const transfer_cfg_t g_transfer2_cfg =
+{ .p_info = &g_transfer2_info,
+  .activation_source = ELC_EVENT_USBFS_FIFO_0,
+  .auto_enable = false,
+  .p_callback = NULL,
+  .p_context = &g_transfer2,
+  .irq_ipl = (1),
+  .p_extend = &g_transfer2_extend, };
+/* Instance structure to use this module. */
+const transfer_instance_t g_transfer2 =
+{ .p_ctrl = &g_transfer2_ctrl, .p_cfg = &g_transfer2_cfg, .p_api = &g_transfer_on_dmac };
+#if defined(__ICCARM__)
+#define g_sf_el_ux_dcd_fs_0_err_callback_WEAK_ATTRIBUTE
+#pragma weak g_sf_el_ux_dcd_fs_0_err_callback  = g_sf_el_ux_dcd_fs_0_err_callback_internal
+#elif defined(__GNUC__)
+#define g_sf_el_ux_dcd_fs_0_err_callback_WEAK_ATTRIBUTE   __attribute__ ((weak, alias("g_sf_el_ux_dcd_fs_0_err_callback_internal")))
+#endif
+void g_sf_el_ux_dcd_fs_0_err_callback(void *p_instance, void *p_data)
+g_sf_el_ux_dcd_fs_0_err_callback_WEAK_ATTRIBUTE;
+#if (SF_EL_UX_CFG_FS_IRQ_IPL != BSP_IRQ_DISABLED)
+/* USBFS ISR vector registering. */
+#if !defined(SSP_SUPPRESS_ISR_g_sf_el_ux_dcd_fs_0) && !defined(SSP_SUPPRESS_ISR_USB)
+SSP_VECTOR_DEFINE_UNIT(usbfs_int_isr, USB, FS, INT, 0);
+#endif
+#endif
+
+/* Prototype function for USBX DCD Initializer. */
+void ux_dcd_initialize(void);
+
+#undef SYNERGY_NOT_DEFINED
+#define SYNERGY_NOT_DEFINED (1)
+/*******************************************************************************************************************//**
+ * @brief      This is a weak example initialization error function.  It should be overridden by defining a user  function 
+ *             with the prototype below.
+ *             - void g_sf_el_ux_dcd_fs_0_err_callback(void * p_instance, void * p_data)
+ *
+ * @param[in]  p_instance arguments used to identify which instance caused the error and p_data Callback arguments used to identify what error caused the callback.
+ **********************************************************************************************************************/
+void g_sf_el_ux_dcd_fs_0_err_callback_internal(void *p_instance, void *p_data);
+void g_sf_el_ux_dcd_fs_0_err_callback_internal(void *p_instance, void *p_data)
+{
+    /** Suppress compiler warning for not using parameters. */
+    SSP_PARAMETER_NOT_USED (p_instance);
+    SSP_PARAMETER_NOT_USED (p_data);
+
+    /** An error has occurred. Please check function arguments for more information. */
+    BSP_CFG_HANDLE_UNRECOVERABLE_ERROR (0);
+}
+#if ((SYNERGY_NOT_DEFINED != g_transfer2) && (SYNERGY_NOT_DEFINED != g_transfer3))
+/***********************************************************************************************************************
+ * The definition of wrapper interface for USBX Synergy Port DCD Driver to get a transfer module instance.
+ **********************************************************************************************************************/
+static UINT g_sf_el_ux_dcd_fs_0_initialize_transfer_support(ULONG dcd_io)
+{
+    UX_DCD_SYNERGY_TRANSFER dcd_transfer;
+    dcd_transfer.ux_synergy_transfer_tx = (transfer_instance_t *) &g_transfer2;
+    dcd_transfer.ux_synergy_transfer_rx = (transfer_instance_t *) &g_transfer3;
+    return (UINT) ux_dcd_synergy_initialize_transfer_support (dcd_io, (UX_DCD_SYNERGY_TRANSFER *) &dcd_transfer);
+} /* End of function g_sf_el_ux_dcd_fs_0_initialize_transfer_support() */
+#endif
+
+/***********************************************************************************************************************
+ * Initializes USBX Device Controller Driver.
+ **********************************************************************************************************************/
+void ux_dcd_initialize(void)
+{
+    UINT status;
+    /* Initializes the USB device controller, enabling DMA transfer if transfer module instances are given. */
+#if ((SYNERGY_NOT_DEFINED == g_transfer2) || (SYNERGY_NOT_DEFINED == g_transfer3))
+    status = (UINT)ux_dcd_synergy_initialize(R_USBFS_BASE);
+#else
+    status = g_sf_el_ux_dcd_fs_0_initialize_transfer_support (R_USBFS_BASE);
+#endif
+#undef SYNERGY_NOT_DEFINED
+    if (UX_SUCCESS != status)
+    {
+        g_sf_el_ux_dcd_fs_0_err_callback (NULL, &status);
+    }
+} /* End of function ux_dcd_initialize() */
 #if defined(__ICCARM__)
 #define ux_device_err_callback_WEAK_ATTRIBUTE
 #pragma weak ux_device_err_callback  = ux_device_err_callback_internal
@@ -1400,20 +1262,20 @@ void ux_device_init0(void)
 /***********************************************************************************************************************
  * Function prototypes for USBX CDC-ACM
  **********************************************************************************************************************/
-static void g_ux_device_class_cdc_acm0_setup(void);
+static void g_ux_device_class_cdc_acm1_setup(void);
 
 /***********************************************************************************************************************
  * USBX CDC-ACM Parameter Setup Function.
  **********************************************************************************************************************/
-static UX_SLAVE_CLASS_CDC_ACM_PARAMETER g_ux_device_class_cdc_acm0_parameter;
-void g_ux_device_class_cdc_acm0_setup(void)
+static UX_SLAVE_CLASS_CDC_ACM_PARAMETER g_ux_device_class_cdc_acm1_parameter;
+void g_ux_device_class_cdc_acm1_setup(void)
 {
-    g_ux_device_class_cdc_acm0_parameter.ux_slave_class_cdc_acm_instance_activate = ux_cdc_device0_instance_activate;
-    g_ux_device_class_cdc_acm0_parameter.ux_slave_class_cdc_acm_instance_deactivate =
-            ux_cdc_device0_instance_deactivate;
+    g_ux_device_class_cdc_acm1_parameter.ux_slave_class_cdc_acm_instance_activate = ux_cdc_device1_instance_activate;
+    g_ux_device_class_cdc_acm1_parameter.ux_slave_class_cdc_acm_instance_deactivate =
+            ux_cdc_device1_instance_deactivate;
     /* Initializes the device cdc class. */
     ux_device_stack_class_register (_ux_system_slave_class_cdc_acm_name, ux_device_class_cdc_acm_entry, 1, 0x00,
-                                    (VOID *) &g_ux_device_class_cdc_acm0_parameter);
+                                    (VOID *) &g_ux_device_class_cdc_acm1_parameter);
 
     /* Counts up the number of Interfaces. */
     g_usbx_number_of_interface_count = (uint8_t) (g_usbx_number_of_interface_count + 2);
@@ -1421,12 +1283,12 @@ void g_ux_device_class_cdc_acm0_setup(void)
 /*******************************************************************************************************************//**
  * @brief     Initialization function that the user can choose to have called automatically during thread entry.
  *            The user can call this function at a later time if desired using the prototype below.
- *            - void ux_device_class_cdc_acm_init0(void)
+ *            - void ux_device_class_cdc_acm_init1(void)
  **********************************************************************************************************************/
-void ux_device_class_cdc_acm_init0(void)
+void ux_device_class_cdc_acm_init1(void)
 {
     /* Setups USB CDC-ACM Class to create the instance */
-    g_ux_device_class_cdc_acm0_setup ();
+    g_ux_device_class_cdc_acm1_setup ();
 
     /* USB DCD initialization (Only executed once after all the class registration completed). */
     if (g_usbx_number_of_interface_count == USB_NUMBER_OF_INTERFACE)
@@ -1438,114 +1300,63 @@ void ux_device_class_cdc_acm_init0(void)
 /*******************************************************************************************************************//**
  * @brief     Initialize the USB Device stack and register the class into slave stack
  **********************************************************************************************************************/
-void g_ux_device_class_cdc_acm0_ux_device_open_init(void)
+void g_ux_device_class_cdc_acm1_ux_device_open_init(void)
 {
     /* Initialize the USB Device stack */
     ux_device_init0 ();
 
     /* Register the class into slave stack */
-    ux_device_class_cdc_acm_init0 ();
+    ux_device_class_cdc_acm_init1 ();
 }
-#if (1) != BSP_IRQ_DISABLED
-#if !defined(SSP_SUPPRESS_ISR_g_transfer1) && !defined(SSP_SUPPRESS_ISR_DMACELC_EVENT_ELC_SOFTWARE_EVENT_1)
-SSP_VECTOR_DEFINE_CHAN(dmac_int_isr, DMAC, INT, 1);
-#endif
-#endif
-dmac_instance_ctrl_t g_transfer1_ctrl;
-transfer_info_t g_transfer1_info =
-{ .dest_addr_mode = TRANSFER_ADDR_MODE_INCREMENTED,
-  .repeat_area = TRANSFER_REPEAT_AREA_DESTINATION,
-  .irq = TRANSFER_IRQ_EACH,
-  .chain_mode = TRANSFER_CHAIN_MODE_DISABLED,
-  .src_addr_mode = TRANSFER_ADDR_MODE_FIXED,
-  .size = TRANSFER_SIZE_1_BYTE,
-  .mode = TRANSFER_MODE_BLOCK,
-  .p_dest = (void *) NULL,
-  .p_src = (void const *) NULL,
-  .num_blocks = 0,
-  .length = 0, };
-const transfer_on_dmac_cfg_t g_transfer1_extend =
-{ .channel = 1, .offset_byte = 0, };
-const transfer_cfg_t g_transfer1_cfg =
-{ .p_info = &g_transfer1_info, .activation_source = ELC_EVENT_ELC_SOFTWARE_EVENT_1, .auto_enable = false, .p_callback =
-          NULL,
-  .p_context = &g_transfer1, .irq_ipl = (1), .p_extend = &g_transfer1_extend, };
-/* Instance structure to use this module. */
-const transfer_instance_t g_transfer1 =
-{ .p_ctrl = &g_transfer1_ctrl, .p_cfg = &g_transfer1_cfg, .p_api = &g_transfer_on_dmac };
-#if (1) != BSP_IRQ_DISABLED
-#if !defined(SSP_SUPPRESS_ISR_g_transfer0) && !defined(SSP_SUPPRESS_ISR_DMACELC_EVENT_ELC_SOFTWARE_EVENT_0)
-SSP_VECTOR_DEFINE_CHAN(dmac_int_isr, DMAC, INT, 0);
-#endif
-#endif
-dmac_instance_ctrl_t g_transfer0_ctrl;
-transfer_info_t g_transfer0_info =
-{ .dest_addr_mode = TRANSFER_ADDR_MODE_FIXED,
-  .repeat_area = TRANSFER_REPEAT_AREA_SOURCE,
-  .irq = TRANSFER_IRQ_EACH,
-  .chain_mode = TRANSFER_CHAIN_MODE_DISABLED,
-  .src_addr_mode = TRANSFER_ADDR_MODE_INCREMENTED,
-  .size = TRANSFER_SIZE_1_BYTE,
-  .mode = TRANSFER_MODE_BLOCK,
-  .p_dest = (void *) NULL,
-  .p_src = (void const *) NULL,
-  .num_blocks = 0,
-  .length = 0, };
-const transfer_on_dmac_cfg_t g_transfer0_extend =
-{ .channel = 0, .offset_byte = 0, };
-const transfer_cfg_t g_transfer0_cfg =
-{ .p_info = &g_transfer0_info, .activation_source = ELC_EVENT_ELC_SOFTWARE_EVENT_0, .auto_enable = false, .p_callback =
-          NULL,
-  .p_context = &g_transfer0, .irq_ipl = (1), .p_extend = &g_transfer0_extend, };
-/* Instance structure to use this module. */
-const transfer_instance_t g_transfer0 =
-{ .p_ctrl = &g_transfer0_ctrl, .p_cfg = &g_transfer0_cfg, .p_api = &g_transfer_on_dmac };
-/***********************************************************************************************************************
- * Registers Interrupt Vector for USBHS Controller.
- **********************************************************************************************************************/
-#if (SF_EL_UX_HCD_CFG_HS_IRQ_IPL != BSP_IRQ_DISABLED)
-/* USBHS ISR vector registering. */
-#if !defined(SSP_SUPPRESS_ISR_g_sf_el_ux_hcd_hs_0) && !defined(SSP_SUPPRESS_ISR_USB)
-SSP_VECTOR_DEFINE_UNIT(usbhs_usb_int_resume_isr, USB, HS, USB_INT_RESUME, 0);
+NX_REC nx_record1;
+static NX_CALLBACK_REC g_sf_el_nx_callbacks =
+{ .nx_ether_unknown_packet_receive_callback = NULL, .nx_ether_mac_address_change_callback = NULL, };
+static sf_el_nx_cfg_t sf_el_nx1_cfg =
+{ .channel = 1, .nx_mac_address =
+{ .nx_mac_address_h = SF_EL_NX_CFG_ENET1_MAC_H, .nx_mac_address_l = SF_EL_NX_CFG_ENET1_MAC_L },
+  .p_callback_rec = &g_sf_el_nx_callbacks, .etherc_ptr = R_ETHERC1, .edmac_ptr = R_EDMAC1, };
+#if SF_EL_NX_CFG_IRQ_IPL != BSP_IRQ_DISABLED
+#if !defined(SSP_SUPPRESS_ISR_g_sf_el_nx) && !defined(SSP_SUPPRESS_ISR_EDMAC1)
+SSP_VECTOR_DEFINE_CHAN(edmac_eint_isr, EDMAC, EINT, 1);
 #endif
 #endif
 
-#undef SYNERGY_NOT_DEFINED
-#define SYNERGY_NOT_DEFINED (1)
-/***********************************************************************************************************************
- * The definition of wrapper interface for USBX Synergy Port HCD Driver.
- **********************************************************************************************************************/
-static UINT g_sf_el_ux_hcd_hs_0_initialize(UX_HCD *hcd)
+void nx_ether_driver_eth1(NX_IP_DRIVER *driver_req_ptr)
 {
-#if ((SYNERGY_NOT_DEFINED != g_transfer0) && (SYNERGY_NOT_DEFINED != g_transfer1))
-    /* DMA support */
-    UX_HCD_SYNERGY_TRANSFER hcd_transfer;
-    hcd_transfer.ux_synergy_transfer_tx = (transfer_instance_t *) &g_transfer0;
-    hcd_transfer.ux_synergy_transfer_rx = (transfer_instance_t *) &g_transfer1;
-    return (UINT) ux_hcd_synergy_initialize_transfer_support (hcd, (UX_HCD_SYNERGY_TRANSFER *) &hcd_transfer);
-#else
-    /* Non DMA support */
-    return (UINT)ux_hcd_synergy_initialize(hcd);
-#endif
-} /* End of function g_sf_el_ux_hcd_hs_0_initialize() */
-#undef SYNERGY_NOT_DEFINED
-#if defined(__ICCARM__)
-#define g_ux_host_0_err_callback_WEAK_ATTRIBUTE
-#pragma weak g_ux_host_0_err_callback  = g_ux_host_0_err_callback_internal
-#elif defined(__GNUC__)
-#define g_ux_host_0_err_callback_WEAK_ATTRIBUTE   __attribute__ ((weak, alias("g_ux_host_0_err_callback_internal")))
-#endif
-void g_ux_host_0_err_callback(void *p_instance, void *p_data)
-g_ux_host_0_err_callback_WEAK_ATTRIBUTE;
+    nx_ether_driver (driver_req_ptr, &nx_record1, &sf_el_nx1_cfg);
+}
+
+/** Make user given name point to correct driver entry point. */
+VOID (*g_sf_el_nx)(NX_IP_DRIVER *driver_req_ptr) = nx_ether_driver_eth1;
 /*******************************************************************************************************************//**
- * @brief      This is a weak example initialization error function.  It should be overridden by defining a user  function 
+ * @brief     Initialization function that the user can choose to have called automatically during thread entry.
+ *            The user can call this function at a later time if desired using the prototype below.
+ *            - void nx_common_init0(void)
+ **********************************************************************************************************************/
+void nx_common_init0(void)
+{
+    /** Initialize the NetX Duo system. */
+    nx_system_initialize ();
+}
+NX_PACKET_POOL g_packet_pool0;
+uint8_t g_packet_pool0_pool_memory[(16 * (1568 + sizeof(NX_PACKET)))];
+#if defined(__ICCARM__)
+#define g_packet_pool0_err_callback_WEAK_ATTRIBUTE
+#pragma weak g_packet_pool0_err_callback  = g_packet_pool0_err_callback_internal
+#elif defined(__GNUC__)
+#define g_packet_pool0_err_callback_WEAK_ATTRIBUTE   __attribute__ ((weak, alias("g_packet_pool0_err_callback_internal")))
+#endif
+void g_packet_pool0_err_callback(void *p_instance, void *p_data)
+g_packet_pool0_err_callback_WEAK_ATTRIBUTE;
+/*******************************************************************************************************************//**
+ * @brief      This is a weak example initialization error function.  It should be overridden by defining a user  function
  *             with the prototype below.
- *             - void g_ux_host_0_err_callback(void * p_instance, void * p_data)
+ *             - void g_packet_pool0_err_callback(void * p_instance, void * p_data)
  *
  * @param[in]  p_instance arguments used to identify which instance caused the error and p_data Callback arguments used to identify what error caused the callback.
  **********************************************************************************************************************/
-void g_ux_host_0_err_callback_internal(void *p_instance, void *p_data);
-void g_ux_host_0_err_callback_internal(void *p_instance, void *p_data)
+void g_packet_pool0_err_callback_internal(void *p_instance, void *p_data);
+void g_packet_pool0_err_callback_internal(void *p_instance, void *p_data)
 {
     /** Suppress compiler warning for not using parameters. */
     SSP_PARAMETER_NOT_USED (p_instance);
@@ -1557,21 +1368,210 @@ void g_ux_host_0_err_callback_internal(void *p_instance, void *p_data)
 /*******************************************************************************************************************//**
  * @brief     Initialization function that the user can choose to have called automatically during thread entry.
  *            The user can call this function at a later time if desired using the prototype below.
- *            - void ux_host_init0(void)
+ *            - void packet_pool_init0(void)
  **********************************************************************************************************************/
-void ux_host_init0(void)
+void packet_pool_init0(void)
 {
-    /** Register a USB host controller. */
-    UINT status_g_ux_host_0 = ux_host_stack_hcd_register ((UCHAR *) "g_sf_el_ux_hcd_hs_0",
-                                                          g_sf_el_ux_hcd_hs_0_initialize, R_USBHS_BASE,
-                                                          UX_SYNERGY_CONTROLLER);
-    if (UX_SUCCESS != status_g_ux_host_0)
+    UINT g_packet_pool0_err;
+    /* Create Client packet pool. */
+    g_packet_pool0_err = nx_packet_pool_create (&g_packet_pool0, "g_packet_pool0 Packet Pool", 1568,
+                                                &g_packet_pool0_pool_memory[0], (16 * (1568 + sizeof(NX_PACKET))));
+    if (NX_SUCCESS != g_packet_pool0_err)
     {
-        g_ux_host_0_err_callback (NULL, &status_g_ux_host_0);
+        g_packet_pool0_err_callback ((void *) &g_packet_pool0, &g_packet_pool0_err);
     }
 }
-/* Pointer to a USBX Host Mass Storage Class Instance */
-UX_HOST_CLASS_STORAGE *g_ux_host_class_storage0;
+NX_IP g_ip0;
+#ifndef NX_DISABLE_IPV6
+UINT g_ip0_interface_index = 0;
+UINT g_ip0_address_index;
+NXD_ADDRESS g_ip0_global_ipv6_address;
+NXD_ADDRESS g_ip0_local_ipv6_address;
+#endif            
+uint8_t g_ip0_stack_memory[2048] BSP_PLACE_IN_SECTION_V2(".stack.g_ip0") BSP_ALIGN_VARIABLE_V2(BSP_STACK_ALIGNMENT);
+#if 1 == 1                       // Check for ARP is enabled
+#if (0 == 0)    // Check for ARP cache storage units is in bytes
+#define    NX_ARP_CACHE_SIZE    (520)
+#else
+#define    NX_ARP_CACHE_SIZE    (520 * sizeof(NX_ARP))
+#endif
+uint8_t g_ip0_arp_cache_memory[NX_ARP_CACHE_SIZE] BSP_ALIGN_VARIABLE(4);
+#endif
+ULONG g_ip0_actual_status;
+
+#ifndef NULL
+#define NULL_DEFINE
+void NULL(struct NX_IP_STRUCT *ip_ptr, UINT interface_index, UINT link_up);
+#endif            
+#if defined(__ICCARM__)
+#define g_ip0_err_callback_WEAK_ATTRIBUTE
+#pragma weak g_ip0_err_callback  = g_ip0_err_callback_internal
+#elif defined(__GNUC__)
+#define g_ip0_err_callback_WEAK_ATTRIBUTE   __attribute__ ((weak, alias("g_ip0_err_callback_internal")))
+#endif
+void g_ip0_err_callback(void *p_instance, void *p_data)
+g_ip0_err_callback_WEAK_ATTRIBUTE;
+/*******************************************************************************************************************//**
+ * @brief      This is a weak example initialization error function.  It should be overridden by defining a user  function
+ *             with the prototype below.
+ *             - void g_ip0_err_callback(void * p_instance, void * p_data)
+ *
+ * @param[in]  p_instance arguments used to identify which instance caused the error and p_data Callback arguments used to identify what error caused the callback.
+ **********************************************************************************************************************/
+void g_ip0_err_callback_internal(void *p_instance, void *p_data);
+void g_ip0_err_callback_internal(void *p_instance, void *p_data)
+{
+    /** Suppress compiler warning for not using parameters. */
+    SSP_PARAMETER_NOT_USED (p_instance);
+    SSP_PARAMETER_NOT_USED (p_data);
+
+    /** An error has occurred. Please check function arguments for more information. */
+    BSP_CFG_HANDLE_UNRECOVERABLE_ERROR (0);
+}
+
+/*******************************************************************************************************************//**
+ * @brief     Initialization function that the user can choose to have called automatically during thread entry.
+ *            The user can call this function at a later time if desired using the prototype below.
+ *            - void ip_init0(void)
+ **********************************************************************************************************************/
+void ip_init0(void)
+{
+    UINT g_ip0_err;
+#ifndef NX_DISABLE_IPV6
+    FILL_NXD_IPV6_ADDRESS(g_ip0_global_ipv6_address, 0x2001, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x1);
+    FILL_NXD_IPV6_ADDRESS(g_ip0_local_ipv6_address, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0);
+
+#endif
+    /* Create an IP instance. */
+    g_ip0_err = nx_ip_create (&g_ip0, "g_ip0 IP Instance", IP_ADDRESS (192, 168, 10, 181),
+                              IP_ADDRESS (255, 255, 255, 0), &g_packet_pool0, g_sf_el_nx, &g_ip0_stack_memory[0], 2048,
+                              0);
+    if (NX_SUCCESS != g_ip0_err)
+    {
+        g_ip0_err_callback ((void *) &g_ip0, &g_ip0_err);
+    }
+#define SYNERGY_NOT_DEFINED     (0xFFFFFFFF)
+#if (SYNERGY_NOT_DEFINED != 1)
+    g_ip0_err = nx_arp_enable (&g_ip0, &g_ip0_arp_cache_memory[0], NX_ARP_CACHE_SIZE);
+    if (NX_SUCCESS != g_ip0_err)
+    {
+        g_ip0_err_callback ((void *) &g_ip0, &g_ip0_err);
+    }
+#endif
+#if (SYNERGY_NOT_DEFINED != SYNERGY_NOT_DEFINED)
+    g_ip0_err = nx_rarp_enable(&g_ip0);
+    if (NX_SUCCESS != g_ip0_err)
+    {
+        g_ip0_err_callback((void *)&g_ip0,&g_ip0_err);
+    }
+#endif
+#if (SYNERGY_NOT_DEFINED != 1)
+    g_ip0_err = nx_tcp_enable (&g_ip0);
+    if (NX_SUCCESS != g_ip0_err)
+    {
+        g_ip0_err_callback ((void *) &g_ip0, &g_ip0_err);
+    }
+#endif
+#if (SYNERGY_NOT_DEFINED != 1)
+    g_ip0_err = nx_udp_enable (&g_ip0);
+    if (NX_SUCCESS != g_ip0_err)
+    {
+        g_ip0_err_callback ((void *) &g_ip0, &g_ip0_err);
+    }
+#endif
+#if (SYNERGY_NOT_DEFINED != 1)
+    g_ip0_err = nx_icmp_enable (&g_ip0);
+    if (NX_SUCCESS != g_ip0_err)
+    {
+        g_ip0_err_callback ((void *) &g_ip0, &g_ip0_err);
+    }
+#endif
+#if (SYNERGY_NOT_DEFINED != 1)
+    g_ip0_err = nx_igmp_enable (&g_ip0);
+    if (NX_SUCCESS != g_ip0_err)
+    {
+        g_ip0_err_callback ((void *) &g_ip0, &g_ip0_err);
+    }
+#endif
+#if (SYNERGY_NOT_DEFINED != SYNERGY_NOT_DEFINED)
+    g_ip0_err = nx_ip_fragment_enable(&g_ip0);
+    if (NX_SUCCESS != g_ip0_err)
+    {
+        g_ip0_err_callback((void *)&g_ip0,&g_ip0_err);
+    }
+#endif            
+#undef SYNERGY_NOT_DEFINED
+
+#ifndef NX_DISABLE_IPV6
+    /** Here's where IPv6 is enabled. */
+    g_ip0_err = nxd_ipv6_enable (&g_ip0);
+    if (NX_SUCCESS != g_ip0_err)
+    {
+        g_ip0_err_callback ((void *) &g_ip0, &g_ip0_err);
+    }
+    g_ip0_err = nxd_icmp_enable (&g_ip0);
+    if (NX_SUCCESS != g_ip0_err)
+    {
+        g_ip0_err_callback ((void *) &g_ip0, &g_ip0_err);
+    }
+    /* Wait for link to be initialized so MAC address is valid. */
+    /** Wait for init to finish. */
+    g_ip0_err = nx_ip_interface_status_check (&g_ip0, 0, NX_IP_INITIALIZE_DONE, &g_ip0_actual_status, NX_WAIT_FOREVER);
+    if (NX_SUCCESS != g_ip0_err)
+    {
+        g_ip0_err_callback ((void *) &g_ip0, &g_ip0_err);
+    }
+    /** Setting link local address */
+    if (0x0
+            == (g_ip0_local_ipv6_address.nxd_ip_address.v6[0] | g_ip0_local_ipv6_address.nxd_ip_address.v6[1]
+                    | g_ip0_local_ipv6_address.nxd_ip_address.v6[2] | g_ip0_local_ipv6_address.nxd_ip_address.v6[3]))
+    {
+        g_ip0_err = nxd_ipv6_address_set (&g_ip0, g_ip0_interface_index, NX_NULL, 10, NX_NULL);
+    }
+    else
+    {
+        g_ip0_err = nxd_ipv6_address_set (&g_ip0, g_ip0_interface_index, &g_ip0_local_ipv6_address, 10,
+                                          &g_ip0_address_index);
+    }
+    if (NX_SUCCESS != g_ip0_err)
+    {
+        g_ip0_err_callback ((void *) &g_ip0, &g_ip0_err);
+    }
+    if (0x0
+            != (g_ip0_global_ipv6_address.nxd_ip_address.v6[0] | g_ip0_global_ipv6_address.nxd_ip_address.v6[1]
+                    | g_ip0_global_ipv6_address.nxd_ip_address.v6[2] | g_ip0_global_ipv6_address.nxd_ip_address.v6[3]))
+    {
+        g_ip0_err = nxd_ipv6_address_set (&g_ip0, g_ip0_interface_index, &g_ip0_global_ipv6_address, 64,
+                                          &g_ip0_address_index);
+    }
+    if (NX_SUCCESS != g_ip0_err)
+    {
+        g_ip0_err_callback ((void *) &g_ip0, &g_ip0_err);
+    }
+#endif
+
+#ifdef NULL_DEFINE
+    g_ip0_err = nx_ip_link_status_change_notify_set (&g_ip0, NULL);
+    if (NX_SUCCESS != g_ip0_err)
+    {
+        g_ip0_err_callback ((void *) &g_ip0, &g_ip0_err);
+    }
+#endif
+
+    /* Gateway IP Address */
+#define IP_VALID(a,b,c,d)     (a|b|c|d)
+#if IP_VALID(0,0,0,0)
+    g_ip0_err = nx_ip_gateway_address_set(&g_ip0,
+            IP_ADDRESS(0,0,0,0));
+
+    if (NX_SUCCESS != g_ip0_err)
+    {
+        g_ip0_err_callback((void *)&g_ip0,&g_ip0_err);
+    }
+#endif         
+#undef IP_VALID
+
+}
 #define FX_COMMON_INITIALIZE (1)
 /*******************************************************************************************************************//**
  * @brief     Initialization function that the user can choose to have called automatically during thread entry.
@@ -1584,32 +1584,32 @@ void fx_common_init0(void)
     fx_system_initialize ();
 }
 /* A pointer to FileX Media Control Block for a USB flash device. */
-FX_MEDIA *g_fx_media0_ptr;
+FX_MEDIA *g_fx_media1_ptr;
 
 /* Pointer to a USBX Host Mass Storage Class Media. */
 UX_HOST_CLASS_STORAGE_MEDIA *g_ux_host_class_storage0_media;
 
 #if defined(__ICCARM__)
-#define g_fx_media0_err_callback_failed_to_get_fx_media_WEAK_ATTRIBUTE
-#pragma weak g_fx_media0_err_callback_failed_to_get_fx_media  = g_fx_media0_err_callback_failed_to_get_fx_media_internal
+#define g_fx_media1_err_callback_failed_to_get_fx_media_WEAK_ATTRIBUTE
+#pragma weak g_fx_media1_err_callback_failed_to_get_fx_media  = g_fx_media1_err_callback_failed_to_get_fx_media_internal
 #elif defined(__GNUC__)
-#define g_fx_media0_err_callback_failed_to_get_fx_media_WEAK_ATTRIBUTE __attribute__ ((weak, alias("g_fx_media0_err_callback_failed_to_get_fx_media_internal")))
+#define g_fx_media1_err_callback_failed_to_get_fx_media_WEAK_ATTRIBUTE __attribute__ ((weak, alias("g_fx_media1_err_callback_failed_to_get_fx_media_internal")))
 #endif
-void g_fx_media0_err_callback_failed_to_get_fx_media(void *p_instance, void *p_data)
-g_fx_media0_err_callback_failed_to_get_fx_media_WEAK_ATTRIBUTE;
+void g_fx_media1_err_callback_failed_to_get_fx_media(void *p_instance, void *p_data)
+g_fx_media1_err_callback_failed_to_get_fx_media_WEAK_ATTRIBUTE;
 
 /* Function prototype for the weak initialization error function. */
-void g_fx_media0_err_callback_failed_to_get_fx_media_internal(void *p_instance, void *p_data);
+void g_fx_media1_err_callback_failed_to_get_fx_media_internal(void *p_instance, void *p_data);
 
 /*******************************************************************************************************************//**
  * @brief      This is a weak example initialization error function.  It should be overridden by defining a user function
  *             with the prototype below.
- *             - void g_fx_media0_err_callback_failed_to_get_fx_media(void * p_instance, void * p_data)
+ *             - void g_fx_media1_err_callback_failed_to_get_fx_media(void * p_instance, void * p_data)
  *
  * @param[in]  p_instance  Not used.
  * @param[in]  p_data      Not used.
  **********************************************************************************************************************/
-void g_fx_media0_err_callback_failed_to_get_fx_media_internal(void *p_instance, void *p_data)
+void g_fx_media1_err_callback_failed_to_get_fx_media_internal(void *p_instance, void *p_data)
 {
     /** Suppress compiler warning for not using parameters. */
     SSP_PARAMETER_NOT_USED (p_instance);
@@ -1620,28 +1620,28 @@ void g_fx_media0_err_callback_failed_to_get_fx_media_internal(void *p_instance, 
 }
 
 /*******************************************************************************************************************//**
- * @brief      This is the function to get g_fx_media0 for a USB Mass Storage device.
+ * @brief      This is the function to get g_fx_media1 for a USB Mass Storage device.
  **********************************************************************************************************************/
-void fx_media_init_function0(void)
+void fx_media_init_function1(void)
 {
     /** Suspend the thread until a USB Mass Storage Device inserted. */
-    UINT err_g_fx_media0_semaphore_get = tx_semaphore_get (&ux_host_storage_semaphore_insertion, 1000);
-    if (TX_SUCCESS != err_g_fx_media0_semaphore_get)
+    UINT err_g_fx_media1_semaphore_get = tx_semaphore_get (&ux_host_storage_semaphore_insertion, 1000);
+    if (TX_SUCCESS != err_g_fx_media1_semaphore_get)
     {
-        g_fx_media0_err_callback_failed_to_get_fx_media (&ux_host_storage_semaphore_insertion,
-                                                         &err_g_fx_media0_semaphore_get);
+        g_fx_media1_err_callback_failed_to_get_fx_media (&ux_host_storage_semaphore_insertion,
+                                                         &err_g_fx_media1_semaphore_get);
     }
 
-    /** Initialize the FileX Media Control Block g_fx_media0 for a USB Mass Storage device. */
+    /** Initialize the FileX Media Control Block g_fx_media1 for a USB Mass Storage device. */
     /** Get the pointer to a USBX Host Mass Storage Instance. */
     g_ux_host_class_storage0 = g_ux_new_host_storage_instance;
 
     /** Initialize the FileX Media Control Block g_fx_media0 for a USB Mass Storage device. */
-    UINT err_g_fx_media0_get = ux_system_host_storage_fx_media_get (g_ux_new_host_storage_instance,
-                                                                    &g_ux_host_class_storage0_media, &g_fx_media0_ptr);
-    if (UX_SUCCESS != err_g_fx_media0_get)
+    UINT err_g_fx_media1_get = ux_system_host_storage_fx_media_get (g_ux_new_host_storage_instance,
+                                                                    &g_ux_host_class_storage0_media, &g_fx_media1_ptr);
+    if (UX_SUCCESS != err_g_fx_media1_get)
     {
-        g_fx_media0_err_callback_failed_to_get_fx_media (&g_fx_media0_ptr, &err_g_fx_media0_get);
+        g_fx_media1_err_callback_failed_to_get_fx_media (&g_fx_media1_ptr, &err_g_fx_media1_get);
     }
 }
 const elc_instance_t g_elc =
@@ -1655,6 +1655,24 @@ const cgc_instance_t g_cgc =
 { .p_api = &g_cgc_on_cgc, .p_cfg = NULL };
 void g_common_init(void)
 {
+
+    /** Call initialization function if user has selected to do so. */
+#if (1)
+    ux_common_init0 ();
+#endif
+    /** Call initialization function if user has selected to do so. */
+#if (1)
+    ux_host_init0 ();
+#endif
+
+    /** Call initialization function if user has selected to do so. */
+#if (1)
+    ux_device_init0 ();
+#endif
+    /** Call initialization function if user has selected to do so. */
+#if (1)
+    ux_device_class_cdc_acm_init1 ();
+#endif
     /** Call initialization function if user has selected to do so. */
 #if (1)
     nx_common_init0 ();
@@ -1667,30 +1685,12 @@ void g_common_init(void)
 #if (0)
     ip_init0();
 #endif
-
-    /** Call initialization function if user has selected to do so. */
-#if (1)
-    ux_common_init0 ();
-#endif
-    /** Call initialization function if user has selected to do so. */
-#if (1)
-    ux_device_init0 ();
-#endif
-    /** Call initialization function if user has selected to do so. */
-#if (1)
-    ux_device_class_cdc_acm_init0 ();
-#endif
-    /** Call initialization function if user has selected to do so. */
-#if (1)
-    ux_host_init0 ();
-#endif
-
     /** Call initialization function if user has selected to do so. */
 #if FX_COMMON_INITIALIZE
     fx_common_init0 ();
 #endif
 #if (0)
     /** Call FileX Media Control Block initialization function. Can call at later time as well. */
-    fx_media_init_function0();
+    fx_media_init_function1();
 #endif
 }
