@@ -26,8 +26,8 @@ void USBDevice_create(void)
     }
 
     UINT err;
-    err = tx_thread_create (&USBDevice, (CHAR *) "USBDevice", USBDevice_func, (ULONG) NULL, &USBDevice_stack, 1024, 6,
-                            6, 1, TX_AUTO_START);
+    err = tx_thread_create (&USBDevice, (CHAR *) "USBDevice", USBDevice_func, (ULONG) NULL, &USBDevice_stack, 1024, 2,
+                            2, 1, TX_AUTO_START);
     if (TX_SUCCESS != err)
     {
         tx_startup_err_callback (&USBDevice, 0);

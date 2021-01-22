@@ -20,7 +20,7 @@ void posCalc_create(void)
 
     UINT err;
     err = tx_thread_create (&posCalc, (CHAR *) "Position Calculator", posCalc_func, (ULONG) NULL, &posCalc_stack, 2048,
-                            1, 1, 1, TX_AUTO_START);
+                            2, 2, 1, TX_AUTO_START);
     if (TX_SUCCESS != err)
     {
         tx_startup_err_callback (&posCalc, 0);

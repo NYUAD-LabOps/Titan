@@ -5,6 +5,11 @@
 #include "bsp_api.h"
 #include "r_dmac.h"
 #include "r_transfer_api.h"
+#include "r_sdmmc.h"
+#include "r_sdmmc_api.h"
+#include "sf_block_media_sdmmc.h"
+#include "sf_block_media_api.h"
+#include "sf_el_fx.h"
 #include "nx_api.h"
 #include "sf_el_nx_cfg.h"
 #include "../src/framework/sf_el_nx/nx_renesas_synergy.h"
@@ -13,6 +18,7 @@
 #include "fx_api.h"
 #include "ux_api.h"
 #include "ux_host_class_storage.h"
+#include "fx_api.h"
 #include "r_elc.h"
 #include "r_elc_api.h"
 #include "r_fmi.h"
@@ -25,6 +31,19 @@
 extern "C"
 {
 #endif
+/* Transfer on DMAC Instance. */
+extern const transfer_instance_t g_transfer5;
+#ifndef NULL
+void NULL(transfer_callback_args_t *p_args);
+#endif
+/** SDMMC on SDMMC Instance. */
+extern const sdmmc_instance_t g_sdmmc0;
+#ifndef NULL
+void NULL(sdmmc_callback_args_t *p_args);
+#endif
+/** Block Media on SDMMC Instance */
+extern sf_block_media_instance_t g_sf_block_media_sdmmc0;
+extern sf_el_fx_t g_sf_el_fx0_cfg;
 /* Transfer on DMAC Instance. */
 extern const transfer_instance_t g_transfer1;
 #ifndef NULL
@@ -127,6 +146,12 @@ void fx_media_init_function1(void);
 
 /* FileX media initialization error callback function for USBX Host Mass Storage. User can override the function if needed. */
 void g_fx_media1_err_callback_failed_to_get_fx_media(void *p_instance, void *p_data);
+extern FX_MEDIA g_fx_media0;
+
+void g_fx_media0_err_callback(void *p_instance, void *p_data);
+ssp_err_t fx_media_init0_format(void);
+uint32_t fx_media_init0_open(void);
+void fx_media_init0(void);
 /** ELC Instance */
 extern const elc_instance_t g_elc;
 /** FMI on FMI Instance. */

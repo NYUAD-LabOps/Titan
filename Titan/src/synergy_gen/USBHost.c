@@ -26,7 +26,7 @@ void USBHost_create(void)
     }
 
     UINT err;
-    err = tx_thread_create (&USBHost, (CHAR *) "USBHost", USBHost_func, (ULONG) NULL, &USBHost_stack, 4096, 6, 6, 1,
+    err = tx_thread_create (&USBHost, (CHAR *) "USBHost", USBHost_func, (ULONG) NULL, &USBHost_stack, 4096, 2, 2, 1,
                             TX_AUTO_START);
     if (TX_SUCCESS != err)
     {

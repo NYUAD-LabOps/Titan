@@ -76,8 +76,8 @@ void TitanMain_entry(void)
             UDPGetToolUpdate ();
             machineGlobalsBlock->getUpdate = 0;
         }
-        ///This is another 1ms speed limitation
-        tx_thread_sleep (1);
+
+        tx_thread_relinquish();
     }
 }
 

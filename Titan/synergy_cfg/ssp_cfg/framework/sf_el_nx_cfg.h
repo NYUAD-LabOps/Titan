@@ -13,6 +13,6 @@
 /** Specify number of descriptors. */
 #define NUM_RX_DESC               (8)
 #define NUM_TX_DESC               (32)
-#define SF_EL_NX_CFG_IRQ_IPL      ((0))
+#define SF_EL_NX_CFG_IRQ_IPL      ((1))
 #define NX_IP_HARDWARE_INT_CALLBACK_ENABLED (0)
 #endif /* SF_EL_NX_CFG_H_ */

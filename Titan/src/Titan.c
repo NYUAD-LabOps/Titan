@@ -916,7 +916,7 @@ void setupMode()
 {
     UINT status;
     ULONG event;
-    printf("\nSetup Start.");
+    printf ("\nSetup Start.");
     status = tx_event_flags_set (&g_udp_echo_received, 1, TX_AND);
 
     ///Reset the index to 0.
@@ -925,7 +925,7 @@ void setupMode()
     ///Wait until the index reaches the end.
     /// The UDP receive function will handle assigning IP addresses and incrementing the index.
     status = tx_event_flags_get (&g_setup_mode_complete, 1, TX_AND_CLEAR, &event, NX_WAIT_FOREVER);
-    printf("\nSetup Complete1.");
+    printf ("\nSetup Complete1.");
 }
 
 void processReceivedMsg(char *message_buffer)
@@ -981,8 +981,8 @@ void processReceivedMsg(char *message_buffer)
         {
             //                    tmp_length = strlen(message_buffer);
             tmp_length = 49;
-            machineGlobalsBlock->local_buffer[machineGlobalsBlock->local_bufferIndex] = '\n';
-            memcpy ((machineGlobalsBlock->local_buffer + machineGlobalsBlock->local_bufferIndex + 1), message_buffer,
+            machineGlobalsBlock->storageBuffer[machineGlobalsBlock->local_bufferIndex] = '\n';
+            memcpy ((machineGlobalsBlock->storageBuffer + machineGlobalsBlock->local_bufferIndex + 1), message_buffer,
                     tmp_length);
             machineGlobalsBlock->local_bufferIndex += (tmp_length + 1);
             if (machineGlobalsBlock->local_bufferIndex > 1000)
@@ -998,6 +998,22 @@ void processReceivedMsg(char *message_buffer)
         }
     }
 }
+
+//void serialHandler(char *in)
+//{
+//    int fileSize;
+//
+//    switch (in[0])
+//    {
+//        case 'F':
+//            ///The GUI will send a file next
+//
+//            memcpy (&fileSize, (in + 2), 8);
+//            rxFile(fileSize);
+//        break;
+//
+//    }
+//}
 
 ///This function calculates a velocity vector based on a starting and ending
 /// point, and a target velocity. The velocity vector is returned via the targetVelocityVector pointer.

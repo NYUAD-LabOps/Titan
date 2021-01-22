@@ -204,6 +204,18 @@
       <description>SCI UART: Provides=[UART] , Requires=[SCI Common]</description>
       <originalPack>Renesas.Synergy.1.7.5.pack</originalPack>
     </component>
+    <component apiversion="" class="Framework Services" condition="" group="all" subgroup="sf_block_media_sdmmc" variant="" vendor="Renesas" version="1.7.5">
+      <description>Block Media SD/MMC: Provides=[Block Media] , Requires=[SDMMC]</description>
+      <originalPack>Renesas.Synergy.1.7.5.pack</originalPack>
+    </component>
+    <component apiversion="" class="Framework Services" condition="" group="all" subgroup="sf_el_fx" variant="" vendor="Renesas" version="1.7.5">
+      <description>FileX I/O, Requires=[Block Media]</description>
+      <originalPack>Renesas.Synergy.1.7.5.pack</originalPack>
+    </component>
+    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_sdmmc" variant="" vendor="Renesas" version="1.7.5">
+      <description>SD/MMC Media: Provides=[SDMMC]</description>
+      <originalPack>Renesas.Synergy.1.7.5.pack</originalPack>
+    </component>
   </synergyComponentSelection>
   <synergyIcuConfiguration/>
   <synergyMessagingConfiguration/>
@@ -380,7 +392,7 @@
       <property id="module.el.nx.ipv6.address_global" value="2001:0:0:0:0:0:0:1"/>
       <property id="module.el.nx.ipv6.address_local" value="0:0:0:0:0:0:0:0"/>
       <property id="module.el.nx.ip.stack_size" value="2048"/>
-      <property id="module.el.nx.ip.priority" value="0"/>
+      <property id="module.el.nx.ip.priority" value="1"/>
       <property id="module.el.nx.ip.arp" value="module.el.nx.ip.arp.enable"/>
       <property id="module.el.nx.ip.arp_cache_size_units" value="module.el.nx.ip.arp_cache_size_units.bytes"/>
       <property id="module.el.nx.ip.arp_cache_size" value="520"/>
@@ -435,8 +447,8 @@
     </module>
     <module id="module.driver.uart_on_sci_uart.1799514554">
       <property id="module.driver.uart.name" value="g_uart0"/>
-      <property id="module.driver.uart.channel" value="0"/>
-      <property id="module.driver.uart.baud_rate" value="9600"/>
+      <property id="module.driver.uart.channel" value="6"/>
+      <property id="module.driver.uart.baud_rate" value="1843200"/>
       <property id="module.driver.uart.data_bits" value="module.driver.uart.data_bits.data_bits_8"/>
       <property id="module.driver.uart.parity" value="module.driver.uart.parity.parity_off"/>
       <property id="module.driver.uart.stop_bits" value="module.driver.uart.stop_bits.stop_bits_1"/>
@@ -489,6 +501,60 @@
       <property id="module.framework.fx_usbmsc.media_init" value="module.framework.fx_usbmsc.media_init.disable"/>
       <property id="module.framework.fx_usbmsc.init_timeout" value="1000"/>
     </module>
+    <module id="module.framework.fx.1465609081">
+      <property id="module.framework.fx.name" value="g_fx_media0"/>
+      <property id="module.framework.fx.format" value="module.framework.fx.format.disabled"/>
+      <property id="module.framework.fx.fx_on_media" value="module.framework.fx.fx.true"/>
+      <property id="module.framework.fx.format_options" value="module.framework.fx.format_options.heading"/>
+      <property id="module.framework.fx.volume_name" value="Volume 1"/>
+      <property id="module.framework.fx.fat_count" value="1"/>
+      <property id="module.framework.fx.dir_count" value="256"/>
+      <property id="module.framework.fx.hidden_sectors" value="0"/>
+      <property id="module.framework.fx.total_sectors" value="3751936"/>
+      <property id="module.framework.fx.sector_size" value="512"/>
+      <property id="module.framework.fx.cluster_size" value="1"/>
+      <property id="module.framework.fx.media_size" value="512"/>
+      <property id="module.framework.fx.init_function" value="fx_media_init0"/>
+      <property id="module.framework.fx.init" value="module.framework.fx.init.disable"/>
+    </module>
+    <module id="module.framework.sf_el_fx.2034112117">
+      <property id="module.framework.sf_el_fx.name" value="g_sf_el_fx0"/>
+    </module>
+    <module id="module.framework.block_media_on_sdmmc.786169542">
+      <property id="module.framework.block_media.name" value="g_sf_block_media_sdmmc0"/>
+      <property id="module.framework.block_media.block_size" value="512"/>
+    </module>
+    <module id="module.driver.sdmmc_on_sdmmc.2031856843">
+      <property id="module.driver.sdmmc.name" value="g_sdmmc0"/>
+      <property id="module.driver.sdmmc.channel" value="1"/>
+      <property id="module.driver.sdmmc.media_type" value="module.driver.sdmmc.media_type.media_type_card"/>
+      <property id="module.driver.sdmmc.bus_width" value="module.driver.sdmmc.bus_width.bus_width_1_bit"/>
+      <property id="module.driver.sdmmc.block_size" value="512"/>
+      <property id="module.driver.sdmmc.card_detect" value="module.driver.sdmmc.card_detect.card_detect_none"/>
+      <property id="module.driver.sdmmc.write_protect" value="module.driver.sdmmc.write_protect.write_protect_none"/>
+      <property id="module.driver.sdmmc.p_callback" value="NULL"/>
+      <property id="module.driver.sdmmc.access_ipl" value="board.icu.common.irq.priority12"/>
+      <property id="module.driver.sdmmc.card_ipl" value="board.icu.common.irq.disabled"/>
+      <property id="module.driver.sdmmc.dma_req_ipl" value="board.icu.common.irq.disabled"/>
+    </module>
+    <module id="module.driver.transfer_on_dmac.1941017231">
+      <property id="module.driver.transfer.name" value="g_transfer5"/>
+      <property id="module.driver.transfer.channel" value="4"/>
+      <property id="module.driver.transfer.mode" value="module.driver.transfer.mode.mode_normal"/>
+      <property id="module.driver.transfer.size" value="module.driver.transfer.size.size_2_byte"/>
+      <property id="module.driver.transfer.dest_addr_mode" value="module.driver.transfer.dest_addr_mode.addr_mode_fixed"/>
+      <property id="module.driver.transfer.src_addr_mode" value="module.driver.transfer.src_addr_mode.addr_mode_fixed"/>
+      <property id="module.driver.transfer.repeat_area" value="module.driver.transfer.repeat_area.repeat_area_source"/>
+      <property id="module.driver.transfer.p_dest" value="NULL"/>
+      <property id="module.driver.transfer.p_src" value="NULL"/>
+      <property id="module.driver.transfer.length" value="0"/>
+      <property id="module.driver.transfer.num_blocks" value="0"/>
+      <property id="module.driver.transfer.offset" value="0"/>
+      <property id="module.driver.transfer.activation_source" value="module.driver.transfer.event.event_elc_software_event_0"/>
+      <property id="module.driver.transfer.auto_enable" value="module.driver.transfer.auto_enable.true"/>
+      <property id="module.driver.transfer.p_callback" value="NULL"/>
+      <property id="module.driver.transfer.irq_ipl" value="board.icu.common.irq.priority12"/>
+    </module>
     <context id="_hal.0">
       <stack module="module.driver.cgc_on_cgc.0"/>
       <stack module="module.driver.ioport_on_ioport.0"/>
@@ -501,7 +567,7 @@
       <property id="_symbol" value="TitanMain"/>
       <property id="rtos.threadx.thread.name" value="TitanMain"/>
       <property id="rtos.threadx.thread.stack" value="2048"/>
-      <property id="rtos.threadx.thread.priority" value="1"/>
+      <property id="rtos.threadx.thread.priority" value="2"/>
       <property id="rtos.threadx.thread.autostart" value="rtos.threadx.thread.autostart.enabled"/>
       <property id="rtos.threadx.thread.timeslice" value="1"/>
     </context>
@@ -509,7 +575,7 @@
       <property id="_symbol" value="posCalc"/>
       <property id="rtos.threadx.thread.name" value="Position Calculator"/>
       <property id="rtos.threadx.thread.stack" value="2048"/>
-      <property id="rtos.threadx.thread.priority" value="1"/>
+      <property id="rtos.threadx.thread.priority" value="2"/>
       <property id="rtos.threadx.thread.autostart" value="rtos.threadx.thread.autostart.enabled"/>
       <property id="rtos.threadx.thread.timeslice" value="1"/>
     </context>
@@ -548,7 +614,7 @@
       <property id="_symbol" value="UARTWIFI"/>
       <property id="rtos.threadx.thread.name" value="UARTWIFI"/>
       <property id="rtos.threadx.thread.stack" value="1024"/>
-      <property id="rtos.threadx.thread.priority" value="1"/>
+      <property id="rtos.threadx.thread.priority" value="2"/>
       <property id="rtos.threadx.thread.autostart" value="rtos.threadx.thread.autostart.enabled"/>
       <property id="rtos.threadx.thread.timeslice" value="1"/>
       <stack module="module.framework.sf_comms_on_sf_uart_comms.524131596">
@@ -561,7 +627,7 @@
       <property id="_symbol" value="USBDevice"/>
       <property id="rtos.threadx.thread.name" value="USBDevice"/>
       <property id="rtos.threadx.thread.stack" value="1024"/>
-      <property id="rtos.threadx.thread.priority" value="6"/>
+      <property id="rtos.threadx.thread.priority" value="2"/>
       <property id="rtos.threadx.thread.autostart" value="rtos.threadx.thread.autostart.enabled"/>
       <property id="rtos.threadx.thread.timeslice" value="1"/>
       <stack module="module.el.ux_device_class_cdc_acm_v2.321502777">
@@ -587,7 +653,7 @@
       <property id="_symbol" value="USBHost"/>
       <property id="rtos.threadx.thread.name" value="USBHost"/>
       <property id="rtos.threadx.thread.stack" value="4096"/>
-      <property id="rtos.threadx.thread.priority" value="6"/>
+      <property id="rtos.threadx.thread.priority" value="2"/>
       <property id="rtos.threadx.thread.autostart" value="rtos.threadx.thread.autostart.enabled"/>
       <property id="rtos.threadx.thread.timeslice" value="1"/>
       <stack module="module.framework.fx_usbmsc.2110011729">
@@ -614,6 +680,28 @@
         <property id="rtos.threadx.object.flags.symbol" value="g_usb_plug_events"/>
       </object>
     </context>
+    <context id="rtos.threadx.thread.2128805230">
+      <property id="_symbol" value="SDStorage"/>
+      <property id="rtos.threadx.thread.name" value="SDStorage"/>
+      <property id="rtos.threadx.thread.stack" value="4096"/>
+      <property id="rtos.threadx.thread.priority" value="2"/>
+      <property id="rtos.threadx.thread.autostart" value="rtos.threadx.thread.autostart.enabled"/>
+      <property id="rtos.threadx.thread.timeslice" value="1"/>
+      <stack module="module.framework.fx.1465609081">
+        <stack module="module.framework.sf_el_fx.2034112117" requires="module.framework.fx.requires.sf_el_fx">
+          <stack module="module.framework.block_media_on_sdmmc.786169542" requires="module.framework.sf_el_fx.requires.sf_block_media">
+            <stack module="module.driver.sdmmc_on_sdmmc.2031856843" requires="module.framework.block_media_on_sdmmc.requires.sdmmc">
+              <stack module="module.driver.transfer_on_dmac.1941017231" requires="module.driver.sdmmc_on_sdmmc.requires.transfer"/>
+            </stack>
+          </stack>
+        </stack>
+        <stack module="module.el.fx_common.732768893" requires="module.framework.fx.requires.fx_common">
+          <stack module="module.el.fx_src.989715567" requires="module.el.fx.requires.fx_src">
+            <stack module="module.framework.tx_src.919340895" requires="module.el.fx_src.requires.tx_src"/>
+          </stack>
+        </stack>
+      </stack>
+    </context>
     <config id="config.el.ux_v2"/>
     <config id="config.el.ux_device">
       <property id="config.el.ux_device.composite" value="config.el.ux_device.composite.disable"/>
@@ -632,7 +720,7 @@
       <property id="config.framework.sf_el_nx.macl1" value="0x0A0076C8"/>
       <property id="config.framework.sf_el_nx.num_rx_desc" value="8"/>
       <property id="config.framework.sf_el_nx.num_tx_desc" value="32"/>
-      <property id="config.framework.sf_el_nx.irq_ipl" value="board.icu.common.irq.priority0"/>
+      <property id="config.framework.sf_el_nx.irq_ipl" value="board.icu.common.irq.priority1"/>
       <property id="config.framework.sf_el_nx.monitor_method" value="config.framework.sf_el_nx.monitor_method.polling"/>
     </config>
     <config id="config.driver.cgc">
@@ -709,6 +797,12 @@
       <property id="config.driver.fmi.param_checking_enable" value="config.driver.fmi.param_checking_enable.bsp"/>
       <property id="config.driver.fmi.custom_base_address_symbol" value="g_fmi_data"/>
       <property id="config.driver.fmi.part_number_mask" value="0xFE00"/>
+    </config>
+    <config id="config.driver.sdmmc">
+      <property id="config.driver.sdmmc.param_checking_enable" value="config.driver.sdmmc.param_checking_enable.bsp"/>
+    </config>
+    <config id="config.driver.sdio">
+      <property id="config.driver.sdmmc.param_checking_enable" value="config.driver.sdmmc.param_checking_enable.bsp"/>
     </config>
     <config id="config.el.fx_src">
       <property id="config.el.fx_src.error_checking" value="config.el.fx_src.error_checking.enabled"/>
@@ -795,12 +889,18 @@
       <property id="config.el.nxd_telnet_common.telnet_server_port" value="23"/>
       <property id="config.el.nxd_telnet_common.time_to_live" value="128"/>
     </config>
+    <config id="config.framework.sf_el_fx">
+      <property id="config.framework.sf_el_fx.param_checking_enable" value="config.framework.sf_el_fx.param_checking_enable.bsp"/>
+    </config>
     <config id="config.driver.elc">
       <property id="config.driver.elc.checking" value="config.driver.elc.checking.system"/>
     </config>
     <config id="config.framework.sf_uart_comms">
       <property id="config.framework.sf_comms.param_checking_enable" value="config.framework.sf_comms.param_checking_enable.bsp"/>
       <property id="config.framework.sf_comms.read_size" value="15"/>
+    </config>
+    <config id="config.framework.block_media_sdmmc">
+      <property id="config.framework.block_media_sdmmc.param_checking_enable" value="config.framework.block_media_sdmmc.param_checking_enable.bsp"/>
     </config>
     <config id="config.el.tx_src">
       <property id="config.el.tx_src.error_checking" value="config.el.tx_src.error_checking.enabled"/>

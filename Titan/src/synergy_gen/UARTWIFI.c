@@ -8,8 +8,8 @@ static uint8_t UARTWIFI_stack[1024] BSP_PLACE_IN_SECTION_V2(".stack.UARTWIFI") B
 void tx_startup_err_callback(void *p_instance, void *p_data);
 void tx_startup_common_init(void);
 #if (BSP_IRQ_DISABLED) != BSP_IRQ_DISABLED
-#if !defined(SSP_SUPPRESS_ISR_g_transfer4) && !defined(SSP_SUPPRESS_ISR_DTCELC_EVENT_SCI0_TXI)
-#define DTC_ACTIVATION_SRC_ELC_EVENT_SCI0_TXI
+#if !defined(SSP_SUPPRESS_ISR_g_transfer4) && !defined(SSP_SUPPRESS_ISR_DTCELC_EVENT_SCI6_TXI)
+#define DTC_ACTIVATION_SRC_ELC_EVENT_SCI6_TXI
 #if defined(DTC_ACTIVATION_SRC_ELC_EVENT_ELC_SOFTWARE_EVENT_0) && !defined(DTC_VECTOR_DEFINED_SOFTWARE_EVENT_0)
 SSP_VECTOR_DEFINE(elc_software_event_isr, ELC, SOFTWARE_EVENT_0);
 #define DTC_VECTOR_DEFINED_SOFTWARE_EVENT_0
@@ -36,7 +36,7 @@ transfer_info_t g_transfer4_info =
   .length = 0, };
 const transfer_cfg_t g_transfer4_cfg =
 { .p_info = &g_transfer4_info,
-  .activation_source = ELC_EVENT_SCI0_TXI,
+  .activation_source = ELC_EVENT_SCI6_TXI,
   .auto_enable = false,
   .p_callback = NULL,
   .p_context = &g_transfer4,
@@ -46,27 +46,27 @@ const transfer_instance_t g_transfer4 =
 { .p_ctrl = &g_transfer4_ctrl, .p_cfg = &g_transfer4_cfg, .p_api = &g_transfer_on_dtc };
 #if SCI_UART_CFG_RX_ENABLE
 #if (12) != BSP_IRQ_DISABLED
-#if !defined(SSP_SUPPRESS_ISR_g_uart0) && !defined(SSP_SUPPRESS_ISR_SCI0)
-SSP_VECTOR_DEFINE_CHAN(sci_uart_rxi_isr, SCI, RXI, 0);
+#if !defined(SSP_SUPPRESS_ISR_g_uart0) && !defined(SSP_SUPPRESS_ISR_SCI6)
+SSP_VECTOR_DEFINE_CHAN(sci_uart_rxi_isr, SCI, RXI, 6);
 #endif
 #endif
 #endif
 #if SCI_UART_CFG_TX_ENABLE
 #if (12) != BSP_IRQ_DISABLED
-#if !defined(SSP_SUPPRESS_ISR_g_uart0) && !defined(SSP_SUPPRESS_ISR_SCI0)
-SSP_VECTOR_DEFINE_CHAN(sci_uart_txi_isr, SCI, TXI, 0);
+#if !defined(SSP_SUPPRESS_ISR_g_uart0) && !defined(SSP_SUPPRESS_ISR_SCI6)
+SSP_VECTOR_DEFINE_CHAN(sci_uart_txi_isr, SCI, TXI, 6);
 #endif
 #endif
 #if (12) != BSP_IRQ_DISABLED
-#if !defined(SSP_SUPPRESS_ISR_g_uart0) && !defined(SSP_SUPPRESS_ISR_SCI0)
-SSP_VECTOR_DEFINE_CHAN(sci_uart_tei_isr, SCI, TEI, 0);
+#if !defined(SSP_SUPPRESS_ISR_g_uart0) && !defined(SSP_SUPPRESS_ISR_SCI6)
+SSP_VECTOR_DEFINE_CHAN(sci_uart_tei_isr, SCI, TEI, 6);
 #endif
 #endif
 #endif
 #if SCI_UART_CFG_RX_ENABLE
 #if (12) != BSP_IRQ_DISABLED
-#if !defined(SSP_SUPPRESS_ISR_g_uart0) && !defined(SSP_SUPPRESS_ISR_SCI0)
-SSP_VECTOR_DEFINE_CHAN(sci_uart_eri_isr, SCI, ERI, 0);
+#if !defined(SSP_SUPPRESS_ISR_g_uart0) && !defined(SSP_SUPPRESS_ISR_SCI6)
+SSP_VECTOR_DEFINE_CHAN(sci_uart_eri_isr, SCI, ERI, 6);
 #endif
 #endif
 #endif
@@ -82,7 +82,7 @@ const uart_on_sci_cfg_t g_uart0_cfg_extend =
 
 /** UART interface configuration */
 const uart_cfg_t g_uart0_cfg =
-{ .channel = 0, .baud_rate = 9600, .data_bits = UART_DATA_BITS_8, .parity = UART_PARITY_OFF, .stop_bits =
+{ .channel = 6, .baud_rate = 1843200, .data_bits = UART_DATA_BITS_8, .parity = UART_PARITY_OFF, .stop_bits =
           UART_STOP_BITS_1,
   .ctsrts_en = false, .p_callback = NULL, .p_context = &g_uart0, .p_extend = &g_uart0_cfg_extend,
 #define SYNERGY_NOT_DEFINED (1)                        
@@ -162,7 +162,7 @@ void UARTWIFI_create(void)
     /* Initialize each kernel object. */
 
     UINT err;
-    err = tx_thread_create (&UARTWIFI, (CHAR *) "UARTWIFI", UARTWIFI_func, (ULONG) NULL, &UARTWIFI_stack, 1024, 1, 1, 1,
+    err = tx_thread_create (&UARTWIFI, (CHAR *) "UARTWIFI", UARTWIFI_func, (ULONG) NULL, &UARTWIFI_stack, 1024, 2, 2, 1,
                             TX_AUTO_START);
     if (TX_SUCCESS != err)
     {

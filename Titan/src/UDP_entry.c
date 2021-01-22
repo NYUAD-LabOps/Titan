@@ -110,8 +110,8 @@ void UDP_entry(void)
 
 //            machineGlobalsBlock->UDPRxIP = 0;
 //        }
-        tx_thread_sleep (500);
-        //        tx_thread_suspend (tx_thread_identify ());
+//        tx_thread_sleep (500);
+                tx_thread_suspend (tx_thread_identify ());
     }
 }
 
