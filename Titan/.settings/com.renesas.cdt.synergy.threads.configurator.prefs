@@ -1,20 +1,27 @@
+<<<<<<< HEAD
 collapse/module.driver.sdmmc_on_sdmmc.2031856843=false
 collapse/module.driver.uart_on_sci_uart.1799514554=false
+=======
+>>>>>>> parent of dd4782f... 1 18 21
 collapse/module.el.fx_common.732768893=false
 collapse/module.el.fx_src.989715567=false
 collapse/module.el.nxd.ip.2043612693=false
 collapse/module.el.nxd.packet_pool.770221576=false
 collapse/module.el.nxd_common.1052292193=false
 collapse/module.el.ux_device.468409168=false
-collapse/module.el.ux_device_class_cdc_acm_v2.321502777=false
+collapse/module.el.ux_device_class_cdc_acm_v2.968797002=false
 collapse/module.el.ux_host.484980517=false
 collapse/module.el.ux_host_class_storage.1093712120=false
 collapse/module.el.ux_v2.1719060344=false
+<<<<<<< HEAD
 collapse/module.framework.block_media_on_sdmmc.786169542=false
 collapse/module.framework.fx.1465609081=false
 collapse/module.framework.fx_usbmsc.2110011729=false
 collapse/module.framework.sf_comms_on_sf_uart_comms.524131596=false
 collapse/module.framework.sf_el_fx.2034112117=false
+=======
+collapse/module.framework.fx_usbmsc.1136853016=false
+>>>>>>> parent of dd4782f... 1 18 21
 collapse/module.framework.sf_el_ux_dcd_fs.568847540=false
 collapse/module.framework.sf_el_ux_hcd_hs.382871887=false
 eclipse.preferences.version=1

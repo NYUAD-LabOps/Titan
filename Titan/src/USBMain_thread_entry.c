@@ -53,7 +53,7 @@ UINT usb_host_plug_event_notification(ULONG usb_event, UX_HOST_CLASS *host_class
                                            _ux_utility_string_length_get (_ux_system_host_class_storage_name)))
     {
         // Get the pointer to the media
-        ux_return = ux_system_host_storage_fx_media_get (instance, &p_ux_host_class_storage_media, &g_fx_media1_ptr);
+        ux_return = ux_system_host_storage_fx_media_get (instance, &p_ux_host_class_storage_media, &g_fx_media0_ptr);
 
         if (ux_return != UX_SUCCESS)
         {
@@ -111,7 +111,6 @@ void USBMain_thread_entry(void)
     UINT tx_return;
     UINT fx_return;
     UINT status;
-    UCHAR waiting = 0;
 
     ///Setup the byte pool for handling FileX operations.
     local_buffer = initUSBBuffer_Pool (UX_STORAGE_BUFFER_SIZE);
@@ -131,7 +130,7 @@ void USBMain_thread_entry(void)
         }
 
         // Get the pointer to FileX Media Control Block for a USB flash device
-        p_media = g_fx_media1_ptr;
+        p_media = g_fx_media0_ptr;
         machineGlobalsBlock->p_media = p_media;
 
         // Retrieve the volume name of the opened media from the Data sector

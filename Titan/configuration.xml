@@ -192,6 +192,7 @@
       <description>General Purpose Timer: Provides=[Timer ,GPT]</description>
       <originalPack>Renesas.Synergy.1.7.5.pack</originalPack>
     </component>
+<<<<<<< HEAD
     <component apiversion="" class="Framework Services" condition="" group="all" subgroup="sf_uart_comms" variant="" vendor="Renesas" version="1.7.5">
       <description>Framework UART Communications: Provides=[Framework UART] , Requires=[ThreadX ,Communications]</description>
       <originalPack>Renesas.Synergy.1.7.5.pack</originalPack>
@@ -216,6 +217,8 @@
       <description>SD/MMC Media: Provides=[SDMMC]</description>
       <originalPack>Renesas.Synergy.1.7.5.pack</originalPack>
     </component>
+=======
+>>>>>>> parent of dd4782f... 1 18 21
   </synergyComponentSelection>
   <synergyIcuConfiguration/>
   <synergyMessagingConfiguration/>
@@ -239,6 +242,12 @@
     <module id="module.framework.tx_src.919340895">
       <property id="module.el.tx_src.linkage_warning" value="module.el.tx_src.linkage_warning.disabled"/>
     </module>
+    <module id="module.framework.fx_usbmsc.1136853016">
+      <property id="module.framework.fx.name" value="g_fx_media0"/>
+      <property id="module.framework.fx.init_function" value="fx_media_init_function0"/>
+      <property id="module.framework.fx_usbmsc.media_init" value="module.framework.fx_usbmsc.media_init.disable"/>
+      <property id="module.framework.fx_usbmsc.init_timeout" value="1000"/>
+    </module>
     <module id="module.el.ux_host_class_storage.1093712120">
       <property id="module.el.host_class.name" value="g_ux_host_class_storage0"/>
     </module>
@@ -258,6 +267,13 @@
     <module id="module.el.fx_common.732768893">
       <property id="module.el.fx_common.init_function" value="fx_common_init0"/>
       <property id="module.el.fx_common.init" value="module.el.fx_common.init.enable"/>
+    </module>
+    <module id="module.el.ux_device_class_cdc_acm_v2.968797002">
+      <property id="module.el.ux_device_class_cdc_acm_v2.name" value="g_ux_device_class_cdc_acm0"/>
+      <property id="module.el.ux_device_class_cdc_acm_v2.pfunc_activate" value="ux_cdc_device0_instance_activate"/>
+      <property id="module.el.ux_device_class_cdc_acm_v2.pfunc_deactivate" value="ux_cdc_device0_instance_deactivate"/>
+      <property id="module.el.ux_device_class_cdc_acm_v2.init_function" value="ux_device_class_cdc_acm_init0"/>
+      <property id="module.el.ux_device_class_cdc_acm_v2.init" value="module.el.ux_device_class_cdc_acm_v2.init.enable"/>
     </module>
     <module id="module.el.ux_device.468409168">
       <property id="module.el.ux_device.idVendor" value="0x045B"/>
@@ -440,6 +456,7 @@
       <property id="module.driver.timer.p_callback" value="getTemp_callback"/>
       <property id="module.driver.timer.irq_ipl" value="board.icu.common.irq.priority6"/>
     </module>
+<<<<<<< HEAD
     <module id="module.framework.sf_comms_on_sf_uart_comms.524131596">
       <property id="module.framework.sf_comms.name" value="g_sf_comms0"/>
       <property id="module.framework.sf_comms.init_function" value="sf_comms_init0"/>
@@ -555,6 +572,8 @@
       <property id="module.driver.transfer.p_callback" value="NULL"/>
       <property id="module.driver.transfer.irq_ipl" value="board.icu.common.irq.priority12"/>
     </module>
+=======
+>>>>>>> parent of dd4782f... 1 18 21
     <context id="_hal.0">
       <stack module="module.driver.cgc_on_cgc.0"/>
       <stack module="module.driver.ioport_on_ioport.0"/>
@@ -570,6 +589,55 @@
       <property id="rtos.threadx.thread.priority" value="2"/>
       <property id="rtos.threadx.thread.autostart" value="rtos.threadx.thread.autostart.enabled"/>
       <property id="rtos.threadx.thread.timeslice" value="1"/>
+    </context>
+    <context id="rtos.threadx.thread.1430369894">
+      <property id="_symbol" value="USBMain_thread"/>
+      <property id="rtos.threadx.thread.name" value="USBMain"/>
+      <property id="rtos.threadx.thread.stack" value="4096"/>
+      <property id="rtos.threadx.thread.priority" value="6"/>
+      <property id="rtos.threadx.thread.autostart" value="rtos.threadx.thread.autostart.enabled"/>
+      <property id="rtos.threadx.thread.timeslice" value="1"/>
+      <stack module="module.framework.fx_usbmsc.1136853016">
+        <stack module="module.el.ux_host_class_storage.1093712120" requires="module.framework.fx_usbmsc.requires.ux_host_class_storage">
+          <stack module="module.el.ux_host_class_storage_src.1415840041" requires="module.el.ux_host_class_storage.requires.ux_host_class_storage_src"/>
+          <stack module="module.el.ux_host.484980517" requires="module.el.ux_host_class_storage.requires.ux_host">
+            <stack module="module.framework.sf_el_ux_hcd_hs.382871887" requires="module.el.ux_host.requires.sf_el_ux_hcd">
+              <stack module="module.driver.transfer_on_dmac.388853070" requires="module.framework.sf_el_ux_hcd.requires.transfer_tx"/>
+              <stack module="module.driver.transfer_on_dmac.1323458654" requires="module.framework.sf_el_ux_hcd.requires.transfer_rx"/>
+            </stack>
+            <stack module="module.el.ux_v2.1719060344" requires="module.el.ux_host.requires.ux_v2">
+              <stack module="module.el.ux_src.1673039305" requires="module.el.ux_v2.requires.ux_src"/>
+            </stack>
+          </stack>
+        </stack>
+        <stack module="module.el.fx_common.732768893" requires="module.framework.fx_usbmsc.requires.fx_common">
+          <stack module="module.el.fx_src.989715567" requires="module.el.fx.requires.fx_src">
+            <stack module="module.framework.tx_src.919340895" requires="module.el.fx_src.requires.tx_src"/>
+          </stack>
+        </stack>
+      </stack>
+      <stack module="module.el.ux_device_class_cdc_acm_v2.968797002">
+        <stack module="module.el.ux_device_class_cdc_acm_src.1556444135" requires="module.el.ux_device_class_cdc_acm_v2.requires.ux_device_class_cdc_acm_src"/>
+        <stack module="module.el.ux_device.468409168" requires="module.el.ux_device_class_cdc_acm_v2.requires.ux_device">
+          <stack module="module.framework.sf_el_ux_dcd_fs.568847540" requires="module.el.ux_device.requires.sf_el_ux_dcd">
+            <stack module="module.driver.transfer_on_dmac.450226594" requires="module.framework.sf_el_ux_dcd_fs.requires.transfer_tx"/>
+            <stack module="module.driver.transfer_on_dmac.1914540827" requires="module.framework.sf_el_ux_dcd_fs.requires.transfer_rx"/>
+          </stack>
+          <stack module="module.el.ux_v2.1719060344" requires="module.el.ux_device.requires.ux_v2">
+            <stack module="module.el.ux_src.1673039305" requires="module.el.ux_v2.requires.ux_src"/>
+          </stack>
+        </stack>
+        <stack module="module.el.ux.interface_descriptor_cdcacm.cdc_acm.627181593" requires="module.el.ux_device_class_cdc_acm_v2.requires.interface_descriptor_cdcacm"/>
+      </stack>
+      <object id="rtos.threadx.object.semaphore.2141294322">
+        <property id="rtos.threadx.object.semaphore.name" value="New Semaphore"/>
+        <property id="rtos.threadx.object.semaphore.symbol" value="g_cdc_activate_semaphore"/>
+        <property id="rtos.threadx.object.semaphore.count" value="0"/>
+      </object>
+      <object id="rtos.threadx.object.flags.323828460">
+        <property id="rtos.threadx.object.flags.name" value="USB Plug Event Flags"/>
+        <property id="rtos.threadx.object.flags.symbol" value="g_usb_plug_events"/>
+      </object>
     </context>
     <context id="rtos.threadx.thread.593071809">
       <property id="_symbol" value="posCalc"/>
@@ -610,6 +678,7 @@
         <property id="rtos.threadx.object.flags.symbol" value="g_setup_mode_complete"/>
       </object>
     </context>
+<<<<<<< HEAD
     <context id="rtos.threadx.thread.1027305312">
       <property id="_symbol" value="UARTWIFI"/>
       <property id="rtos.threadx.thread.name" value="UARTWIFI"/>
@@ -702,6 +771,8 @@
         </stack>
       </stack>
     </context>
+=======
+>>>>>>> parent of dd4782f... 1 18 21
     <config id="config.el.ux_v2"/>
     <config id="config.el.ux_device">
       <property id="config.el.ux_device.composite" value="config.el.ux_device.composite.disable"/>
@@ -735,12 +806,6 @@
       <property id="config.driver.ioport.checking" value="config.driver.ioport.checking.system"/>
     </config>
     <config id="config.threadx.thread"/>
-    <config id="config.driver.sci_uart">
-      <property id="config.driver.sci_uart.external_rts_operation" value="config.driver.sci_uart.external_rts_operation.disabled"/>
-      <property id="config.driver.sci_uart.uart_rx_enable" value="config.driver.sci_uart.uart_rx_enable.enabled"/>
-      <property id="config.driver.sci_uart.uart_tx_enable" value="config.driver.sci_uart.uart_tx_enable.enabled"/>
-      <property id="config.driver.sci_uart.param_checking_enable" value="config.driver.sci_uart.param_checking_enable.bsp"/>
-    </config>
     <config id="config.framework.sf_el_ux">
       <property id="config.framework.sf_el_ux.VBUSENpin_logic" value="config.framework.sf_el_ux.VBUSENpin_logic.active_high"/>
       <property id="config.framework.sf_el_ux.hs_irq_ipl" value="board.icu.common.irq.disabled"/>
@@ -895,6 +960,7 @@
     <config id="config.driver.elc">
       <property id="config.driver.elc.checking" value="config.driver.elc.checking.system"/>
     </config>
+<<<<<<< HEAD
     <config id="config.framework.sf_uart_comms">
       <property id="config.framework.sf_comms.param_checking_enable" value="config.framework.sf_comms.param_checking_enable.bsp"/>
       <property id="config.framework.sf_comms.read_size" value="15"/>
@@ -902,6 +968,8 @@
     <config id="config.framework.block_media_sdmmc">
       <property id="config.framework.block_media_sdmmc.param_checking_enable" value="config.framework.block_media_sdmmc.param_checking_enable.bsp"/>
     </config>
+=======
+>>>>>>> parent of dd4782f... 1 18 21
     <config id="config.el.tx_src">
       <property id="config.el.tx_src.error_checking" value="config.el.tx_src.error_checking.enabled"/>
       <property id="config.el.tx_src.timer_ticks_per_second" value="1000"/>
@@ -969,11 +1037,6 @@
       <property id="config.el.tx_src.tx_timer_delete_extension" value=""/>
     </config>
     <config id="config.el.fx"/>
-    <config id="config.driver.dtc">
-      <property id="config.driver.dtc.param_checking_enable" value="config.driver.dtc.param_checking_enable.bsp"/>
-      <property id="config.driver.dtc.software_start" value="config.driver.dtc.software_start.enabled"/>
-      <property id="config.driver.dtc.vector_table" value=".ssp_dtc_vector_table"/>
-    </config>
   </synergyModuleConfiguration>
   <synergyPinConfiguration>
     <pincfg active="true" name="S7G2-SK.pincfg" symbol="g_bsp_pin_cfg"/>
