@@ -162,7 +162,7 @@ void UARTWIFI_create(void)
     /* Initialize each kernel object. */
 
     UINT err;
-    err = tx_thread_create (&UARTWIFI, (CHAR *) "UARTWIFI", UARTWIFI_func, (ULONG) NULL, &UARTWIFI_stack, 1024, 2, 2, 1,
+    err = tx_thread_create (&UARTWIFI, (CHAR *) "UARTWIFI", UARTWIFI_func, (ULONG) NULL, &UARTWIFI_stack, 1024, 1, 1, 1,
                             TX_AUTO_START);
     if (TX_SUCCESS != err)
     {

@@ -92,7 +92,7 @@ void USBHost_entry(void)
 
     ///Setup the byte pool for handling FileX operations.
     local_buffer = initUSBBuffer_Pool (UX_STORAGE_BUFFER_SIZE);
-    machineGlobalsBlock->storageBuffer = local_buffer;
+    machineGlobalsBlock->local_buffer = local_buffer;
 
     while (machineGlobalsBlock->globalsInit != 1)
     {
@@ -249,7 +249,10 @@ void USBHost_entry(void)
         if (DEBUGGER)
             printf ("\nController ready.");
     }
-    tx_thread_suspend (tx_thread_identify ());
+    while (1)
+    {
+        tx_thread_sleep (1);
+    }
 }
 
 void USB_Write_Buffer(char *data, UINT length)
@@ -311,7 +314,7 @@ void USB_Buffer_Transfer()
     }
 
 ///Clear local buffer to prevent errors with other USB operations
-    memset (machineGlobalsBlock->storageBuffer, 0, machineGlobalsBlock->local_bufferIndex);
+    memset (machineGlobalsBlock->local_buffer, 0, machineGlobalsBlock->local_bufferIndex);
     machineGlobalsBlock->USBBufferHasData = 1;
     machineGlobalsBlock->local_bufferIndex = 0;
 
@@ -450,7 +453,7 @@ void saveINI()
         printf ("\nINI save complete.");
 
 ///Clear local buffer to prevent errors with other USB operations
-    memset (machineGlobalsBlock->storageBuffer, 0, (4 * length_tmp));
+    memset (machineGlobalsBlock->local_buffer, 0, (4 * length_tmp));
 
     if (DEBUGGER)
         printf ("\nINI save complete.");
@@ -492,5 +495,5 @@ void loadINI()
     if (DEBUGGER)
         printf ("\nINI data loaded.");
 ///Clear local buffer to prevent errors with other USB operations
-    memset (machineGlobalsBlock->storageBuffer, 0, (4 * length_tmp));
+    memset (machineGlobalsBlock->local_buffer, 0, (4 * length_tmp));
 }

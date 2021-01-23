@@ -259,10 +259,7 @@ struct machineGlobals
     UX_HOST_CLASS_STORAGE_MEDIA * p_ux_host_class_storage_media;
     ULONG USBFileIndex;
     ULONG local_bufferIndex;
-    char *storageBuffer;
-    ULONG fileTransferIndex;
-    FX_FILE gcodeFile;
-//    char *gcodeFileName;
+    char *local_buffer;
     char *USBBufferB;
     char USBBufferHasData;
 
@@ -329,4 +326,3 @@ void initToolBlocks();
 void UDPSend(ULONG ip_address);
 void setupMode();
 void UDPHomeMotor(struct motorController *motorBlock);
-void rxFile(long fileSize);

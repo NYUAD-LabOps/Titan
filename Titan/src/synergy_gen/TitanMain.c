@@ -19,8 +19,8 @@ void TitanMain_create(void)
     /* Initialize each kernel object. */
 
     UINT err;
-    err = tx_thread_create (&TitanMain, (CHAR *) "TitanMain", TitanMain_func, (ULONG) NULL, &TitanMain_stack, 2048, 2,
-                            2, 1, TX_AUTO_START);
+    err = tx_thread_create (&TitanMain, (CHAR *) "TitanMain", TitanMain_func, (ULONG) NULL, &TitanMain_stack, 2048, 1,
+                            1, 1, TX_AUTO_START);
     if (TX_SUCCESS != err)
     {
         tx_startup_err_callback (&TitanMain, 0);

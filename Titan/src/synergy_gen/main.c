@@ -3,16 +3,12 @@
 #include "tx_api.h"
 
 extern void TitanMain_create(void);
-extern void USBMain_thread_create(void);
 extern void posCalc_create(void);
 extern void UDP_create(void);
-<<<<<<< HEAD
 extern void UARTWIFI_create(void);
 extern void USBDevice_create(void);
 extern void USBHost_create(void);
 extern void SDStorage_create(void);
-=======
->>>>>>> parent of dd4782f... 1 18 21
 
 uint32_t g_ssp_common_thread_count;
 bool g_ssp_common_initialized;
@@ -68,16 +64,12 @@ void tx_application_define(void *first_unused_memory)
     }
 
     TitanMain_create ();
-    USBMain_thread_create ();
     posCalc_create ();
     UDP_create ();
-<<<<<<< HEAD
     UARTWIFI_create ();
     USBDevice_create ();
     USBHost_create ();
     SDStorage_create ();
-=======
->>>>>>> parent of dd4782f... 1 18 21
 
 #ifdef TX_USER_ENABLE_TRACE
     TX_USER_ENABLE_TRACE;

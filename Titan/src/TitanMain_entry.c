@@ -16,11 +16,13 @@ void TitanMain_entry(void)
 
     if (DEBUGGER)
     {
-        printf ("\nHelix controller initializing...");
+        printf ("\Titan controller initializing...");
     }
     struct instruction data;
     ioport_level_t pinValue;
     char cmd[3] = "cmd";
+
+    initialise_monitor_handles ();
 
     initGlobalsBlock ();
     initBuff ();
@@ -76,8 +78,8 @@ void TitanMain_entry(void)
             UDPGetToolUpdate ();
             machineGlobalsBlock->getUpdate = 0;
         }
-
-        tx_thread_relinquish();
+        ///This is another 1ms speed limitation
+        tx_thread_sleep (1);
     }
 }
 

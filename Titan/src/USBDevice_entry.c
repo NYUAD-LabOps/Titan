@@ -16,9 +16,12 @@ void USBDevice_entry(void)
     UINT status;
     UCHAR waiting = 0;
 
-    /* TODO: add your own code here */
+    while (machineGlobalsBlock->globalsInit != 1)
+    {
+        tx_thread_sleep (500);
+    }
 
-    tx_thread_suspend (tx_thread_identify ());
+    /* TODO: add your own code here */
     while (1)
     {
         memset (machineGlobalsBlock->USBBufferB, 0, 49);
@@ -70,7 +73,7 @@ void USBDevice_entry(void)
         {
 
         }
-        tx_thread_relinquish();
+        tx_thread_sleep (1);
     }
 }
 
