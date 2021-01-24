@@ -527,7 +527,7 @@
     <module id="module.driver.sdmmc_on_sdmmc.253506551">
       <property id="module.driver.sdmmc.name" value="g_sdmmc0"/>
       <property id="module.driver.sdmmc.channel" value="1"/>
-      <property id="module.driver.sdmmc.media_type" value="module.driver.sdmmc.media_type.media_type_embedded"/>
+      <property id="module.driver.sdmmc.media_type" value="module.driver.sdmmc.media_type.media_type_card"/>
       <property id="module.driver.sdmmc.bus_width" value="module.driver.sdmmc.bus_width.bus_width_1_bit"/>
       <property id="module.driver.sdmmc.block_size" value="512"/>
       <property id="module.driver.sdmmc.card_detect" value="module.driver.sdmmc.card_detect.card_detect_none"/>

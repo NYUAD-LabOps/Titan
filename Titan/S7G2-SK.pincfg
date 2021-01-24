@@ -140,7 +140,6 @@
   <v1:configSetting configurationId="p906.gpio_mode" altId="p906.gpio_mode.gpio_mode_peripheral"/>
   <v1:configSetting configurationId="p106.gpio_mode" altId="p106.gpio_mode.gpio_mode_peripheral"/>
   <v1:configSetting configurationId="p006.gpio_mode" altId="p006.gpio_mode.gpio_mode_in"/>
-  <v1:configSetting configurationId="p506.gpio_mode" altId="p506.gpio_mode.gpio_mode_peripheral"/>
   <v1:configSetting configurationId="p606.gpio_mode" altId="p606.gpio_mode.gpio_mode_peripheral"/>
   <v1:configSetting configurationId="p406.gpio_mode" altId="p406.gpio_mode.gpio_mode_peripheral"/>
   <v1:configSetting configurationId="can0.ctx" altId="can0.ctx.p401">
@@ -487,9 +486,6 @@
   </v1:configSetting>
   <v1:configSetting configurationId="p500" altId="p500.sdhi1.clk">
     <v1:connectionSetting altId="sdhi1.clk.p500"/>
-  </v1:configSetting>
-  <v1:configSetting configurationId="p506" altId="p506.sdhi1.cd">
-    <v1:connectionSetting altId="sdhi1.cd.p506"/>
   </v1:configSetting>
   <v1:configSetting configurationId="sci8.txd" altId="sci8.txd.p105">
     <v1:connectionSetting altId="p105.sci8.txd"/>
@@ -911,14 +907,10 @@
     <v1:connectionSetting altId="p500.sdhi1.clk"/>
   </v1:configSetting>
   <v1:configSetting configurationId="sdhi1.wp" altId="sdhi1.wp.none"/>
-  <v1:configSetting configurationId="p506.gpio_drivecapacity" altId="p506.gpio_speed.gpio_speed_high"/>
   <v1:configSetting configurationId="sdhi1.mode" altId="sdhi1.mode.sd_mmc1mbit.free"/>
-  <v1:configSetting configurationId="p506.gpio_pupd" altId="p506.gpio_pupd.gpio_pupd_ip_up"/>
   <v1:configSetting configurationId="p502.gpio_pupd" altId="p502.gpio_pupd.gpio_pupd_ip_up"/>
   <v1:configSetting configurationId="sdhi1.pairing" altId="sdhi1.pairing.free"/>
-  <v1:configSetting configurationId="sdhi1.cd" altId="sdhi1.cd.p506">
-    <v1:connectionSetting altId="p506.sdhi1.cd"/>
-  </v1:configSetting>
+  <v1:configSetting configurationId="sdhi1.cd" altId="sdhi1.cd.none"></v1:configSetting>
   <v1:configSetting configurationId="sdhi1.dat0" altId="sdhi1.dat0.p502">
     <v1:connectionSetting altId="p502.sdhi1.dat0"/>
   </v1:configSetting>

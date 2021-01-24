@@ -260,6 +260,7 @@ struct machineGlobals
     ULONG USBFileIndex;
     ULONG local_bufferIndex;
     char *local_buffer;
+    FX_FILE gcodeFile;
     char *USBBufferB;
     char USBBufferHasData;
 
@@ -326,3 +327,5 @@ void initToolBlocks();
 void UDPSend(ULONG ip_address);
 void setupMode();
 void UDPHomeMotor(struct motorController *motorBlock);
+void rxFile(long long fileSize);
+void serialHandler(char *uartRx);

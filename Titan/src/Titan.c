@@ -157,7 +157,7 @@ void initGlobalsBlock()
     ssp_err_t err;
     unsigned char *memory_ptr;
 
-    status = tx_block_pool_create(&my_pool3, "globals", sizeof(struct machineGlobals), (VOID *) 0x20050000, 1000);
+    status = tx_block_pool_create(&my_pool3, "globals", sizeof(struct machineGlobals), (VOID *) 0x20050000, 2000);
 
     status = tx_block_allocate (&my_pool3, (VOID **) &memory_ptr, TX_NO_WAIT);
     machineGlobalsBlock = (struct machineGlobals *) memory_ptr;

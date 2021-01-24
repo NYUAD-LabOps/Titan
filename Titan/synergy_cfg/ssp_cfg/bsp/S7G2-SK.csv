@@ -449,7 +449,7 @@ QSPI0: QIO3
 SCI6: RXD_MISO
 SCI6: SCL
 SDHI1: DAT3"
-"P506","146","SDHI1_CD","","High","None","Peripheral mode","CMOS","input pull-up","ADC0: AN19
+"P506","146","","","","","Disabled","","","ADC0: AN19
 IRQ0: IRQ15
 SCI6: SDA
 SCI6: TXD_MOSI

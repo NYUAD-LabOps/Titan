@@ -28,7 +28,10 @@ void SDStorage_entry(void)
 
 
 
+
      printf("\n%i", status);
+     printf("\n%d", sizeof(struct machineGlobals));
+     printf("\n%d", sizeof(FX_FILE));
 
      tx_thread_sleep(10);
      fx_media_flush(&g_fx_media0);
