@@ -910,7 +910,7 @@
   <v1:configSetting configurationId="sdhi1.mode" altId="sdhi1.mode.sd_mmc1mbit.free"/>
   <v1:configSetting configurationId="p502.gpio_pupd" altId="p502.gpio_pupd.gpio_pupd_ip_up"/>
   <v1:configSetting configurationId="sdhi1.pairing" altId="sdhi1.pairing.free"/>
-  <v1:configSetting configurationId="sdhi1.cd" altId="sdhi1.cd.none"></v1:configSetting>
+  <v1:configSetting configurationId="sdhi1.cd" altId="sdhi1.cd.none"/>
   <v1:configSetting configurationId="sdhi1.dat0" altId="sdhi1.dat0.p502">
     <v1:connectionSetting altId="p502.sdhi1.dat0"/>
   </v1:configSetting>

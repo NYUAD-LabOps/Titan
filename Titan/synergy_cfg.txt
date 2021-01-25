@@ -145,7 +145,7 @@ Synergy Configuration
       P503 143 - - - - Disabled - - "ADC1: AN17; GPT12: GTIOCB; POEG2: GTETRG; QSPI0: QIO1; SCI5: SCK; SCI6: CTS_RTS_SS; SDHI1: DAT1; USBFS0: EXICEN" 
       P504 144 - - - - Disabled - - "ADC0: AN18; GPT13: GTIOCA; POEG3: GTETRG; QSPI0: QIO2; SCI5: CTS_RTS_SS; SCI6: SCK; SDHI1: DAT2; USBFS0: ID" 
       P505 145 - - - - Disabled - - "ADC1: AN18; GPT13: GTIOCB; IRQ0: IRQ14; QSPI0: QIO3; SCI6: RXD_MISO; SCI6: SCL; SDHI1: DAT3" 
-      P506 146 SDHI1_CD - High None "Peripheral mode" CMOS "input pull-up" "ADC0: AN19; IRQ0: IRQ15; SCI6: SDA; SCI6: TXD_MOSI; SDHI1: CD" 
+      P506 146 - - - - Disabled - - "ADC0: AN19; IRQ0: IRQ15; SCI6: SDA; SCI6: TXD_MOSI; SDHI1: CD" 
       P507 147 - - - - Disabled - - "ADC1: AN19; SCI5: CTS_RTS_SS; SDHI1: WP" 
       P511 176 - - - - Disabled - - "CAN1: CRX; GPT0: GTIOCB; IIC2: SDA; IRQ0: IRQ15; PDC0: PCKO; SCI4: RXD_MISO; SCI4: SCL" 
       P512 175 - - - - Disabled - - "CAN1: CTX; GPT0: GTIOCA; IIC2: SCL; IRQ0: IRQ14; PDC0: VSYNC; SCI4: SDA; SCI4: TXD_MOSI" 
@@ -432,7 +432,7 @@ Synergy Configuration
     
   Module "Communications Framework on sf_uart_comms"
     Parameter Checking: Default (BSP)
-    Read Input Queue Size (4-Byte Words): 15
+    Read Input Queue Size (4-Byte Words): 50
     
   Module "UART Driver on r_sci_uart"
     External RTS Operation: Disable
@@ -494,7 +494,7 @@ Synergy Configuration
     Symbol: TitanMain
     Name: TitanMain
     Stack size (bytes): 2048
-    Priority: 1
+    Priority: 2
     Auto start: Enabled
     Time slicing interval (ticks): 1
     
@@ -502,7 +502,7 @@ Synergy Configuration
     Symbol: posCalc
     Name: Position Calculator
     Stack size (bytes): 2048
-    Priority: 1
+    Priority: 2
     Auto start: Enabled
     Time slicing interval (ticks): 1
     
@@ -576,8 +576,8 @@ Synergy Configuration
   Thread "UARTWIFI"
     Symbol: UARTWIFI
     Name: UARTWIFI
-    Stack size (bytes): 1024
-    Priority: 1
+    Stack size (bytes): 4096
+    Priority: 2
     Auto start: Enabled
     Time slicing interval (ticks): 1
     
@@ -601,11 +601,11 @@ Synergy Configuration
         Start bit detection: Falling Edge
         Noise Cancel: Disable
         Bit Rate Modulation Enable: Enable
-        Receive FIFO Trigger Level: Max
-        Receive Interrupt Priority: Priority 12
-        Transmit Interrupt Priority: Priority 12
-        Transmit End Interrupt Priority: Priority 12
-        Error Interrupt Priority: Priority 12
+        Receive FIFO Trigger Level: One
+        Receive Interrupt Priority: Priority 0 (highest)
+        Transmit Interrupt Priority: Priority 0 (highest)
+        Transmit End Interrupt Priority: Priority 0 (highest)
+        Error Interrupt Priority: Priority 0 (highest)
         Baudrate Percent Error: 2.0
         UART Communication Mode: RS232
         UART RS485 Communication Mode: Half Duplex

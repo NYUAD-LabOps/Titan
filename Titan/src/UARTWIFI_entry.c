@@ -9,14 +9,14 @@ void UARTWIFI_entry(void)
         tx_thread_sleep (500);
     }
     /* TODO: add your own code here */
-    UCHAR uartRx[11];
-    memset (uartRx, 0, 11);
+    UCHAR uartRx[WIFI_PACKET_SIZE];
+    memset (uartRx, 0, WIFI_PACKET_SIZE);
     static uart_cfg_t rx_uart_config;
     g_sf_comms0.p_api->open (g_sf_comms0.p_ctrl, g_sf_comms0.p_cfg);
 
     while (1)
     {
-        g_sf_comms0.p_api->read (g_sf_comms0.p_ctrl, uartRx, 10, TX_WAIT_FOREVER);
+        g_sf_comms0.p_api->read (g_sf_comms0.p_ctrl, uartRx, WIFI_PACKET_SIZE, TX_WAIT_FOREVER);
         printf ("\n%s", uartRx);
         serialHandler (uartRx);
 
@@ -26,13 +26,22 @@ void UARTWIFI_entry(void)
 
 void serialHandler(char *uartRx)
 {
+    UINT status;
     long long fileSize;
+    fileSize = 0;
+    UCHAR sendACK[WIFI_PACKET_SIZE];
+    memset (sendACK, 0, WIFI_PACKET_SIZE);
+    sendACK[0] = 'A';
+    sendACK[1] = 'C';
+    sendACK[2] = 'K';
+
     fileSize = 0;
     switch (uartRx[0])
     {
         case 'F':
-//            memcpy (&fileSize, (uartRx + 2), 8);
-            fileSize = atoi((uartRx + 2));
+//            status = g_sf_comms0.p_api->write (g_sf_comms0.p_ctrl, sendACK, WIFI_PACKET_SIZE, TX_NO_WAIT);
+            memcpy (&fileSize, (uartRx + 2), 8);
+//            fileSize = atoi ((uartRx + 2));
             rxFile (fileSize);
         break;
     }
@@ -41,55 +50,121 @@ void serialHandler(char *uartRx)
 ///This function receives files from the GUI via UART or USB
 void rxFile(long long fileSize)
 {
-        UINT status;
-        int i, parts;
-        machineGlobalsBlock->local_bufferIndex = 0;
+    UINT status;
+    int i, parts;
+    UCHAR rxBuf[WIFI_PACKET_SIZE];
+    UCHAR sendACK[WIFI_PACKET_SIZE];
+    memset (sendACK, 0, WIFI_PACKET_SIZE);
+    sendACK[0] = 'A';
+    sendACK[1] = 'C';
+    sendACK[2] = 'K';
+    memset (rxBuf, 0, WIFI_PACKET_SIZE);
+    machineGlobalsBlock->local_bufferIndex = 0;
     //    long fileSize;
 
-        parts = fileSize / 1024;
+    parts = fileSize / WIFI_PACKET_SIZE;
 
     //    printf ("\n%s", test);
 
-        long remainder = fileSize % 1024;
-        printf ("\nsize: %lu remainder:%lu", fileSize, remainder);
+    long remainder = fileSize % 1024;
+    printf ("\nsize: %lu remainder:%lu", fileSize, remainder);
 
     //    fx_file_op
 
-        status = fx_file_open(&g_fx_media0, &machineGlobalsBlock->gcodeFile, "testGcode.gcode", FX_OPEN_FOR_WRITE);
+    status = fx_file_open(&g_fx_media0, &machineGlobalsBlock->gcodeFile, "testGcode.gcode", FX_OPEN_FOR_WRITE);
 
+    if (status == FX_SUCCESS)
+    {
+        printf ("\nFile open s");
+        fx_file_close (&machineGlobalsBlock->gcodeFile);
+        status = fx_file_delete (&g_fx_media0, "testGcode.gcode");
         if (status == FX_SUCCESS)
         {
-            fx_file_delete (&g_fx_media0, "testGcode.gcode");
-
-            fx_file_create (&g_fx_media0, "testGcode.gcode");
-
-            fx_file_open(&g_fx_media0, &machineGlobalsBlock->gcodeFile, "testGcode.gcode", FX_OPEN_FOR_WRITE);
+            printf ("\nFile del s");
         }
         else
         {
-            fx_file_create (&g_fx_media0, "testGcode.gcode");
-
-            fx_file_open(&g_fx_media0, &machineGlobalsBlock->gcodeFile, "testGcode.gcode", FX_OPEN_FOR_WRITE);
-
+            printf ("\nFile del f");
         }
-
-        for (i = 0; i < parts; i++)
+        status = fx_file_create (&g_fx_media0, "testGcode.gcode");
+        if (status == FX_SUCCESS)
         {
-            g_sf_comms0.p_api->read (g_sf_comms0.p_ctrl, machineGlobalsBlock->local_buffer, 1024, 250);
+            printf ("\nFile create s");
+        }
+        else
+        {
+            printf ("\nFile create f");
+        }
+        status = fx_file_open(&g_fx_media0, &machineGlobalsBlock->gcodeFile, "testGcode.gcode", FX_OPEN_FOR_WRITE);
+        if (status == FX_SUCCESS)
+        {
+            printf ("\nFile open s");
+        }
+        else
+        {
+            printf ("\nFile open f");
+        }
+    }
+    else
+    {
+        printf ("\nFile open f");
+        status = fx_file_create (&g_fx_media0, "testGcode.gcode");
+        if (status == FX_SUCCESS)
+        {
+            printf ("\nFile create s");
+        }
+        else
+        {
+            printf ("\nFile create f");
+        }
+        status = fx_file_open(&g_fx_media0, &machineGlobalsBlock->gcodeFile, "testGcode.gcode", FX_OPEN_FOR_WRITE);
+        if (status == FX_SUCCESS)
+        {
+            printf ("\nFile open s");
+        }
+        else
+        {
+            printf ("\nFile open f");
+        }
+    }
 
-            fx_file_write (&machineGlobalsBlock->gcodeFile, machineGlobalsBlock->local_buffer, 1024);
-    //        machineGlobalsBlock->fileTransferIndex += 1000;
+    g_sf_comms0.p_api->write (g_sf_comms0.p_ctrl, sendACK, WIFI_PACKET_SIZE, TX_NO_WAIT);
+
+    for (i = 0; i < parts; i++)
+    {
+        status = g_sf_comms0.p_api->read (g_sf_comms0.p_ctrl, rxBuf, WIFI_PACKET_SIZE, 250);
+
+        if (status == SSP_SUCCESS)
+        {
+            status = fx_file_write (&machineGlobalsBlock->gcodeFile, rxBuf, WIFI_PACKET_SIZE);
+            if (status != FX_SUCCESS)
+            {
+                printf ("\nFile write f");
+            }
+            g_sf_comms0.p_api->write (g_sf_comms0.p_ctrl, sendACK, WIFI_PACKET_SIZE, 250);
+        }else if(status == 20){
+            printf("\nTO");
+            g_sf_comms0.p_api->write (g_sf_comms0.p_ctrl, sendACK, WIFI_PACKET_SIZE, 250);
+        }
+        else{
+            printf("\nUART read error:%d", status);
         }
 
-        ///Read and store remainder
+        //        machineGlobalsBlock->fileTransferIndex += 1000;
+    }
 
-        g_sf_comms0.p_api->read (g_sf_comms0.p_ctrl, machineGlobalsBlock->local_buffer, remainder, 250);
-        fx_file_write (&machineGlobalsBlock->gcodeFile, machineGlobalsBlock->local_buffer, remainder);
+    ///Read and store remainder
 
-        fx_file_close(&machineGlobalsBlock->gcodeFile);
-        fx_media_flush(&g_fx_media0);
+    status = g_sf_comms0.p_api->read (g_sf_comms0.p_ctrl, rxBuf, WIFI_PACKET_SIZE, 250);
+    if (status == SSP_SUCCESS)
+    {
+        fx_file_write (&machineGlobalsBlock->gcodeFile, rxBuf, remainder);
+    }
 
-        printf("\nFile transfer completed.");
-        printf("\nFile transfer completed.");
+    fx_media_flush (&g_fx_media0);
+    fx_file_close (&machineGlobalsBlock->gcodeFile);
+
+    printf ("\nFile transfer completed.");
+    printf ("\nFile transfer completed.");
 
 }

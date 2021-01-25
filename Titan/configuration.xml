@@ -460,11 +460,11 @@
       <property id="module.driver.uart.rx_edge_start" value="module.driver.uart.rx_edge_start.true"/>
       <property id="module.driver.uart.noisecancel_en" value="module.driver.uart.noisecancel_en.false"/>
       <property id="module.driver.uart.bitrate_modulation" value="module.driver.uart.bitrate_modulation.true"/>
-      <property id="module.driver.uart.rx_fifo_trigger" value="module.driver.uart.rx_fifo_trigger.max"/>
-      <property id="module.driver.uart.rxi_ipl" value="board.icu.common.irq.priority12"/>
-      <property id="module.driver.uart.txi_ipl" value="board.icu.common.irq.priority12"/>
-      <property id="module.driver.uart.tei_ipl" value="board.icu.common.irq.priority12"/>
-      <property id="module.driver.uart.eri_ipl" value="board.icu.common.irq.priority12"/>
+      <property id="module.driver.uart.rx_fifo_trigger" value="module.driver.uart.rx_fifo_trigger.one"/>
+      <property id="module.driver.uart.rxi_ipl" value="board.icu.common.irq.priority0"/>
+      <property id="module.driver.uart.txi_ipl" value="board.icu.common.irq.priority0"/>
+      <property id="module.driver.uart.tei_ipl" value="board.icu.common.irq.priority0"/>
+      <property id="module.driver.uart.eri_ipl" value="board.icu.common.irq.priority0"/>
       <property id="module.driver.uart.baud_rate_error" value="2.0"/>
       <property id="module.driver.uart.uart_comm_mode" value="module.driver.uart.uart_comm_mode.uart_rs232_mode"/>
       <property id="module.driver.uart.uart_rs485_mode" value="module.driver.uart.uart_rs485_mode.uart_hd_mode"/>
@@ -567,7 +567,7 @@
       <property id="_symbol" value="TitanMain"/>
       <property id="rtos.threadx.thread.name" value="TitanMain"/>
       <property id="rtos.threadx.thread.stack" value="2048"/>
-      <property id="rtos.threadx.thread.priority" value="1"/>
+      <property id="rtos.threadx.thread.priority" value="2"/>
       <property id="rtos.threadx.thread.autostart" value="rtos.threadx.thread.autostart.enabled"/>
       <property id="rtos.threadx.thread.timeslice" value="1"/>
     </context>
@@ -575,7 +575,7 @@
       <property id="_symbol" value="posCalc"/>
       <property id="rtos.threadx.thread.name" value="Position Calculator"/>
       <property id="rtos.threadx.thread.stack" value="2048"/>
-      <property id="rtos.threadx.thread.priority" value="1"/>
+      <property id="rtos.threadx.thread.priority" value="2"/>
       <property id="rtos.threadx.thread.autostart" value="rtos.threadx.thread.autostart.enabled"/>
       <property id="rtos.threadx.thread.timeslice" value="1"/>
     </context>
@@ -613,8 +613,8 @@
     <context id="rtos.threadx.thread.1027305312">
       <property id="_symbol" value="UARTWIFI"/>
       <property id="rtos.threadx.thread.name" value="UARTWIFI"/>
-      <property id="rtos.threadx.thread.stack" value="1024"/>
-      <property id="rtos.threadx.thread.priority" value="1"/>
+      <property id="rtos.threadx.thread.stack" value="4096"/>
+      <property id="rtos.threadx.thread.priority" value="2"/>
       <property id="rtos.threadx.thread.autostart" value="rtos.threadx.thread.autostart.enabled"/>
       <property id="rtos.threadx.thread.timeslice" value="1"/>
       <stack module="module.framework.sf_comms_on_sf_uart_comms.524131596">
@@ -897,7 +897,7 @@
     </config>
     <config id="config.framework.sf_uart_comms">
       <property id="config.framework.sf_comms.param_checking_enable" value="config.framework.sf_comms.param_checking_enable.bsp"/>
-      <property id="config.framework.sf_comms.read_size" value="15"/>
+      <property id="config.framework.sf_comms.read_size" value="50"/>
     </config>
     <config id="config.framework.block_media_sdmmc">
       <property id="config.framework.block_media_sdmmc.param_checking_enable" value="config.framework.block_media_sdmmc.param_checking_enable.bsp"/>

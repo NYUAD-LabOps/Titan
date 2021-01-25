@@ -1654,6 +1654,67 @@ void fx_common_init0(void)
     /** Initialize the FileX system. */
     fx_system_initialize ();
 }
+/* A pointer to FileX Media Control Block for a USB flash device. */
+FX_MEDIA *g_fx_media1_ptr;
+
+/* Pointer to a USBX Host Mass Storage Class Media. */
+UX_HOST_CLASS_STORAGE_MEDIA *g_ux_host_class_storage0_media;
+
+#if defined(__ICCARM__)
+#define g_fx_media1_err_callback_failed_to_get_fx_media_WEAK_ATTRIBUTE
+#pragma weak g_fx_media1_err_callback_failed_to_get_fx_media  = g_fx_media1_err_callback_failed_to_get_fx_media_internal
+#elif defined(__GNUC__)
+#define g_fx_media1_err_callback_failed_to_get_fx_media_WEAK_ATTRIBUTE __attribute__ ((weak, alias("g_fx_media1_err_callback_failed_to_get_fx_media_internal")))
+#endif
+void g_fx_media1_err_callback_failed_to_get_fx_media(void *p_instance, void *p_data)
+g_fx_media1_err_callback_failed_to_get_fx_media_WEAK_ATTRIBUTE;
+
+/* Function prototype for the weak initialization error function. */
+void g_fx_media1_err_callback_failed_to_get_fx_media_internal(void *p_instance, void *p_data);
+
+/*******************************************************************************************************************//**
+ * @brief      This is a weak example initialization error function.  It should be overridden by defining a user function
+ *             with the prototype below.
+ *             - void g_fx_media1_err_callback_failed_to_get_fx_media(void * p_instance, void * p_data)
+ *
+ * @param[in]  p_instance  Not used.
+ * @param[in]  p_data      Not used.
+ **********************************************************************************************************************/
+void g_fx_media1_err_callback_failed_to_get_fx_media_internal(void *p_instance, void *p_data)
+{
+    /** Suppress compiler warning for not using parameters. */
+    SSP_PARAMETER_NOT_USED (p_instance);
+    SSP_PARAMETER_NOT_USED (p_data);
+
+    /** A FileX media control block for a USB mass storage device was not found. */
+    BSP_CFG_HANDLE_UNRECOVERABLE_ERROR (0);
+}
+
+/*******************************************************************************************************************//**
+ * @brief      This is the function to get g_fx_media1 for a USB Mass Storage device.
+ **********************************************************************************************************************/
+void fx_media_init_function1(void)
+{
+    /** Suspend the thread until a USB Mass Storage Device inserted. */
+    UINT err_g_fx_media1_semaphore_get = tx_semaphore_get (&ux_host_storage_semaphore_insertion, 1000);
+    if (TX_SUCCESS != err_g_fx_media1_semaphore_get)
+    {
+        g_fx_media1_err_callback_failed_to_get_fx_media (&ux_host_storage_semaphore_insertion,
+                                                         &err_g_fx_media1_semaphore_get);
+    }
+
+    /** Initialize the FileX Media Control Block g_fx_media1 for a USB Mass Storage device. */
+    /** Get the pointer to a USBX Host Mass Storage Instance. */
+    g_ux_host_class_storage0 = g_ux_new_host_storage_instance;
+
+    /** Initialize the FileX Media Control Block g_fx_media0 for a USB Mass Storage device. */
+    UINT err_g_fx_media1_get = ux_system_host_storage_fx_media_get (g_ux_new_host_storage_instance,
+                                                                    &g_ux_host_class_storage0_media, &g_fx_media1_ptr);
+    if (UX_SUCCESS != err_g_fx_media1_get)
+    {
+        g_fx_media1_err_callback_failed_to_get_fx_media (&g_fx_media1_ptr, &err_g_fx_media1_get);
+    }
+}
 #if defined(__ICCARM__)
 #define g_fx_media0_err_callback_WEAK_ATTRIBUTE
 #pragma weak g_fx_media0_err_callback  = g_fx_media0_err_callback_internal
@@ -1765,67 +1826,6 @@ void fx_media_init0(void)
         g_fx_media0_err_callback ((void *) &g_fx_media0, &err_open);
     }
 }
-/* A pointer to FileX Media Control Block for a USB flash device. */
-FX_MEDIA *g_fx_media1_ptr;
-
-/* Pointer to a USBX Host Mass Storage Class Media. */
-UX_HOST_CLASS_STORAGE_MEDIA *g_ux_host_class_storage0_media;
-
-#if defined(__ICCARM__)
-#define g_fx_media1_err_callback_failed_to_get_fx_media_WEAK_ATTRIBUTE
-#pragma weak g_fx_media1_err_callback_failed_to_get_fx_media  = g_fx_media1_err_callback_failed_to_get_fx_media_internal
-#elif defined(__GNUC__)
-#define g_fx_media1_err_callback_failed_to_get_fx_media_WEAK_ATTRIBUTE __attribute__ ((weak, alias("g_fx_media1_err_callback_failed_to_get_fx_media_internal")))
-#endif
-void g_fx_media1_err_callback_failed_to_get_fx_media(void *p_instance, void *p_data)
-g_fx_media1_err_callback_failed_to_get_fx_media_WEAK_ATTRIBUTE;
-
-/* Function prototype for the weak initialization error function. */
-void g_fx_media1_err_callback_failed_to_get_fx_media_internal(void *p_instance, void *p_data);
-
-/*******************************************************************************************************************//**
- * @brief      This is a weak example initialization error function.  It should be overridden by defining a user function
- *             with the prototype below.
- *             - void g_fx_media1_err_callback_failed_to_get_fx_media(void * p_instance, void * p_data)
- *
- * @param[in]  p_instance  Not used.
- * @param[in]  p_data      Not used.
- **********************************************************************************************************************/
-void g_fx_media1_err_callback_failed_to_get_fx_media_internal(void *p_instance, void *p_data)
-{
-    /** Suppress compiler warning for not using parameters. */
-    SSP_PARAMETER_NOT_USED (p_instance);
-    SSP_PARAMETER_NOT_USED (p_data);
-
-    /** A FileX media control block for a USB mass storage device was not found. */
-    BSP_CFG_HANDLE_UNRECOVERABLE_ERROR (0);
-}
-
-/*******************************************************************************************************************//**
- * @brief      This is the function to get g_fx_media1 for a USB Mass Storage device.
- **********************************************************************************************************************/
-void fx_media_init_function1(void)
-{
-    /** Suspend the thread until a USB Mass Storage Device inserted. */
-    UINT err_g_fx_media1_semaphore_get = tx_semaphore_get (&ux_host_storage_semaphore_insertion, 1000);
-    if (TX_SUCCESS != err_g_fx_media1_semaphore_get)
-    {
-        g_fx_media1_err_callback_failed_to_get_fx_media (&ux_host_storage_semaphore_insertion,
-                                                         &err_g_fx_media1_semaphore_get);
-    }
-
-    /** Initialize the FileX Media Control Block g_fx_media1 for a USB Mass Storage device. */
-    /** Get the pointer to a USBX Host Mass Storage Instance. */
-    g_ux_host_class_storage0 = g_ux_new_host_storage_instance;
-
-    /** Initialize the FileX Media Control Block g_fx_media0 for a USB Mass Storage device. */
-    UINT err_g_fx_media1_get = ux_system_host_storage_fx_media_get (g_ux_new_host_storage_instance,
-                                                                    &g_ux_host_class_storage0_media, &g_fx_media1_ptr);
-    if (UX_SUCCESS != err_g_fx_media1_get)
-    {
-        g_fx_media1_err_callback_failed_to_get_fx_media (&g_fx_media1_ptr, &err_g_fx_media1_get);
-    }
-}
 const elc_instance_t g_elc =
 { .p_api = &g_elc_on_elc, .p_cfg = NULL };
 /* Instance structure to use this module. */
@@ -1900,12 +1900,12 @@ void g_common_init(void)
 #if FX_COMMON_INITIALIZE
     fx_common_init0 ();
 #endif
-    /** Call initialization function if user has selected to do so. */
-#if SF_EL_FX_AUTO_INIT_g_fx_media0
-    fx_media_init0();
-#endif
 #if (0)
     /** Call FileX Media Control Block initialization function. Can call at later time as well. */
     fx_media_init_function1();
+#endif
+    /** Call initialization function if user has selected to do so. */
+#if SF_EL_FX_AUTO_INIT_g_fx_media0
+    fx_media_init0();
 #endif
 }

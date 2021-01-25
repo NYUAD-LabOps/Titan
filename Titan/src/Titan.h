@@ -7,6 +7,7 @@
 #define DEBUG 0
 #define SECONDARYIP IP_ADDRESS(192,168,10,183)
 #define IPADDSTRING "192.168.10.181"
+#define WIFI_PACKET_SIZE 50
 #define NXD_MQTT_MAX_MESSAGE_LENGTH 50
 ///Number of bytes in each UDP message. UDP packet:
 /// control(1)|axis(1)|data(8)

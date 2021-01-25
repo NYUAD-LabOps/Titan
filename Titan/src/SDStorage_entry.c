@@ -38,5 +38,5 @@ void SDStorage_entry(void)
 
      tx_thread_sleep(10);
 
-     fx_media_close(&g_fx_media0);
+//     fx_media_close(&g_fx_media0);
 }

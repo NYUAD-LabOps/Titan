@@ -4,7 +4,7 @@
 TX_THREAD UARTWIFI;
 void UARTWIFI_create(void);
 static void UARTWIFI_func(ULONG thread_input);
-static uint8_t UARTWIFI_stack[1024] BSP_PLACE_IN_SECTION_V2(".stack.UARTWIFI") BSP_ALIGN_VARIABLE_V2(BSP_STACK_ALIGNMENT);
+static uint8_t UARTWIFI_stack[4096] BSP_PLACE_IN_SECTION_V2(".stack.UARTWIFI") BSP_ALIGN_VARIABLE_V2(BSP_STACK_ALIGNMENT);
 void tx_startup_err_callback(void *p_instance, void *p_data);
 void tx_startup_common_init(void);
 #if (BSP_IRQ_DISABLED) != BSP_IRQ_DISABLED
@@ -45,26 +45,26 @@ const transfer_cfg_t g_transfer4_cfg =
 const transfer_instance_t g_transfer4 =
 { .p_ctrl = &g_transfer4_ctrl, .p_cfg = &g_transfer4_cfg, .p_api = &g_transfer_on_dtc };
 #if SCI_UART_CFG_RX_ENABLE
-#if (12) != BSP_IRQ_DISABLED
+#if (0) != BSP_IRQ_DISABLED
 #if !defined(SSP_SUPPRESS_ISR_g_uart0) && !defined(SSP_SUPPRESS_ISR_SCI6)
 SSP_VECTOR_DEFINE_CHAN(sci_uart_rxi_isr, SCI, RXI, 6);
 #endif
 #endif
 #endif
 #if SCI_UART_CFG_TX_ENABLE
-#if (12) != BSP_IRQ_DISABLED
+#if (0) != BSP_IRQ_DISABLED
 #if !defined(SSP_SUPPRESS_ISR_g_uart0) && !defined(SSP_SUPPRESS_ISR_SCI6)
 SSP_VECTOR_DEFINE_CHAN(sci_uart_txi_isr, SCI, TXI, 6);
 #endif
 #endif
-#if (12) != BSP_IRQ_DISABLED
+#if (0) != BSP_IRQ_DISABLED
 #if !defined(SSP_SUPPRESS_ISR_g_uart0) && !defined(SSP_SUPPRESS_ISR_SCI6)
 SSP_VECTOR_DEFINE_CHAN(sci_uart_tei_isr, SCI, TEI, 6);
 #endif
 #endif
 #endif
 #if SCI_UART_CFG_RX_ENABLE
-#if (12) != BSP_IRQ_DISABLED
+#if (0) != BSP_IRQ_DISABLED
 #if !defined(SSP_SUPPRESS_ISR_g_uart0) && !defined(SSP_SUPPRESS_ISR_SCI6)
 SSP_VECTOR_DEFINE_CHAN(sci_uart_eri_isr, SCI, ERI, 6);
 #endif
@@ -76,7 +76,7 @@ sci_uart_instance_ctrl_t g_uart0_ctrl;
 const uart_on_sci_cfg_t g_uart0_cfg_extend =
 { .clk_src = SCI_CLK_SRC_INT, .baudclk_out = false, .rx_edge_start = true, .noisecancel_en = false, .p_extpin_ctrl =
           NULL,
-  .bitrate_modulation = true, .rx_fifo_trigger = SCI_UART_RX_FIFO_TRIGGER_MAX, .baud_rate_error_x_1000 = (uint32_t) (
+  .bitrate_modulation = true, .rx_fifo_trigger = SCI_UART_RX_FIFO_TRIGGER_1, .baud_rate_error_x_1000 = (uint32_t) (
           2.0 * 1000),
   .uart_comm_mode = UART_MODE_RS232, .uart_rs485_mode = UART_RS485_HD, .rs485_de_pin = IOPORT_PORT_09_PIN_14, };
 
@@ -97,8 +97,8 @@ const uart_cfg_t g_uart0_cfg =
   .p_transfer_rx = &SYNERGY_NOT_DEFINED,
 #endif   
 #undef SYNERGY_NOT_DEFINED            
-  .rxi_ipl = (12),
-  .txi_ipl = (12), .tei_ipl = (12), .eri_ipl = (12), };
+  .rxi_ipl = (0),
+  .txi_ipl = (0), .tei_ipl = (0), .eri_ipl = (0), };
 
 /* Instance structure to use this module. */
 const uart_instance_t g_uart0 =
@@ -162,7 +162,7 @@ void UARTWIFI_create(void)
     /* Initialize each kernel object. */
 
     UINT err;
-    err = tx_thread_create (&UARTWIFI, (CHAR *) "UARTWIFI", UARTWIFI_func, (ULONG) NULL, &UARTWIFI_stack, 1024, 1, 1, 1,
+    err = tx_thread_create (&UARTWIFI, (CHAR *) "UARTWIFI", UARTWIFI_func, (ULONG) NULL, &UARTWIFI_stack, 4096, 2, 2, 1,
                             TX_AUTO_START);
     if (TX_SUCCESS != err)
     {
