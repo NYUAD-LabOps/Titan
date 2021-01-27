@@ -432,7 +432,7 @@ Synergy Configuration
     
   Module "Communications Framework on sf_uart_comms"
     Parameter Checking: Default (BSP)
-    Read Input Queue Size (4-Byte Words): 50
+    Read Input Queue Size (4-Byte Words): 100
     
   Module "UART Driver on r_sci_uart"
     External RTS Operation: Disable

@@ -130,8 +130,8 @@ void rxFile(long long fileSize)
 
     g_sf_comms0.p_api->write (g_sf_comms0.p_ctrl, sendACK, WIFI_PACKET_SIZE, TX_NO_WAIT);
 
-    for (i = 0; i < parts; i++)
-    {
+//    i = 0;
+    while(rxBuf[0] != 'E' || rxBuf[1] != 'N' || rxBuf[2] != 'D'){
         status = g_sf_comms0.p_api->read (g_sf_comms0.p_ctrl, rxBuf, WIFI_PACKET_SIZE, 250);
 
         if (status == SSP_SUCCESS)
@@ -141,10 +141,12 @@ void rxFile(long long fileSize)
             {
                 printf ("\nFile write f");
             }
+//            i++;
+//            printf("\n%d", i);
             g_sf_comms0.p_api->write (g_sf_comms0.p_ctrl, sendACK, WIFI_PACKET_SIZE, 250);
         }else if(status == 20){
             printf("\nTO");
-            g_sf_comms0.p_api->write (g_sf_comms0.p_ctrl, sendACK, WIFI_PACKET_SIZE, 250);
+//            g_sf_comms0.p_api->write (g_sf_comms0.p_ctrl, sendACK, WIFI_PACKET_SIZE, 250);
         }
         else{
             printf("\nUART read error:%d", status);
@@ -153,13 +155,15 @@ void rxFile(long long fileSize)
         //        machineGlobalsBlock->fileTransferIndex += 1000;
     }
 
-    ///Read and store remainder
-
-    status = g_sf_comms0.p_api->read (g_sf_comms0.p_ctrl, rxBuf, WIFI_PACKET_SIZE, 250);
-    if (status == SSP_SUCCESS)
-    {
-        fx_file_write (&machineGlobalsBlock->gcodeFile, rxBuf, remainder);
-    }
+    ///Send Final ACK
+    g_sf_comms0.p_api->write (g_sf_comms0.p_ctrl, sendACK, WIFI_PACKET_SIZE, 250);
+//    ///Read and store remainder
+//
+//    status = g_sf_comms0.p_api->read (g_sf_comms0.p_ctrl, rxBuf, WIFI_PACKET_SIZE, 250);
+//    if (status == SSP_SUCCESS)
+//    {
+//        fx_file_write (&machineGlobalsBlock->gcodeFile, rxBuf, remainder);
+//    }
 
     fx_media_flush (&g_fx_media0);
     fx_file_close (&machineGlobalsBlock->gcodeFile);
