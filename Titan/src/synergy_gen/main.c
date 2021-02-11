@@ -9,6 +9,7 @@ extern void UARTWIFI_create(void);
 extern void USBDevice_create(void);
 extern void USBHost_create(void);
 extern void SDStorage_create(void);
+extern void Management_create(void);
 
 uint32_t g_ssp_common_thread_count;
 bool g_ssp_common_initialized;
@@ -70,6 +71,7 @@ void tx_application_define(void *first_unused_memory)
     USBDevice_create ();
     USBHost_create ();
     SDStorage_create ();
+    Management_create ();
 
 #ifdef TX_USER_ENABLE_TRACE
     TX_USER_ENABLE_TRACE;

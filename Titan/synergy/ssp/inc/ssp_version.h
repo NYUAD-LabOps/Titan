@@ -46,16 +46,16 @@
 #define SSP_VERSION_MINOR                   (7U)
 
 /** SSP pack patch version. */
-#define SSP_VERSION_PATCH                   (5U)
+#define SSP_VERSION_PATCH                   (8U)
 
 /** SSP pack version build number (currently unused). */
 #define SSP_VERSION_BUILD                   (0U)
 
 /** Public SSP version name. */
-#define SSP_VERSION_STRING                  ("1.7.5")
+#define SSP_VERSION_STRING                  ("1.7.8")
 
 /** Unique SSP version ID. */
-#define SSP_VERSION_BUILD_STRING            ("Built with Renesas Synergy (TM) Software Package version 1.7.5+build.7141aa81a814")
+#define SSP_VERSION_BUILD_STRING            ("Built with Renesas Synergy (TM) Software Package version 1.7.8+build.2106be1a1cb4")
 
 /**********************************************************************************************************************
  * Typedef definitions

@@ -150,7 +150,6 @@ ULONG  ux_hcd_synergy_port_status_get(UX_HCD_SYNERGY *hcd_synergy, ULONG port_in
     ULONG       speed;
 
 
-
     /* Check to see if this port is valid on this controller.  */
     if (hcd_synergy -> ux_hcd_synergy_nb_root_hubs < (UINT)port_index)
     {
@@ -160,13 +159,43 @@ ULONG  ux_hcd_synergy_port_status_get(UX_HCD_SYNERGY *hcd_synergy, ULONG port_in
         return (UINT)UX_PORT_INDEX_UNKNOWN;
     }
 
-    /* The port is valid, build the status mask for this port. This function
-       returns a controller agnostic bit field.  */ 
-    port_status =  0UL;
 
     /* Get the pointers to the generic HCD and synergy specific areas.  */
     hcd = hcd_synergy->ux_hcd_synergy_hcd_owner;
 
+    /* The port is valid, build the status mask for this port. This function
+       returns a controller agnostic bit field.  */ 
+    /* Port Enabled.  */
+    hcd_synergy -> ux_hcd_synergy_port_status = (ULONG)UX_SYNERGY_HC_PORT_ENABLED;
+    port_status =  0UL;
+
+    /** Provides a delay of 100 ms to stabilize while initial power up  */
+    for(uint32_t loop_count = 0U ; loop_count < 10U ; loop_count++)
+    {
+        if( hcd_synergy -> ux_synergy_device_attached == (ULONG)UX_TRUE )
+        {
+            _ux_utility_delay_ms(10U);
+            /* We need to get back in synch now.  */
+            hcd -> ux_hcd_root_hub_signal[0] = (UINT)0;
+        }
+        else
+        {
+            /* We need to get back in synch now.  */
+            hcd -> ux_hcd_root_hub_signal[0] = (UINT)0;
+            hcd_synergy -> ux_hcd_synergy_port_status = (ULONG)UX_SYNERGY_HC_PORT_DISABLED;
+            /* Return port status.  */
+            return (UINT)port_status;
+        }
+    }
+
+    /** Wait for the semaphore to be put by the root hub or a regular hub.  */
+    while(_ux_system_host -> ux_system_host_enum_semaphore.tx_semaphore_count != (ULONG)0)
+    {
+        _ux_utility_semaphore_get(&_ux_system_host -> ux_system_host_enum_semaphore, UX_WAIT_FOREVER);
+
+    }
+
+   
     /* Now check the low level filter.  */
     if (hcd_synergy -> ux_synergy_device_attached == (ULONG)UX_TRUE)
     {
@@ -249,3 +278,4 @@ ULONG  ux_hcd_synergy_port_status_get(UX_HCD_SYNERGY *hcd_synergy, ULONG port_in
 /*******************************************************************************************************************//**
  * @} (end addtogroup sf_el_ux)
  **********************************************************************************************************************/
+

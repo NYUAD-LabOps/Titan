@@ -91,13 +91,20 @@ static void phy_idle (uint32_t ether_channel);
  * @brief bsp_ethernet_phy_init - Initialize  Ethernet PHY device.
  * @param[in]  channel       Ethernet channel number
  * @retval  R_PHY_OK       PHY device is initialized successfully
- * @retval  R_PHY_ERROR    PHY device is not initialized successfully
+ * @retval  R_PHY_ERROR    PHY device is not initialized successfully or Validation of PHY chip fails.
  * @note    Refer HW manual for valid channels for a target MCU
 ***********************************************************************************************************************/
 int16_t bsp_ethernet_phy_init (uint32_t channel)
 {
     uint16_t reg;
     uint32_t count = 0;
+
+    /** Read the PHY Identifier register and compare read value with the PHY chip OUI identifier number */
+    reg = phy_read(channel, PHY_REG_IDENTIFIER1);
+    if (!(reg & PHY_IDENTIFIER1_OUI))
+    {
+        return R_PHY_ERROR;
+    }
 
     phy_record[channel].preamble_length = R_PHY_NORMAL_PREAMBLE;
 

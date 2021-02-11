@@ -1,6 +1,6 @@
 /**************************************************************************/ 
 /*                                                                        */ 
-/*            Copyright (c) 1996-2019 by Express Logic Inc.               */ 
+/*            Copyright (c) 1996-2020 by Express Logic Inc.               */ 
 /*                                                                        */ 
 /*  This software is copyrighted by and is the sole property of Express   */ 
 /*  Logic, Inc.  All rights, title, ownership, or other interests         */ 
@@ -38,7 +38,7 @@
 /*  COMPONENT DEFINITION                                   RELEASE        */ 
 /*                                                                        */ 
 /*    ux_device_class_hid.h                               PORTABLE C      */ 
-/*                                                           6.0          */ 
+/*                                                           5.9 SP1      */ 
 /*  AUTHOR                                                                */ 
 /*                                                                        */ 
 /*    Thierry Giron, Express Logic Inc.                                   */ 
@@ -82,14 +82,16 @@
 /*                                            in control and interrupt    */ 
 /*                                            endpoints' data buffers,    */ 
 /*                                            resulting in version 5.9    */ 
-/*  xx-xx-xxxx     TCRG                     Modified comment(s),          */
+/*  04-15-2020     TCRG                     Modified comment(s),          */
 /*                                            added a new event flag for  */
 /*                                            idle rate change, added     */
 /*                                            events flags mask, added    */
 /*                                            fields in class struct for  */
 /*                                            idle rate and event flags   */
 /*                                            wait timeout,               */
-/*                                            resulting in version 6.0    */
+/*                                            added callback for report   */
+/*                                            get request handling,       */
+/*                                            resulting in version 5.9 SP1*/
 /*                                                                        */ 
 /**************************************************************************/ 
 
@@ -165,6 +167,7 @@ typedef struct UX_SLAVE_CLASS_HID_STRUCT
     UX_SLAVE_ENDPOINT               *ux_device_class_hid_interrupt_endpoint;
     UINT                            ux_device_class_hid_state;
     UINT                            (*ux_device_class_hid_callback)(struct UX_SLAVE_CLASS_HID_STRUCT *hid, UX_SLAVE_CLASS_HID_EVENT *);
+    UINT                            (*ux_device_class_hid_get_callback)(struct UX_SLAVE_CLASS_HID_STRUCT *hid, UX_SLAVE_CLASS_HID_EVENT *);
     VOID                            (*ux_slave_class_hid_instance_activate)(VOID *);
     VOID                            (*ux_slave_class_hid_instance_deactivate)(VOID *);
     UCHAR                           *ux_device_class_hid_report_address;
@@ -191,6 +194,7 @@ typedef struct UX_SLAVE_CLASS_HID_PARAMETER_STRUCT
     ULONG                   ux_device_class_hid_parameter_report_id;
     ULONG                   ux_device_class_hid_parameter_report_length;
     UINT                    (*ux_device_class_hid_parameter_callback)(struct UX_SLAVE_CLASS_HID_STRUCT *hid, UX_SLAVE_CLASS_HID_EVENT *);
+    UINT                    (*ux_device_class_hid_parameter_get_callback)(struct UX_SLAVE_CLASS_HID_STRUCT *hid, UX_SLAVE_CLASS_HID_EVENT *);
 
 } UX_SLAVE_CLASS_HID_PARAMETER;
 

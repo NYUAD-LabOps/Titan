@@ -411,6 +411,7 @@
 #define UX_SYNERGY_DCD_PIPECTR_CSCLR                            (1U<<13)
 #define UX_SYNERGY_DCD_PIPECTR_CSSTS                            (1U<<12)
 #define UX_SYNERGY_DCD_PIPECTR_ATREPM                           (1U<<11)
+#define UX_SYNERGY_DCD_PIPECTR_ACLRM                            (1U<<9)
 #define UX_SYNERGY_DCD_PIPECTR_SQCLR                            (1U<<8)
 #define UX_SYNERGY_DCD_PIPECTR_SQSET                            (1U<<7)
 #define UX_SYNERGY_DCD_PIPECTR_SQMON                            (1U<<6)

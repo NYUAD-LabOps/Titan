@@ -247,7 +247,7 @@ VOID    outpl(ULONG,ULONG);
 
 #ifdef  UX_SYSTEM_INIT
 CHAR                            _ux_version_id[] = 
-                                    "Copyright (c) 1996-2019 Express Logic Inc. * USBX Synergy Version G5.9 SN: 4154-280-5000 *";
+                                    "Copyright (c) 1996-2019 Express Logic Inc. * USBX Synergy Version G5.9SP1.5.0 SN: 4154-280-5000 *";
 #else
 extern  CHAR                    _ux_version_id[];
 #endif

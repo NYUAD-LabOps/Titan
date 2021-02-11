@@ -20,7 +20,7 @@ void USBDevice_entry(void)
     {
         tx_thread_sleep (500);
     }
-
+    tx_thread_suspend (tx_thread_identify ());
     /* TODO: add your own code here */
 //    while (1)
 //    {

@@ -70,6 +70,9 @@ SSP_HEADER
 #define PHY_REG_PHY_CONTROL2_RMMI_REF_CLOCK_SELECT_25MHZ   (0U << 7)
 #define PHY_REG_PHY_CONTROL2_RMMI_REF_CLOCK_SELECT_50MHZ   (1U << 7)
 
+/* PHY Id Number for Identifier 1 Register used for vendor specific PHY(KSZ8091RNB and KSZ8081RNB) */
+#define PHY_IDENTIFIER1_OUI  0x0022U
+
 /***********************************************************************************************************************
  * Typedef definitions
  **********************************************************************************************************************/

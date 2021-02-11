@@ -176,7 +176,7 @@
 
 #ifdef NX_SYSTEM_INIT
 CHAR                            _nx_version_id[] = 
-                                    "Copyright (c) 1996-2018 Express Logic Inc. * NetX Duo Synergy Version G5.12 SN: 4154-280-5000 *";
+                                    "Copyright (c) 1996-2018 Express Logic Inc. * NetX Duo Synergy Version G5.12SP1 SN: 4154-280-5000 *";
 #else
 extern  CHAR                    _nx_version_id[];
 #endif

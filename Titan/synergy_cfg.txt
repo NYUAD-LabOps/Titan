@@ -641,6 +641,7 @@ Synergy Configuration
       Name: g_ux_device_class_cdc_acm1
       USBX CDC-ACM instance_activate Function Callback: ux_cdc_device1_instance_activate
       USBX CDC-ACM instance_deactivate Function Callback: ux_cdc_device1_instance_deactivate
+      USBX CDC-ACM parameter_change Function Callback: NULL
       Name of generated initialization function: ux_device_class_cdc_acm_init1
       Auto Initialization: Enable
       
@@ -898,4 +899,12 @@ Synergy Configuration
           Instance "ThreadX Source"
             Show linkage warning: Disabled
             
+  Thread "Management"
+    Symbol: Management
+    Name: Management
+    Stack size (bytes): 1024
+    Priority: 1
+    Auto start: Enabled
+    Time slicing interval (ticks): 1
+    
   Messaging

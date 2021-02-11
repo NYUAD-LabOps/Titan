@@ -137,6 +137,10 @@ UINT  ux_dcd_synergy_transfer_abort(UX_DCD_SYNERGY *dcd_synergy, UX_SLAVE_TRANSF
         /* Set NAK.  */
         ux_dcd_synergy_endpoint_nak_set(dcd_synergy, ed);
 
+        /** Set the ACLRM bit to 1 and then to 0 for clearing FIFO buffers. */
+        ux_dcd_synergy_register_set(dcd_synergy, UX_SYNERGY_DCD_PIPE1CTR + ((ed -> ux_dcd_synergy_ed_index - 1UL) * 2UL), UX_SYNERGY_DCD_PIPECTR_ACLRM);
+        ux_dcd_synergy_register_clear(dcd_synergy, UX_SYNERGY_DCD_PIPE1CTR + ((ed -> ux_dcd_synergy_ed_index - 1UL) * 2UL), UX_SYNERGY_DCD_PIPECTR_ACLRM);
+
         /* Clear the FIFO buffer memory. */
         ux_dcd_synergy_register_write(dcd_synergy, UX_SYNERGY_DCD_CFIFOCTR, UX_SYNERGY_DCD_FIFOCTR_BCLR);
 

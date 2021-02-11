@@ -99,6 +99,10 @@ void USBHost_entry(void)
         tx_thread_sleep (500);
     }
 
+
+    tx_thread_suspend (tx_thread_identify ());
+
+
     while (machineGlobalsBlock->USBPlugIn == 0)
     {
         tx_thread_sleep (500);

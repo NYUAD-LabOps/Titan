@@ -1,6 +1,6 @@
 /**************************************************************************/ 
 /*                                                                        */ 
-/*            Copyright (c) 1996-2019 by Express Logic Inc.               */ 
+/*            Copyright (c) 1996-2020 by Express Logic Inc.               */ 
 /*                                                                        */ 
 /*  This software is copyrighted by and is the sole property of Express   */ 
 /*  Logic, Inc.  All rights, title, ownership, or other interests         */ 
@@ -38,7 +38,7 @@
 /*  COMPONENT DEFINITION                                   RELEASE        */ 
 /*                                                                        */ 
 /*    ux_host_class_video.h                               PORTABLE C      */ 
-/*                                                           5.9          */ 
+/*                                                           5.9 SP1      */ 
 /*  AUTHOR                                                                */ 
 /*                                                                        */ 
 /*    Thierry Giron, Express Logic Inc.                                   */ 
@@ -53,6 +53,13 @@
 /*    DATE              NAME                      DESCRIPTION             */ 
 /*                                                                        */ 
 /*  08-15-2019     TCRG                     Initial Version 5.9           */ 
+/*  04-15-2020     TCRG                     Modified comment(s),          */
+/*                                            set default video request   */
+/*                                            list size to 8, removed     */
+/*                                            unused fields, fixed typo,  */
+/*                                            added function to add list  */
+/*                                            of buffers,                 */
+/*                                            resulting in version 5.9 SP1*/
 /*                                                                        */ 
 /**************************************************************************/ 
 
@@ -340,7 +347,7 @@ extern UCHAR _ux_system_host_class_video_name[];
 #define UX_HOST_CLASS_VIDEO_PROBE_COMMIT_MAX_VERSION                                        33
 
 #ifndef UX_HOST_CLASS_VIDEO_TRANSFER_REQUEST_COUNT
-#define UX_HOST_CLASS_VIDEO_TRANSFER_REQUEST_COUNT                                          4
+#define UX_HOST_CLASS_VIDEO_TRANSFER_REQUEST_COUNT                                          8
 #endif
 
 typedef struct UX_HOST_CLASS_VIDEO_INTERFACE_HEADER_DESCRIPTOR_STRUCT
@@ -473,10 +480,6 @@ typedef struct UX_HOST_CLASS_VIDEO_STRUCT
     UX_INTERFACE    *ux_host_class_video_streaming_interface;
     ULONG           ux_host_class_video_control_interface_number;
     UX_ENDPOINT     *ux_host_class_video_isochronous_endpoint;
-    struct UX_HOST_CLASS_VIDEO_TRANSFER_REQUEST_STRUCT   
-                    *ux_host_class_video_head_transfer_request;
-    struct UX_HOST_CLASS_VIDEO_TRANSFER_REQUEST_STRUCT   
-                    *ux_host_class_video_tail_transfer_request;
     UINT            ux_host_class_video_state;
     ULONG           ux_host_class_video_feature_unit_id;
     ULONG           ux_host_class_video_terminal_id;
@@ -571,8 +574,8 @@ typedef struct UX_HOST_CLASS_VIDEO_PARAMETER_FRAME_DATA_STRUCT
     ULONG           ux_host_class_video_parameter_frame_subtype;
     ULONG           ux_host_class_video_parameter_frame_width;
     ULONG           ux_host_class_video_parameter_frame_height;
-    ULONG           ux_host_class_video_parameter_default_frame_inverval;
-    ULONG           ux_host_class_video_parameter_frame_inverval_type;
+    ULONG           ux_host_class_video_parameter_default_frame_interval;
+    ULONG           ux_host_class_video_parameter_frame_interval_type;
 
 } UX_HOST_CLASS_VIDEO_PARAMETER_FRAME_DATA;
 
@@ -626,6 +629,7 @@ UINT    _ux_host_class_video_start(UX_HOST_CLASS_VIDEO *video);
 UINT    _ux_host_class_video_frame_parameters_set(UX_HOST_CLASS_VIDEO *video, ULONG frame_format, ULONG width, ULONG height, ULONG frame_interval);
 ULONG   _ux_host_class_video_max_payload_get(UX_HOST_CLASS_VIDEO *video);
 UINT    _ux_host_class_video_transfer_buffer_add(UX_HOST_CLASS_VIDEO *video, UCHAR* buffer);
+UINT    _ux_host_class_video_transfer_buffers_add(UX_HOST_CLASS_VIDEO *video, UCHAR** buffers, ULONG num_buffers);
 VOID    _ux_host_class_video_transfer_callback_set(UX_HOST_CLASS_VIDEO *video, VOID (*callback_function)(UX_TRANSFER*));
 
 
@@ -642,6 +646,7 @@ VOID    _ux_host_class_video_transfer_callback_set(UX_HOST_CLASS_VIDEO *video, V
 #define ux_host_class_video_frame_parameters_set    _ux_host_class_video_frame_parameters_set
 #define ux_host_class_video_max_payload_get         _ux_host_class_video_max_payload_get
 #define ux_host_class_video_transfer_buffer_add     _ux_host_class_video_transfer_buffer_add
+#define ux_host_class_video_transfer_buffers_add    _ux_host_class_video_transfer_buffers_add
 #define ux_host_class_video_transfer_callback_set   _ux_host_class_video_transfer_callback_set
 
 #endif

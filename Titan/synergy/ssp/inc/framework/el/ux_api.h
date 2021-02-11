@@ -1,6 +1,6 @@
 /**************************************************************************/ 
 /*                                                                        */ 
-/*            Copyright (c) 1996-2019 by Express Logic Inc.               */ 
+/*            Copyright (c) 1996-2020 by Express Logic Inc.               */ 
 /*                                                                        */ 
 /*  This software is copyrighted by and is the sole property of Express   */ 
 /*  Logic, Inc.  All rights, title, ownership, or other interests         */ 
@@ -38,7 +38,7 @@
 /*  APPLICATION INTERFACE DEFINITION                       RELEASE        */ 
 /*                                                                        */ 
 /*    ux_api.h                                            PORTABLE C      */ 
-/*                                                           5.9          */ 
+/*                                                           5.9 SP1      */ 
 /*  AUTHOR                                                                */ 
 /*                                                                        */ 
 /*    Thierry Giron, Express Logic Inc.                                   */ 
@@ -121,6 +121,9 @@
 /*                                            length symbol,              */ 
 /*                                            added trace event,          */
 /*                                            resulting in version 5.9    */ 
+/*  04-15-2020     TCRG                     Modified comment(s), added    */ 
+/*                                            support for 64-bit,         */ 
+/*                                            resulting in version 5.9 SP1*/ 
 /*                                                                        */ 
 /**************************************************************************/ 
 
@@ -205,6 +208,24 @@ typedef signed char               SCHAR;
 #define UX_HOST_HNP_POLLING_THREAD_STACK                    UX_THREAD_STACK_SIZE
 #endif
 
+
+/* Define the default extension to hold the control block for 64-bit mode.  */
+
+#ifndef UX_THREAD_EXTENSION_PTR_SET
+#define UX_THREAD_EXTENSION_PTR_SET(a, b)
+#endif
+
+#ifndef UX_THREAD_EXTENSION_PTR_GET
+#define UX_THREAD_EXTENSION_PTR_GET(a, b, c)            (a) = (b *)(c);
+#endif
+
+#ifndef UX_TIMER_EXTENSION_PTR_SET
+#define UX_TIMER_EXTENSION_PTR_SET(a, b)
+#endif
+
+#ifndef UX_TIMER_EXTENSION_PTR_GET
+#define UX_TIMER_EXTENSION_PTR_GET(a, b, c)             (a) = (b *)(c);
+#endif
 
 /* Determine if error log is enabled.  */
 
