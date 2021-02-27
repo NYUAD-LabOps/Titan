@@ -23,7 +23,7 @@ void TitanMain_entry(void)
     char cmd[3] = "cmd";
 
     initialise_monitor_handles ();
-
+    printf ("\Titan controller initializing...");
     initGlobalsBlock ();
     initBuff ();
     machineGlobalsBlock->USBBufferB = initUSBBuffer_PoolB (512);

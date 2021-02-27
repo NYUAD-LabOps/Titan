@@ -3,13 +3,13 @@
 "AVCCUSBHS","26","USBHS0_AVCCUSBHS","","","","","","",""
 "AVSS0","156","ADC_AVSS0","","","","","","",""
 "AVSSUSBHS","28","USBHS0_AVSSUSBHS","","","","","","",""
-"P000","169","ADC0_AN00","GPIO29","","","Analog mode","","","ADC0: AN00
+"P000","169","","","","","Disabled","","","ADC0: AN00
 CMP0: IVCMP2
 IRQ0: IRQ06"
-"P001","168","ADC0_AN01","GPIO28","","","Analog mode","","","ADC0: AN01
+"P001","168","","","","","Disabled","","","ADC0: AN01
 CMP0: IVCMP2
 IRQ0: IRQ07"
-"P002","167","ADC0_AN02","GPIO27","","","Analog mode","","","ADC0: AN02
+"P002","167","ADC0_AN02","","","","Analog mode","","","ADC0: AN02
 CMP0: IVCMP2
 IRQ0: IRQ08"
 "P003","166","","","","","Disabled","","","ADC0: PGAVSS0"
@@ -23,9 +23,9 @@ IRQ0: IRQ10"
 CMP0: IVCMP2
 IRQ0: IRQ11"
 "P007","162","","","","","Disabled","","","ADC1: PGAVSS0"
-"P008","161","ADC0_AN03","GPIO23","","","Analog mode","","","ADC0: AN03
+"P008","161","","","","","Disabled","","","ADC0: AN03
 IRQ0: IRQ12"
-"P009","160","ADC0_AN04","GPIO22","","","Analog mode","","","ADC0: AN04
+"P009","160","","","","","Disabled","","","ADC0: AN04
 IRQ0: IRQ13"
 "P010","159","GPIO","GPIO20","","IRQ14-DS","Input mode","","None","ADC1: AN03
 IRQ0: IRQ14"
@@ -33,7 +33,7 @@ IRQ0: IRQ14"
 ADC1: AN05
 CMP0: IVREF3
 DAC120: DA"
-"P015","151","ADC0_AN06","GPIO18","","","Analog mode","","","ADC0: AN06
+"P015","151","","","","","Disabled","","","ADC0: AN06
 ADC1: AN06
 CMP0: IVCMP1
 DAC121: DA
@@ -278,12 +278,12 @@ GLCDC0: LCD_DATA22"
 "P311","75","GPIO","GPIO32","","","Input mode","","None","BUS0: CS2_RAS
 GLCDC0: LCD_DATA23"
 "P312","74","GPIO","GPIO31","","","Input mode","","None","BUS0: CS3_CAS"
-"P313","55","GLCDC0_LCD_TCON2","GLCD_Controller__Pin_Option_B_LCD_TCON2_B","Medium","","Peripheral mode","CMOS","None","BUS0: A20
+"P313","55","","","","","Disabled","","","BUS0: A20
 GLCDC0: LCD_TCON2
 SDHI0: DAT7"
-"P314","56","GLCDC0_LCD_TCON1","GLCD_Controller__Pin_Option_B_LCD_TCON1_B","Medium","","Peripheral mode","CMOS","None","BUS0: A21
+"P314","56","","","","","Disabled","","","BUS0: A21
 GLCDC0: LCD_TCON1"
-"P315","57","GLCDC0_LCD_TCON0","GLCD_Controller__Pin_Option_B_LCD_TCON0_B","Medium","","Peripheral mode","CMOS","None","BUS0: A22
+"P315","57","","","","","Disabled","","","BUS0: A22
 GLCDC0: LCD_TCON0"
 "P400","1","GPIO","GPIO10","","IRQ0","Input mode","","None","ADC1: ADTRG
 GPT6: GTIOCA
@@ -481,8 +481,8 @@ GLCDC0: LCD_DATA04"
 "P603","119","GPIO","GPIO3","","","Input mode","","None","BUS0: D13_DQ13"
 "P604","118","GPIO","GPIO2","","","Input mode","","None","BUS0: D12_DQ12"
 "P605","117","GPIO","GPIO1","","","Input mode","","None","BUS0: D11_DQ11"
-"P606","116","GLCDC0_LCD_DATA03","GLCD_Controller__Pin_Option_B_LCD_DATA03_B","Medium","","Peripheral mode","CMOS","None","GLCDC0: LCD_DATA03"
-"P607","115","GLCDC0_LCD_DATA04","GLCD_Controller__Pin_Option_B_LCD_DATA04_B","Medium","","Peripheral mode","CMOS","None","GLCDC0: LCD_DATA04"
+"P606","116","","","","","Disabled","","","GLCDC0: LCD_DATA03"
+"P607","115","","","","","Disabled","","","GLCDC0: LCD_DATA04"
 "P608","99","GPIO","GPIO7","","","Input mode","","None","BUS0: A00_BC0_DQM1
 GLCDC0: LCD_DATA07"
 "P609","100","","","","","Disabled","","","BUS0: CS1_CKE
@@ -493,7 +493,7 @@ GLCDC0: LCD_DATA05"
 "P612","103","","","","","Disabled","","","BUS0: D8_DQ8"
 "P613","104","GPIO","GPIO37","","","Input mode","","None","BUS0: D9_DQ9"
 "P614","105","GPIO","GPIO38","","","Input mode","","None","BUS0: D10_DQ10"
-"P615","106","GLCDC0_LCD_DATA10","GLCD_Controller__Pin_Option_B_LCD_DATA10_B","Medium","","Peripheral mode","CMOS","None","GLCDC0: LCD_DATA10"
+"P615","106","","","","","Disabled","","","GLCDC0: LCD_DATA10"
 "P700","8","RMII_TXD0","Ethernet_Controller_1_RMII_RMII1_TXD0","High","","Peripheral mode","CMOS","None","ETHERC1: TXD0
 GPT5: GTIOCA
 PDC0: PIXD3"
@@ -521,30 +521,30 @@ USBHS0: OVRCURA"
 "P800","133","GPIO","GPIO13","Medium","","Output mode (Initial Low)","CMOS","None","BUS0: D14_DQ14"
 "P801","134","GPIO","GPIO14","Medium","","Output mode (Initial Low)","CMOS","None","BUS0: D15_DQ15
 SDHI1: DAT4"
-"P802","135","GLCDC0_LCD_DATA02","GLCD_Controller__Pin_Option_B_LCD_DATA02_B","Medium","","Peripheral mode","CMOS","None","GLCDC0: LCD_DATA02
+"P802","135","","","","","Disabled","","","GLCDC0: LCD_DATA02
 SDHI1: DAT5"
-"P803","136","GLCDC0_LCD_DATA01","GLCD_Controller__Pin_Option_B_LCD_DATA01_B","Medium","","Peripheral mode","CMOS","None","GLCDC0: LCD_DATA01
+"P803","136","","","","","Disabled","","","GLCDC0: LCD_DATA01
 SDHI1: DAT6"
-"P804","137","GLCDC0_LCD_DATA00","GLCD_Controller__Pin_Option_B_LCD_DATA00_B","Medium","","Peripheral mode","CMOS","None","GLCDC0: LCD_DATA00
+"P804","137","GPIO","","High","","Output mode (Initial Low)","CMOS","None","GLCDC0: LCD_DATA00
 SDHI1: DAT7"
 "P805","173","","","","","Disabled","","","GLCDC0: LCD_DATA17"
 "P806","172","GPIO","GPIO30","Medium","","Output mode (Initial Low)","CMOS","None","GLCDC0: LCD_EXTCLK"
-"P900","58","GLCDC0_LCD_CLK","GLCD_Controller__Pin_Option_B_LCD_CLK_B","High","","Peripheral mode","CMOS","None","BUS0: A23
+"P900","58","","","","","Disabled","","","BUS0: A23
 GLCDC0: LCD_CLK"
-"P901","59","GLCDC0_LCD_DATA15","GLCD_Controller__Pin_Option_B_LCD_DATA15_B","Medium","","Peripheral mode","CMOS","None","GLCDC0: LCD_DATA15"
-"P905","73","GLCDC0_LCD_DATA11","GLCD_Controller__Pin_Option_B_LCD_DATA11_B","Medium","","Peripheral mode","CMOS","None","BUS0: CS4
+"P901","59","","","","","Disabled","","","GLCDC0: LCD_DATA15"
+"P905","73","","","","","Disabled","","","BUS0: CS4
 GLCDC0: LCD_DATA11"
-"P906","72","GLCDC0_LCD_DATA12","GLCD_Controller__Pin_Option_B_LCD_DATA12_B","Medium","","Peripheral mode","CMOS","None","BUS0: CS5
+"P906","72","","","","","Disabled","","","BUS0: CS5
 GLCDC0: LCD_DATA12"
-"P907","71","GLCDC0_LCD_DATA13","GLCD_Controller__Pin_Option_B_LCD_DATA13_B","Medium","","Peripheral mode","CMOS","None","BUS0: CS6
+"P907","71","","","","","Disabled","","","BUS0: CS6
 GLCDC0: LCD_DATA13"
-"P908","70","GLCDC0_LCD_DATA14","GLCD_Controller__Pin_Option_B_LCD_DATA14_B","Medium","","Peripheral mode","CMOS","None","BUS0: CS7
+"P908","70","","","","","Disabled","","","BUS0: CS7
 GLCDC0: LCD_DATA14"
-"PA00","114","GLCDC0_LCD_DATA05","GLCD_Controller__Pin_Option_B_LCD_DATA05_B","Medium","","Peripheral mode","CMOS","None","GLCDC0: LCD_DATA05"
-"PA01","113","GLCDC0_LCD_DATA06","GLCD_Controller__Pin_Option_B_LCD_DATA06_B","Medium","","Peripheral mode","CMOS","None","GLCDC0: LCD_DATA06"
-"PA08","107","GLCDC0_LCD_DATA09","GLCD_Controller__Pin_Option_B_LCD_DATA09_B","Medium","","Peripheral mode","CMOS","None","GLCDC0: LCD_DATA09"
-"PA09","108","GLCDC0_LCD_DATA08","GLCD_Controller__Pin_Option_B_LCD_DATA08_B","Medium","","Peripheral mode","CMOS","None","GLCDC0: LCD_DATA08"
-"PA10","109","GLCDC0_LCD_DATA07","GLCD_Controller__Pin_Option_B_LCD_DATA07_B","Medium","","Peripheral mode","CMOS","None","GLCDC0: LCD_DATA07"
+"PA00","114","","","","","Disabled","","","GLCDC0: LCD_DATA05"
+"PA01","113","","","","","Disabled","","","GLCDC0: LCD_DATA06"
+"PA08","107","","","","","Disabled","","","GLCDC0: LCD_DATA09"
+"PA09","108","","","","","Disabled","","","GLCDC0: LCD_DATA08"
+"PA10","109","","","","","Disabled","","","GLCDC0: LCD_DATA07"
 "PB00","16","USBHS0_VBUSEN","USB_High_Speed_USBHS_VBUSEN","Low","","Peripheral mode","CMOS","None","SCI3: SCK
 USBHS0: VBUSEN"
 "PB01","17","USBHS0_VBUS","USB_High_Speed_USBHS_VBUS","Low","","Peripheral mode","CMOS","None","SCI3: CTS_RTS_SS

@@ -270,6 +270,8 @@ void processUDPRx(NX_PACKET *p_packet)
     }
     else if (p_packet->nx_packet_prepend_ptr[0] == 'a')
     {
+        ///This section is for the one-to-many IP address assignment functions, which are
+        /// currently disabled.
         if (p_packet->nx_packet_prepend_ptr[1] == 'a')
         {
             ///This is some kind of IP assignment packet.

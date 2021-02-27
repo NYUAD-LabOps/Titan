@@ -217,6 +217,10 @@
       <description>Express Logic USBX Host Class Storage: Provides=[USBX Host Class Storage] , Requires=[ThreadX ,USBX]</description>
       <originalPack>Renesas.Synergy.1.7.8.pack</originalPack>
     </component>
+    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_adc" variant="" vendor="Renesas" version="1.7.8">
+      <description>A/D Converter: Provides=[ADC]</description>
+      <originalPack>Renesas.Synergy.1.7.8.pack</originalPack>
+    </component>
   </synergyComponentSelection>
   <synergyIcuConfiguration/>
   <synergyMessagingConfiguration/>
@@ -557,6 +561,95 @@
       <property id="module.driver.transfer.p_callback" value="NULL"/>
       <property id="module.driver.transfer.irq_ipl" value="board.icu.common.irq.priority12"/>
     </module>
+    <module id="module.driver.adc_on_adc.445834573">
+      <property id="module.driver.adc.name" value="g_adc0"/>
+      <property id="module.driver.adc.unit" value="module.driver.adc.unit.unit0"/>
+      <property id="module.driver.adc.resolution" value="module.driver.adc.resolution.resolution_12_bit"/>
+      <property id="module.driver.adc.alignment" value="module.driver.adc.alignment.alignment_right"/>
+      <property id="module.driver.adc.clearing" value="module.driver.adc.clearing.clear_after_read_on"/>
+      <property id="module.driver.adc.mode" value="module.driver.adc.mode.mode_continuous_scan"/>
+      <property id="module.driver.adc.skip_internal_calibration" value="module.driver.adc.skip_internal_calibration.skip_internal_calibration_false"/>
+      <property id="module.driver.adc.scan_mask" value="module.driver.adc.scan_mask.default"/>
+      <property id="module.driver.adc.channel_0" value="module.driver.adc.scan_mask.channel_0.unused"/>
+      <property id="module.driver.adc.channel_1" value="module.driver.adc.scan_mask.channel_1.unused"/>
+      <property id="module.driver.adc.channel_2" value="module.driver.adc.channel_2.used"/>
+      <property id="module.driver.adc.channel_3" value="module.driver.adc.scan_mask.channel_3.unused"/>
+      <property id="module.driver.adc.channel_4" value="module.driver.adc.scan_mask.channel_4.unused"/>
+      <property id="module.driver.adc.channel_5" value="module.driver.adc.scan_mask.channel_5.unused"/>
+      <property id="module.driver.adc.channel_6" value="module.driver.adc.scan_mask.channel_6.unused"/>
+      <property id="module.driver.adc.channel_7" value="module.driver.adc.scan_mask.channel_7.unused"/>
+      <property id="module.driver.adc.channel_8" value="module.driver.adc.scan_mask.channel_8.unused"/>
+      <property id="module.driver.adc.channel_9" value="module.driver.adc.scan_mask.channel_9.unused"/>
+      <property id="module.driver.adc.channel_10" value="module.driver.adc.scan_mask.channel_10.unused"/>
+      <property id="module.driver.adc.channel_11" value="module.driver.adc.scan_mask.channel_11.unused"/>
+      <property id="module.driver.adc.channel_12" value="module.driver.adc.scan_mask.channel_12.unused"/>
+      <property id="module.driver.adc.channel_13" value="module.driver.adc.scan_mask.channel_13.unused"/>
+      <property id="module.driver.adc.channel_14" value="module.driver.adc.scan_mask.channel_14.unused"/>
+      <property id="module.driver.adc.channel_15" value="module.driver.adc.scan_mask.channel_15.unused"/>
+      <property id="module.driver.adc.channel_16" value="module.driver.adc.scan_mask.channel_16.unused"/>
+      <property id="module.driver.adc.channel_17" value="module.driver.adc.scan_mask.channel_17.unused"/>
+      <property id="module.driver.adc.channel_18" value="module.driver.adc.scan_mask.channel_18.unused"/>
+      <property id="module.driver.adc.channel_19" value="module.driver.adc.scan_mask.channel_19.unused"/>
+      <property id="module.driver.adc.channel_20" value="module.driver.adc.scan_mask.channel_20.unused"/>
+      <property id="module.driver.adc.channel_21" value="module.driver.adc.scan_mask.channel_21.unused"/>
+      <property id="module.driver.adc.channel_22" value="module.driver.adc.scan_mask.channel_22.unused"/>
+      <property id="module.driver.adc.channel_23" value="module.driver.adc.scan_mask.channel_23.unused"/>
+      <property id="module.driver.adc.channel_24" value="module.driver.adc.scan_mask.channel_24.unused"/>
+      <property id="module.driver.adc.channel_25" value="module.driver.adc.scan_mask.channel_25.unused"/>
+      <property id="module.driver.adc.channel_26" value="module.driver.adc.scan_mask.channel_26.unused"/>
+      <property id="module.driver.adc.channel_27" value="module.driver.adc.scan_mask.channel_27.unused"/>
+      <property id="module.driver.adc.channel_temperature" value="module.driver.adc.scan_mask.channel_temperature.unused"/>
+      <property id="module.driver.adc.channel_voltage" value="module.driver.adc.scan_mask.channel_voltage.unused"/>
+      <property id="module.driver.adc.trigger" value="module.driver.adc.trigger.trigger_software"/>
+      <property id="module.driver.adc.trigger_group_b" value="module.driver.adc.trigger_group_b.trigger_sync_elc"/>
+      <property id="module.driver.adc.priority_group_a" value="module.driver.adc.priority_group_a.group_a_priority_off"/>
+      <property id="module.driver.adc.add_average_count" value="module.driver.adc.add_average_count.add_average_four"/>
+      <property id="module.driver.adc.add_mask" value="module.driver.adc.add_mask.default"/>
+      <property id="module.driver.adc.add_mask.channel_0" value="module.driver.adc.add_mask.channel_0.unused"/>
+      <property id="module.driver.adc.add_mask.channel_1" value="module.driver.adc.add_mask.channel_1.unused"/>
+      <property id="module.driver.adc.add_mask.channel_2" value="module.driver.adc.add_mask.channel_2.used"/>
+      <property id="module.driver.adc.add_mask.channel_3" value="module.driver.adc.add_mask.channel_3.unused"/>
+      <property id="module.driver.adc.add_mask.channel_4" value="module.driver.adc.add_mask.channel_4.unused"/>
+      <property id="module.driver.adc.add_mask.channel_5" value="module.driver.adc.add_mask.channel_5.unused"/>
+      <property id="module.driver.adc.add_mask.channel_6" value="module.driver.adc.add_mask.channel_6.unused"/>
+      <property id="module.driver.adc.add_mask.channel_7" value="module.driver.adc.add_mask.channel_7.unused"/>
+      <property id="module.driver.adc.add_mask.channel_8" value="module.driver.adc.add_mask.channel_8.unused"/>
+      <property id="module.driver.adc.add_mask.channel_9" value="module.driver.adc.add_mask.channel_9.unused"/>
+      <property id="module.driver.adc.add_mask.channel_10" value="module.driver.adc.add_mask.channel_10.unused"/>
+      <property id="module.driver.adc.add_mask.channel_11" value="module.driver.adc.add_mask.channel_11.unused"/>
+      <property id="module.driver.adc.add_mask.channel_12" value="module.driver.adc.add_mask.channel_12.unused"/>
+      <property id="module.driver.adc.add_mask.channel_13" value="module.driver.adc.add_mask.channel_13.unused"/>
+      <property id="module.driver.adc.add_mask.channel_14" value="module.driver.adc.add_mask.channel_14.unused"/>
+      <property id="module.driver.adc.add_mask.channel_15" value="module.driver.adc.add_mask.channel_15.unused"/>
+      <property id="module.driver.adc.add_mask.channel_16" value="module.driver.adc.add_mask.channel_16.unused"/>
+      <property id="module.driver.adc.add_mask.channel_17" value="module.driver.adc.add_mask.channel_17.unused"/>
+      <property id="module.driver.adc.add_mask.channel_18" value="module.driver.adc.add_mask.channel_18.unused"/>
+      <property id="module.driver.adc.add_mask.channel_19" value="module.driver.adc.add_mask.channel_19.unused"/>
+      <property id="module.driver.adc.add_mask.channel_20" value="module.driver.adc.add_mask.channel_20.unused"/>
+      <property id="module.driver.adc.add_mask.channel_21" value="module.driver.adc.add_mask.channel_21.unused"/>
+      <property id="module.driver.adc.add_mask.channel_22" value="module.driver.adc.add_mask.channel_22.unused"/>
+      <property id="module.driver.adc.add_mask.channel_23" value="module.driver.adc.add_mask.channel_23.unused"/>
+      <property id="module.driver.adc.add_mask.channel_24" value="module.driver.adc.add_mask.channel_24.unused"/>
+      <property id="module.driver.adc.add_mask.channel_25" value="module.driver.adc.add_mask.channel_25.unused"/>
+      <property id="module.driver.adc.add_mask.channel_26" value="module.driver.adc.add_mask.channel_26.unused"/>
+      <property id="module.driver.adc.add_mask.channel_27" value="module.driver.adc.add_mask.channel_27.unused"/>
+      <property id="module.driver.adc.add_mask.channel_temperature" value="module.driver.adc.add_mask.channel_temperature.unused"/>
+      <property id="module.driver.adc.add_mask.channel_voltage" value="module.driver.adc.add_mask.channel_voltage.unused"/>
+      <property id="module.driver.adc.sample_hold_mask" value="module.driver.adc.sample_hold_mask.default"/>
+      <property id="module.driver.adc.sample_hold_mask.channel_0" value="module.driver.adc.sample_hold_mask.channel_0.unused"/>
+      <property id="module.driver.adc.sample_hold_mask.channel_1" value="module.driver.adc.sample_hold_mask.channel_1.unused"/>
+      <property id="module.driver.adc.sample_hold_mask.channel_2" value="module.driver.adc.sample_hold_mask.channel_2.unused"/>
+      <property id="module.driver.adc.sample_hold_states" value="24"/>
+      <property id="module.driver.adc.p_callback" value="NULL"/>
+      <property id="module.driver.adc.scan_end_ipl" value="board.icu.common.irq.disabled"/>
+      <property id="module.driver.adc.scan_end_b_ipl" value="board.icu.common.irq.disabled"/>
+      <property id="module.driver.adc.voltage_ref" value="module.driver.adc.voltage_ref.ref"/>
+      <property id="module.driver.adc.over_current" value="module.driver.adc.over_current.enable"/>
+      <property id="module.driver.adc.pga" value="module.driver.adc.pga.default"/>
+      <property id="module.driver.adc.pga0" value="module.driver.adc.pga.disabled"/>
+      <property id="module.driver.adc.pga1" value="module.driver.adc.pga.disabled"/>
+      <property id="module.driver.adc.pga2" value="module.driver.adc.pga.disabled"/>
+    </module>
     <context id="_hal.0">
       <stack module="module.driver.cgc_on_cgc.0"/>
       <stack module="module.driver.ioport_on_ioport.0"/>
@@ -564,6 +657,7 @@
       <stack module="module.driver.elc_on_elc.0"/>
       <stack module="module.framework.tx_src.919340895"/>
       <stack module="module.driver.timer_on_gpt.392727502"/>
+      <stack module="module.driver.adc_on_adc.445834573"/>
     </context>
     <context id="rtos.threadx.thread.265113385">
       <property id="_symbol" value="TitanMain"/>
@@ -708,7 +802,7 @@
       <property id="_symbol" value="Management"/>
       <property id="rtos.threadx.thread.name" value="Management"/>
       <property id="rtos.threadx.thread.stack" value="1024"/>
-      <property id="rtos.threadx.thread.priority" value="1"/>
+      <property id="rtos.threadx.thread.priority" value="0"/>
       <property id="rtos.threadx.thread.autostart" value="rtos.threadx.thread.autostart.enabled"/>
       <property id="rtos.threadx.thread.timeslice" value="1"/>
     </context>
@@ -745,6 +839,9 @@
       <property id="config.driver.ioport.checking" value="config.driver.ioport.checking.system"/>
     </config>
     <config id="config.threadx.thread"/>
+    <config id="config.driver.adc">
+      <property id="config.driver.adc.param_checking_enable" value="config.driver.adc.param_checking_enable.enabled"/>
+    </config>
     <config id="config.driver.sci_uart">
       <property id="config.driver.sci_uart.external_rts_operation" value="config.driver.sci_uart.external_rts_operation.disabled"/>
       <property id="config.driver.sci_uart.uart_rx_enable" value="config.driver.sci_uart.uart_rx_enable.enabled"/>

@@ -16,9 +16,9 @@ void UARTWIFI_entry(void)
 
     while (1)
     {
-        g_sf_comms0.p_api->read (g_sf_comms0.p_ctrl, uartRx, WIFI_PACKET_SIZE, TX_WAIT_FOREVER);
-        printf ("\n%s", uartRx);
-        serialHandler (uartRx);
+//        g_sf_comms0.p_api->read (g_sf_comms0.p_ctrl, uartRx, WIFI_PACKET_SIZE, TX_WAIT_FOREVER);
+//        printf ("\n%s", uartRx);
+//        serialHandler (uartRx);
 
         tx_thread_relinquish ();
     }
