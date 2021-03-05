@@ -4,7 +4,6 @@
 #include "fx_api.h"
 
 #define     MAX_NUM_OF_TRY              (1000000)
-#define     UX_STORAGE_BUFFER_SIZE      (64*1024)
 
 #define     EVENT_USB_PLUG_IN           (1UL << 0)
 #define     EVENT_USB_PLUG_OUT          (1UL << 1)
@@ -90,9 +89,6 @@ void USBHost_entry(void)
     UINT status;
     UCHAR waiting = 0;
 
-    ///Setup the byte pool for handling FileX operations.
-    local_buffer = initUSBBuffer_Pool (UX_STORAGE_BUFFER_SIZE);
-    machineGlobalsBlock->local_buffer = local_buffer;
 
     while (machineGlobalsBlock->globalsInit != 1)
     {
@@ -432,16 +428,16 @@ void saveINI()
     tmpIndex = 0;
     length_tmp = sizeof(struct motorController);
     ///Go to INI file start
-    fx_return = fx_file_seek (&ini_file, 0);
+    fx_return = fx_file_seek (&machineGlobalsBlock->iniFile, 0);
 
-    memcpy (local_buffer, motorBlockZ, length_tmp);
-    memcpy ((local_buffer + length_tmp), motorBlockX, length_tmp);
-    memcpy ((local_buffer + (2 * length_tmp)), motorBlockY, length_tmp);
-    memcpy ((local_buffer + (3 * length_tmp)), toolBlockA->motorBlock, length_tmp);
+    memcpy (machineGlobalsBlock->local_buffer, motorBlockZ, length_tmp);
+    memcpy ((machineGlobalsBlock->local_buffer + length_tmp), motorBlockX, length_tmp);
+    memcpy ((machineGlobalsBlock->local_buffer + (2 * length_tmp)), motorBlockY, length_tmp);
+    memcpy ((machineGlobalsBlock->local_buffer + (3 * length_tmp)), toolBlockA->motorBlock, length_tmp);
 
-    printf ("\nWriting INI data...");
+//    printf ("\nWriting INI data...");
     // Write the file in blocks
-    fx_return = fx_file_write (&ini_file, local_buffer, (4 * length_tmp));
+    fx_return = fx_file_write (&machineGlobalsBlock->iniFile, machineGlobalsBlock->local_buffer, (4 * length_tmp));
     if (fx_return != FX_SUCCESS)
     {
         if (DEBUGGER)
@@ -451,7 +447,7 @@ void saveINI()
     {
         if (DEBUGGER)
             printf ("\nINI write success.");
-        fx_return = fx_media_flush (machineGlobalsBlock->p_media);
+        fx_return = fx_media_flush (&g_fx_media0);
     }
     if (DEBUGGER)
         printf ("\nINI save complete.");
@@ -474,12 +470,12 @@ void loadINI()
     tmpIndex = 0;
     length_tmp = sizeof(struct motorController);
     ///Go to INI file start
-    fx_return = fx_file_seek (&ini_file, 0);
+    fx_return = fx_file_seek (&machineGlobalsBlock->iniFile, 0);
 
     if (DEBUGGER)
         printf ("\nLoading INI...");
     ///Attempt to read 500 bytes
-    fx_return = fx_file_read (&ini_file, local_buffer, (4 * length_tmp), &actual_length);
+    fx_return = fx_file_read (&machineGlobalsBlock->iniFile, machineGlobalsBlock->local_buffer, (4 * length_tmp), &actual_length);
     if (fx_return != FX_SUCCESS)
     {
         if (DEBUGGER)
@@ -491,10 +487,10 @@ void loadINI()
             printf ("\nINI read success.");
     }
 
-    memcpy (motorBlockZ, local_buffer, length_tmp);
-    memcpy (motorBlockX, (local_buffer + length_tmp), length_tmp);
-    memcpy (motorBlockY, (local_buffer + (2 * length_tmp)), length_tmp);
-    memcpy (toolBlockA->motorBlock, (local_buffer + (3 * length_tmp)), length_tmp);
+    memcpy (motorBlockZ, machineGlobalsBlock->local_buffer, length_tmp);
+    memcpy (motorBlockX, (machineGlobalsBlock->local_buffer + length_tmp), length_tmp);
+    memcpy (motorBlockY, (machineGlobalsBlock->local_buffer + (2 * length_tmp)), length_tmp);
+    memcpy (toolBlockA->motorBlock, (machineGlobalsBlock->local_buffer + (3 * length_tmp)), length_tmp);
 
     if (DEBUGGER)
         printf ("\nINI data loaded.");

@@ -687,7 +687,7 @@
     <v1:connectionSetting altId="p500.sdhi1.clk"/>
   </v1:configSetting>
   <v1:configSetting configurationId="sdhi1.wp" altId="sdhi1.wp.none"/>
-  <v1:configSetting configurationId="sdhi1.mode" altId="sdhi1.mode.sd_mmc1mbit.free"/>
+  <v1:configSetting configurationId="sdhi1.mode" altId="sdhi1.mode.sd_mmc4mbit.free"/>
   <v1:configSetting configurationId="p502.gpio_pupd" altId="p502.gpio_pupd.gpio_pupd_ip_up"/>
   <v1:configSetting configurationId="sdhi1.pairing" altId="sdhi1.pairing.free"/>
   <v1:configSetting configurationId="sdhi1.cd" altId="sdhi1.cd.none"/>
@@ -702,4 +702,31 @@
   <v1:configSetting configurationId="p002" altId="p002.adc0.an02">
     <v1:connectionSetting altId="adc0.an02.p002"/>
   </v1:configSetting>
+  <v1:configSetting configurationId="p504.gpio_pupd" altId="p504.gpio_pupd.gpio_pupd_ip_up"/>
+  <v1:configSetting configurationId="p504.gpio_mode" altId="p504.gpio_mode.gpio_mode_peripheral"/>
+  <v1:configSetting configurationId="p505" altId="p505.sdhi1.dat3">
+    <v1:connectionSetting altId="sdhi1.dat3.p505"/>
+  </v1:configSetting>
+  <v1:configSetting configurationId="p504" altId="p504.sdhi1.dat2">
+    <v1:connectionSetting altId="sdhi1.dat2.p504"/>
+  </v1:configSetting>
+  <v1:configSetting configurationId="p503" altId="p503.sdhi1.dat1">
+    <v1:connectionSetting altId="sdhi1.dat1.p503"/>
+  </v1:configSetting>
+  <v1:configSetting configurationId="p503.gpio_pupd" altId="p503.gpio_pupd.gpio_pupd_ip_up"/>
+  <v1:configSetting configurationId="p503.gpio_drivecapacity" altId="p503.gpio_speed.gpio_speed_high"/>
+  <v1:configSetting configurationId="p504.gpio_drivecapacity" altId="p504.gpio_speed.gpio_speed_high"/>
+  <v1:configSetting configurationId="p505.gpio_drivecapacity" altId="p505.gpio_speed.gpio_speed_high"/>
+  <v1:configSetting configurationId="p505.gpio_mode" altId="p505.gpio_mode.gpio_mode_peripheral"/>
+  <v1:configSetting configurationId="sdhi1.dat2" altId="sdhi1.dat2.p504">
+    <v1:connectionSetting altId="p504.sdhi1.dat2"/>
+  </v1:configSetting>
+  <v1:configSetting configurationId="sdhi1.dat3" altId="sdhi1.dat3.p505">
+    <v1:connectionSetting altId="p505.sdhi1.dat3"/>
+  </v1:configSetting>
+  <v1:configSetting configurationId="sdhi1.dat1" altId="sdhi1.dat1.p503">
+    <v1:connectionSetting altId="p503.sdhi1.dat1"/>
+  </v1:configSetting>
+  <v1:configSetting configurationId="p505.gpio_pupd" altId="p505.gpio_pupd.gpio_pupd_ip_up"/>
+  <v1:configSetting configurationId="p503.gpio_mode" altId="p503.gpio_mode.gpio_mode_peripheral"/>
 </v1:pinSettings>

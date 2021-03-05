@@ -590,6 +590,10 @@ Synergy Configuration
     Auto start: Enabled
     Time slicing interval (ticks): 1
     
+    Object "g_linked_list_flags Event Flags"
+      Name: List Events
+      Symbol: g_linked_list_flags
+      
   Thread "Position Calculator"
     Symbol: posCalc
     Name: Position Calculator
@@ -954,7 +958,7 @@ Synergy Configuration
             Name: g_sdmmc0
             Channel: 1
             Media Type: Card
-            Bus Width: 1 Bit
+            Bus Width: 4 Bits
             Block Size: 512
             Card Detection: Not Used
             Write Protection: Not Used
@@ -995,7 +999,7 @@ Synergy Configuration
     Symbol: Management
     Name: Management
     Stack size (bytes): 1024
-    Priority: 0
+    Priority: 2
     Auto start: Enabled
     Time slicing interval (ticks): 1
     

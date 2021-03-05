@@ -5,7 +5,7 @@
 //#include "r_timer_api.h"
 #define DEBUGGER 0
 #define DEBUG 0
-#define SECONDARYIP IP_ADDRESS(192,168,10,183)
+#define SECONDARYIP IP_ADDRESS(192,168,10,182)
 #define IPADDSTRING "192.168.10.181"
 #define WIFI_PACKET_SIZE 50
 #define NXD_MQTT_MAX_MESSAGE_LENGTH 50
@@ -46,6 +46,8 @@
 #define MINV 100
 #define DEBOUNCE_TIME 10 //time in milliseconds for debouncing delay
 
+#define     UX_STORAGE_BUFFER_SIZE      (64*1024)
+
 //long double pi=acos(-1.0L)
 
 void printList();
@@ -54,7 +56,8 @@ void initBuff();
 void initMotorBlocks();
 
 ///unused - to remove?
-struct listItem {
+struct listItem
+{
     struct listItem *prev;
     struct listItem *nxt;
     char itemCmd[50];
@@ -62,7 +65,6 @@ struct listItem {
     float y;
     float z;
 };
-
 
 /**This struct forms the links used in the doubly linked list instructions buffer*/
 struct node
@@ -75,38 +77,37 @@ struct node
     struct node *next;
 };
 
-struct node * insertLink(char *content);
-struct node * removeLink(struct node *link);
-
-
+struct node *insertLink(char *content);
+struct node *removeLink(struct node *link);
 
 /**The motorController struct is stored in a block pool
-there are no #define elements which describe the motor
-instead, all constant and variable motor information is stored in the motorController block
-this organizes all motor information in a single block of protected RAM, which is globally accessible
-there is a separate motorController block for each motor
+ there are no #define elements which describe the motor
+ instead, all constant and variable motor information is stored in the motorController block
+ this organizes all motor information in a single block of protected RAM, which is globally accessible
+ there is a separate motorController block for each motor
 
-The PWM frequency of a motor is calculated as freq = 2 * (targetSpeed / (60 * stepSize)).
-Dividing the target speed by the step size gets the frequency in pulses/min. Dividing by 60 brings
-it to pulses/second. Doubling the frequency is then required because each pulse of the PWM signal
-is used to trigger an interrupt which inverts the level of the STEP pin. This halves the actual signal
-frequency and so it must be doubled to compensate.
+ The PWM frequency of a motor is calculated as freq = 2 * (targetSpeed / (60 * stepSize)).
+ Dividing the target speed by the step size gets the frequency in pulses/min. Dividing by 60 brings
+ it to pulses/second. Doubling the frequency is then required because each pulse of the PWM signal
+ is used to trigger an interrupt which inverts the level of the STEP pin. This halves the actual signal
+ frequency and so it must be doubled to compensate.
 
-Several variables of type "ioport_level_t" are used. This data type is provided by Renesas,
-and is required when interacting with GPIO pins via their read and write functions.*/
+ Several variables of type "ioport_level_t" are used. This data type is provided by Renesas,
+ and is required when interacting with GPIO pins via their read and write functions.*/
 struct motorController
 {
     ///Flag used to tell if the motor block has been initialized. True = 1, False = XXX.
     int init;
+    ///controlCode stores the single byte character code used for identifying the target motor or axis.
+    /// Currently this is an ASCII lowercase xyz.
+    char controlCode;
+    ///ipAdd holds the IP address of the controller associated with this motor or axis
+    ULONG ipAdd;
+
     ///Flag used to indicate if the motor is in homing mode.
     ///While in homing mode, the motor handler will ignore the state of the limit pins.
     /// Because of this, during a homing routine, the G28 command handler is responsible
     /// for directing motor activity.
-
-    ///ipAdd holds the IP address of the controller associated with this motor or axis
-    ULONG ipAdd;
-
-
     int homing;
     ///Flag used to indicate whether the speed of the motor is to be set according
     /// to a velocity or frequency.
@@ -125,7 +126,7 @@ struct motorController
     ///Default direction is defined as the direction towards the limit.
     ioport_level_t defaultDir;
     /**Forward direction is defined as the positive direction relative to zero.
-    Used for calculating position while the motor is running*/
+     Used for calculating position while the motor is running*/
     ioport_level_t fwdDir;
     ///The direction pin is needed for reference by all movement functions.
     int dirPin;
@@ -162,7 +163,7 @@ struct motorController
     ///Used to retain the motor step size, in mm/step.
     double stepSize;
     /**Used to retain the integer value which corresponds to the GPIO pin being used for STEP output.
-    This integer value is found in the #define values provided by Renesas headers.*/
+     This integer value is found in the #define values provided by Renesas headers.*/
     int stepPin;
     ///Used to retain the state of the STEP pin. Currently unused.
     ioport_level_t stepState;
@@ -197,14 +198,14 @@ struct motorController
     double startSpeed;
     int intervalSteps; ///What is this?
     /**Used to retain the integer value which corresponds to the pin being used for limit0 input.
-    This integer value is found in the #define values provided by Renesas headers.*/
+     This integer value is found in the #define values provided by Renesas headers.*/
     int limit0Pin;
     ///Used to retain the state of the limit pin for relevant comparison logic.
     ioport_level_t limit0State;
     /**String variable which is available for retaining status information about the motor.
-    Information held here is reported to the GUI when status updates are requested. Currently used.*/
+     Information held here is reported to the GUI when status updates are requested. Currently used.*/
     char status[50];
-    ///Function pointer for reference to the Renesas function which starts the GPT timer.
+///Function pointer for reference to the Renesas function which starts the GPT timer.
 } *motorBlockX, *motorBlockY, *motorBlockZ, *motorBlockA;
 
 struct toolBlock
@@ -226,7 +227,7 @@ struct toolBlock
 
 /**Retains information about the properties and state of the machine
  * At this point there is only one global variable
-    other items of worth may be build plate dimensions, number of extruders, etc...*/
+ other items of worth may be build plate dimensions, number of extruders, etc...*/
 struct machineGlobals
 {
     char globalsInit;
@@ -254,10 +255,10 @@ struct machineGlobals
     /// By default this is initialized to the default velocity defined
     /// in "Helix.h".
     double targetSpeed;
-    FX_MEDIA * p_media;
-    CHAR                        volume[32];
-    FX_FILE my_file;
-    UX_HOST_CLASS_STORAGE_MEDIA * p_ux_host_class_storage_media;
+    FX_MEDIA *p_media;
+    CHAR volume[32];
+    FX_FILE iniFile;
+    UX_HOST_CLASS_STORAGE_MEDIA *p_ux_host_class_storage_media;
     ULONG USBFileIndex;
     ULONG local_bufferIndex;
     char *local_buffer;
@@ -286,7 +287,8 @@ struct machineGlobals
  * After parsing, information such as floating point data related to character flags to axes ZXY
  * are retained for usage by different processes.
  */
-struct instruction{
+struct instruction
+{
     char cmd[4];
     char cmdString[50];
     double a;
@@ -311,7 +313,7 @@ struct instruction parseLine(struct node *input);
 //void commandHandler(struct instruction data);
 //void velocityHandler(struct motorController *motorBlock);
 void setSpeed(struct motorController *motorBlock, int freqSet, double targetSpeed, int targetFreq);
-double returnNumber(char * searchString, char searchChar);
+double returnNumber(char *searchString, char searchChar);
 
 //void motorHandler(struct motorController *motorBlock);
 //void moveToPosition(struct motorController *motorBlock, int calRun);
@@ -330,3 +332,5 @@ void setupMode();
 void UDPHomeMotor(struct motorController *motorBlock);
 void rxFile(long long fileSize);
 void serialHandler(char *uartRx);
+void loadINI();
+void saveINI();

@@ -65,7 +65,7 @@ const sdmmc_extended_cfg_t g_sdmmc0_ext_cfg_t =
 
 sdmmc_cfg_t g_sdmmc0_cfg =
 { .hw =
-{ .media_type = SDMMC_MEDIA_TYPE_CARD, .bus_width = SDMMC_BUS_WIDTH_1_BIT, .channel = 1, },
+{ .media_type = SDMMC_MEDIA_TYPE_CARD, .bus_width = SDMMC_BUS_WIDTH_4_BITS, .channel = 1, },
   .p_callback = NULL,
 
   .p_extend = (void *) &g_sdmmc0_ext_cfg_t,

@@ -242,17 +242,20 @@ struct node *insertLink(char *content)
     struct node *link = (struct node *) memory_ptr;
 
 //    memcpy(link->content, content, NXD_MQTT_MAX_MESSAGE_LENGTH);
-    memcpy (link->content, content, strlen (content));
+//    memcpy (link->content, content, strlen (content));
+    memcpy (link->content, content, WIFI_PACKET_SIZE);
 
     if (head == NULL && tail == NULL)
     {
-//        printf("NULL start");
+        ///Starting new list
         link->prev = NULL;
         link->next = NULL;
         head = link;
         tail = link;
         current = link;
         currentPrint = link;
+        ///Raise the event flag to indicate a linked list node is available for the Main thread.
+        status = tx_event_flags_set (&g_linked_list_flags, 1, TX_OR);
     }
     else
     {
@@ -317,6 +320,8 @@ struct node *removeLink(struct node *link)
             head = NULL;
             tail = NULL;
             tmp = NULL;
+            ///Clear the linked list event flag.
+            status = tx_event_flags_set (&g_linked_list_flags, 0, TX_AND);
         }
     }
 
@@ -530,7 +535,7 @@ void commandHandler(struct instruction *data)
             }
 
         }
-        printf ("\nInitiating INI save...");
+//        printf ("\nInitiating INI save...");
         saveINI ();
     }
     else if (strcmp (data->cmd, "RLY") == 0)
@@ -916,7 +921,7 @@ void setupMode()
 {
     UINT status;
     ULONG event;
-    printf("\nSetup Start.");
+    printf ("\nSetup Start.");
     status = tx_event_flags_set (&g_udp_echo_received, 1, TX_AND);
 
     ///Reset the index to 0.
@@ -925,13 +930,13 @@ void setupMode()
     ///Wait until the index reaches the end.
     /// The UDP receive function will handle assigning IP addresses and incrementing the index.
     status = tx_event_flags_get (&g_setup_mode_complete, 1, TX_AND_CLEAR, &event, NX_WAIT_FOREVER);
-    printf("\nSetup Complete1.");
+    printf ("\nSetup Complete1.");
 }
 
 void processReceivedMsg(char *message_buffer)
 {
-    if (machineGlobalsBlock->receivingMsg != 1)
-        machineGlobalsBlock->receivingMsg = 1;
+//    if (machineGlobalsBlock->receivingMsg != 1)
+//        machineGlobalsBlock->receivingMsg = 1;
 
     ///Check for STOP message
     if (message_buffer[0] == 'M' && message_buffer[1] == '0' && message_buffer[2] == '0')
@@ -955,15 +960,15 @@ void processReceivedMsg(char *message_buffer)
             stopMotor (motorBlockA);
         }
     }
-    ///Lower flag if terminating message found
-    else if (message_buffer[0] == 'X' && message_buffer[1] == 'X' && message_buffer[2] == 'X')
-    {
-        if (machineGlobalsBlock->local_bufferIndex > 0)
-        {
-            USB_Buffer_Transfer ();
-        }
-        machineGlobalsBlock->receivingMsg = 0;
-    }
+//    ///Lower flag if terminating message found
+//    else if (message_buffer[0] == 'X' && message_buffer[1] == 'X' && message_buffer[2] == 'X')
+//    {
+//        if (machineGlobalsBlock->local_bufferIndex > 0)
+//        {
+//            USB_Buffer_Transfer ();
+//        }
+//        machineGlobalsBlock->receivingMsg = 0;
+//    }
     else if (message_buffer[0] == 'S' && message_buffer[1] == 'T' && message_buffer[2] == 'P')
     {
 
@@ -974,28 +979,28 @@ void processReceivedMsg(char *message_buffer)
     }
     else
     {
-        UINT tmp_length;
-        ///fill buffer
-
-        if (machineGlobalsBlock->USBBufferOpen)
-        {
-            //                    tmp_length = strlen(message_buffer);
-            tmp_length = 49;
-            machineGlobalsBlock->local_buffer[machineGlobalsBlock->local_bufferIndex] = '\n';
-            memcpy ((machineGlobalsBlock->local_buffer + machineGlobalsBlock->local_bufferIndex + 1), message_buffer,
-                    tmp_length);
-            machineGlobalsBlock->local_bufferIndex += (tmp_length + 1);
-            if (machineGlobalsBlock->local_bufferIndex > 1000)
-            {
-                USB_Buffer_Transfer ();
-            }
-            //                    USB_Write_Buffer (message_buffer, 3);
-            //                    tx_thread_sleep (100);
-        }
-        else
-        {
-            insertLink (message_buffer);
-        }
+//        UINT tmp_length;
+        ///Add received message to linked list
+        insertLink (message_buffer);
+//        if (machineGlobalsBlock->USBBufferOpen)
+//        {
+//            //                    tmp_length = strlen(message_buffer);
+//            tmp_length = 49;
+//            machineGlobalsBlock->local_buffer[machineGlobalsBlock->local_bufferIndex] = '\n';
+//            memcpy ((machineGlobalsBlock->local_buffer + machineGlobalsBlock->local_bufferIndex + 1), message_buffer,
+//                    tmp_length);
+//            machineGlobalsBlock->local_bufferIndex += (tmp_length + 1);
+//            if (machineGlobalsBlock->local_bufferIndex > 1000)
+//            {
+//                USB_Buffer_Transfer ();
+//            }
+//            //                    USB_Write_Buffer (message_buffer, 3);
+//            //                    tx_thread_sleep (100);
+//        }
+//        else
+//        {
+//
+//        }
     }
 }
 

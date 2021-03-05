@@ -4,6 +4,7 @@
 /* UARTWIFI entry function */
 void UARTWIFI_entry(void)
 {
+    UINT fx_return;
     while (machineGlobalsBlock->globalsInit != 1)
     {
         tx_thread_sleep (500);
@@ -14,12 +15,16 @@ void UARTWIFI_entry(void)
     static uart_cfg_t rx_uart_config;
     g_sf_comms0.p_api->open (g_sf_comms0.p_ctrl, g_sf_comms0.p_cfg);
 
+
+
     while (1)
     {
-//        g_sf_comms0.p_api->read (g_sf_comms0.p_ctrl, uartRx, WIFI_PACKET_SIZE, TX_WAIT_FOREVER);
+        g_sf_comms0.p_api->read (g_sf_comms0.p_ctrl, uartRx, WIFI_PACKET_SIZE, TX_WAIT_FOREVER);
 //        printf ("\n%s", uartRx);
-//        serialHandler (uartRx);
+        serialHandler (uartRx);
 
+        ///Clear old data and relinquish.
+        memset (uartRx, 0, WIFI_PACKET_SIZE);
         tx_thread_relinquish ();
     }
 }
@@ -35,16 +40,26 @@ void serialHandler(char *uartRx)
     sendACK[1] = 'C';
     sendACK[2] = 'K';
 
+
+    ///In the case of a file transfer, don't ACK until the gcode file is ready for writing.
+    /// For all other messages, send ACK at the end of processReceivedMsg(), to indicate to the GUI
+    /// that the message has been received, and the controller is ready for more.
+
+
     fileSize = 0;
     switch (uartRx[0])
     {
         case 'F':
-//            status = g_sf_comms0.p_api->write (g_sf_comms0.p_ctrl, sendACK, WIFI_PACKET_SIZE, TX_NO_WAIT);
+
             memcpy (&fileSize, (uartRx + 2), 8);
 //            fileSize = atoi ((uartRx + 2));
             rxFile (fileSize);
         break;
+        default:
+            processReceivedMsg (uartRx);
+            g_sf_comms0.p_api->write (g_sf_comms0.p_ctrl, sendACK, WIFI_PACKET_SIZE, TX_NO_WAIT);
     }
+
 }
 
 ///This function receives files from the GUI via UART or USB
@@ -131,7 +146,8 @@ void rxFile(long long fileSize)
     g_sf_comms0.p_api->write (g_sf_comms0.p_ctrl, sendACK, WIFI_PACKET_SIZE, TX_NO_WAIT);
 
 //    i = 0;
-    while(rxBuf[0] != 'E' || rxBuf[1] != 'N' || rxBuf[2] != 'D'){
+    while (rxBuf[0] != 'E' || rxBuf[1] != 'N' || rxBuf[2] != 'D')
+    {
         status = g_sf_comms0.p_api->read (g_sf_comms0.p_ctrl, rxBuf, WIFI_PACKET_SIZE, 250);
 
         if (status == SSP_SUCCESS)
@@ -144,12 +160,15 @@ void rxFile(long long fileSize)
 //            i++;
 //            printf("\n%d", i);
             g_sf_comms0.p_api->write (g_sf_comms0.p_ctrl, sendACK, WIFI_PACKET_SIZE, 250);
-        }else if(status == 20){
-            printf("\nTO");
+        }
+        else if (status == 20)
+        {
+            printf ("\nTO");
 //            g_sf_comms0.p_api->write (g_sf_comms0.p_ctrl, sendACK, WIFI_PACKET_SIZE, 250);
         }
-        else{
-            printf("\nUART read error:%d", status);
+        else
+        {
+            printf ("\nUART read error:%d", status);
         }
 
         //        machineGlobalsBlock->fileTransferIndex += 1000;

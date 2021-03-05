@@ -534,7 +534,7 @@
       <property id="module.driver.sdmmc.name" value="g_sdmmc0"/>
       <property id="module.driver.sdmmc.channel" value="1"/>
       <property id="module.driver.sdmmc.media_type" value="module.driver.sdmmc.media_type.media_type_card"/>
-      <property id="module.driver.sdmmc.bus_width" value="module.driver.sdmmc.bus_width.bus_width_1_bit"/>
+      <property id="module.driver.sdmmc.bus_width" value="module.driver.sdmmc.bus_width.bus_width_4_bits"/>
       <property id="module.driver.sdmmc.block_size" value="512"/>
       <property id="module.driver.sdmmc.card_detect" value="module.driver.sdmmc.card_detect.card_detect_none"/>
       <property id="module.driver.sdmmc.write_protect" value="module.driver.sdmmc.write_protect.write_protect_none"/>
@@ -666,6 +666,10 @@
       <property id="rtos.threadx.thread.priority" value="2"/>
       <property id="rtos.threadx.thread.autostart" value="rtos.threadx.thread.autostart.enabled"/>
       <property id="rtos.threadx.thread.timeslice" value="1"/>
+      <object id="rtos.threadx.object.flags.1525457282">
+        <property id="rtos.threadx.object.flags.name" value="List Events"/>
+        <property id="rtos.threadx.object.flags.symbol" value="g_linked_list_flags"/>
+      </object>
     </context>
     <context id="rtos.threadx.thread.593071809">
       <property id="_symbol" value="posCalc"/>
@@ -802,7 +806,7 @@
       <property id="_symbol" value="Management"/>
       <property id="rtos.threadx.thread.name" value="Management"/>
       <property id="rtos.threadx.thread.stack" value="1024"/>
-      <property id="rtos.threadx.thread.priority" value="0"/>
+      <property id="rtos.threadx.thread.priority" value="2"/>
       <property id="rtos.threadx.thread.autostart" value="rtos.threadx.thread.autostart.enabled"/>
       <property id="rtos.threadx.thread.timeslice" value="1"/>
     </context>

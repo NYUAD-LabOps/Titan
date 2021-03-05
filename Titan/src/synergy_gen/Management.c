@@ -20,7 +20,7 @@ void Management_create(void)
 
     UINT err;
     err = tx_thread_create (&Management, (CHAR *) "Management", Management_func, (ULONG) NULL, &Management_stack, 1024,
-                            0, 0, 1, TX_AUTO_START);
+                            2, 2, 1, TX_AUTO_START);
     if (TX_SUCCESS != err)
     {
         tx_startup_err_callback (&Management, 0);

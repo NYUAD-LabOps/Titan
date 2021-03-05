@@ -137,7 +137,7 @@ void UDPSend(ULONG ip_address)
             printf ("\nSending:%s...", machineGlobalsBlock->UDPBuffer);
         }
 
-        status = nx_udp_socket_send(&machineGlobalsBlock->g_udp_sck, my_packet, ip_address, 5000);
+        status = nx_udp_socket_send(&machineGlobalsBlock->g_udp_sck, my_packet, SECONDARYIP, 5000);
 
         if (NX_SUCCESS == status)
         {
@@ -433,17 +433,17 @@ void UDPSendINI(struct motorController *motorBlock)
 {
     if (DEBUGGER)
     {
-        printf ("\nSending X INI data.");
+        printf ("\nSending INI data.");
     }
     machineGlobalsBlock->UDPBuffer[0] = '0';
-    machineGlobalsBlock->UDPBuffer[1] = 'x';
+    machineGlobalsBlock->UDPBuffer[1] = motorBlock->controlCode;
 
     memcpy ((machineGlobalsBlock->UDPBuffer + 2), &motorBlock->stepSize, 8);
 
     UDPSend (motorBlock->ipAdd);
 
     machineGlobalsBlock->UDPBuffer[0] = '1';
-    machineGlobalsBlock->UDPBuffer[1] = 'x';
+    machineGlobalsBlock->UDPBuffer[1] = motorBlock->controlCode;
     if (motorBlock->fwdDir == IOPORT_LEVEL_HIGH)
     {
         machineGlobalsBlock->UDPBuffer[2] = 'h';
@@ -456,7 +456,7 @@ void UDPSendINI(struct motorController *motorBlock)
     UDPSend (motorBlock->ipAdd);
 
     machineGlobalsBlock->UDPBuffer[0] = '2';
-    machineGlobalsBlock->UDPBuffer[1] = 'x';
+    machineGlobalsBlock->UDPBuffer[1] = motorBlock->controlCode;
     if (motorBlock->defaultDir == IOPORT_LEVEL_HIGH)
     {
         machineGlobalsBlock->UDPBuffer[2] = 'h';
@@ -469,7 +469,7 @@ void UDPSendINI(struct motorController *motorBlock)
     UDPSend (motorBlock->ipAdd);
 
     machineGlobalsBlock->UDPBuffer[0] = '3';
-    machineGlobalsBlock->UDPBuffer[1] = 'x';
+    machineGlobalsBlock->UDPBuffer[1] = motorBlock->controlCode;
     memcpy ((machineGlobalsBlock->UDPBuffer + 2), &motorBlock->homeSpeed, 8);
 
     UDPSend (motorBlock->ipAdd);

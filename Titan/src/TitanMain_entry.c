@@ -10,6 +10,8 @@ extern struct node *tail;
 void TitanMain_entry(void)
 {
     ssp_err_t err;
+    UINT status;
+    ULONG eventFlags;
 
     if (DEBUGGER)
         initialise_monitor_handles ();
@@ -55,11 +57,13 @@ void TitanMain_entry(void)
     while (1)
     {
         //parse instructions if there are any available and receiving is not in progress
-        if (head != NULL && machineGlobalsBlock->receivingMsg == 0)
+//        status = tx_event_flags_get (&g_linked_list_flags, 1, TX_AND, &eventFlags, 10);
+
+        if (head != NULL)
         {
             //process next instruction
             data = parseLine (head);
-            removeLink (head);
+             removeLink (head);
 
             commandHandler (&data);
 
@@ -73,18 +77,20 @@ void TitanMain_entry(void)
 //            machineGlobalsBlock->rebuildLinkedList = 1;
 //        }
 
-        if (machineGlobalsBlock->getUpdate)
-        {
-            UDPGetToolUpdate ();
-            machineGlobalsBlock->getUpdate = 0;
-        }
-        tx_thread_relinquish();
+//        if (machineGlobalsBlock->getUpdate)
+//        {
+//            UDPGetToolUpdate ();
+//            machineGlobalsBlock->getUpdate = 0;
+//        }
+
+//        tx_thread_relinquish();
     }
 }
 
 void motorInitX()
 {
     ssp_err_t err;
+    motorBlockX->controlCode = 'x';
     motorBlockX->homing = 0;
     motorBlockX->dirPin = IOPORT_PORT_06_PIN_04;
     motorBlockX->stepSize = STEPX;
@@ -118,6 +124,7 @@ void motorInitX()
 void motorInitY()
 {
     ssp_err_t err;
+    motorBlockY->controlCode = 'y';
     motorBlockY->homing = 0;
     motorBlockY->dirPin = IOPORT_PORT_06_PIN_07;
     motorBlockY->stepSize = STEPY;
@@ -151,6 +158,7 @@ void motorInitY()
 void motorInitZ()
 {
     ssp_err_t err;
+    motorBlockZ->controlCode = 'z';
     motorBlockZ->homing = 0;
     motorBlockZ->dirPin = IOPORT_PORT_06_PIN_01;
     motorBlockZ->stepSize = STEPZ;
@@ -187,6 +195,7 @@ void motorInitZ()
 void motorInitA()
 {
     ssp_err_t err;
+    motorBlockA->controlCode = 'a';
     motorBlockA->homing = 0;
     motorBlockA->dirPin = IOPORT_PORT_06_PIN_04;
     motorBlockA->stepSize = STEPX;

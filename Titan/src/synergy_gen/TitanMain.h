@@ -13,6 +13,7 @@ extern void TitanMain_entry(void);
 extern "C"
 {
 #endif
+extern TX_EVENT_FLAGS_GROUP g_linked_list_flags;
 #ifdef __cplusplus
 } /* extern "C" */
 #endif

@@ -426,7 +426,7 @@ SCI5: RXD_MISO
 SCI5: SCL
 SDHI1: DAT0
 USBFS0: OVRCURB"
-"P503","143","","","","","Disabled","","","ADC1: AN17
+"P503","143","SDHI1_DAT1","","High","","Peripheral mode","CMOS","input pull-up","ADC1: AN17
 GPT12: GTIOCB
 POEG2: GTETRG
 QSPI0: QIO1
@@ -434,7 +434,7 @@ SCI5: SCK
 SCI6: CTS_RTS_SS
 SDHI1: DAT1
 USBFS0: EXICEN"
-"P504","144","","","","","Disabled","","","ADC0: AN18
+"P504","144","SDHI1_DAT2","","High","","Peripheral mode","CMOS","input pull-up","ADC0: AN18
 GPT13: GTIOCA
 POEG3: GTETRG
 QSPI0: QIO2
@@ -442,7 +442,7 @@ SCI5: CTS_RTS_SS
 SCI6: SCK
 SDHI1: DAT2
 USBFS0: ID"
-"P505","145","","","","","Disabled","","","ADC1: AN18
+"P505","145","SDHI1_DAT3","","High","None","Peripheral mode","CMOS","input pull-up","ADC1: AN18
 GPT13: GTIOCB
 IRQ0: IRQ14
 QSPI0: QIO3
