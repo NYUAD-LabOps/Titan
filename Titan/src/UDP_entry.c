@@ -191,21 +191,23 @@ char checkSecondaryHoming()
     UINT status;
     ULONG tmp = 0;
     tmp = 0;
-    for (i = 0; i < machineGlobalsBlock->numOfControllers; i++)
-    {
-        do
-        {
-            machineGlobalsBlock->UDPBuffer[0] = 't';
-            UDPSend (machineGlobalsBlock->controllerBlocks[i]->ipAdd);
-            status = tx_event_flags_get (&g_udp_data_received, 1, TX_AND_CLEAR, &tmp, 300);
-        }
-        while (tmp == 0);
+//    for (i = 0; i < machineGlobalsBlock->numOfControllers; i++)
+//    {
 
-        if (machineGlobalsBlock->UDPRxBuff[2] == '1')
-        {
-            isHoming = 1;
-        }
+    ///Only one controller
+    do
+    {
+        machineGlobalsBlock->UDPBuffer[0] = 't';
+        UDPSend (0);
+        status = tx_event_flags_get (&g_udp_data_received, 1, TX_AND_CLEAR, &tmp, 300);
     }
+    while (tmp == 0);
+
+    if (machineGlobalsBlock->UDPRxBuff[2] == '1')
+    {
+        isHoming = 1;
+    }
+//    }
 
     return isHoming;
 }
@@ -332,7 +334,7 @@ void processUDPRx(NX_PACKET *p_packet)
 void UDPRunMotorFrequency(struct motorController *motorBlock, double freq)
 {
     machineGlobalsBlock->UDPBuffer[0] = 'f';
-    machineGlobalsBlock->UDPBuffer[1] = 'x';
+    machineGlobalsBlock->UDPBuffer[1] = motorBlock->controlCode;
     memcpy ((machineGlobalsBlock->UDPBuffer + 2), &freq, 8);
 
     UDPSend (motorBlock->ipAdd);
@@ -343,7 +345,7 @@ void UDPStopMotor(struct motorController *motorBlock)
 {
 
     machineGlobalsBlock->UDPBuffer[0] = 's';
-    machineGlobalsBlock->UDPBuffer[1] = 'x';
+    machineGlobalsBlock->UDPBuffer[1] = motorBlock->controlCode;
     UDPSend (motorBlock->ipAdd);
 }
 
@@ -352,12 +354,15 @@ void UDPZeroAxes()
 
     int i;
 
-    for (i = 0; i < machineGlobalsBlock->numOfControllers; i++)
-    {
-        machineGlobalsBlock->UDPBuffer[0] = 'z';
-        machineGlobalsBlock->UDPBuffer[1] = 'z';
-        UDPSend (machineGlobalsBlock->controllerBlocks[i]->ipAdd);
-    }
+    machineGlobalsBlock->UDPBuffer[0] = 'z';
+    machineGlobalsBlock->UDPBuffer[1] = 'z';
+    UDPSend (0);
+
+    ///Only one Secondary.
+//    for (i = 0; i < machineGlobalsBlock->numOfControllers; i++)
+//    {
+//
+//    }
 }
 
 void UDPSetMotorDir(struct motorController *motorBlock, int fwd)
@@ -365,7 +370,7 @@ void UDPSetMotorDir(struct motorController *motorBlock, int fwd)
 
     machineGlobalsBlock->UDPBuffer[0] = 'd';
 
-    machineGlobalsBlock->UDPBuffer[1] = 'x';
+    machineGlobalsBlock->UDPBuffer[1] = motorBlock->controlCode;
 
     if (fwd)
     {
@@ -410,7 +415,7 @@ void UDPHomeMotor(struct motorController *motorBlock)
 {
 
     machineGlobalsBlock->UDPBuffer[0] = 'h';
-    machineGlobalsBlock->UDPBuffer[1] = 'x';
+    machineGlobalsBlock->UDPBuffer[1] = motorBlock->controlCode;
 
 //    switch (axis)
 //    {
@@ -666,7 +671,7 @@ void UDPCalibrateMotor(struct motorController *motorBlock, double freq, double d
     UDPSetMotorFrequency (motorBlock, freq);
 
     machineGlobalsBlock->UDPBuffer[0] = 'c';
-    machineGlobalsBlock->UDPBuffer[1] = 'x';
+    machineGlobalsBlock->UDPBuffer[1] = motorBlock->controlCode;
     machineGlobalsBlock->motorFreqSet = 1;
     UDPSend (motorBlock->ipAdd);
 }
@@ -675,7 +680,7 @@ void UDPCalibrateMotor(struct motorController *motorBlock, double freq, double d
 void UDPSetMotorFrequency(struct motorController *motorBlock, double freq)
 {
     machineGlobalsBlock->UDPBuffer[0] = 'g';
-    machineGlobalsBlock->UDPBuffer[1] = 'x';
+    machineGlobalsBlock->UDPBuffer[1] = motorBlock->controlCode;
 
     memcpy ((machineGlobalsBlock->UDPBuffer + 2), &freq, 8);
 
@@ -686,7 +691,7 @@ void UDPSetMotorFrequency(struct motorController *motorBlock, double freq)
 void UDPSetMotorTargetSteps(struct motorController *motorBlock, double steps)
 {
     machineGlobalsBlock->UDPBuffer[0] = 'q';
-    machineGlobalsBlock->UDPBuffer[1] = 'x';
+    machineGlobalsBlock->UDPBuffer[1] = motorBlock->controlCode;
 
     memcpy ((machineGlobalsBlock->UDPBuffer + 2), &steps, 8);
 

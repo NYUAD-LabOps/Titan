@@ -56,8 +56,8 @@ void serialHandler(char *uartRx)
             rxFile (fileSize);
         break;
         default:
+            g_sf_comms0.p_api->write (g_sf_comms0.p_ctrl, sendACK, WIFI_PACKET_SIZE, 250);
             processReceivedMsg (uartRx);
-            g_sf_comms0.p_api->write (g_sf_comms0.p_ctrl, sendACK, WIFI_PACKET_SIZE, TX_NO_WAIT);
     }
 
 }

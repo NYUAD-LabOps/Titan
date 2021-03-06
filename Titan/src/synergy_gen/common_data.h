@@ -16,9 +16,9 @@
 #include "nx_api.h"
 
 #include "fx_api.h"
-#include "fx_api.h"
 #include "ux_api.h"
 #include "ux_host_class_storage.h"
+#include "fx_api.h"
 #include "r_elc.h"
 #include "r_elc_api.h"
 #include "r_fmi.h"
@@ -136,12 +136,6 @@ extern NX_IP g_ip0;
 void g_ip0_err_callback(void *p_instance, void *p_data);
 void ip_init0(void);
 void fx_common_init0(void);
-extern FX_MEDIA g_fx_media0;
-
-void g_fx_media0_err_callback(void *p_instance, void *p_data);
-ssp_err_t fx_media_init0_format(void);
-uint32_t fx_media_init0_open(void);
-void fx_media_init0(void);
 /* A pointer to FileX Media Control Block for a USB flash device */
 extern FX_MEDIA *g_fx_media1_ptr;
 
@@ -156,6 +150,12 @@ void fx_media_init_function1(void);
 
 /* FileX media initialization error callback function for USBX Host Mass Storage. User can override the function if needed. */
 void g_fx_media1_err_callback_failed_to_get_fx_media(void *p_instance, void *p_data);
+extern FX_MEDIA g_fx_media0;
+
+void g_fx_media0_err_callback(void *p_instance, void *p_data);
+ssp_err_t fx_media_init0_format(void);
+uint32_t fx_media_init0_open(void);
+void fx_media_init0(void);
 /** ELC Instance */
 extern const elc_instance_t g_elc;
 /** FMI on FMI Instance. */
