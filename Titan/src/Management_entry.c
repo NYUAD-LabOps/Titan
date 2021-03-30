@@ -15,6 +15,9 @@
 // the value of the 'other' resistor
 #define SERIESRESISTOR 80000
 
+///The Management thread is responsible for maintaining the build environment and related hardware.
+/// This includes the automatic tool changer, heated build plate, air handler, etc...
+
 /* Management entry function */
 void Management_entry(void)
 {

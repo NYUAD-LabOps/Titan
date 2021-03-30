@@ -206,7 +206,7 @@ struct motorController
      Information held here is reported to the GUI when status updates are requested. Currently used.*/
     char status[50];
 ///Function pointer for reference to the Renesas function which starts the GPT timer.
-} *motorBlockX, *motorBlockY, *motorBlockZ, *motorBlockA;
+} *motorBlockX, *motorBlockY, *motorBlockZ, *motorBlockT, *motorBlockA, *motorBlockB, *motorBlockC, *motorBlockD;
 
 struct toolBlock
 {
@@ -299,6 +299,7 @@ struct instruction
     double y;
     double z;
     double e;
+    double t;
     ///Used for Feed Rate and Frequency data
     double f;
     ///Used for Home Speed data

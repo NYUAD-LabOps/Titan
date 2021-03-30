@@ -713,7 +713,7 @@ void UDPSetMotorFreqSet(struct motorController *motorBlock, int freqSet)
 void UDPSetTargetVelocity(struct motorController *motorBlock, double velocity)
 {
     machineGlobalsBlock->UDPBuffer[0] = 'v';
-    machineGlobalsBlock->UDPBuffer[1] = 'x';
+    machineGlobalsBlock->UDPBuffer[1] = motorBlock->controlCode;
 
     memcpy ((machineGlobalsBlock->UDPBuffer + 2), &velocity, 8);
 

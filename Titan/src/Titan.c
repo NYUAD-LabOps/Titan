@@ -21,10 +21,45 @@ TX_BYTE_POOL USB_Byte_PoolB;
 
 void initMotors()
 {
-    motorInitZ ();
     motorInitX ();
-    motorInitY ();
-    motorInitA ();
+
+    motorBlockY->controlCode = 'y';
+    motorBlockY->dirPin = IOPORT_PORT_06_PIN_07;
+    motorBlockY->stepPin = IOPORT_PORT_03_PIN_04;
+    motorBlockY->limit0Pin = IOPORT_PORT_05_PIN_12;
+    genericMotorInit (motorBlockY);
+
+    motorBlockA->controlCode = 'a';
+    motorBlockA->dirPin = IOPORT_PORT_06_PIN_07;
+    motorBlockA->stepPin = IOPORT_PORT_03_PIN_04;
+    motorBlockA->limit0Pin = IOPORT_PORT_05_PIN_12;
+    genericMotorInit (motorBlockA);
+
+    motorBlockZ->controlCode = 'z';
+    motorBlockZ->dirPin = IOPORT_PORT_06_PIN_01;
+    motorBlockZ->stepPin = IOPORT_PORT_01_PIN_11;
+    motorBlockZ->limit0Pin = IOPORT_PORT_00_PIN_00;
+    genericMotorInit (motorBlockZ);
+
+    motorBlockB->controlCode = 'b';
+    motorBlockB->dirPin = IOPORT_PORT_06_PIN_01;
+    motorBlockB->stepPin = IOPORT_PORT_01_PIN_11;
+    motorBlockB->limit0Pin = IOPORT_PORT_00_PIN_00;
+    genericMotorInit (motorBlockB);
+
+    motorBlockC->controlCode = 'c';
+    motorBlockC->dirPin = IOPORT_PORT_06_PIN_01;
+    motorBlockC->stepPin = IOPORT_PORT_01_PIN_11;
+    motorBlockC->limit0Pin = IOPORT_PORT_00_PIN_00;
+    genericMotorInit (motorBlockC);
+
+    motorBlockD->controlCode = 'd';
+    motorBlockD->dirPin = IOPORT_PORT_06_PIN_01;
+    motorBlockD->stepPin = IOPORT_PORT_01_PIN_11;
+    motorBlockD->limit0Pin = IOPORT_PORT_00_PIN_00;
+    genericMotorInit (motorBlockD);
+
+    motorInitT ();
 
     machineGlobalsBlock->motorsInit = 1;
 }
@@ -123,13 +158,31 @@ void initMotorBlocks()
     motorBlockY->init = 1;
 
     status = tx_block_allocate (&my_pool2, (VOID **) &memory_ptr, TX_NO_WAIT);
+    motorBlockA = (struct motorController *) memory_ptr;
+    motorBlockA->init = 1;
+
+    status = tx_block_allocate (&my_pool2, (VOID **) &memory_ptr, TX_NO_WAIT);
     motorBlockZ = (struct motorController *) memory_ptr;
     machineGlobalsBlock->controllerBlocks[2] = motorBlockZ;
     motorBlockZ->init = 1;
 
     status = tx_block_allocate (&my_pool2, (VOID **) &memory_ptr, TX_NO_WAIT);
-    motorBlockA = (struct motorController *) memory_ptr;
-    motorBlockA->init = 1;
+    motorBlockB = (struct motorController *) memory_ptr;
+    motorBlockB->init = 1;
+
+    status = tx_block_allocate (&my_pool2, (VOID **) &memory_ptr, TX_NO_WAIT);
+    motorBlockC = (struct motorController *) memory_ptr;
+    machineGlobalsBlock->controllerBlocks[2] = motorBlockZ;
+    motorBlockC->init = 1;
+
+    status = tx_block_allocate (&my_pool2, (VOID **) &memory_ptr, TX_NO_WAIT);
+    motorBlockD = (struct motorController *) memory_ptr;
+    machineGlobalsBlock->controllerBlocks[2] = motorBlockZ;
+    motorBlockD->init = 1;
+
+    status = tx_block_allocate (&my_pool2, (VOID **) &memory_ptr, TX_NO_WAIT);
+    motorBlockT = (struct motorController *) memory_ptr;
+    motorBlockT->init = 1;
 
     machineGlobalsBlock->numOfControllers = 3;
 
@@ -468,6 +521,39 @@ void commandHandler(struct instruction *data)
             }
 
         }
+        if (strchr (data->cmdString, 'a') || strchr (data->cmdString, 'A'))
+        {
+            if (data->a != ~0)
+            {
+                motorBlockA->stepSize = data->y;
+                ///Get Forward Logic Level
+                if (strchr (data->cmdString, 'H'))
+                {
+                    motorBlockA->fwdDir = IOPORT_LEVEL_HIGH;
+                }
+                else
+                {
+                    motorBlockA->fwdDir = IOPORT_LEVEL_LOW;
+                }
+                ///Get Home direction
+                if (strchr (data->cmdString, 'U'))
+                {
+                    motorBlockA->defaultDir = IOPORT_LEVEL_HIGH;
+                }
+                else
+                {
+                    motorBlockA->defaultDir = IOPORT_LEVEL_LOW;
+                }
+
+                if (data->f != ~0)
+                {
+                    motorBlockA->homeSpeed = data->f;
+                }
+
+                UDPSendINI (motorBlockA);
+            }
+
+        }
         if (strchr (data->cmdString, 'z') || strchr (data->cmdString, 'Z'))
         {
             if (data->z != ~0)
@@ -501,7 +587,106 @@ void commandHandler(struct instruction *data)
             }
 
         }
-        if (strchr (data->cmdString, 'a') || strchr (data->cmdString, 'A'))
+        if (strchr (data->cmdString, 'b') || strchr (data->cmdString, 'B'))
+        {
+            if (data->b != ~0)
+            {
+                motorBlockB->stepSize = data->y;
+                ///Get Forward Logic Level
+                if (strchr (data->cmdString, 'H'))
+                {
+                    motorBlockB->fwdDir = IOPORT_LEVEL_HIGH;
+                }
+                else
+                {
+                    motorBlockB->fwdDir = IOPORT_LEVEL_LOW;
+                }
+                ///Get Home direction
+                if (strchr (data->cmdString, 'U'))
+                {
+                    motorBlockB->defaultDir = IOPORT_LEVEL_HIGH;
+                }
+                else
+                {
+                    motorBlockB->defaultDir = IOPORT_LEVEL_LOW;
+                }
+
+                if (data->f != ~0)
+                {
+                    motorBlockB->homeSpeed = data->f;
+                }
+
+                UDPSendINI (motorBlockB);
+            }
+
+        }
+        if (strchr (data->cmdString, 'c') || strchr (data->cmdString, 'C'))
+        {
+            if (data->c != ~0)
+            {
+                motorBlockC->stepSize = data->y;
+                ///Get Forward Logic Level
+                if (strchr (data->cmdString, 'H'))
+                {
+                    motorBlockC->fwdDir = IOPORT_LEVEL_HIGH;
+                }
+                else
+                {
+                    motorBlockC->fwdDir = IOPORT_LEVEL_LOW;
+                }
+                ///Get Home direction
+                if (strchr (data->cmdString, 'U'))
+                {
+                    motorBlockC->defaultDir = IOPORT_LEVEL_HIGH;
+                }
+                else
+                {
+                    motorBlockC->defaultDir = IOPORT_LEVEL_LOW;
+                }
+
+                if (data->f != ~0)
+                {
+                    motorBlockC->homeSpeed = data->f;
+                }
+
+                UDPSendINI (motorBlockC);
+            }
+
+        }
+        if (strchr (data->cmdString, 'd') || strchr (data->cmdString, 'D'))
+        {
+            if (data->d != ~0)
+            {
+                motorBlockD->stepSize = data->y;
+                ///Get Forward Logic Level
+                if (strchr (data->cmdString, 'H'))
+                {
+                    motorBlockD->fwdDir = IOPORT_LEVEL_HIGH;
+                }
+                else
+                {
+                    motorBlockD->fwdDir = IOPORT_LEVEL_LOW;
+                }
+                ///Get Home direction
+                if (strchr (data->cmdString, 'U'))
+                {
+                    motorBlockD->defaultDir = IOPORT_LEVEL_HIGH;
+                }
+                else
+                {
+                    motorBlockD->defaultDir = IOPORT_LEVEL_LOW;
+                }
+
+                if (data->f != ~0)
+                {
+                    motorBlockD->homeSpeed = data->f;
+                }
+
+                UDPSendINI (motorBlockD);
+            }
+
+        }
+        if (strchr (data->cmdString, 't') || strchr (data->cmdString, 'T'))
         {
             if (data->a != ~0)
             {
@@ -644,6 +829,15 @@ void commandHandler(struct instruction *data)
             }
 
         }
+        if (strchr (data->cmdString, 'a') || strchr (data->cmdString, 'A'))
+        {
+            if (data->a != ~0)
+            {
+                UDPSetMotorDir (motorBlockA, 1);
+                UDPRunMotorFrequency (motorBlockA, data->a);
+            }
+
+        }
         if (strchr (data->cmdString, 'z') || strchr (data->cmdString, 'Z'))
         {
             if (data->z != ~0)
@@ -653,13 +847,40 @@ void commandHandler(struct instruction *data)
             }
 
         }
-        if (strchr (data->cmdString, 'a') || strchr (data->cmdString, 'A'))
+        if (strchr (data->cmdString, 'b') || strchr (data->cmdString, 'B'))
         {
-            if (data->a != ~0)
+            if (data->b != ~0)
             {
-                UDPSetMotorDir (motorBlockA, 1);
-                UDPRunMotorFrequency (motorBlockA, data->a);
+                UDPSetMotorDir (motorBlockB, 1);
+                UDPRunMotorFrequency (motorBlockB, data->b);
             }
+
+        }
+        if (strchr (data->cmdString, 'c') || strchr (data->cmdString, 'C'))
+        {
+            if (data->c != ~0)
+            {
+                UDPSetMotorDir (motorBlockC, 1);
+                UDPRunMotorFrequency (motorBlockC, data->c);
+            }
+
+        }
+        if (strchr (data->cmdString, 'd') || strchr (data->cmdString, 'D'))
+        {
+            if (data->d != ~0)
+            {
+                UDPSetMotorDir (motorBlockD, 1);
+                UDPRunMotorFrequency (motorBlockD, data->d);
+            }
+
+        }
+        if (strchr (data->cmdString, 't') || strchr (data->cmdString, 'T'))
+        {
+//            if (data->a != ~0)
+//            {
+//                UDPSetMotorDir (motorBlockA, 1);
+//                UDPRunMotorFrequency (motorBlockA, data->a);
+//            }
 
         }
     }
@@ -705,12 +926,60 @@ void commandHandler(struct instruction *data)
             }
 
         }
+        if (strchr (data->cmdString, 'b') || strchr (data->cmdString, 'B'))
+        {
+            if (data->b != ~0)
+            {
+                UDPSetMotorDir (motorBlockB, 0);
+                UDPRunMotorFrequency (motorBlockB, data->b);
+            }
+
+        }
+        if (strchr (data->cmdString, 'c') || strchr (data->cmdString, 'C'))
+        {
+            if (data->c != ~0)
+            {
+                UDPSetMotorDir (motorBlockC, 0);
+                UDPRunMotorFrequency (motorBlockC, data->c);
+            }
+
+        }
+        if (strchr (data->cmdString, 'd') || strchr (data->cmdString, 'D'))
+        {
+            if (data->d != ~0)
+            {
+                UDPSetMotorDir (motorBlockD, 0);
+                UDPRunMotorFrequency (motorBlockD, data->d);
+            }
+
+        }
+    }
+    else if (strcmp (data->cmd, "AUL") == 0)
+    {
+        ///Auto-level
+        if (DEBUGGER)
+            printf ("\nAuto-level...");
+
+        autoBuildPlateLevel ();
+
     }
     else
     {
         if (DEBUGGER)
             printf ("\nInvalid instruction - Main");
     }
+}
+
+///Currently being designed for a conductive touch probe method.
+/// Possible impediments to this include residual material on the nozzle. This should be
+/// alleviated by the nozzle being brought to working temperature, but there remains some possibility
+/// of caramelized or charred material being left behind to impede the flow of current. Further investigation is
+/// required.
+void autoBuildPlateLevel()
+{
+    ///The auto-level procedure requires a conductive or pressure-sensitive tool.
+    /// The auto-level procedure is as follows:
+    /// 1)Raise all four Z axes until the build plate touches the probe.
 }
 
 void calCmdHandler(struct instruction *data)
@@ -958,6 +1227,18 @@ void processReceivedMsg(char *message_buffer)
         if (strchr (message_buffer, 'a') || strchr (message_buffer, 'A'))
         {
             stopMotor (motorBlockA);
+        }
+        if (strchr (message_buffer, 'b') || strchr (message_buffer, 'B'))
+        {
+            stopMotor (motorBlockB);
+        }
+        if (strchr (message_buffer, 'c') || strchr (message_buffer, 'C'))
+        {
+            stopMotor (motorBlockC);
+        }
+        if (strchr (message_buffer, 'd') || strchr (message_buffer, 'D'))
+        {
+            stopMotor (motorBlockD);
         }
     }
 //    ///Lower flag if terminating message found

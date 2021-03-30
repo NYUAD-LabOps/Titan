@@ -30,12 +30,12 @@ struct instruction parseLine(struct node *input)
             j++;
         }
     }
-    //replace Es with Ds
+    //replace Es with @s
     //required for proper functioning of ASCII to float
     for (i = 0; i < NXD_MQTT_MAX_MESSAGE_LENGTH; i++)
     {
         if (trimLine[i] == 'E' || trimLine[i] == 'e')
-            trimLine[i] = 'D';
+            trimLine[i] = '@';
     }
 
     data.cmd[0] = input->content[0];
@@ -82,8 +82,12 @@ struct instruction parseLine(struct node *input)
 //        char searchStr[5] = "HIGH";
         data.x = returnNumber (trimLine, 'x');
         data.y = returnNumber (trimLine, 'y');
-        data.z = returnNumber (trimLine, 'z');
         data.a = returnNumber (trimLine, 'a');
+        data.z = returnNumber (trimLine, 'z');
+        data.b = returnNumber (trimLine, 'b');
+        data.c = returnNumber (trimLine, 'c');
+        data.d = returnNumber (trimLine, 'd');
+        data.t = returnNumber (trimLine, 't');
         data.f = returnNumber (trimLine, 'f');
     }
     else if (strcmp (data.cmd, "RLY") == 0)
