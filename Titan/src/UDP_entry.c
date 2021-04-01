@@ -194,7 +194,7 @@ char checkSecondaryHoming()
 //    for (i = 0; i < machineGlobalsBlock->numOfControllers; i++)
 //    {
 
-    ///Only one controller
+///Only one controller
     do
     {
         machineGlobalsBlock->UDPBuffer[0] = 't';
@@ -270,57 +270,72 @@ void processUDPRx(NX_PACKET *p_packet)
             nx_packet_release(p_packet);
         }
     }
-    else if (p_packet->nx_packet_prepend_ptr[0] == 'a')
+    else if (p_packet->nx_packet_prepend_ptr[0] == 'I')
     {
-        ///This section is for the one-to-many IP address assignment functions, which are
-        /// currently disabled.
-        if (p_packet->nx_packet_prepend_ptr[1] == 'a')
+        ///This is an INI data request from the Secondary
+        if (p_packet->nx_packet_prepend_ptr[1] == 'N' && p_packet->nx_packet_prepend_ptr[2] == 'I')
         {
-            ///This is some kind of IP assignment packet.
-
+            ///Send all INI data to Secondary.
+            UDPSendINI (motorBlockX);
+            UDPSendINI (motorBlockY);
+            UDPSendINI (motorBlockA);
+            UDPSendINI (motorBlockZ);
+            UDPSendINI (motorBlockB);
+            UDPSendINI (motorBlockC);
+            UDPSendINI (motorBlockD);
+        }
+    }
+//    else if (p_packet->nx_packet_prepend_ptr[0] == 'a')
+//    {
+//        ///This section is for the one-to-many IP address assignment functions, which are
+//        /// currently disabled.
 //        if (p_packet->nx_packet_prepend_ptr[1] == 'a')
 //        {
-
-///This packet is a request for the next available IP address
-//        ULONG srcIP;
-//        ULONG testIP;
-//        printf("\nNewIP...");
-            ULONG srcIP;
-            UINT srcPort;
-
-            nx_udp_source_extract (p_packet, &srcIP, &srcPort);
-
-            memcpy ((p_packet->nx_packet_prepend_ptr + 2), &machineGlobalsBlock->nextIP, 8);
-
-            status = nx_udp_socket_send(&machineGlobalsBlock->g_udp_sck, p_packet, srcIP, srcPort);
-
-            machineGlobalsBlock->nextIP++;
+//            ///This is some kind of IP assignment packet.
+//
+////        if (p_packet->nx_packet_prepend_ptr[1] == 'a')
+////        {
+//
+/////This packet is a request for the next available IP address
+////        ULONG srcIP;
+////        ULONG testIP;
+////        printf("\nNewIP...");
+//            ULONG srcIP;
+//            UINT srcPort;
+//
+//            nx_udp_source_extract (p_packet, &srcIP, &srcPort);
+//
+//            memcpy ((p_packet->nx_packet_prepend_ptr + 2), &machineGlobalsBlock->nextIP, 8);
+//
+//            status = nx_udp_socket_send(&machineGlobalsBlock->g_udp_sck, p_packet, srcIP, srcPort);
+//
+//            machineGlobalsBlock->nextIP++;
+////        }
+////        else if (p_packet->nx_packet_prepend_ptr[1] == 'b')
+////        {
+////            ///This is a Secondary reporting its new IP.
+////
+////        }
 //        }
 //        else if (p_packet->nx_packet_prepend_ptr[1] == 'b')
 //        {
-//            ///This is a Secondary reporting its new IP.
+//            ///This is a Setup Mode packet.
+//            ULONG srcIP;
+//            UINT srcPort;
 //
+//            nx_udp_source_extract (p_packet, &srcIP, &srcPort);
+//
+//            machineGlobalsBlock->controllerBlocks[machineGlobalsBlock->controllerIndex]->ipAdd = srcIP;
+//            machineGlobalsBlock->controllerIndex++;
+//            printf ("\nSetup Packet.");
+//            if (machineGlobalsBlock->controllerIndex >= machineGlobalsBlock->numOfControllers)
+//            {
+////                status = tx_event_flags_set (&g_setup_mode_complete, 1, TX_OR);
+//                machineGlobalsBlock->controllerIndex = 0;
+//                printf ("\nSetup Complete Event.");
+//            }
 //        }
-        }
-        else if (p_packet->nx_packet_prepend_ptr[1] == 'b')
-        {
-            ///This is a Setup Mode packet.
-            ULONG srcIP;
-            UINT srcPort;
-
-            nx_udp_source_extract (p_packet, &srcIP, &srcPort);
-
-            machineGlobalsBlock->controllerBlocks[machineGlobalsBlock->controllerIndex]->ipAdd = srcIP;
-            machineGlobalsBlock->controllerIndex++;
-            printf ("\nSetup Packet.");
-            if (machineGlobalsBlock->controllerIndex >= machineGlobalsBlock->numOfControllers)
-            {
-//                status = tx_event_flags_set (&g_setup_mode_complete, 1, TX_OR);
-                machineGlobalsBlock->controllerIndex = 0;
-                printf ("\nSetup Complete Event.");
-            }
-        }
-    }
+//    }
     else
     {
 ///A data packet was received.

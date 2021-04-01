@@ -71,8 +71,11 @@ struct instruction parseLine(struct node *input)
     {
         data.x = returnNumber (trimLine, 'x');
         data.y = returnNumber (trimLine, 'y');
-        data.z = returnNumber (trimLine, 'z');
         data.a = returnNumber (trimLine, 'a');
+        data.z = returnNumber (trimLine, 'z');
+        data.b = returnNumber (trimLine, 'b');
+        data.c = returnNumber (trimLine, 'c');
+        data.d = returnNumber (trimLine, 'd');
 
         data.f = returnNumber (trimLine, 'f');
         data.j = returnNumber (trimLine, 'j');
@@ -108,14 +111,15 @@ struct instruction parseLine(struct node *input)
     }
     else
     {
-        if(DEBUGGER) printf ("\nInvalid instruction - Parser");
+        if (DEBUGGER)
+            printf ("\nInvalid instruction - Parser");
     }
     return data;
 }
 
-double returnNumber(char * searchString, char searchChar){
+double returnNumber(char *searchString, char searchChar)
+{
     char *tmp;
-
 
 //    switch to upper if lower
     if (searchChar > 96 && searchChar < 123)
@@ -141,7 +145,7 @@ double returnNumber(char * searchString, char searchChar){
 
         }
     }
-    else if (tmp = strchr (searchString +3, searchChar - 32))
+    else if (tmp = strchr (searchString + 3, searchChar - 32))
     {
         //check for valid data
         if (isdigit(*(tmp + 1)) || (*(tmp + 1) == '.' && isdigit(*(tmp + 2)))

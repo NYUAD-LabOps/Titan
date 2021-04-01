@@ -525,7 +525,7 @@ void commandHandler(struct instruction *data)
         {
             if (data->a != ~0)
             {
-                motorBlockA->stepSize = data->y;
+                motorBlockA->stepSize = data->a;
                 ///Get Forward Logic Level
                 if (strchr (data->cmdString, 'H'))
                 {
@@ -591,7 +591,7 @@ void commandHandler(struct instruction *data)
         {
             if (data->b != ~0)
             {
-                motorBlockB->stepSize = data->y;
+                motorBlockB->stepSize = data->b;
                 ///Get Forward Logic Level
                 if (strchr (data->cmdString, 'H'))
                 {
@@ -624,7 +624,7 @@ void commandHandler(struct instruction *data)
         {
             if (data->c != ~0)
             {
-                motorBlockC->stepSize = data->y;
+                motorBlockC->stepSize = data->c;
                 ///Get Forward Logic Level
                 if (strchr (data->cmdString, 'H'))
                 {
@@ -657,7 +657,7 @@ void commandHandler(struct instruction *data)
         {
             if (data->d != ~0)
             {
-                motorBlockD->stepSize = data->y;
+                motorBlockD->stepSize = data->d;
                 ///Get Forward Logic Level
                 if (strchr (data->cmdString, 'H'))
                 {
