@@ -22,8 +22,8 @@ void UDP_entry(void)
     ///Should be replaced with a proper wait flag.
     ip_init0 ();
     tx_thread_sleep (50);
-    while (machineGlobalsBlock->globalsInit != 1)
-        tx_thread_sleep (1);
+    while (machineGlobalsBlock->motorsInit != 1)
+        tx_thread_sleep (10);
     status = nx_ip_status_check (&g_ip0, NX_IP_INITIALIZE_DONE, &link_status, NX_WAIT_FOREVER);
     if (DEBUGGER)
     {
@@ -93,6 +93,19 @@ void UDP_entry(void)
     {
         printf ("\nUDP initialization complete.");
     }
+
+    while (machineGlobalsBlock->iniInit != 1)
+    {
+        tx_thread_sleep (50);
+    }
+
+    UDPSendINI (motorBlockX);
+    UDPSendINI (motorBlockY);
+    UDPSendINI (motorBlockA);
+    UDPSendINI (motorBlockZ);
+    UDPSendINI (motorBlockB);
+    UDPSendINI (motorBlockC);
+    UDPSendINI (motorBlockD);
 
     NX_PACKET *my_packet;
     NX_PACKET *receive_packet;
@@ -270,21 +283,21 @@ void processUDPRx(NX_PACKET *p_packet)
             nx_packet_release(p_packet);
         }
     }
-    else if (p_packet->nx_packet_prepend_ptr[0] == 'I')
-    {
-        ///This is an INI data request from the Secondary
-        if (p_packet->nx_packet_prepend_ptr[1] == 'N' && p_packet->nx_packet_prepend_ptr[2] == 'I')
-        {
-            ///Send all INI data to Secondary.
-            UDPSendINI (motorBlockX);
-            UDPSendINI (motorBlockY);
-            UDPSendINI (motorBlockA);
-            UDPSendINI (motorBlockZ);
-            UDPSendINI (motorBlockB);
-            UDPSendINI (motorBlockC);
-            UDPSendINI (motorBlockD);
-        }
-    }
+//    else if (p_packet->nx_packet_prepend_ptr[0] == 'I')
+//    {
+//        ///This is an INI data request from the Secondary
+//        if (p_packet->nx_packet_prepend_ptr[1] == 'N' && p_packet->nx_packet_prepend_ptr[2] == 'I')
+//        {
+//            ///Send all INI data to Secondary.
+//            UDPSendINI (motorBlockX);
+//            UDPSendINI (motorBlockY);
+//            UDPSendINI (motorBlockA);
+//            UDPSendINI (motorBlockZ);
+//            UDPSendINI (motorBlockB);
+//            UDPSendINI (motorBlockC);
+//            UDPSendINI (motorBlockD);
+//        }
+//    }
 //    else if (p_packet->nx_packet_prepend_ptr[0] == 'a')
 //    {
 //        ///This section is for the one-to-many IP address assignment functions, which are

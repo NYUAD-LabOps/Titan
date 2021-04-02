@@ -232,7 +232,7 @@ struct machineGlobals
 {
     char globalsInit;
     char motorsInit;
-
+    char iniInit;
     ///Array of pointers to motor controller blocks, in series XYZABC.
     struct motorController *controllerBlocks[4];
     ///How many controller blocks there are.

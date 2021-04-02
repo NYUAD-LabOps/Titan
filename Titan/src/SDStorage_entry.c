@@ -71,6 +71,7 @@ void SDStorage_entry(void)
         loadINI ();
     }
 
+    machineGlobalsBlock->iniInit = 1;
 //    CHAR dir_name[] = "/testdir";
 //
 //

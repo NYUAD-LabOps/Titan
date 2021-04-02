@@ -214,6 +214,7 @@ void initGlobalsBlock()
 
     status = tx_block_allocate (&my_pool3, (VOID **) &memory_ptr, TX_NO_WAIT);
     machineGlobalsBlock = (struct machineGlobals *) memory_ptr;
+    machineGlobalsBlock->iniInit = 0;
     machineGlobalsBlock->receivingMsg = 0;
     machineGlobalsBlock->calibRunning = 0;
     machineGlobalsBlock->targetSpeed = DEFAULTSPEED;
@@ -423,6 +424,7 @@ void commandHandler(struct instruction *data)
         if (strchr (data->cmdString, 'y') || strchr (data->cmdString, 'Y'))
         {
             UDPHomeMotor (motorBlockY);
+            UDPHomeMotor (motorBlockA);
         }
         if (strchr (data->cmdString, 'z') || strchr (data->cmdString, 'Z'))
         {
