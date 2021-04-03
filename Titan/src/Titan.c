@@ -982,6 +982,36 @@ void autoBuildPlateLevel()
     ///The auto-level procedure requires a conductive or pressure-sensitive tool.
     /// The auto-level procedure is as follows:
     /// 1)Raise all four Z axes until the build plate touches the probe.
+
+    struct instruction data;
+
+    ///First, zero the axes and lower the build plate by 10mm. This is performed to ensure that the nozzle can clear the build plate.
+    UDPZeroAxes ();
+
+    data.x = ~0;
+    data.y = ~0;
+    data.z = 25;
+    data.a = ~0;
+    data.f = 1000;
+    G01 (&data);
+
+    ///Second, home the X and Y axes.
+    UDPHomeMotor (motorBlockX);
+    UDPHomeMotor (motorBlockY);
+    UDPHomeMotor (motorBlockA);
+
+    ///Third, send the nozzle to the center (-75, -75).
+    data.x = -75;
+    data.y = -75;
+    data.z = ~0;
+    data.a = ~0;
+    data.f = 1000;
+    G01 (&data);
+
+    UDPHomeMotor (motorBlockZ);
+    UDPHomeMotor (motorBlockB);
+    UDPHomeMotor (motorBlockC);
+    UDPHomeMotor (motorBlockD);
 }
 
 void calCmdHandler(struct instruction *data)

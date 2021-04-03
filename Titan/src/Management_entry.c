@@ -120,11 +120,11 @@ void Management_entry(void)
 
             if (1)
             {
-                if (1)
-                    printf ("\nTemperature Set: %f", tempSet);
-                if (1)
-                    printf ("\nTemperature Read: %f", T);
-                printf ("\nVoltage Read: %f", voltage);
+//                if (1)
+//                    printf ("\nTemperature Set: %f", tempSet);
+//                if (1)
+//                    printf ("\nTemperature Read: %f", T);
+//                printf ("\nVoltage Read: %f", voltage);
             }
 
             if (T < tempSet)
@@ -135,8 +135,8 @@ void Management_entry(void)
 //                err = g_ioport.p_api->pinWrite (IOPORT_PORT_02_PIN_06, IOPORT_LEVEL_HIGH); //fan
                 if (1)
                 {
-                    if (1)
-                        printf ("\nHeating...");
+//                    if (1)
+//                        printf ("\nHeating...");
                 }
             }
             else if (T > tempSet)
@@ -147,12 +147,12 @@ void Management_entry(void)
 //                err = g_ioport.p_api->pinWrite (IOPORT_PORT_02_PIN_06, IOPORT_LEVEL_HIGH); //fan
                 if (1)
                 {
-                    if (1)
-                        printf ("\nCooling...");
+//                    if (1)
+//                        printf ("\nCooling...");
                 }
             }
         } else{
-            printf ("\nVoltage out of range. Cooling...");
+//            printf ("\nVoltage out of range. Cooling...");
             err = g_ioport.p_api->pinWrite (IOPORT_PORT_08_PIN_04, IOPORT_LEVEL_LOW);
         }
         tx_thread_sleep (500);

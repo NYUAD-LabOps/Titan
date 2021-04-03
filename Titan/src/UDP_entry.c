@@ -757,7 +757,7 @@ double UDPGetPosition(struct motorController *motorBlock)
     do
     {
         machineGlobalsBlock->UDPBuffer[0] = 'u';
-        machineGlobalsBlock->UDPBuffer[1] = 'x';
+        machineGlobalsBlock->UDPBuffer[1] = motorBlock->controlCode;
 //        switch (axis)
 //        {
 //            case 'x':

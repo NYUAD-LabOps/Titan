@@ -104,8 +104,8 @@ void G01(struct instruction *data)
     if (machineGlobalsBlock->motorFreqSet != 0)
     {
         UDPSetMotorFreqSet (motorBlockX);
-        UDPSetMotorFreqSet (motorBlockY);
-        UDPSetMotorFreqSet (motorBlockZ);
+//        UDPSetMotorFreqSet (motorBlockY);
+//        UDPSetMotorFreqSet (motorBlockZ);
         machineGlobalsBlock->motorFreqSet = 0;
     }
 
@@ -156,11 +156,17 @@ void G01(struct instruction *data)
 
     UDPSetTargetVelocity (motorBlockX, targetVelocityVector[0]);
     UDPSetTargetVelocity (motorBlockY, targetVelocityVector[1]);
+    UDPSetTargetVelocity (motorBlockA, targetVelocityVector[1]);
     UDPSetTargetVelocity (motorBlockZ, targetVelocityVector[2]);
+    UDPSetTargetVelocity (motorBlockB, targetVelocityVector[2]);
+    UDPSetTargetVelocity (motorBlockC, targetVelocityVector[2]);
+    UDPSetTargetVelocity (motorBlockD, targetVelocityVector[2]);
 //    UDPSetTargetVelocity (motorBlockA, extruderSpeed);
 
-    R_BSP_SoftwareDelay (timeInt, BSP_DELAY_UNITS_MILLISECONDS);
-
+    UINT tmp;
+    tx_thread_priority_change(tx_thread_identify(), 0, &tmp);
+    tx_thread_sleep (timeInt);
+    tx_thread_priority_change(tx_thread_identify(), tmp, &tmp);
     ///The above do-while loop continues as long as the percent error of
     /// any of the motor positions, compared to the target position, is found
     /// to be too great.
@@ -173,7 +179,11 @@ void G01(struct instruction *data)
         ///There is no G01 to follow, stop the motors.
         stopMotor (motorBlockX);
         stopMotor (motorBlockY);
+        stopMotor (motorBlockA);
         stopMotor (motorBlockZ);
+        stopMotor (motorBlockB);
+        stopMotor (motorBlockC);
+        stopMotor (motorBlockD);
 //        stopMotor (motorBlockA);
     }
 
