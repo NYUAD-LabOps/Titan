@@ -1001,16 +1001,57 @@ void autoBuildPlateLevel()
     UDPHomeMotor (motorBlockA);
 
     ///Third, send the nozzle to the center (-75, -75).
-    data.x = -75;
-    data.y = -75;
+    data.x = -100;
+    data.y = -100;
     data.z = ~0;
     data.a = ~0;
     data.f = 1000;
     G01 (&data);
 
+    ///Fourth, home the Z-axis. All motors.
     UDPHomeMotor (motorBlockZ);
     UDPHomeMotor (motorBlockB);
     UDPHomeMotor (motorBlockC);
+    UDPHomeMotor (motorBlockD);
+
+    ///Finally, we need to do a homing routine for each Z-axis motor in its respective corner.
+    /// This involves simply moving (G01) to each corner of the build plate and performing a homing operation
+    /// for each respective motor.
+
+    ///1
+    data.x = -200;
+    data.y = -10;
+    data.z = ~0;
+    data.a = ~0;
+    data.f = 1000;
+    G01 (&data);
+    UDPHomeMotor (motorBlockZ);
+
+    ///2
+    data.x = -10;
+    data.y = -10;
+    data.z = ~0;
+    data.a = ~0;
+    data.f = 1000;
+    G01 (&data);
+    UDPHomeMotor (motorBlockB);
+
+    ///3
+    data.x = -200;
+    data.y = -150;
+    data.z = ~0;
+    data.a = ~0;
+    data.f = 1000;
+    G01 (&data);
+    UDPHomeMotor (motorBlockC);
+
+    ///4
+    data.x = -10;
+    data.y = -150;
+    data.z = ~0;
+    data.a = ~0;
+    data.f = 1000;
+    G01 (&data);
     UDPHomeMotor (motorBlockD);
 }
 

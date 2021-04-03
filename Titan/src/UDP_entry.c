@@ -96,7 +96,7 @@ void UDP_entry(void)
 
     while (machineGlobalsBlock->iniInit != 1)
     {
-        tx_thread_sleep (50);
+        tx_thread_sleep (500);
     }
 
     UDPSendINI (motorBlockX);

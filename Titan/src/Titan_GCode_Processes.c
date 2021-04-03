@@ -64,7 +64,7 @@ void G01(struct instruction *data)
         ///We set the target position to the current position
         /// if there is no valid data. This will mean that the motor does
         /// not move from its current location.
-        targetPos[0] = UDPGetPosition (motorBlockX);
+        targetPos[0] = startPos[0];
     }
     if (data->y != ~0)
     {
@@ -76,7 +76,7 @@ void G01(struct instruction *data)
         ///We set the target position to the current position
         /// if there is no valid data. This will mean that the motor does
         /// not move from its current location.
-        targetPos[1] = UDPGetPosition (motorBlockY);
+        targetPos[1] = startPos[1];
     }
     if (data->z != ~0)
     {
@@ -88,13 +88,13 @@ void G01(struct instruction *data)
         ///We set the target position to the current position
         /// if there is no valid data. This will mean that the motor does
         /// not move from its current location.
-        targetPos[2] = UDPGetPosition (motorBlockZ);
+        targetPos[2] = startPos[2];
     }
 
     ///We now have the target position and can calculate the line vector.
-    lineVector[0] = (targetPos[0] - UDPGetPosition (motorBlockX));
-    lineVector[1] = (targetPos[1] - UDPGetPosition (motorBlockY));
-    lineVector[2] = (targetPos[2] - UDPGetPosition (motorBlockZ));
+    lineVector[0] = (targetPos[0] - startPos[0]);
+    lineVector[1] = (targetPos[1] - startPos[1]);
+    lineVector[2] = (targetPos[2] - startPos[2]);
 
     ///Calculate magnitude.
     lineVectorMag = sqrt (pow (lineVector[0], 2) + pow (lineVector[1], 2) + pow (lineVector[2], 2));
@@ -108,8 +108,6 @@ void G01(struct instruction *data)
 //        UDPSetMotorFreqSet (motorBlockZ);
         machineGlobalsBlock->motorFreqSet = 0;
     }
-
-
 
     ///Get the movement time.
     time = lineVectorMag / targetSpeed;
@@ -164,9 +162,9 @@ void G01(struct instruction *data)
 //    UDPSetTargetVelocity (motorBlockA, extruderSpeed);
 
     UINT tmp;
-    tx_thread_priority_change(tx_thread_identify(), 0, &tmp);
+//    tx_thread_priority_change(tx_thread_identify(), 0, &tmp);
     tx_thread_sleep (timeInt);
-    tx_thread_priority_change(tx_thread_identify(), tmp, &tmp);
+//    tx_thread_priority_change(tx_thread_identify(), tmp, &tmp);
     ///The above do-while loop continues as long as the percent error of
     /// any of the motor positions, compared to the target position, is found
     /// to be too great.

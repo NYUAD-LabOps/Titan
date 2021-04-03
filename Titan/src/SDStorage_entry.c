@@ -94,3 +94,100 @@ void SDStorage_entry(void)
 
 //     fx_media_close(&g_fx_media0);
 }
+
+//void rebuildLinkedListFromSD()
+//{
+//    UINT fx_return;
+//    ULONG actual_length = 0;
+//    ULONG length_tmp;
+//    int i;
+//
+//    ///Go to the G-code buffer index location
+//    fx_return = fx_file_seek (&my_file, machineGlobalsBlock->USBFileIndex);
+//    if (fx_return != FX_SUCCESS)
+//    {
+//        if (DEBUGGER)
+//            printf ("\nFile seek fail.");
+//    }
+//    ///Attempt to read 500 bytes
+//    fx_return = fx_file_read (&my_file, machineGlobalsBlock->USBBufferB, 500, &actual_length);
+//    if (fx_return != FX_SUCCESS)
+//    {
+//        if (DEBUGGER)
+//            printf ("\nFile read fail.");
+//    }
+//    ///Create a new link using the string between each \n
+//    i = 0;
+//    while (i < actual_length)
+//    {
+//        if (isInRange (machineGlobalsBlock->USBBufferB[i]) == 1)
+//        {
+//            insertLink ((machineGlobalsBlock->USBBufferB + i));
+//            i += strlen ((machineGlobalsBlock->USBBufferB + i));
+//        }
+//        while (isInRange (machineGlobalsBlock->USBBufferB[i]) == 0 && i < actual_length)
+//        {
+//            i++;
+//        }
+//
+//    }
+//
+//    ///If the number of bytes read is less than 500, the end of the file has been reached
+//    if (actual_length < 500)
+//    {
+//        machineGlobalsBlock->USBBufferHasData = 0;
+//        machineGlobalsBlock->USBFileIndex = 0;
+//        ///Rebuild it
+////        printf ("\nG-code buffer rebuilding...");
+//        ///End of file reached - rebuild it for a clean slate
+//        fx_return = fx_file_close (&my_file);
+//        if (fx_return != FX_SUCCESS)
+//        {
+//            if (DEBUGGER)
+//                printf ("\nCould not create G-code buffer1.");
+//
+//        }
+//        fx_return = fx_file_delete (machineGlobalsBlock->p_media, "gcodeHelix.txt");
+//        if (fx_return != FX_SUCCESS)
+//        {
+//            if (DEBUGGER)
+//                printf ("\nCould not create G-code buffer2.");
+//
+//        }
+//        fx_return = fx_media_flush (machineGlobalsBlock->p_media);
+//        if (fx_return != FX_SUCCESS)
+//        {
+//            if (DEBUGGER)
+//                printf ("\nCould not create G-code buffer3.");
+//
+//        }
+//        fx_return = fx_file_create (machineGlobalsBlock->p_media, "gcodeHelix.txt");
+//        if (fx_return != FX_SUCCESS)
+//        {
+//            if (DEBUGGER)
+//                printf ("\nCould not create G-code buffer4.");
+//
+//        }
+//
+//        fx_return = fx_media_flush (machineGlobalsBlock->p_media);
+//
+//        // Open that file
+//        fx_return = fx_file_open(machineGlobalsBlock->p_media, &my_file, "gcodeHelix.txt",
+//                                 FX_OPEN_FOR_READ | FX_OPEN_FOR_WRITE);
+//        if (fx_return != FX_SUCCESS)
+//        {
+//            if (DEBUGGER)
+//                printf ("\nCould not open G-code buffer.");
+//
+//        }
+//    }
+//    else
+//    {
+//        ///Set new file index - there is more data
+//        machineGlobalsBlock->USBFileIndex += actual_length;
+//    }
+//
+//    ///Clear local buffer
+//    memset (machineGlobalsBlock->USBBufferB, 0, actual_length);
+////    printf ("\nLinked list rebuilt.");
+//}
