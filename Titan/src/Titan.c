@@ -215,6 +215,7 @@ void initGlobalsBlock()
     status = tx_block_allocate (&my_pool3, (VOID **) &memory_ptr, TX_NO_WAIT);
     machineGlobalsBlock = (struct machineGlobals *) memory_ptr;
     machineGlobalsBlock->iniInit = 0;
+    machineGlobalsBlock->printJob = 0;
     machineGlobalsBlock->receivingMsg = 0;
     machineGlobalsBlock->calibRunning = 0;
     machineGlobalsBlock->targetSpeed = DEFAULTSPEED;
@@ -267,22 +268,22 @@ char *initUSBBuffer_Pool(UINT size)
     return memory_ptr;
 }
 
-char *initUSBBuffer_PoolB(UINT size)
-{
-    unsigned char *memory_ptr;
-    UINT status;
-    ///Create pool
-    status = tx_byte_pool_create(&USB_Byte_PoolB, "usb_byte_pool", (VOID *) 0x20070000, size + 64);
-
-    ///Allocate bytes
-    status = tx_byte_allocate (&USB_Byte_PoolB, (VOID **) &memory_ptr, size, TX_NO_WAIT);
-    if (status != TX_SUCCESS)
-    {
-        printf ("USB Buffer Init Failed.");
-    }
-    memset (memory_ptr, 0, size);
-    return memory_ptr;
-}
+//char *initUSBBuffer_PoolB(UINT size)
+//{
+//    unsigned char *memory_ptr;
+//    UINT status;
+//    ///Create pool
+//    status = tx_byte_pool_create(&USB_Byte_PoolB, "usb_byte_pool", (VOID *) 0x20070000, size + 64);
+//
+//    ///Allocate bytes
+//    status = tx_byte_allocate (&USB_Byte_PoolB, (VOID **) &memory_ptr, size, TX_NO_WAIT);
+//    if (status != TX_SUCCESS)
+//    {
+//        printf ("USB Buffer Init Failed.");
+//    }
+//    memset (memory_ptr, 0, size);
+//    return memory_ptr;
+//}
 
 //insert link at end of buffer
 struct node *insertLink(char *content)
@@ -309,7 +310,7 @@ struct node *insertLink(char *content)
         current = link;
         currentPrint = link;
         ///Raise the event flag to indicate a linked list node is available for the Main thread.
-        status = tx_event_flags_set (&g_linked_list_flags, 1, TX_OR);
+//        status = tx_event_flags_set (&g_linked_list_flags, 1, TX_OR);
     }
     else
     {
@@ -965,10 +966,65 @@ void commandHandler(struct instruction *data)
         autoBuildPlateLevel ();
 
     }
+    else if (strcmp (data->cmd, "PRJ") == 0)
+    {
+        ///Auto-level
+        if (DEBUGGER)
+            printf ("\nRun print job...");
+
+        printJob ();
+
+    }
     else
     {
         if (DEBUGGER)
             printf ("\nInvalid instruction - Main");
+    }
+}
+
+void printJob()
+{
+    ///Initialize global print job flags, GCode file, and linked list.
+
+
+    ///Open gcode file.
+    openGCode ();
+
+    autoBuildPlateLevel();
+    ///This call to rebuildLinkedListFromSD() initializes the linked list buffer and sets up
+    /// the machineGlobalsBlock->USBBufferHasData flag so posCalc can continue to rebuild the list as needed.
+    rebuildLinkedListFromSD ();
+    machineGlobalsBlock->printJob = 1;
+}
+
+void openGCode()
+{
+    UINT status;
+    unsigned char *memory_ptr;
+
+    status = fx_file_open(&g_fx_media0, &machineGlobalsBlock->gcodeFile, "testGCode.gcode", FX_OPEN_FOR_READ);
+
+    if (status == FX_SUCCESS)
+    {
+        printf ("\nFile open s");
+        status = fx_file_seek (&machineGlobalsBlock->gcodeFile, 0);
+        machineGlobalsBlock->USBFileIndex = 0;
+
+        ///Create pool
+        status = tx_byte_pool_create(&USB_Byte_PoolB, "usb_byte_pool", (VOID *) 0x20070000, 2000);
+
+        ///Allocate bytes
+        status = tx_byte_allocate (&USB_Byte_PoolB, (VOID **) &memory_ptr, 1000, TX_NO_WAIT);
+        if (status != TX_SUCCESS)
+        {
+            printf ("USB Buffer Init Failed.");
+        }
+        memset (memory_ptr, 0, 2000);
+        machineGlobalsBlock->USBBufferB = memory_ptr;
+    }
+    else
+    {
+        printf ("\nCould not open GCode file.");
     }
 }
 
@@ -1248,7 +1304,7 @@ double percentError(double target, double actual)
 
 char isInRange(char in)
 {
-    if ((in > 44 && in < 58) || (in > 64 && in < 91) || (in > 96 && in < 123))
+    if ((in > 44 && in < 58) || (in > 64 && in < 91) || (in > 96 && in < 123) || in == 32)
     {
         return 1;
     }

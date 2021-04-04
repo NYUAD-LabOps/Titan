@@ -233,6 +233,7 @@ struct machineGlobals
     char globalsInit;
     char motorsInit;
     char iniInit;
+    char printJob;
     ///Array of pointers to motor controller blocks, in series XYZABC.
     struct motorController *controllerBlocks[4];
     ///How many controller blocks there are.
@@ -335,3 +336,10 @@ void rxFile(long long fileSize);
 void serialHandler(char *uartRx);
 void loadINI();
 void saveINI();
+void rebuildLinkedListFromSD ();
+void printJob();
+void openGCode();
+void autoBuildPlateLevel();
+void calCmdHandler(struct instruction *data);
+void calRoutine(struct instruction *data, struct motorController *motorBlock, long int targetPosSteps, int targetFreq);
+char isInRange(char in);

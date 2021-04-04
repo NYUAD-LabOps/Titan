@@ -453,7 +453,7 @@
     <module id="module.driver.uart_on_sci_uart.1799514554">
       <property id="module.driver.uart.name" value="g_uart0"/>
       <property id="module.driver.uart.channel" value="6"/>
-      <property id="module.driver.uart.baud_rate" value="1843200"/>
+      <property id="module.driver.uart.baud_rate" value="115200"/>
       <property id="module.driver.uart.data_bits" value="module.driver.uart.data_bits.data_bits_8"/>
       <property id="module.driver.uart.parity" value="module.driver.uart.parity.parity_off"/>
       <property id="module.driver.uart.stop_bits" value="module.driver.uart.stop_bits.stop_bits_1"/>

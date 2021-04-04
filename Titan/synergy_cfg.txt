@@ -685,7 +685,7 @@ Synergy Configuration
       Instance "g_uart0 UART Driver on r_sci_uart"
         Name: g_uart0
         Channel: 6
-        Baud Rate: 1843200
+        Baud Rate: 115200
         Data Bits: 8bits
         Parity: None
         Stop Bits: 1bit

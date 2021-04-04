@@ -12,9 +12,9 @@ void posCalc_entry(void)
     /// position of each motor, in steps, into a position in mm, etc...
     while (1)
     {
-        if (machineGlobalsBlock->USBBufferHasData == 1 && machineGlobalsBlock->linkedListNodeCount < 6)
+        if (machineGlobalsBlock->USBBufferHasData == 1 && machineGlobalsBlock->linkedListNodeCount < 10 && machineGlobalsBlock->printJob == 1)
         {
-            rebuildLinkedList ();
+//            rebuildLinkedListFromSD ();
         }
 //
 //        if (machineGlobalsBlock->rebuildLinkedList == 1)

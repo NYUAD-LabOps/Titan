@@ -126,7 +126,8 @@ double returnNumber(char *searchString, char searchChar)
         searchChar -= 32;
 
     //check for upper or lower
-    if (tmp = strchr (searchString + 3, searchChar))
+    tmp = strchr (searchString + 3, searchChar);
+    if (tmp != NULL)
     {
         //has upper
         //check for valid data
@@ -145,25 +146,30 @@ double returnNumber(char *searchString, char searchChar)
 
         }
     }
-    else if (tmp = strchr (searchString + 3, searchChar - 32))
+    else
     {
-        //check for valid data
-        if (isdigit(*(tmp + 1)) || (*(tmp + 1) == '.' && isdigit(*(tmp + 2)))
-                || (*(tmp + 1) == '-' && isdigit(*(tmp + 2)))
-                || (*(tmp + 1) == '-' && *(tmp + 2) == '.' && isdigit(*(tmp + 3))))
+        ///No uppercase. Search for lowercase.
+        tmp = strchr (searchString + 3, (searchChar + 32));
+        if (tmp != NULL)
         {
-            //number field is a digit OR is a decimal + digit OR is a negative + digit OR  is a negative + decimal + digit
-            return atof (tmp + 1);
+            //check for valid data
+            if (isdigit(*(tmp + 1)) || (*(tmp + 1) == '.' && isdigit(*(tmp + 2)))
+                    || (*(tmp + 1) == '-' && isdigit(*(tmp + 2)))
+                    || (*(tmp + 1) == '-' && *(tmp + 2) == '.' && isdigit(*(tmp + 3))))
+            {
+                //number field is a digit OR is a decimal + digit OR is a negative + digit OR  is a negative + decimal + digit
+                return atof (tmp + 1);
 
-        }
-        else
-        {
-            //            invalid data
-            return ~0; //return error code
+            }
+            else
+            {
+                //            invalid data
+                return ~0; //return error code
 
+            }
+        } else{
+            return ~0;
         }
     }
-
-    return ~0;
 
 }

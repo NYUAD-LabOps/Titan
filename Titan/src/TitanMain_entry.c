@@ -28,7 +28,7 @@ void TitanMain_entry(void)
     printf ("\Titan controller initializing...");
     initGlobalsBlock ();
     initBuff ();
-    machineGlobalsBlock->USBBufferB = initUSBBuffer_PoolB (512);
+//    machineGlobalsBlock->USBBufferB = initUSBBuffer_PoolB (512);
     if (DEBUGGER)
     {
         printf ("\nMotor registers initializing...");

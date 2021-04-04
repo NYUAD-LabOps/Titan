@@ -82,7 +82,7 @@ const uart_on_sci_cfg_t g_uart0_cfg_extend =
 
 /** UART interface configuration */
 const uart_cfg_t g_uart0_cfg =
-{ .channel = 6, .baud_rate = 1843200, .data_bits = UART_DATA_BITS_8, .parity = UART_PARITY_OFF, .stop_bits =
+{ .channel = 6, .baud_rate = 115200, .data_bits = UART_DATA_BITS_8, .parity = UART_PARITY_OFF, .stop_bits =
           UART_STOP_BITS_1,
   .ctsrts_en = false, .p_callback = NULL, .p_context = &g_uart0, .p_extend = &g_uart0_cfg_extend,
 #define SYNERGY_NOT_DEFINED (1)                        

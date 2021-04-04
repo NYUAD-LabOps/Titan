@@ -11,20 +11,36 @@ void UARTWIFI_entry(void)
     }
     /* TODO: add your own code here */
     UCHAR uartRx[WIFI_PACKET_SIZE];
+    UCHAR controlCodeRxBuf[4];
+    memset (controlCodeRxBuf, 0, 4);
+    int i;
+    i = 0;
     memset (uartRx, 0, WIFI_PACKET_SIZE);
     static uart_cfg_t rx_uart_config;
     g_sf_comms0.p_api->open (g_sf_comms0.p_ctrl, g_sf_comms0.p_cfg);
 
-
-
     while (1)
     {
-        g_sf_comms0.p_api->read (g_sf_comms0.p_ctrl, uartRx, WIFI_PACKET_SIZE, TX_WAIT_FOREVER);
-//        printf ("\n%s", uartRx);
-        serialHandler (uartRx);
+        if (i >= 3)
+        {
+            controlCodeRxBuf[0] = controlCodeRxBuf[1];
+            controlCodeRxBuf[1] = controlCodeRxBuf[2];
+            i = 2;
+        }
 
-        ///Clear old data and relinquish.
-        memset (uartRx, 0, WIFI_PACKET_SIZE);
+        g_sf_comms0.p_api->read (g_sf_comms0.p_ctrl, (controlCodeRxBuf + i), 1, TX_WAIT_FOREVER);
+        i++;
+
+        if (strcmp (controlCodeRxBuf, "@@@") == 0)
+        {
+            g_sf_comms0.p_api->read (g_sf_comms0.p_ctrl, uartRx, WIFI_PACKET_SIZE, TX_WAIT_FOREVER);
+            //        printf ("\n%s", uartRx);
+            serialHandler (uartRx);
+
+            ///Clear old data and relinquish.
+            memset (uartRx, 0, WIFI_PACKET_SIZE);
+        }
+
         tx_thread_relinquish ();
     }
 }
@@ -40,11 +56,9 @@ void serialHandler(char *uartRx)
     sendACK[1] = 'C';
     sendACK[2] = 'K';
 
-
     ///In the case of a file transfer, don't ACK until the gcode file is ready for writing.
     /// For all other messages, send ACK at the end of processReceivedMsg(), to indicate to the GUI
     /// that the message has been received, and the controller is ready for more.
-
 
     fileSize = 0;
     switch (uartRx[0])
