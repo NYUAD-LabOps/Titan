@@ -59,7 +59,10 @@ void initMotors()
     motorBlockD->limit0Pin = IOPORT_PORT_00_PIN_00;
     genericMotorInit (motorBlockD);
 
-    motorInitT ();
+    motorBlockT->controlCode = 't';
+    motorBlockT->dirPin = IOPORT_PORT_04_PIN_09;
+    motorBlockT->stepPin = IOPORT_PORT_04_PIN_13;
+    genericMotorInit (motorBlockT);
 
     machineGlobalsBlock->motorsInit = 1;
 }
@@ -691,10 +694,10 @@ void commandHandler(struct instruction *data)
         }
         if (strchr (data->cmdString, 't') || strchr (data->cmdString, 'T'))
         {
-            if (data->a != ~0)
+            if (data->t != ~0)
             {
 
-                toolBlockA->motorBlock->stepSize = data->a;
+                toolBlockA->motorBlock->stepSize = data->t;
                 ///Get Forward Logic Level
                 if (strchr (data->cmdString, 'H'))
                 {
@@ -719,7 +722,7 @@ void commandHandler(struct instruction *data)
                     toolBlockA->motorBlock->homeSpeed = data->f;
                 }
 
-                UDPSendINI (motorBlockA);
+                UDPSendINI (toolBlockA->motorBlock);
             }
 
         }
@@ -879,11 +882,11 @@ void commandHandler(struct instruction *data)
         }
         if (strchr (data->cmdString, 't') || strchr (data->cmdString, 'T'))
         {
-//            if (data->a != ~0)
-//            {
-//                UDPSetMotorDir (motorBlockA, 1);
-//                UDPRunMotorFrequency (motorBlockA, data->a);
-//            }
+            if (data->t != ~0)
+            {
+                UDPSetMotorDir (toolBlockA->motorBlock, 1);
+                UDPRunMotorFrequency (toolBlockA->motorBlock, data->t);
+            }
 
         }
     }
@@ -956,6 +959,15 @@ void commandHandler(struct instruction *data)
             }
 
         }
+        if (strchr (data->cmdString, 't') || strchr (data->cmdString, 'T'))
+        {
+            if (data->t != ~0)
+            {
+                UDPSetMotorDir (toolBlockA->motorBlock, 0);
+                UDPRunMotorFrequency (toolBlockA->motorBlock, data->t);
+            }
+
+        }
     }
     else if (strcmp (data->cmd, "AUL") == 0)
     {
@@ -986,11 +998,11 @@ void printJob()
 {
     ///Initialize global print job flags, GCode file, and linked list.
 
-
     ///Open gcode file.
+//    machineGlobalsBlock->gCodeFileIndex = 0;
     openGCode ();
 
-    autoBuildPlateLevel();
+    autoBuildPlateLevel ();
     ///This call to rebuildLinkedListFromSD() initializes the linked list buffer and sets up
     /// the machineGlobalsBlock->USBBufferHasData flag so posCalc can continue to rebuild the list as needed.
     rebuildLinkedListFromSD ();
@@ -1002,13 +1014,12 @@ void openGCode()
     UINT status;
     unsigned char *memory_ptr;
 
-    status = fx_file_open(&g_fx_media0, &machineGlobalsBlock->gcodeFile, "testGCode.gcode", FX_OPEN_FOR_READ);
+    status = fx_file_open(&g_fx_media0, &machineGlobalsBlock->gcodeFile, "testGCode.gcode", FX_OPEN_FOR_READ_FAST);
 
     if (status == FX_SUCCESS)
     {
         printf ("\nFile open s");
         status = fx_file_seek (&machineGlobalsBlock->gcodeFile, 0);
-        machineGlobalsBlock->USBFileIndex = 0;
 
         ///Create pool
         status = tx_byte_pool_create(&USB_Byte_PoolB, "usb_byte_pool", (VOID *) 0x20070000, 2000);
@@ -1025,6 +1036,7 @@ void openGCode()
     else
     {
         printf ("\nCould not open GCode file.");
+        status = fx_file_seek (&machineGlobalsBlock->gcodeFile, 0);
     }
 }
 
@@ -1368,6 +1380,10 @@ void processReceivedMsg(char *message_buffer)
         if (strchr (message_buffer, 'd') || strchr (message_buffer, 'D'))
         {
             stopMotor (motorBlockD);
+        }
+        if (strchr (message_buffer, 't') || strchr (message_buffer, 'T'))
+        {
+            stopMotor (toolBlockA->motorBlock);
         }
     }
 //    ///Lower flag if terminating message found

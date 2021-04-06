@@ -35,7 +35,7 @@ void Management_entry(void)
     ioport_level_t level;
     ssp_err_t err;
 
-    double tempSet = 100.0;
+    double tempSet = 220.0;
 
     while (machineGlobalsBlock->globalsInit != 1)
     {
@@ -123,7 +123,7 @@ void Management_entry(void)
 //                if (1)
 //                    printf ("\nTemperature Set: %f", tempSet);
 //                if (1)
-//                    printf ("\nTemperature Read: %f", T);
+//                printf ("\nTemperature Read: %f", T);
 //                printf ("\nVoltage Read: %f", voltage);
             }
 
@@ -155,7 +155,7 @@ void Management_entry(void)
 //            printf ("\nVoltage out of range. Cooling...");
             err = g_ioport.p_api->pinWrite (IOPORT_PORT_08_PIN_04, IOPORT_LEVEL_LOW);
         }
-        tx_thread_sleep (500);
+        tx_thread_sleep (1000);
 //        tx_thread_suspend (tx_thread_identify ());
     }
 }

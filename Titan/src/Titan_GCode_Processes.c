@@ -152,13 +152,41 @@ void G01(struct instruction *data)
     targetVelocityVector[1] = (targetSpeed * newUnitVector[1]);
     targetVelocityVector[2] = (targetSpeed * newUnitVector[2]);
 
-    UDPSetTargetVelocity (motorBlockX, targetVelocityVector[0]);
-    UDPSetTargetVelocity (motorBlockY, targetVelocityVector[1]);
-    UDPSetTargetVelocity (motorBlockA, targetVelocityVector[1]);
-    UDPSetTargetVelocity (motorBlockZ, targetVelocityVector[2]);
-    UDPSetTargetVelocity (motorBlockB, targetVelocityVector[2]);
-    UDPSetTargetVelocity (motorBlockC, targetVelocityVector[2]);
-    UDPSetTargetVelocity (motorBlockD, targetVelocityVector[2]);
+    if (targetVelocityVector[0] != 0)
+    {
+        UDPSetTargetVelocity (motorBlockX, targetVelocityVector[0]);
+    }
+    else
+    {
+        stopMotor (motorBlockX);
+    }
+
+    if (targetVelocityVector[1] != 0)
+    {
+        UDPSetTargetVelocity (motorBlockY, targetVelocityVector[1]);
+        UDPSetTargetVelocity (motorBlockA, targetVelocityVector[1]);
+    }
+    else
+    {
+        stopMotor (motorBlockY);
+        stopMotor (motorBlockA);
+    }
+
+    if (targetVelocityVector[2] != 0)
+    {
+        UDPSetTargetVelocity (motorBlockZ, targetVelocityVector[2]);
+        UDPSetTargetVelocity (motorBlockB, targetVelocityVector[2]);
+        UDPSetTargetVelocity (motorBlockC, targetVelocityVector[2]);
+        UDPSetTargetVelocity (motorBlockD, targetVelocityVector[2]);
+    }
+    else
+    {
+        stopMotor(motorBlockZ);
+        stopMotor(motorBlockB);
+        stopMotor(motorBlockC);
+        stopMotor(motorBlockD);
+    }
+
 //    UDPSetTargetVelocity (motorBlockA, extruderSpeed);
 
     UINT tmp;

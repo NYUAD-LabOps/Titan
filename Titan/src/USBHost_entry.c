@@ -437,11 +437,12 @@ void saveINI()
     memcpy ((machineGlobalsBlock->local_buffer + (4 * length_tmp)), motorBlockB, length_tmp);
     memcpy ((machineGlobalsBlock->local_buffer + (5 * length_tmp)), motorBlockC, length_tmp);
     memcpy ((machineGlobalsBlock->local_buffer + (6 * length_tmp)), motorBlockD, length_tmp);
+    memcpy ((machineGlobalsBlock->local_buffer + (7 * length_tmp)), motorBlockT, length_tmp);
 
 
 //    printf ("\nWriting INI data...");
     // Write the file in blocks
-    fx_return = fx_file_write (&machineGlobalsBlock->iniFile, machineGlobalsBlock->local_buffer, (7 * length_tmp));
+    fx_return = fx_file_write (&machineGlobalsBlock->iniFile, machineGlobalsBlock->local_buffer, (8 * length_tmp));
     if (fx_return != FX_SUCCESS)
     {
         if (DEBUGGER)
@@ -457,7 +458,7 @@ void saveINI()
         printf ("\nINI save complete.");
 
 ///Clear local buffer to prevent errors with other USB operations
-    memset (machineGlobalsBlock->local_buffer, 0, (7 * length_tmp));
+    memset (machineGlobalsBlock->local_buffer, 0, (8 * length_tmp));
 
     if (DEBUGGER)
         printf ("\nINI save complete.");
@@ -478,8 +479,8 @@ void loadINI()
 
     if (DEBUGGER)
         printf ("\nLoading INI...");
-    ///Attempt to read 500 bytes
-    fx_return = fx_file_read (&machineGlobalsBlock->iniFile, machineGlobalsBlock->local_buffer, (7 * length_tmp), &actual_length);
+
+    fx_return = fx_file_read (&machineGlobalsBlock->iniFile, machineGlobalsBlock->local_buffer, (8 * length_tmp), &actual_length);
     if (fx_return != FX_SUCCESS)
     {
         if (DEBUGGER)
@@ -498,9 +499,10 @@ void loadINI()
     memcpy (motorBlockB, (machineGlobalsBlock->local_buffer + (4 * length_tmp)), length_tmp);
     memcpy (motorBlockC, (machineGlobalsBlock->local_buffer + (5 * length_tmp)), length_tmp);
     memcpy (motorBlockD, (machineGlobalsBlock->local_buffer + (6 * length_tmp)), length_tmp);
+    memcpy (motorBlockT, (machineGlobalsBlock->local_buffer + (7 * length_tmp)), length_tmp);
 
     if (DEBUGGER)
         printf ("\nINI data loaded.");
 ///Clear local buffer to prevent errors with other USB operations
-    memset (machineGlobalsBlock->local_buffer, 0, (7 * length_tmp));
+    memset (machineGlobalsBlock->local_buffer, 0, (8 * length_tmp));
 }

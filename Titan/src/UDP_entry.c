@@ -106,6 +106,7 @@ void UDP_entry(void)
     UDPSendINI (motorBlockB);
     UDPSendINI (motorBlockC);
     UDPSendINI (motorBlockD);
+    UDPSendINI (motorBlockT);
 
     NX_PACKET *my_packet;
     NX_PACKET *receive_packet;

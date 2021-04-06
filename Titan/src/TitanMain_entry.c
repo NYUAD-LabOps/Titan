@@ -264,7 +264,7 @@ void genericMotorInit(struct motorController *motorBlock)
 
 void toolInitA()
 {
-    toolBlockA->motorBlock = motorBlockA;
+    toolBlockA->motorBlock = motorBlockT;
 }
 
 void getTemp_callback(timer_callback_args_t *p_args)

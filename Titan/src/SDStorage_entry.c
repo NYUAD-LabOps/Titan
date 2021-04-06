@@ -107,8 +107,12 @@ void rebuildLinkedListFromSD()
         i = 0;
         do
         {
+
             fx_return = fx_file_read (&machineGlobalsBlock->gcodeFile, (machineGlobalsBlock->USBBufferB + i), 1,
                                       &actual_length);
+            if(fx_return != FX_SUCCESS){
+                printf("\nRead F.");
+            }
             isInRangeReturn = isInRange (machineGlobalsBlock->USBBufferB[i]);
             i++;
         }

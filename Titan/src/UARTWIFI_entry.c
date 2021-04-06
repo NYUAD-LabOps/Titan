@@ -39,6 +39,7 @@ void UARTWIFI_entry(void)
 
             ///Clear old data and relinquish.
             memset (uartRx, 0, WIFI_PACKET_SIZE);
+            memset (controlCodeRxBuf, 0, 3);
         }
 
         tx_thread_relinquish ();

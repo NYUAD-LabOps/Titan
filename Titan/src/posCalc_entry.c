@@ -10,11 +10,15 @@ void posCalc_entry(void)
 //    long int posStepsX, posStepsY, posStepsZ;
     ///The position calculator thread is responsible for translating the
     /// position of each motor, in steps, into a position in mm, etc...
+    UINT tmp;
     while (1)
     {
-        if (machineGlobalsBlock->USBBufferHasData == 1 && machineGlobalsBlock->linkedListNodeCount < 10 && machineGlobalsBlock->printJob == 1)
+        if (machineGlobalsBlock->USBBufferHasData == 1 && machineGlobalsBlock->linkedListNodeCount < 10
+                && machineGlobalsBlock->printJob == 1)
         {
-//            rebuildLinkedListFromSD ();
+            tx_thread_priority_change (tx_thread_identify (), 0, &tmp);
+            rebuildLinkedListFromSD ();
+            tx_thread_priority_change (tx_thread_identify (), tmp, &tmp);
         }
 //
 //        if (machineGlobalsBlock->rebuildLinkedList == 1)
@@ -23,7 +27,7 @@ void posCalc_entry(void)
 //            machineGlobalsBlock->rebuildLinkedList = 0;
 //        }
 
-        tx_thread_sleep (10);
+        tx_thread_sleep (1);
     }
 //    while(machineGlobalsBlock->motorsInit != 1) tx_thread_sleep(1);
 //    posStepsX = motorBlockX->posSteps;
@@ -41,7 +45,8 @@ void posCalc_entry(void)
 //    }
 }
 
-void posUpdater(struct motorController *motorBlock){
+void posUpdater(struct motorController *motorBlock)
+{
     ///The GPT timer for each motor calls an IRQ which handles
     /// toggling the level of the STEP output, thus producing the pulse wave. At the same
     /// time, this function also increments or decrements a counter which tracks the position

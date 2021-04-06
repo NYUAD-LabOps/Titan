@@ -79,6 +79,7 @@ struct instruction parseLine(struct node *input)
 
         data.f = returnNumber (trimLine, 'f');
         data.j = returnNumber (trimLine, 'j');
+        data.t = returnNumber (trimLine, 't');
     }
     else if ((strcmp (data.cmd, "M03") == 0) || (strcmp (data.cmd, "M04") == 0))
     {
