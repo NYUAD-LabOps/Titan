@@ -109,33 +109,36 @@ void G01(struct instruction *data)
         machineGlobalsBlock->motorFreqSet = 0;
     }
 
-    ///Get the movement time.
+    ///Get the movement time in minutes.
     time = lineVectorMag / targetSpeed;
-    time *= 60; ///Convert from minutes to seconds
-    time *= 1000; ///Convert from seconds to milliseconds
-    timeInt = time;
 
     ///Perform extruder calculations.
-    if (data->a != ~0)
+    if (data->t != ~0)
     {
+
         ///There is valid data for tool A, the extruder.
         ///This data is an extrusion length, which is the length of filament which
         /// must be extruded over the movement length. The appropriate speed can be found
         /// with the basic D=RT or distance = (rate)(time) formula.
         ///
-        /// The magnitude of the line vector, previously found, is the distance. The time can be found by the same
-        /// formula, using the target speed. Then, using the time, and the extrusion length as distance, the extruder
-        /// speed can be found.
+        /// The rate is simply the extrusion length (or distance) divided by the total movement time, which
+        /// was previously found as the variable time in minutes.
 
-        ///Get the time in seconds.
-        extruderSpeed = time / 1000;
-        extruderSpeed = (data->a / extruderSpeed);
+        extruderSpeed = ((data->t - UDPGetPosition (motorBlockT)) / time);
+
+        ///extruderSpeed is now the velocity required to extrude the required length over the course of the toolhead movement.
+        /// This velocity is in mm/min, as the secondary requires.
     }
     else
     {
         extruderSpeed = 0;
 //        stopMotor (motorBlockA);
     }
+
+    ///Finish time calculations for delay period.
+    time *= 60; ///Convert from minutes to seconds
+    time *= 1000; ///Convert from seconds to milliseconds
+    timeInt = time;
 
 //    UDPSetMotorFreqSet ('a', 0);
 //    UDPSetTargetVelocity ('a', extruderSpeed);
@@ -187,6 +190,14 @@ void G01(struct instruction *data)
         stopMotor(motorBlockD);
     }
 
+    if (extruderSpeed != 0)
+    {
+        UDPSetTargetVelocity (motorBlockT, extruderSpeed);
+    }
+    else
+    {
+        stopMotor (motorBlockT);
+    }
 //    UDPSetTargetVelocity (motorBlockA, extruderSpeed);
 
     UINT tmp;

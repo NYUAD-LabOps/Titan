@@ -1002,6 +1002,7 @@ void printJob()
 //    machineGlobalsBlock->gCodeFileIndex = 0;
     openGCode ();
 
+    UDPZeroAxes ();
     autoBuildPlateLevel ();
     ///This call to rebuildLinkedListFromSD() initializes the linked list buffer and sets up
     /// the machineGlobalsBlock->USBBufferHasData flag so posCalc can continue to rebuild the list as needed.
@@ -1201,26 +1202,26 @@ void calCmdHandler(struct instruction *data)
                 UDPCalibrateMotor (motorBlockZ, data->f, targetPosSteps, dir);
             }
         }
-        else if (strchr (data->cmdString, 'a') || strchr (data->cmdString, 'A'))
+        else if (strchr (data->cmdString, 't') || strchr (data->cmdString, 'T'))
         {
             ///The A-axis is in the command string. Is there a valid target position?
-            if (data->a != ~0)
+            if (data->t != ~0)
             {
                 ///Is the calibration in the forward or reverse direction?
                 if (strchr (data->cmdString, 'U'))
                 {
                     ///Forward
                     dir = 1;
-                    targetPosSteps = data->a;
+                    targetPosSteps = data->t;
                 }
                 else
                 {
                     dir = 0;
-                    targetPosSteps = data->a;
+                    targetPosSteps = data->t;
                     targetPosSteps = -targetPosSteps;
                 }
 
-                UDPCalibrateMotor (motorBlockA, data->f, targetPosSteps, dir);
+                UDPCalibrateMotor (toolBlockA->motorBlock, data->f, targetPosSteps, dir);
             }
         }
     }

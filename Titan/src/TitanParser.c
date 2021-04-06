@@ -53,6 +53,7 @@ struct instruction parseLine(struct node *input)
         data.y = returnNumber (trimLine, 'y');
         data.a = returnNumber (trimLine, 'a');
         data.f = returnNumber (trimLine, 'f');
+        data.t = returnNumber (trimLine, 't');
     }
     else if (strcmp (data.cmd, "G10") == 0)
     {
@@ -109,6 +110,7 @@ struct instruction parseLine(struct node *input)
         data.z = returnNumber (trimLine, 'z');
         data.a = returnNumber (trimLine, 'a');
         data.f = returnNumber (trimLine, 'f');
+        data.t = returnNumber (trimLine, 't');
     }
     else
     {
