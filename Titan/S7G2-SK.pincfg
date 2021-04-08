@@ -177,7 +177,9 @@
   </v1:configSetting>
   <v1:configSetting configurationId="p608.gpio_mode" altId="p608.gpio_mode.gpio_mode_in"/>
   <v1:configSetting configurationId="p202.gpio_mode" altId="p202.gpio_mode.gpio_mode_peripheral"/>
-  <v1:configSetting configurationId="adc0.an00" altId="adc0.an00.none"/>
+  <v1:configSetting configurationId="adc0.an00" altId="adc0.an00.p000">
+    <v1:connectionSetting altId="p000.adc0.an00"/>
+  </v1:configSetting>
   <v1:configSetting configurationId="adc0.an04" altId="adc0.an04.none"/>
   <v1:configSetting configurationId="adc0.an03" altId="adc0.an03.none"/>
   <v1:configSetting configurationId="adc0.an01" altId="adc0.an01.none"/>
@@ -729,4 +731,12 @@
   </v1:configSetting>
   <v1:configSetting configurationId="p505.gpio_pupd" altId="p505.gpio_pupd.gpio_pupd_ip_up"/>
   <v1:configSetting configurationId="p503.gpio_mode" altId="p503.gpio_mode.gpio_mode_peripheral"/>
+  <v1:configSetting configurationId="p803.gpio_mode" altId="p803.gpio_mode.gpio_mode_out.low"/>
+  <v1:configSetting configurationId="p000.gpio_mode" altId="p000.gpio_mode.gpio_mode_an"/>
+  <v1:configSetting configurationId="p003.gpio_mode" altId="p003.gpio_mode.disabled"/>
+  <v1:configSetting configurationId="p803.gpio_drivecapacity" altId="p803.gpio_speed.gpio_speed_high"/>
+  <v1:configSetting configurationId="p000" altId="p000.adc0.an00">
+    <v1:connectionSetting altId="adc0.an00.p000"/>
+  </v1:configSetting>
+  <v1:configSetting configurationId="p803" altId="p803.output.low"/>
 </v1:pinSettings>

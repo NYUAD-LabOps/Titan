@@ -570,7 +570,7 @@
       <property id="module.driver.adc.mode" value="module.driver.adc.mode.mode_continuous_scan"/>
       <property id="module.driver.adc.skip_internal_calibration" value="module.driver.adc.skip_internal_calibration.skip_internal_calibration_false"/>
       <property id="module.driver.adc.scan_mask" value="module.driver.adc.scan_mask.default"/>
-      <property id="module.driver.adc.channel_0" value="module.driver.adc.scan_mask.channel_0.unused"/>
+      <property id="module.driver.adc.channel_0" value="module.driver.adc.channel_0.used"/>
       <property id="module.driver.adc.channel_1" value="module.driver.adc.scan_mask.channel_1.unused"/>
       <property id="module.driver.adc.channel_2" value="module.driver.adc.channel_2.used"/>
       <property id="module.driver.adc.channel_3" value="module.driver.adc.scan_mask.channel_3.unused"/>
@@ -605,7 +605,7 @@
       <property id="module.driver.adc.priority_group_a" value="module.driver.adc.priority_group_a.group_a_priority_off"/>
       <property id="module.driver.adc.add_average_count" value="module.driver.adc.add_average_count.add_average_four"/>
       <property id="module.driver.adc.add_mask" value="module.driver.adc.add_mask.default"/>
-      <property id="module.driver.adc.add_mask.channel_0" value="module.driver.adc.add_mask.channel_0.unused"/>
+      <property id="module.driver.adc.add_mask.channel_0" value="module.driver.adc.add_mask.channel_0.used"/>
       <property id="module.driver.adc.add_mask.channel_1" value="module.driver.adc.add_mask.channel_1.unused"/>
       <property id="module.driver.adc.add_mask.channel_2" value="module.driver.adc.add_mask.channel_2.used"/>
       <property id="module.driver.adc.add_mask.channel_3" value="module.driver.adc.add_mask.channel_3.unused"/>

@@ -5,6 +5,10 @@
 #endif
 const ioport_pin_cfg_t g_bsp_pin_cfg_data[] = {
 	{
+		.pin = IOPORT_PORT_00_PIN_00,
+		.pin_cfg = (IOPORT_CFG_ANALOG_ENABLE),
+	},
+	{
 		.pin = IOPORT_PORT_00_PIN_02,
 		.pin_cfg = (IOPORT_CFG_ANALOG_ENABLE),
 	},
@@ -327,6 +331,10 @@ const ioport_pin_cfg_t g_bsp_pin_cfg_data[] = {
 	{
 		.pin = IOPORT_PORT_08_PIN_01,
 		.pin_cfg = (IOPORT_CFG_DRIVE_MID | IOPORT_CFG_PORT_DIRECTION_OUTPUT | IOPORT_CFG_PORT_OUTPUT_LOW),
+	},
+	{
+		.pin = IOPORT_PORT_08_PIN_03,
+		.pin_cfg = (IOPORT_CFG_DRIVE_HIGH | IOPORT_CFG_PORT_DIRECTION_OUTPUT | IOPORT_CFG_PORT_OUTPUT_LOW),
 	},
 	{
 		.pin = IOPORT_PORT_08_PIN_04,

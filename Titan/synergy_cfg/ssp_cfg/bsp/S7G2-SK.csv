@@ -3,7 +3,7 @@
 "AVCCUSBHS","26","USBHS0_AVCCUSBHS","","","","","","",""
 "AVSS0","156","ADC_AVSS0","","","","","","",""
 "AVSSUSBHS","28","USBHS0_AVSSUSBHS","","","","","","",""
-"P000","169","","","","","Disabled","","","ADC0: AN00
+"P000","169","ADC0_AN00","","","","Analog mode","","","ADC0: AN00
 CMP0: IVCMP2
 IRQ0: IRQ06"
 "P001","168","","","","","Disabled","","","ADC0: AN01
@@ -523,7 +523,7 @@ USBHS0: OVRCURA"
 SDHI1: DAT4"
 "P802","135","","","","","Disabled","","","GLCDC0: LCD_DATA02
 SDHI1: DAT5"
-"P803","136","","","","","Disabled","","","GLCDC0: LCD_DATA01
+"P803","136","GPIO","","High","","Output mode (Initial Low)","CMOS","None","GLCDC0: LCD_DATA01
 SDHI1: DAT6"
 "P804","137","GPIO","","High","","Output mode (Initial Low)","CMOS","None","GLCDC0: LCD_DATA00
 SDHI1: DAT7"

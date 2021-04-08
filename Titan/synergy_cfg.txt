@@ -502,7 +502,7 @@ Synergy Configuration
       Mode: Continuous Scan
       Internal Calibration During Open(): Enabled
       Channel Scan Mask (channel availability varies by MCU): Select channels below
-          Channel 0: Unused
+          Channel 0: Use in Normal/Group A
           Channel 1: Unused
           Channel 2: Use in Normal/Group A
           Channel 3: Unused
@@ -537,7 +537,7 @@ Synergy Configuration
       Group Priority (Valid only in Group Scan Mode): Group A cannot interrupt Group B
       Add/Average Count: Average four samples
       Addition/Averaging Mask (channel availability varies by MCU): Select channels to perform addition/averaging below
-          Channel 0: Disabled
+          Channel 0: Enabled
           Channel 1: Disabled
           Channel 2: Enabled
           Channel 3: Disabled

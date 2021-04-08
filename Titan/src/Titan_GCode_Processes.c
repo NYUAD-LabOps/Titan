@@ -22,7 +22,7 @@ void G01(struct instruction *data)
     double newUnitVector[3];
     double targetVelocityVector[3], targetVelocityVectorMag;
     double startPos[3], newPos[3], targetPos[3];
-    double targetSpeed;
+//    double targetSpeed;
     double tmpData;
     double extruderSpeed;
     int outOfBounds = 0;
@@ -47,7 +47,7 @@ void G01(struct instruction *data)
     {
         machineGlobalsBlock->targetSpeed = data->f;
     }
-    targetSpeed = machineGlobalsBlock->targetSpeed;
+//    targetSpeed = machineGlobalsBlock->targetSpeed;
 
 /// Compare the current position with the target position.
 ///To do this, calculate a line vector from the current to target position,
@@ -99,6 +99,29 @@ void G01(struct instruction *data)
     ///Calculate magnitude.
     lineVectorMag = sqrt (pow (lineVector[0], 2) + pow (lineVector[1], 2) + pow (lineVector[2], 2));
 
+    ///Calculate the latest unit vector.
+    newUnitVector[0] = (lineVector[0] / lineVectorMag);
+    newUnitVector[1] = (lineVector[1] / lineVectorMag);
+    newUnitVector[2] = (lineVector[2] / lineVectorMag);
+
+    ///The unit vector will provide the appropriate direction of each motor. Multiplying
+    /// the unit vector by the target speed will provide the target velocity vector.
+    ///Calculate the velocity vector.
+    targetVelocityVector[0] = (machineGlobalsBlock->targetSpeed * newUnitVector[0]);
+    targetVelocityVector[1] = (machineGlobalsBlock->targetSpeed * newUnitVector[1]);
+    targetVelocityVector[2] = (machineGlobalsBlock->targetSpeed * newUnitVector[2]);
+
+    if (targetVelocityVector[2] > 110.0)
+    {
+        ///The z-axis movement speed is too high. Calculate the reduction factor and recalculate
+        /// the velocity vector based on this.
+        double reductionFactor = (110.0 / targetVelocityVector[2]);
+        machineGlobalsBlock->targetSpeed *= reductionFactor;
+        targetVelocityVector[0] *= reductionFactor;
+        targetVelocityVector[1] *= reductionFactor;
+        targetVelocityVector[2] *= reductionFactor;
+    }
+
     ///Disable freqSet.
     /// This is something that should not be performed with every G01. A lot of extra packets from this.
     if (machineGlobalsBlock->motorFreqSet != 0)
@@ -110,7 +133,7 @@ void G01(struct instruction *data)
     }
 
     ///Get the movement time in minutes.
-    time = lineVectorMag / targetSpeed;
+    time = lineVectorMag / machineGlobalsBlock->targetSpeed;
 
     ///Perform extruder calculations.
     if (data->t != ~0)
@@ -143,18 +166,6 @@ void G01(struct instruction *data)
 //    UDPSetMotorFreqSet ('a', 0);
 //    UDPSetTargetVelocity ('a', extruderSpeed);
 
-    ///Calculate the latest unit vector.
-    newUnitVector[0] = (lineVector[0] / lineVectorMag);
-    newUnitVector[1] = (lineVector[1] / lineVectorMag);
-    newUnitVector[2] = (lineVector[2] / lineVectorMag);
-
-    ///The unit vector will provide the appropriate direction of each motor. Multiplying
-    /// the unit vector by the target speed will provide the target velocity vector.
-    ///Calculate the velocity vector.
-    targetVelocityVector[0] = (targetSpeed * newUnitVector[0]);
-    targetVelocityVector[1] = (targetSpeed * newUnitVector[1]);
-    targetVelocityVector[2] = (targetSpeed * newUnitVector[2]);
-
     if (targetVelocityVector[0] != 0)
     {
         UDPSetTargetVelocity (motorBlockX, targetVelocityVector[0]);
@@ -184,10 +195,10 @@ void G01(struct instruction *data)
     }
     else
     {
-        stopMotor(motorBlockZ);
-        stopMotor(motorBlockB);
-        stopMotor(motorBlockC);
-        stopMotor(motorBlockD);
+        stopMotor (motorBlockZ);
+        stopMotor (motorBlockB);
+        stopMotor (motorBlockC);
+        stopMotor (motorBlockD);
     }
 
     if (extruderSpeed != 0)
