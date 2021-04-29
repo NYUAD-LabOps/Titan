@@ -1002,7 +1002,7 @@ void printJob()
 //    machineGlobalsBlock->gCodeFileIndex = 0;
     openGCode ();
 
-    UDPZeroAxes ();
+//    UDPZeroAxes ();
     autoBuildPlateLevel ();
     ///This call to rebuildLinkedListFromSD() initializes the linked list buffer and sets up
     /// the machineGlobalsBlock->USBBufferHasData flag so posCalc can continue to rebuild the list as needed.
@@ -1046,6 +1046,84 @@ void openGCode()
 /// alleviated by the nozzle being brought to working temperature, but there remains some possibility
 /// of caramelized or charred material being left behind to impede the flow of current. Further investigation is
 /// required.
+//void autoBuildPlateLevel()
+//{
+//    ///The auto-level procedure requires a conductive or pressure-sensitive tool.
+//    /// The auto-level procedure is as follows:
+//    /// 1)Raise all four Z axes until the build plate touches the probe.
+//
+//    struct instruction data;
+//
+//    ///First, zero the axes and lower the build plate by 10mm. This is performed to ensure that the nozzle can clear the build plate.
+//    UDPZeroAxes ();
+//
+//    data.x = ~0;
+//    data.y = ~0;
+//    data.z = 25;
+//    data.a = ~0;
+//    data.f = 1000;
+//    G01 (&data);
+//
+//    ///Second, home the X and Y axes.
+//    UDPHomeMotor (motorBlockX);
+//    UDPHomeMotor (motorBlockY);
+//    UDPHomeMotor (motorBlockA);
+//
+//    ///Third, send the nozzle to the center (-75, -75).
+//    data.x = -100;
+//    data.y = -100;
+//    data.z = ~0;
+//    data.a = ~0;
+//    data.f = 1000;
+//    G01 (&data);
+//
+//    ///Fourth, home the Z-axis. All motors.
+//    UDPHomeMotor (motorBlockZ);
+//    UDPHomeMotor (motorBlockB);
+//    UDPHomeMotor (motorBlockC);
+//    UDPHomeMotor (motorBlockD);
+//
+//    ///Finally, we need to do a homing routine for each Z-axis motor in its respective corner.
+//    /// This involves simply moving (G01) to each corner of the build plate and performing a homing operation
+//    /// for each respective motor.
+//
+//    ///1
+//    data.x = -200;
+//    data.y = -10;
+//    data.z = ~0;
+//    data.a = ~0;
+//    data.f = 1000;
+//    G01 (&data);
+//    UDPHomeMotor (motorBlockZ);
+//
+//    ///2
+//    data.x = -10;
+//    data.y = -10;
+//    data.z = ~0;
+//    data.a = ~0;
+//    data.f = 1000;
+//    G01 (&data);
+//    UDPHomeMotor (motorBlockB);
+//
+//    ///3
+//    data.x = -200;
+//    data.y = -150;
+//    data.z = ~0;
+//    data.a = ~0;
+//    data.f = 1000;
+//    G01 (&data);
+//    UDPHomeMotor (motorBlockC);
+//
+//    ///4
+//    data.x = -10;
+//    data.y = -150;
+//    data.z = ~0;
+//    data.a = ~0;
+//    data.f = 1000;
+//    G01 (&data);
+//    UDPHomeMotor (motorBlockD);
+//}
+
 void autoBuildPlateLevel()
 {
     ///The auto-level procedure requires a conductive or pressure-sensitive tool.
@@ -1056,13 +1134,6 @@ void autoBuildPlateLevel()
 
     ///First, zero the axes and lower the build plate by 10mm. This is performed to ensure that the nozzle can clear the build plate.
     UDPZeroAxes ();
-
-    data.x = ~0;
-    data.y = ~0;
-    data.z = 25;
-    data.a = ~0;
-    data.f = 1000;
-    G01 (&data);
 
     ///Second, home the X and Y axes.
     UDPHomeMotor (motorBlockX);
@@ -1081,46 +1152,6 @@ void autoBuildPlateLevel()
     UDPHomeMotor (motorBlockZ);
     UDPHomeMotor (motorBlockB);
     UDPHomeMotor (motorBlockC);
-    UDPHomeMotor (motorBlockD);
-
-    ///Finally, we need to do a homing routine for each Z-axis motor in its respective corner.
-    /// This involves simply moving (G01) to each corner of the build plate and performing a homing operation
-    /// for each respective motor.
-
-    ///1
-    data.x = -200;
-    data.y = -10;
-    data.z = ~0;
-    data.a = ~0;
-    data.f = 1000;
-    G01 (&data);
-    UDPHomeMotor (motorBlockZ);
-
-    ///2
-    data.x = -10;
-    data.y = -10;
-    data.z = ~0;
-    data.a = ~0;
-    data.f = 1000;
-    G01 (&data);
-    UDPHomeMotor (motorBlockB);
-
-    ///3
-    data.x = -200;
-    data.y = -150;
-    data.z = ~0;
-    data.a = ~0;
-    data.f = 1000;
-    G01 (&data);
-    UDPHomeMotor (motorBlockC);
-
-    ///4
-    data.x = -10;
-    data.y = -150;
-    data.z = ~0;
-    data.a = ~0;
-    data.f = 1000;
-    G01 (&data);
     UDPHomeMotor (motorBlockD);
 }
 
