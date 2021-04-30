@@ -428,7 +428,7 @@ void commandHandler(struct instruction *data)
         if (strchr (data->cmdString, 'y') || strchr (data->cmdString, 'Y'))
         {
             UDPHomeMotor (motorBlockY);
-            UDPHomeMotor (motorBlockA);
+//            UDPHomeMotor (motorBlockA);
         }
         if (strchr (data->cmdString, 'z') || strchr (data->cmdString, 'Z'))
         {
@@ -1003,7 +1003,7 @@ void printJob()
     openGCode ();
 
 //    UDPZeroAxes ();
-    autoBuildPlateLevel ();
+//    autoBuildPlateLevel ();
     ///This call to rebuildLinkedListFromSD() initializes the linked list buffer and sets up
     /// the machineGlobalsBlock->USBBufferHasData flag so posCalc can continue to rebuild the list as needed.
     rebuildLinkedListFromSD ();

@@ -178,27 +178,27 @@ void G01(struct instruction *data)
     if (targetVelocityVector[1] != 0)
     {
         UDPSetTargetVelocity (motorBlockY, targetVelocityVector[1]);
-        UDPSetTargetVelocity (motorBlockA, targetVelocityVector[1]);
+//        UDPSetTargetVelocity (motorBlockA, targetVelocityVector[1]);
     }
     else
     {
         stopMotor (motorBlockY);
-        stopMotor (motorBlockA);
+//        stopMotor (motorBlockA);
     }
 
     if (targetVelocityVector[2] != 0)
     {
         UDPSetTargetVelocity (motorBlockZ, targetVelocityVector[2]);
-        UDPSetTargetVelocity (motorBlockB, targetVelocityVector[2]);
-        UDPSetTargetVelocity (motorBlockC, targetVelocityVector[2]);
-        UDPSetTargetVelocity (motorBlockD, targetVelocityVector[2]);
+//        UDPSetTargetVelocity (motorBlockB, targetVelocityVector[2]);
+//        UDPSetTargetVelocity (motorBlockC, targetVelocityVector[2]);
+//        UDPSetTargetVelocity (motorBlockD, targetVelocityVector[2]);
     }
     else
     {
         stopMotor (motorBlockZ);
-        stopMotor (motorBlockB);
-        stopMotor (motorBlockC);
-        stopMotor (motorBlockD);
+//        stopMotor (motorBlockB);
+//        stopMotor (motorBlockC);
+//        stopMotor (motorBlockD);
     }
 
     if (extruderSpeed != 0)
@@ -227,11 +227,11 @@ void G01(struct instruction *data)
         ///There is no G01 to follow, stop the motors.
         stopMotor (motorBlockX);
         stopMotor (motorBlockY);
-        stopMotor (motorBlockA);
+//        stopMotor (motorBlockA);
         stopMotor (motorBlockZ);
-        stopMotor (motorBlockB);
-        stopMotor (motorBlockC);
-        stopMotor (motorBlockD);
+//        stopMotor (motorBlockB);
+//        stopMotor (motorBlockC);
+//        stopMotor (motorBlockD);
 //        stopMotor (motorBlockA);
     }
 
