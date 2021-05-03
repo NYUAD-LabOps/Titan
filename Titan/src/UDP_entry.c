@@ -749,6 +749,20 @@ void UDPSetTargetVelocity(struct motorController *motorBlock, double velocity)
     UDPSend (motorBlock->ipAdd);
 }
 
+void UDPSendTargetPosSpeed(double posX, double posY, double posZ, double posT, double targetSpeed)
+{
+    machineGlobalsBlock->UDPBuffer[0] = 'b';
+
+
+    memcpy ((machineGlobalsBlock->UDPBuffer + 2), &posX, 8);
+    memcpy ((machineGlobalsBlock->UDPBuffer + 10), &posY, 8);
+    memcpy ((machineGlobalsBlock->UDPBuffer + 18), &posZ, 8);
+    memcpy ((machineGlobalsBlock->UDPBuffer + 26), &posT, 8);
+    memcpy ((machineGlobalsBlock->UDPBuffer + 34), &targetSpeed, 8);
+
+    UDPSend (0);
+}
+
 ///This function is used to get the current position of a target axis.
 double UDPGetPosition(struct motorController *motorBlock)
 {

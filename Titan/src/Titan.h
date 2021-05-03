@@ -16,7 +16,7 @@
 /// 8 bytes for data - 8 bytes is sufficient for a Double datatype, which is used for several
 /// motor descriptors.
 /// 10 bytes total.
-#define UDPMSGLENGTH 10
+#define UDPMSGLENGTH 50
 #define UDPTIMEOUT 10
 #define UDPTIMEOUTTICKS 50
 #define MAXERROR 1.0 /// %
@@ -255,7 +255,6 @@ struct machineGlobals
     ///This variable retains the target velocity for the toolhead.
     /// By default this is initialized to the default velocity defined
     /// in "Helix.h".
-    double targetSpeed;
     FX_MEDIA *p_media;
     CHAR volume[32];
     FX_FILE iniFile;
@@ -283,6 +282,11 @@ struct machineGlobals
     ///UDPRX is a flag which indicates if data has been received via UDP. Active HIGH.
     char UDPRX;
     char echoWaitStart;
+    double targetPosX;
+    double targetPosY;
+    double targetPosZ;
+    double targetPosT;
+    double targetSpeed;
 } *machineGlobalsBlock;
 
 /**This struct retains information relevant to instructions after they are parsed.
