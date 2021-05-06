@@ -32,65 +32,68 @@ void G01(struct instruction *data)
     //    ssp_err_t err;
     //    err = g_ioport.p_api->pinRead (motorBlock->limit0Pin, &level);
 
+    while (checkSecondaryHoming () == 1)
+    {
+        tx_thread_sleep (1);
+    }
     UDPSendTargetPosSpeed (data->x, data->y, data->z, data->t, data->f);
 
-    do
-    {
-        tx_thread_sleep(1);
-        startPos[0] = UDPGetPosition (motorBlockX);
-        startPos[1] = UDPGetPosition (motorBlockY);
-        startPos[2] = UDPGetPosition (motorBlockZ);
-
-        if (data->x != ~0)
-        {
-            ///There is valid data for the X axis.
-            targetPos[0] = data->x;
-        }
-        else
-        {
-            ///We set the target position to the current position
-            /// if there is no valid data. This will mean that the motor does
-            /// not move from its current location.
-            targetPos[0] = startPos[0];
-        }
-        if (data->y != ~0)
-        {
-            ///There is valid data for the Y axis.
-            targetPos[1] = data->y;
-        }
-        else
-        {
-            ///We set the target position to the current position
-            /// if there is no valid data. This will mean that the motor does
-            /// not move from its current location.
-            targetPos[1] = startPos[1];
-        }
-        if (data->z != ~0)
-        {
-            ///There is valid data for the Z axis.
-            targetPos[2] = data->z;
-        }
-        else
-        {
-            ///We set the target position to the current position
-            /// if there is no valid data. This will mean that the motor does
-            /// not move from its current location.
-            targetPos[2] = startPos[2];
-        }
-
-        lineVector[0] = (targetPos[0] - startPos[0]);
-        lineVector[1] = (targetPos[1] - startPos[1]);
-        lineVector[2] = (targetPos[2] - startPos[2]);
-
-        ///Calculate magnitude.
-        lineVectorMag = sqrt (pow (lineVector[0], 2) + pow (lineVector[1], 2) + pow (lineVector[2], 2));
-    }
-    while (lineVectorMag > .1);
+//    do
+//    {
+//        tx_thread_sleep (1);
+//        startPos[0] = UDPGetPosition (motorBlockX);
+//        startPos[1] = UDPGetPosition (motorBlockY);
+//        startPos[2] = UDPGetPosition (motorBlockZ);
+//
+//        if (data->x != ~0)
+//        {
+//            ///There is valid data for the X axis.
+//            targetPos[0] = data->x;
+//        }
+//        else
+//        {
+//            ///We set the target position to the current position
+//            /// if there is no valid data. This will mean that the motor does
+//            /// not move from its current location.
+//            targetPos[0] = startPos[0];
+//        }
+//        if (data->y != ~0)
+//        {
+//            ///There is valid data for the Y axis.
+//            targetPos[1] = data->y;
+//        }
+//        else
+//        {
+//            ///We set the target position to the current position
+//            /// if there is no valid data. This will mean that the motor does
+//            /// not move from its current location.
+//            targetPos[1] = startPos[1];
+//        }
+//        if (data->z != ~0)
+//        {
+//            ///There is valid data for the Z axis.
+//            targetPos[2] = data->z;
+//        }
+//        else
+//        {
+//            ///We set the target position to the current position
+//            /// if there is no valid data. This will mean that the motor does
+//            /// not move from its current location.
+//            targetPos[2] = startPos[2];
+//        }
+//
+//        lineVector[0] = (targetPos[0] - startPos[0]);
+//        lineVector[1] = (targetPos[1] - startPos[1]);
+//        lineVector[2] = (targetPos[2] - startPos[2]);
+//
+//        ///Calculate magnitude.
+//        lineVectorMag = sqrt (pow (lineVector[0], 2) + pow (lineVector[1], 2) + pow (lineVector[2], 2));
+//    }
+//    while (lineVectorMag > .1);
 //
 //
 //
-//    while (checkSecondaryHoming () == 1)
-//        ;
+
 //
 //    ///Record the current position as the starting position.
 //    startPos[0] = UDPGetPosition (motorBlockX);
