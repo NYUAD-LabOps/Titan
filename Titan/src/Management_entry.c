@@ -22,8 +22,8 @@ void Management_entry(void)
     ioport_level_t level;
     ssp_err_t err;
 
-    double tempSet = 235.0;
-    double bedTempSet = 70.0;
+    double tempSet = 225.0;
+    double bedTempSet = 75.0;
 
     while (machineGlobalsBlock->globalsInit != 1)
     {
