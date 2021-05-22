@@ -22,7 +22,7 @@ void Management_entry(void)
     ioport_level_t level;
     ssp_err_t err;
 
-    double tempSet = 235.0;
+    double tempSet = 255.0;
     double bedTempSet = 75.0;
 
     while (machineGlobalsBlock->globalsInit != 1)
@@ -160,7 +160,7 @@ void Management_entry(void)
             err = g_ioport.p_api->pinWrite (IOPORT_PORT_08_PIN_03, IOPORT_LEVEL_LOW);
         }
 
-        tx_thread_sleep (1000);
+        tx_thread_sleep (500);
 //        tx_thread_suspend (tx_thread_identify ());
     }
 }

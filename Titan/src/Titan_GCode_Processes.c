@@ -34,7 +34,7 @@ void G01(struct instruction *data)
 
     while (checkSecondaryHoming () == 1)
     {
-        tx_thread_sleep (10);
+        tx_thread_sleep (1);
     }
     UDPSendTargetPosSpeed (data->x, data->y, data->z, data->t, data->f);
 
