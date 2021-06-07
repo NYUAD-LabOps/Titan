@@ -112,9 +112,10 @@ void rebuildLinkedListFromSD()
                                       &actual_length);
             if(fx_return != FX_SUCCESS){
                 printf("\nRead F.");
+            }else{
+                isInRangeReturn = isInRange (machineGlobalsBlock->USBBufferB[i]);
+                i++;
             }
-            isInRangeReturn = isInRange (machineGlobalsBlock->USBBufferB[i]);
-            i++;
         }
         while (actual_length >= 1 && isInRangeReturn == 1 && fx_return == FX_SUCCESS);
 

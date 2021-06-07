@@ -383,6 +383,11 @@ void UDPZeroAxes()
 
     int i;
 
+    while (checkSecondaryHoming () == 1)
+    {
+        tx_thread_sleep (1);
+    }
+
     machineGlobalsBlock->UDPBuffer[0] = 'z';
     machineGlobalsBlock->UDPBuffer[1] = 'z';
     UDPSend (0);
@@ -752,7 +757,6 @@ void UDPSetTargetVelocity(struct motorController *motorBlock, double velocity)
 void UDPSendTargetPosSpeed(double posX, double posY, double posZ, double posT, double targetSpeed)
 {
     machineGlobalsBlock->UDPBuffer[0] = 'b';
-
 
     memcpy ((machineGlobalsBlock->UDPBuffer + 2), &posX, 8);
     memcpy ((machineGlobalsBlock->UDPBuffer + 10), &posY, 8);

@@ -258,7 +258,7 @@ struct machineGlobals
     FX_MEDIA *p_media;
     CHAR volume[32];
     FX_FILE iniFile;
-    UX_HOST_CLASS_STORAGE_MEDIA *p_ux_host_class_storage_media;
+//    UX_HOST_CLASS_STORAGE_MEDIA *p_ux_host_class_storage_media;
     ULONG USBFileIndex;
     ULONG gCodeFileIndex;
     ULONG local_bufferIndex;

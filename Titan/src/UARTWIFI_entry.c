@@ -1,6 +1,10 @@
 #include "UARTWIFI.h"
 #include <Titan.h>
 
+static FX_FILE my_file;
+static FX_FILE ini_file;
+static char *local_buffer;
+
 /* UARTWIFI entry function */
 void UARTWIFI_entry(void)
 {
@@ -205,4 +209,256 @@ void rxFile(long long fileSize)
     printf ("\nFile transfer completed.");
     printf ("\nFile transfer completed.");
 
+}
+
+void USB_Write_Buffer(char *data, UINT length)
+{
+    UINT fx_return;
+    ULONG length_tmp;
+
+    length_tmp = strlen (data);
+
+    memcpy ((local_buffer + 1), data, length_tmp);
+    *local_buffer = '\n';
+//
+//    if (fx_return == FX_SUCCESS)
+//    {
+    // Write the file in blocks
+    fx_return = fx_file_write (&my_file, local_buffer, (length_tmp + 1));
+    if (fx_return != FX_SUCCESS)
+    {
+        printf ("\nFile write fail.");
+    }
+    else
+    {
+        fx_return = fx_media_flush (machineGlobalsBlock->p_media);
+    }
+//    } else{
+//        printf("\nFile seek fail.");
+//    }
+    printf ("\nUSB write complete.");
+
+}
+
+///This function transfers the entire contents of local_buffer to
+/// to the USB drive.
+void USB_Buffer_Transfer()
+{
+    UINT fx_return;
+    ULONG length_tmp;
+
+//    printf (machineGlobalsBlock->local_buffer);
+//    printf ("\nUSB buffer transfer...");
+    // Write the file in blocks
+    fx_return = fx_file_write (&my_file, local_buffer, machineGlobalsBlock->local_bufferIndex);
+    if (fx_return != FX_SUCCESS)
+    {
+        printf ("\nFile write fail.");
+    }
+    else
+    {
+//        printf ("\nFile write success.");
+        fx_return = fx_media_flush (machineGlobalsBlock->p_media);
+//        if (fx_return == FX_SUCCESS)
+//        {
+//            printf ("\nBuffer transfer complete.");
+//        }
+//        else
+//        {
+//            printf ("\nBuffer transfer flush fail.");
+//        }
+    }
+
+///Clear local buffer to prevent errors with other USB operations
+    memset (machineGlobalsBlock->local_buffer, 0, machineGlobalsBlock->local_bufferIndex);
+    machineGlobalsBlock->USBBufferHasData = 1;
+    machineGlobalsBlock->local_bufferIndex = 0;
+
+}
+
+///Uses data from the USB gcode buffer to rebuild the linked list buffer.
+void rebuildLinkedList()
+{
+    UINT fx_return;
+    ULONG actual_length = 0;
+    ULONG length_tmp;
+    int i;
+
+    ///Go to the G-code buffer index location
+    fx_return = fx_file_seek (&my_file, machineGlobalsBlock->USBFileIndex);
+    if (fx_return != FX_SUCCESS)
+    {
+        if (DEBUGGER)
+            printf ("\nFile seek fail.");
+    }
+    ///Attempt to read 500 bytes
+    fx_return = fx_file_read (&my_file, machineGlobalsBlock->USBBufferB, 500, &actual_length);
+    if (fx_return != FX_SUCCESS)
+    {
+        if (DEBUGGER)
+            printf ("\nFile read fail.");
+    }
+    ///Create a new link using the string between each \n
+    i = 0;
+    while (i < actual_length)
+    {
+        if (isInRange (machineGlobalsBlock->USBBufferB[i]) == 1)
+        {
+            insertLink ((machineGlobalsBlock->USBBufferB + i));
+            i += strlen ((machineGlobalsBlock->USBBufferB + i));
+        }
+        while (isInRange (machineGlobalsBlock->USBBufferB[i]) == 0 && i < actual_length)
+        {
+            i++;
+        }
+
+    }
+
+    ///If the number of bytes read is less than 500, the end of the file has been reached
+    if (actual_length < 500)
+    {
+        machineGlobalsBlock->USBBufferHasData = 0;
+        machineGlobalsBlock->USBFileIndex = 0;
+        ///Rebuild it
+//        printf ("\nG-code buffer rebuilding...");
+        ///End of file reached - rebuild it for a clean slate
+        fx_return = fx_file_close (&my_file);
+        if (fx_return != FX_SUCCESS)
+        {
+            if (DEBUGGER)
+                printf ("\nCould not create G-code buffer1.");
+
+        }
+        fx_return = fx_file_delete (machineGlobalsBlock->p_media, "gcodeHelix.txt");
+        if (fx_return != FX_SUCCESS)
+        {
+            if (DEBUGGER)
+                printf ("\nCould not create G-code buffer2.");
+
+        }
+        fx_return = fx_media_flush (machineGlobalsBlock->p_media);
+        if (fx_return != FX_SUCCESS)
+        {
+            if (DEBUGGER)
+                printf ("\nCould not create G-code buffer3.");
+
+        }
+        fx_return = fx_file_create (machineGlobalsBlock->p_media, "gcodeHelix.txt");
+        if (fx_return != FX_SUCCESS)
+        {
+            if (DEBUGGER)
+                printf ("\nCould not create G-code buffer4.");
+
+        }
+
+        fx_return = fx_media_flush (machineGlobalsBlock->p_media);
+
+        // Open that file
+        fx_return = fx_file_open(machineGlobalsBlock->p_media, &my_file, "gcodeHelix.txt",
+                                 FX_OPEN_FOR_READ | FX_OPEN_FOR_WRITE);
+        if (fx_return != FX_SUCCESS)
+        {
+            if (DEBUGGER)
+                printf ("\nCould not open G-code buffer.");
+
+        }
+    }
+    else
+    {
+        ///Set new file index - there is more data
+        machineGlobalsBlock->USBFileIndex += actual_length;
+    }
+
+    ///Clear local buffer
+    memset (machineGlobalsBlock->USBBufferB, 0, actual_length);
+//    printf ("\nLinked list rebuilt.");
+}
+
+/// Saves all persistent machine information, including motor calibration settings
+void saveINI()
+{
+    UINT fx_return;
+    UINT tmpIndex;
+    ULONG length_tmp;
+
+    tmpIndex = 0;
+    length_tmp = sizeof(struct motorController);
+    ///Go to INI file start
+    fx_return = fx_file_seek (&machineGlobalsBlock->iniFile, 0);
+
+    memcpy (machineGlobalsBlock->local_buffer, motorBlockZ, length_tmp);
+    memcpy ((machineGlobalsBlock->local_buffer + length_tmp), motorBlockX, length_tmp);
+    memcpy ((machineGlobalsBlock->local_buffer + (2 * length_tmp)), motorBlockY, length_tmp);
+    memcpy ((machineGlobalsBlock->local_buffer + (3 * length_tmp)), motorBlockA, length_tmp);
+    memcpy ((machineGlobalsBlock->local_buffer + (4 * length_tmp)), motorBlockB, length_tmp);
+    memcpy ((machineGlobalsBlock->local_buffer + (5 * length_tmp)), motorBlockC, length_tmp);
+    memcpy ((machineGlobalsBlock->local_buffer + (6 * length_tmp)), motorBlockD, length_tmp);
+    memcpy ((machineGlobalsBlock->local_buffer + (7 * length_tmp)), motorBlockT, length_tmp);
+
+
+//    printf ("\nWriting INI data...");
+    // Write the file in blocks
+    fx_return = fx_file_write (&machineGlobalsBlock->iniFile, machineGlobalsBlock->local_buffer, (8 * length_tmp));
+    if (fx_return != FX_SUCCESS)
+    {
+        if (DEBUGGER)
+            printf ("\nINI write fail.");
+    }
+    else
+    {
+        if (DEBUGGER)
+            printf ("\nINI write success.");
+        fx_return = fx_media_flush (&g_fx_media0);
+    }
+    if (DEBUGGER)
+        printf ("\nINI save complete.");
+
+///Clear local buffer to prevent errors with other USB operations
+    memset (machineGlobalsBlock->local_buffer, 0, (8 * length_tmp));
+
+    if (DEBUGGER)
+        printf ("\nINI save complete.");
+}
+
+/// Saves all persistent machine information, including motor calibration settings
+void loadINI()
+{
+    UINT fx_return;
+    UINT tmpIndex;
+    ULONG length_tmp;
+    ULONG actual_length;
+
+    tmpIndex = 0;
+    length_tmp = sizeof(struct motorController);
+    ///Go to INI file start
+    fx_return = fx_file_seek (&machineGlobalsBlock->iniFile, 0);
+
+    if (DEBUGGER)
+        printf ("\nLoading INI...");
+
+    fx_return = fx_file_read (&machineGlobalsBlock->iniFile, machineGlobalsBlock->local_buffer, (8 * length_tmp), &actual_length);
+    if (fx_return != FX_SUCCESS)
+    {
+        if (DEBUGGER)
+            printf ("\nINI read fail.");
+    }
+    else
+    {
+        if (DEBUGGER)
+            printf ("\nINI read success.");
+    }
+
+    memcpy (motorBlockZ, machineGlobalsBlock->local_buffer, length_tmp);
+    memcpy (motorBlockX, (machineGlobalsBlock->local_buffer + length_tmp), length_tmp);
+    memcpy (motorBlockY, (machineGlobalsBlock->local_buffer + (2 * length_tmp)), length_tmp);
+    memcpy (motorBlockA, (machineGlobalsBlock->local_buffer + (3 * length_tmp)), length_tmp);
+    memcpy (motorBlockB, (machineGlobalsBlock->local_buffer + (4 * length_tmp)), length_tmp);
+    memcpy (motorBlockC, (machineGlobalsBlock->local_buffer + (5 * length_tmp)), length_tmp);
+    memcpy (motorBlockD, (machineGlobalsBlock->local_buffer + (6 * length_tmp)), length_tmp);
+    memcpy (motorBlockT, (machineGlobalsBlock->local_buffer + (7 * length_tmp)), length_tmp);
+
+    if (DEBUGGER)
+        printf ("\nINI data loaded.");
+///Clear local buffer to prevent errors with other USB operations
+    memset (machineGlobalsBlock->local_buffer, 0, (8 * length_tmp));
 }

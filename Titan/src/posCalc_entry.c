@@ -13,21 +13,21 @@ void posCalc_entry(void)
     UINT tmp;
     while (1)
     {
-        if (machineGlobalsBlock->USBBufferHasData == 1 && machineGlobalsBlock->linkedListNodeCount < 10
-                && machineGlobalsBlock->printJob == 1)
-        {
-            tx_thread_priority_change (tx_thread_identify (), 0, &tmp);
-            rebuildLinkedListFromSD ();
-            tx_thread_priority_change (tx_thread_identify (), tmp, &tmp);
-        }
+//        if (machineGlobalsBlock->USBBufferHasData == 1 && machineGlobalsBlock->linkedListNodeCount < 10
+//                && machineGlobalsBlock->printJob == 1)
+//        {
+//            tx_thread_priority_change (tx_thread_identify (), 0, &tmp);
+//            rebuildLinkedListFromSD ();
+//            tx_thread_priority_change (tx_thread_identify (), tmp, &tmp);
+//        }
 //
 //        if (machineGlobalsBlock->rebuildLinkedList == 1)
 //        {
 //
 //            machineGlobalsBlock->rebuildLinkedList = 0;
 //        }
-
-        tx_thread_sleep (1);
+        tx_thread_suspend (tx_thread_identify ());
+//        tx_thread_sleep (1);
     }
 //    while(machineGlobalsBlock->motorsInit != 1) tx_thread_sleep(1);
 //    posStepsX = motorBlockX->posSteps;

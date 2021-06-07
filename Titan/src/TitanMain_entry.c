@@ -58,6 +58,13 @@ void TitanMain_entry(void)
     {
         //parse instructions if there are any available and receiving is not in progress
 //        status = tx_event_flags_get (&g_linked_list_flags, 1, TX_AND, &eventFlags, 10);
+        if (machineGlobalsBlock->USBBufferHasData == 1 && machineGlobalsBlock->linkedListNodeCount < 10
+                && machineGlobalsBlock->printJob == 1)
+        {
+//            tx_thread_priority_change (tx_thread_identify (), 0, &tmp);
+            rebuildLinkedListFromSD ();
+//            tx_thread_priority_change (tx_thread_identify (), tmp, &tmp);
+        }
 
         if (head != NULL)
         {

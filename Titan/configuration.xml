@@ -129,10 +129,6 @@
       <description>Express Logic NetX Synergy Port: Provides=[NetX Driver] , Requires=[NetX]</description>
       <originalPack>Renesas.Synergy.1.7.8.pack</originalPack>
     </component>
-    <component apiversion="" class="Framework Services" condition="" group="all" subgroup="sf_el_ux" variant="" vendor="Renesas" version="1.7.8">
-      <description>Express Logic USBX Synergy Port: Provides=[USBX Driver] , Requires=[USBX ,Transfer]</description>
-      <originalPack>Renesas.Synergy.1.7.8.pack</originalPack>
-    </component>
     <component apiversion="" class="Framework Services" condition="" group="all" subgroup="sf_uart_comms" variant="" vendor="Renesas" version="1.7.8">
       <description>Framework UART Communications: Provides=[Framework UART] , Requires=[ThreadX ,Communications]</description>
       <originalPack>Renesas.Synergy.1.7.8.pack</originalPack>
@@ -193,30 +189,6 @@
       <description>Express Logic ThreadX: Provides=[ThreadX]</description>
       <originalPack>Renesas.Synergy.1.7.8.pack</originalPack>
     </component>
-    <component apiversion="" class="Express Logic" condition="" group="all" subgroup="ux" variant="" vendor="Renesas" version="1.7.8">
-      <description>Express Logic USBX: Provides=[USBX] , Requires=[ThreadX ,USBX Driver]</description>
-      <originalPack>Renesas.Synergy.1.7.8.pack</originalPack>
-    </component>
-    <component apiversion="" class="Express Logic" condition="" group="all" subgroup="ux_src" variant="" vendor="Renesas" version="1.7.8">
-      <description>Express Logic USBX: Provides=[USBX] , Requires=[ThreadX ,USBX Driver]</description>
-      <originalPack>Renesas.Synergy.1.7.8.pack</originalPack>
-    </component>
-    <component apiversion="" class="Express Logic" condition="" group="all" subgroup="ux_device_class_cdc_acm" variant="" vendor="Renesas" version="1.7.8">
-      <description>Express Logic USBX Device Class CDC ACM: Provides=[USBX Device Class CDC ACM] , Requires=[ThreadX ,USBX]</description>
-      <originalPack>Renesas.Synergy.1.7.8.pack</originalPack>
-    </component>
-    <component apiversion="" class="Express Logic" condition="" group="all" subgroup="ux_device_class_cdc_acm_src" variant="" vendor="Renesas" version="1.7.8">
-      <description>Express Logic USBX Device Class CDC ACM: Provides=[USBX Device Class CDC ACM] , Requires=[ThreadX ,USBX]</description>
-      <originalPack>Renesas.Synergy.1.7.8.pack</originalPack>
-    </component>
-    <component apiversion="" class="Express Logic" condition="" group="all" subgroup="ux_host_class_storage" variant="" vendor="Renesas" version="1.7.8">
-      <description>Express Logic USBX Host Class Storage: Provides=[USBX Host Class Storage] , Requires=[ThreadX ,USBX]</description>
-      <originalPack>Renesas.Synergy.1.7.8.pack</originalPack>
-    </component>
-    <component apiversion="" class="Express Logic" condition="" group="all" subgroup="ux_host_class_storage_src" variant="" vendor="Renesas" version="1.7.8">
-      <description>Express Logic USBX Host Class Storage: Provides=[USBX Host Class Storage] , Requires=[ThreadX ,USBX]</description>
-      <originalPack>Renesas.Synergy.1.7.8.pack</originalPack>
-    </component>
     <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_adc" variant="" vendor="Renesas" version="1.7.8">
       <description>A/D Converter: Provides=[ADC]</description>
       <originalPack>Renesas.Synergy.1.7.8.pack</originalPack>
@@ -244,147 +216,9 @@
     <module id="module.framework.tx_src.919340895">
       <property id="module.el.tx_src.linkage_warning" value="module.el.tx_src.linkage_warning.disabled"/>
     </module>
-    <module id="module.el.ux_host_class_storage.1093712120">
-      <property id="module.el.host_class.name" value="g_ux_host_class_storage0"/>
-    </module>
-    <module id="module.el.ux_host.484980517">
-      <property id="module.el.ux_host.name" value="g_ux_host_0"/>
-      <property id="module.el.ux_host.init_function" value="ux_host_init0"/>
-      <property id="module.el.ux_host.init" value="module.el.ux_host.init.enable"/>
-    </module>
-    <module id="module.el.ux_v2.1719060344">
-      <property id="module.el.ux_v2.pool_memory_name" value="g_ux_pool_memory"/>
-      <property id="module.el.ux_v2.pool_memory_size" value="65536"/>
-      <property id="module.el.ux_v2.system_change_function" value="usb_host_plug_event_notification"/>
-      <property id="module.el.ux_v2.slave_change_function" value="NULL"/>
-      <property id="module.el.ux_v2.init_function" value="ux_common_init0"/>
-      <property id="module.el.ux_v2.init" value="module.el.ux_v2.init.enable"/>
-    </module>
     <module id="module.el.fx_common.732768893">
       <property id="module.el.fx_common.init_function" value="fx_common_init0"/>
       <property id="module.el.fx_common.init" value="module.el.fx_common.init.enable"/>
-    </module>
-    <module id="module.el.ux_device.468409168">
-      <property id="module.el.ux_device.idVendor" value="0x045B"/>
-      <property id="module.el.ux_device.idProduct" value="0x0000"/>
-      <property id="module.el.ux_device.bcdDevice" value="0x0000"/>
-      <property id="module.el.ux_device.iManufacturer" value="0x00"/>
-      <property id="module.el.ux_device.iProduct" value="0x00"/>
-      <property id="module.el.ux_device.iSerialNumber" value="0x00"/>
-      <property id="module.el.ux_device.bDeviceClass" value="module.el.ux_device.bDeviceClass.cdc"/>
-      <property id="module.el.ux_device.iConfiguration" value="0x00"/>
-      <property id="module.el.ux_device.wTotalLength" value="0x00"/>
-      <property id="module.el.ux_device.bNumInterfaces" value="0x00"/>
-      <property id="module.el.ux_device.bmAttributes_bit6" value="module.el.ux_device.bmAttributes_bit6.enable"/>
-      <property id="module.el.ux_device.bmAttributes_bit5" value="module.el.ux_device.bmAttributes_bit5.disable"/>
-      <property id="module.el.ux_device.bMaxPower" value="50"/>
-      <property id="module.el.ux_device.language_code" value="0x0409"/>
-      <property id="module.el.ux_device.string_descriptor.name" value="NULL"/>
-      <property id="module.el.ux_device.string_descriptor.index" value="0"/>
-      <property id="module.el.ux_device.language_descriptor.name" value="NULL"/>
-      <property id="module.el.ux_device.language_descriptor.number" value="0"/>
-      <property id="module.el.ux_device.init_function" value="ux_device_init0"/>
-      <property id="module.el.ux_device.init" value="module.el.ux_device.init.enable"/>
-    </module>
-    <module id="module.el.ux.interface_descriptor_cdcacm.cdc_acm.627181593">
-      <property id="module.el.ux.interface_descriptor_cdcacm.name" value="g_usb_interface_desc_cdcacm_0"/>
-      <property id="module.el.ux.interface_descriptor_cdcacm.bInterfaceNumber_comm" value="0x00"/>
-      <property id="module.el.ux.interface_descriptor_cdcacm.ep_interrupt" value="module.el.ux.interface_descriptor_cdcacm.ep_interrupt.ep3"/>
-      <property id="module.el.ux.interface_descriptor_cdcacm.bInterval" value="0x0F"/>
-      <property id="module.el.ux.interface_descriptor_cdcacm.bInterfaceNumber_data" value="0x01"/>
-      <property id="module.el.ux.interface_descriptor_cdcacm.ep_bulk_out" value="module.el.ux.interface_descriptor_cdcacm.ep_bulk_out.ep1"/>
-      <property id="module.el.ux.interface_descriptor_cdcacm.ep_bulk_in" value="module.el.ux.interface_descriptor_cdcacm.ep_bulk_in.ep2"/>
-      <property id="module.el.ux.interface_descriptor_cdcacm.iInterface_comm" value="0x00"/>
-      <property id="module.el.ux.interface_descriptor_cdcacm.iInterface_data" value="0x00"/>
-    </module>
-    <module id="module.el.ux_host_class_storage_src.1415840041">
-      <property id="module.el.ux_host_class_storage_src.linkage_warning" value="module.el.ux_host_class_storage_src.linkage_warning.disabled"/>
-    </module>
-    <module id="module.framework.sf_el_ux_hcd_hs.382871887">
-      <property id="module.framework.sf_el_ux_hcd.name" value="g_sf_el_ux_hcd_hs_0"/>
-      <property id="module.framework.sf_el_ux_hcd.hw_address" value="module.framework.sf_el_ux_hcd.hw_address.hs"/>
-    </module>
-    <module id="module.driver.transfer_on_dmac.388853070">
-      <property id="module.driver.transfer.name" value="g_transfer0"/>
-      <property id="module.driver.transfer.channel" value="0"/>
-      <property id="module.driver.transfer.mode" value="module.driver.transfer.mode.mode_normal"/>
-      <property id="module.driver.transfer.size" value="module.driver.transfer.size.size_2_byte"/>
-      <property id="module.driver.transfer.dest_addr_mode" value="module.driver.transfer.dest_addr_mode.addr_mode_fixed"/>
-      <property id="module.driver.transfer.src_addr_mode" value="module.driver.transfer.src_addr_mode.addr_mode_fixed"/>
-      <property id="module.driver.transfer.repeat_area" value="module.driver.transfer.repeat_area.repeat_area_source"/>
-      <property id="module.driver.transfer.p_dest" value="NULL"/>
-      <property id="module.driver.transfer.p_src" value="NULL"/>
-      <property id="module.driver.transfer.length" value="0"/>
-      <property id="module.driver.transfer.num_blocks" value="0"/>
-      <property id="module.driver.transfer.offset" value="0"/>
-      <property id="module.driver.transfer.activation_source" value="module.driver.transfer.event.event_elc_software_event_0"/>
-      <property id="module.driver.transfer.auto_enable" value="module.driver.transfer.auto_enable.true"/>
-      <property id="module.driver.transfer.p_callback" value="NULL"/>
-      <property id="module.driver.transfer.irq_ipl" value="board.icu.common.irq.priority1"/>
-    </module>
-    <module id="module.driver.transfer_on_dmac.1323458654">
-      <property id="module.driver.transfer.name" value="g_transfer1"/>
-      <property id="module.driver.transfer.channel" value="1"/>
-      <property id="module.driver.transfer.mode" value="module.driver.transfer.mode.mode_normal"/>
-      <property id="module.driver.transfer.size" value="module.driver.transfer.size.size_2_byte"/>
-      <property id="module.driver.transfer.dest_addr_mode" value="module.driver.transfer.dest_addr_mode.addr_mode_fixed"/>
-      <property id="module.driver.transfer.src_addr_mode" value="module.driver.transfer.src_addr_mode.addr_mode_fixed"/>
-      <property id="module.driver.transfer.repeat_area" value="module.driver.transfer.repeat_area.repeat_area_source"/>
-      <property id="module.driver.transfer.p_dest" value="NULL"/>
-      <property id="module.driver.transfer.p_src" value="NULL"/>
-      <property id="module.driver.transfer.length" value="0"/>
-      <property id="module.driver.transfer.num_blocks" value="0"/>
-      <property id="module.driver.transfer.offset" value="0"/>
-      <property id="module.driver.transfer.activation_source" value="module.driver.transfer.event.event_elc_software_event_0"/>
-      <property id="module.driver.transfer.auto_enable" value="module.driver.transfer.auto_enable.true"/>
-      <property id="module.driver.transfer.p_callback" value="NULL"/>
-      <property id="module.driver.transfer.irq_ipl" value="board.icu.common.irq.priority1"/>
-    </module>
-    <module id="module.el.ux_src.1673039305">
-      <property id="module.el.ux_src.linkage_warning" value="module.el.ux_src.linkage_warning.disabled"/>
-    </module>
-    <module id="module.el.ux_device_class_cdc_acm_src.1556444135">
-      <property id="module.el.ux_device_class_cdc_acm_src.linkage_warning" value="module.el.ux_device_class_cdc_acm_src.linkage_warning.disabled"/>
-    </module>
-    <module id="module.framework.sf_el_ux_dcd_fs.568847540">
-      <property id="module.framework.sf_el_ux_dcd_fs.name" value="g_sf_el_ux_dcd_fs_0"/>
-      <property id="module.framework.sf_el_ux_dcd_fs.hw_address" value="module.framework.sf_el_ux_dcd_fs.hw_address.fs"/>
-    </module>
-    <module id="module.driver.transfer_on_dmac.450226594">
-      <property id="module.driver.transfer.name" value="g_transfer2"/>
-      <property id="module.driver.transfer.channel" value="2"/>
-      <property id="module.driver.transfer.mode" value="module.driver.transfer.mode.mode_normal"/>
-      <property id="module.driver.transfer.size" value="module.driver.transfer.size.size_2_byte"/>
-      <property id="module.driver.transfer.dest_addr_mode" value="module.driver.transfer.dest_addr_mode.addr_mode_fixed"/>
-      <property id="module.driver.transfer.src_addr_mode" value="module.driver.transfer.src_addr_mode.addr_mode_fixed"/>
-      <property id="module.driver.transfer.repeat_area" value="module.driver.transfer.repeat_area.repeat_area_source"/>
-      <property id="module.driver.transfer.p_dest" value="NULL"/>
-      <property id="module.driver.transfer.p_src" value="NULL"/>
-      <property id="module.driver.transfer.length" value="0"/>
-      <property id="module.driver.transfer.num_blocks" value="0"/>
-      <property id="module.driver.transfer.offset" value="0"/>
-      <property id="module.driver.transfer.activation_source" value="module.driver.transfer.event.event_elc_software_event_0"/>
-      <property id="module.driver.transfer.auto_enable" value="module.driver.transfer.auto_enable.true"/>
-      <property id="module.driver.transfer.p_callback" value="NULL"/>
-      <property id="module.driver.transfer.irq_ipl" value="board.icu.common.irq.priority1"/>
-    </module>
-    <module id="module.driver.transfer_on_dmac.1914540827">
-      <property id="module.driver.transfer.name" value="g_transfer3"/>
-      <property id="module.driver.transfer.channel" value="3"/>
-      <property id="module.driver.transfer.mode" value="module.driver.transfer.mode.mode_normal"/>
-      <property id="module.driver.transfer.size" value="module.driver.transfer.size.size_2_byte"/>
-      <property id="module.driver.transfer.dest_addr_mode" value="module.driver.transfer.dest_addr_mode.addr_mode_fixed"/>
-      <property id="module.driver.transfer.src_addr_mode" value="module.driver.transfer.src_addr_mode.addr_mode_fixed"/>
-      <property id="module.driver.transfer.repeat_area" value="module.driver.transfer.repeat_area.repeat_area_source"/>
-      <property id="module.driver.transfer.p_dest" value="NULL"/>
-      <property id="module.driver.transfer.p_src" value="NULL"/>
-      <property id="module.driver.transfer.length" value="0"/>
-      <property id="module.driver.transfer.num_blocks" value="0"/>
-      <property id="module.driver.transfer.offset" value="0"/>
-      <property id="module.driver.transfer.activation_source" value="module.driver.transfer.event.event_elc_software_event_0"/>
-      <property id="module.driver.transfer.auto_enable" value="module.driver.transfer.auto_enable.true"/>
-      <property id="module.driver.transfer.p_callback" value="NULL"/>
-      <property id="module.driver.transfer.irq_ipl" value="board.icu.common.irq.priority1"/>
     </module>
     <module id="module.el.fx_src.989715567">
       <property id="module.el.fx_src.linkage_warning" value="module.el.fx_src.linkage_warning.disabled"/>
@@ -492,20 +326,6 @@
       <property id="module.driver.transfer.auto_enable" value="module.driver.transfer.auto_enable.true"/>
       <property id="module.driver.transfer.p_callback" value="NULL"/>
       <property id="module.driver.transfer.irq_ipl" value="board.icu.common.irq.disabled"/>
-    </module>
-    <module id="module.el.ux_device_class_cdc_acm_v2.321502777">
-      <property id="module.el.ux_device_class_cdc_acm_v2.name" value="g_ux_device_class_cdc_acm1"/>
-      <property id="module.el.ux_device_class_cdc_acm_v2.pfunc_activate" value="ux_cdc_device1_instance_activate"/>
-      <property id="module.el.ux_device_class_cdc_acm_v2.pfunc_deactivate" value="ux_cdc_device1_instance_deactivate"/>
-      <property id="module.el.ux_device_class_cdc_acm_v2.parameter_change" value="NULL"/>
-      <property id="module.el.ux_device_class_cdc_acm_v2.init_function" value="ux_device_class_cdc_acm_init1"/>
-      <property id="module.el.ux_device_class_cdc_acm_v2.init" value="module.el.ux_device_class_cdc_acm_v2.init.enable"/>
-    </module>
-    <module id="module.framework.fx_usbmsc.2110011729">
-      <property id="module.framework.fx.name" value="g_fx_media1"/>
-      <property id="module.framework.fx.init_function" value="fx_media_init_function1"/>
-      <property id="module.framework.fx_usbmsc.media_init" value="module.framework.fx_usbmsc.media_init.disable"/>
-      <property id="module.framework.fx_usbmsc.init_timeout" value="1000"/>
     </module>
     <module id="module.framework.fx.865685168">
       <property id="module.framework.fx.name" value="g_fx_media0"/>
@@ -662,7 +482,7 @@
     <context id="rtos.threadx.thread.265113385">
       <property id="_symbol" value="TitanMain"/>
       <property id="rtos.threadx.thread.name" value="TitanMain"/>
-      <property id="rtos.threadx.thread.stack" value="2048"/>
+      <property id="rtos.threadx.thread.stack" value="4096"/>
       <property id="rtos.threadx.thread.priority" value="2"/>
       <property id="rtos.threadx.thread.autostart" value="rtos.threadx.thread.autostart.enabled"/>
       <property id="rtos.threadx.thread.timeslice" value="1"/>
@@ -723,63 +543,6 @@
         </stack>
       </stack>
     </context>
-    <context id="rtos.threadx.thread.1821501718">
-      <property id="_symbol" value="USBDevice"/>
-      <property id="rtos.threadx.thread.name" value="USBDevice"/>
-      <property id="rtos.threadx.thread.stack" value="1024"/>
-      <property id="rtos.threadx.thread.priority" value="6"/>
-      <property id="rtos.threadx.thread.autostart" value="rtos.threadx.thread.autostart.enabled"/>
-      <property id="rtos.threadx.thread.timeslice" value="1"/>
-      <stack module="module.el.ux_device_class_cdc_acm_v2.321502777">
-        <stack module="module.el.ux_device_class_cdc_acm_src.1556444135" requires="module.el.ux_device_class_cdc_acm_v2.requires.ux_device_class_cdc_acm_src"/>
-        <stack module="module.el.ux_device.468409168" requires="module.el.ux_device_class_cdc_acm_v2.requires.ux_device">
-          <stack module="module.framework.sf_el_ux_dcd_fs.568847540" requires="module.el.ux_device.requires.sf_el_ux_dcd">
-            <stack module="module.driver.transfer_on_dmac.450226594" requires="module.framework.sf_el_ux_dcd_fs.requires.transfer_tx"/>
-            <stack module="module.driver.transfer_on_dmac.1914540827" requires="module.framework.sf_el_ux_dcd_fs.requires.transfer_rx"/>
-          </stack>
-          <stack module="module.el.ux_v2.1719060344" requires="module.el.ux_device.requires.ux_v2">
-            <stack module="module.el.ux_src.1673039305" requires="module.el.ux_v2.requires.ux_src"/>
-          </stack>
-        </stack>
-        <stack module="module.el.ux.interface_descriptor_cdcacm.cdc_acm.627181593" requires="module.el.ux_device_class_cdc_acm_v2.requires.interface_descriptor_cdcacm"/>
-      </stack>
-      <object id="rtos.threadx.object.semaphore.422968682">
-        <property id="rtos.threadx.object.semaphore.name" value="New Semaphore"/>
-        <property id="rtos.threadx.object.semaphore.symbol" value="g_cdc_activate_semaphore"/>
-        <property id="rtos.threadx.object.semaphore.count" value="0"/>
-      </object>
-    </context>
-    <context id="rtos.threadx.thread.1594037736">
-      <property id="_symbol" value="USBHost"/>
-      <property id="rtos.threadx.thread.name" value="USBHost"/>
-      <property id="rtos.threadx.thread.stack" value="4096"/>
-      <property id="rtos.threadx.thread.priority" value="6"/>
-      <property id="rtos.threadx.thread.autostart" value="rtos.threadx.thread.autostart.enabled"/>
-      <property id="rtos.threadx.thread.timeslice" value="1"/>
-      <stack module="module.framework.fx_usbmsc.2110011729">
-        <stack module="module.el.ux_host_class_storage.1093712120" requires="module.framework.fx_usbmsc.requires.ux_host_class_storage">
-          <stack module="module.el.ux_host_class_storage_src.1415840041" requires="module.el.ux_host_class_storage.requires.ux_host_class_storage_src"/>
-          <stack module="module.el.ux_host.484980517" requires="module.el.ux_host_class_storage.requires.ux_host">
-            <stack module="module.framework.sf_el_ux_hcd_hs.382871887" requires="module.el.ux_host.requires.sf_el_ux_hcd">
-              <stack module="module.driver.transfer_on_dmac.388853070" requires="module.framework.sf_el_ux_hcd.requires.transfer_tx"/>
-              <stack module="module.driver.transfer_on_dmac.1323458654" requires="module.framework.sf_el_ux_hcd.requires.transfer_rx"/>
-            </stack>
-            <stack module="module.el.ux_v2.1719060344" requires="module.el.ux_host.requires.ux_v2">
-              <stack module="module.el.ux_src.1673039305" requires="module.el.ux_v2.requires.ux_src"/>
-            </stack>
-          </stack>
-        </stack>
-        <stack module="module.el.fx_common.732768893" requires="module.framework.fx_usbmsc.requires.fx_common">
-          <stack module="module.el.fx_src.989715567" requires="module.el.fx.requires.fx_src">
-            <stack module="module.framework.tx_src.919340895" requires="module.el.fx_src.requires.tx_src"/>
-          </stack>
-        </stack>
-      </stack>
-      <object id="rtos.threadx.object.flags.2067644178">
-        <property id="rtos.threadx.object.flags.name" value="USB Plug Event Flags"/>
-        <property id="rtos.threadx.object.flags.symbol" value="g_usb_plug_events"/>
-      </object>
-    </context>
     <context id="rtos.threadx.thread.61669679">
       <property id="_symbol" value="SDStorage"/>
       <property id="rtos.threadx.thread.name" value="SDStorage"/>
@@ -810,14 +573,9 @@
       <property id="rtos.threadx.thread.autostart" value="rtos.threadx.thread.autostart.enabled"/>
       <property id="rtos.threadx.thread.timeslice" value="1"/>
     </context>
-    <config id="config.el.ux_v2"/>
-    <config id="config.el.ux_device">
-      <property id="config.el.ux_device.composite" value="config.el.ux_device.composite.disable"/>
-    </config>
     <config id="config.driver.dmac">
       <property id="config.driver.dmac.param_checking_enable" value="config.driver.dmac.param_checking_enable.bsp"/>
     </config>
-    <config id="config.el.ux_host_class_storage"/>
     <config id="config.framework.sf_el_nx">
       <property id="config.framework.sf_el_nx.param_checking_enable" value="config.framework.sf_el_nx.param_checking_enable.bsp"/>
       <property id="config.framework.sf_el_nx.pin0" value="IOPORT_PORT_09_PIN_03"/>
@@ -851,55 +609,6 @@
       <property id="config.driver.sci_uart.uart_rx_enable" value="config.driver.sci_uart.uart_rx_enable.enabled"/>
       <property id="config.driver.sci_uart.uart_tx_enable" value="config.driver.sci_uart.uart_tx_enable.enabled"/>
       <property id="config.driver.sci_uart.param_checking_enable" value="config.driver.sci_uart.param_checking_enable.bsp"/>
-    </config>
-    <config id="config.framework.sf_el_ux">
-      <property id="config.framework.sf_el_ux.VBUSENpin_logic" value="config.framework.sf_el_ux.VBUSENpin_logic.active_high"/>
-      <property id="config.framework.sf_el_ux.hs_irq_ipl" value="board.icu.common.irq.disabled"/>
-      <property id="config.framework.sf_el_ux.fs_irq_ipl" value="board.icu.common.irq.disabled"/>
-    </config>
-    <config id="config.framework.sf_el_ux_hcd_hs">
-      <property id="config.framework.sf_el_ux_hcd_hs.irq_ipl" value="board.icu.common.irq.priority2"/>
-      <property id="config.framework.sf_el_ux_hcd_hs.fifo_size" value="config.framework.sf_el_ux_hcd_hs.fifo_size.normal"/>
-      <property id="config.framework.sf_el_ux_hcd_hs.bulk_pipe_start_index" value="config.framework.sf_el_ux_hcd_hs.bulk_pipe_start_index.pipe1"/>
-      <property id="config.framework.sf_el_ux_hcd_hs.VBUSENpin_logic" value="config.framework.sf_el_ux_hcd_hs.VBUSENpin_logic.active_high"/>
-      <property id="config.framework.sf_el_ux_hcd_hs.hs_bit" value="config.framework.sf_el_ux_hcd_hs.hs_bit.bitset_high"/>
-    </config>
-    <config id="config.framework.sf_el_ux_hcd_fs">
-      <property id="config.framework.sf_el_ux_hcd_fs.irq_ipl" value="board.icu.common.irq.disabled"/>
-      <property id="config.framework.sf_el_ux_hcd_fs.VBUSENpin_logic" value="config.framework.sf_el_ux_hcd_fs.VBUSENpin_logic.active_high"/>
-      <property id="config.framework.sf_el_ux_hcd_fs.VCC_LDO_Regulator" value="config.framework.sf_el_ux_hcd_fs.VCC_LDO_Regulator.disabled"/>
-    </config>
-    <config id="config.framework.sf_el_ux_dcd_hs">
-      <property id="config.framework.sf_el_ux_dcd_hs.irq_ipl" value="board.icu.common.irq.disabled"/>
-    </config>
-    <config id="config.framework.sf_el_ux_dcd_fs">
-      <property id="config.framework.sf_el_ux_dcd_fs.irq_ipl" value="board.icu.common.irq.priority2"/>
-      <property id="config.framework.sf_el_ux_dcd_fs.VCC_LDO_Regulator" value="config.framework.sf_el_ux_dcd_fs.VCC_LDO_Regulator.disabled"/>
-    </config>
-    <config id="config.el.ux_src">
-      <property id="config.el.ux_src.periodic_rate" value=""/>
-      <property id="config.el.ux_src.max_classes" value=""/>
-      <property id="config.el.ux_src.max_slave_classes" value=""/>
-      <property id="config.el.ux_src.max_slave_interfaces" value=""/>
-      <property id="config.el.ux_src.class_driver" value=""/>
-      <property id="config.el.ux_src.device_class_driver" value=""/>
-      <property id="config.el.ux_src.max_hcd" value=""/>
-      <property id="config.el.ux_src.max_devices" value=""/>
-      <property id="config.el.ux_src.max_ed" value=""/>
-      <property id="config.el.ux_src.max_td" value=""/>
-      <property id="config.el.ux_src.max_iso_td" value=""/>
-      <property id="config.el.ux_src.thread_stack_size" value=""/>
-      <property id="config.el.ux_src.enum_thread_stack_size" value="2048"/>
-      <property id="config.el.ux_src.thread_pri_enum" value=""/>
-      <property id="config.el.ux_src.thread_pri_class" value=""/>
-      <property id="config.el.ux_src.thread_pri_keyboard" value=""/>
-      <property id="config.el.ux_src.thread_pri_hcd" value=""/>
-      <property id="config.el.ux_src.no_time_slice" value="config.el.ux_src.no_time_slice.disabled"/>
-      <property id="config.el.ux_src.max_slave_lun" value=""/>
-      <property id="config.el.ux_src.max_host_lun" value=""/>
-      <property id="config.el.ux_src.slave_request_control_max_length" value=""/>
-      <property id="config.el.ux_src.slave_request_data_max_length" value=""/>
-      <property id="config.el.ux_src.enforce_safe_alignment" value="config.el.ux_src.enforce_safe_alignment.disabled"/>
     </config>
     <config id="config.driver.gpt">
       <property id="config.driver.gpt.param_checking_enable" value="config.driver.gpt.param_checking_enable.bsp"/>
@@ -989,16 +698,6 @@
       <property id="config.el.nxd_telnet_common.fragment_option" value="config.el.nxd_telnet_common.fragment_option.dont_fragment"/>
       <property id="config.el.nxd_telnet_common.telnet_server_port" value="23"/>
       <property id="config.el.nxd_telnet_common.time_to_live" value="128"/>
-    </config>
-    <config id="config.el.ux_host_class_storage_src">
-      <property id="config.el.ux_host_class_storage_src.filex_stub" value="config.el.ux_host_class_storage_src.filex_stub.disabled"/>
-      <property id="config.el.ux_host_class_storage_src.lun" value="1"/>
-      <property id="config.el.ux_host_class_storage_src.max_media" value="1"/>
-      <property id="config.el.ux_host_class_storage_src.storage_memory_buffer_size" value="2048"/>
-      <property id="config.el.ux_host_class_storage_src.storage_max_transfer_size" value="2048"/>
-      <property id="config.el.ux_host_class_storage_src.storage_thread_stack_size" value="2048"/>
-      <property id="config.el.ux_host_class_storage_src.transfer_timeout" value="100000"/>
-      <property id="config.el.ux_host_class_storage_src.cbi_status_timeout" value="30000"/>
     </config>
     <config id="config.framework.sf_el_fx">
       <property id="config.framework.sf_el_fx.param_checking_enable" value="config.framework.sf_el_fx.param_checking_enable.bsp"/>

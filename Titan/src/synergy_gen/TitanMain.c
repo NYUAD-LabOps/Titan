@@ -4,7 +4,7 @@
 TX_THREAD TitanMain;
 void TitanMain_create(void);
 static void TitanMain_func(ULONG thread_input);
-static uint8_t TitanMain_stack[2048] BSP_PLACE_IN_SECTION_V2(".stack.TitanMain") BSP_ALIGN_VARIABLE_V2(BSP_STACK_ALIGNMENT);
+static uint8_t TitanMain_stack[4096] BSP_PLACE_IN_SECTION_V2(".stack.TitanMain") BSP_ALIGN_VARIABLE_V2(BSP_STACK_ALIGNMENT);
 void tx_startup_err_callback(void *p_instance, void *p_data);
 void tx_startup_common_init(void);
 TX_EVENT_FLAGS_GROUP g_linked_list_flags;
@@ -26,7 +26,7 @@ void TitanMain_create(void)
     }
 
     UINT err;
-    err = tx_thread_create (&TitanMain, (CHAR *) "TitanMain", TitanMain_func, (ULONG) NULL, &TitanMain_stack, 2048, 2,
+    err = tx_thread_create (&TitanMain, (CHAR *) "TitanMain", TitanMain_func, (ULONG) NULL, &TitanMain_stack, 4096, 2,
                             2, 1, TX_AUTO_START);
     if (TX_SUCCESS != err)
     {

@@ -68,7 +68,7 @@ Synergy Configuration
       AVCCUSBHS 26 USBHS0_AVCCUSBHS - - - - - - - 
       AVSS0 156 ADC_AVSS0 - - - - - - - 
       AVSSUSBHS 28 USBHS0_AVSSUSBHS - - - - - - - 
-      P000 169 - - - - Disabled - - "ADC0: AN00; CMP0: IVCMP2; IRQ0: IRQ06" 
+      P000 169 ADC0_AN00 - - - "Analog mode" - - "ADC0: AN00; CMP0: IVCMP2; IRQ0: IRQ06" 
       P001 168 - - - - Disabled - - "ADC0: AN01; CMP0: IVCMP2; IRQ0: IRQ07" 
       P002 167 ADC0_AN02 - - - "Analog mode" - - "ADC0: AN02; CMP0: IVCMP2; IRQ0: IRQ08" 
       P003 166 - - - - Disabled - - "ADC0: PGAVSS0" 
@@ -177,7 +177,7 @@ Synergy Configuration
       P800 133 GPIO GPIO13 Medium - "Output mode (Initial Low)" CMOS None "BUS0: D14_DQ14" 
       P801 134 GPIO GPIO14 Medium - "Output mode (Initial Low)" CMOS None "BUS0: D15_DQ15; SDHI1: DAT4" 
       P802 135 - - - - Disabled - - "GLCDC0: LCD_DATA02; SDHI1: DAT5" 
-      P803 136 - - - - Disabled - - "GLCDC0: LCD_DATA01; SDHI1: DAT6" 
+      P803 136 GPIO - High - "Output mode (Initial Low)" CMOS None "GLCDC0: LCD_DATA01; SDHI1: DAT6" 
       P804 137 GPIO - High - "Output mode (Initial Low)" CMOS None "GLCDC0: LCD_DATA00; SDHI1: DAT7" 
       P805 173 - - - - Disabled - - "GLCDC0: LCD_DATA17" 
       P806 172 GPIO GPIO30 Medium - "Output mode (Initial Low)" CMOS None "GLCDC0: LCD_EXTCLK" 
@@ -329,64 +329,7 @@ Synergy Configuration
     TX_SEMAPHORE_DELETE_EXTENSION(semaphore_ptr): 
     TX_TIMER_DELETE_EXTENSION(timer_ptr): 
     
-  Module "USBX Host Class Mass Storage"
-  Module "USBX Host Configuration"
-  Module "USBX on ux"
   Module "FileX Common on fx"
-  Module "USBX Device Configuration"
-    Composite Device: Disable
-    
-  Module "USBX Interface Configuration CDC-ACM"
-  Module "USBX Host Class Mass Storage Source"
-    Use FileX stub: Disabled (default)
-    Maximum number of SCSI logical units: 1
-    Maximum number of storage media instance: 1
-    Storage memory size in bytes for FileX used for data transfer: 2048
-    Maximum transfer size in bytes in one BOT data-transport phase: 2048
-    Stack size for the Mass Storage Class internal thread: 2048
-    Timeout in mili second for a BOT transfer request: 100000
-    Timeout in mili second for the status from a command in the Control/Bulk/Interrupt transport: 30000
-    
-  Module "USBX Port HCD on sf_el_ux for USBHS"
-    High Speed Interrupt Priority: Priority 2
-    FIFO size for Bulk/Isochronous Pipes: 512 bytes(default)
-    Number of Isochronous Pipes Reserved: 0(default)
-    VBUSEN pin Signal Logic: Active High
-    Enable High Speed: Enable
-    
-  Module "Transfer Driver on r_dmac"
-    Parameter Checking: Default (BSP)
-    
-  Module "USBX Source"
-    Ticks per seconds for USBX system: 
-    Maximum Classes: 
-    Maximum Slave Classes: 
-    Maximum Slave Interfaces: 
-    Maximum Host Class Containers: 
-    Maximum Device Class Containers: 
-    Maximum Host Controllers: 
-    Maximum Devices: 
-    Maximum EDs: 
-    Maximum TDs: 
-    Maximum Isochronous TDs: 
-    Stack size for USBX threads: 
-    Stack size for Enumeration thread: 2048
-    USBX Enumeration Thread Priority: 
-    USBX Standard Thread Priority: 
-    USBX HID Keyboard Class Thread Priority: 
-    USBX HCD Thread Priority: 
-    No Use of Time Slice: Disabled (default)
-    Maximum Slave Logical Units: 
-    Maximum Host Logical Units: 
-    Slave Request Control Maximum Length: 
-    Slave Request Data Maximum Length: 
-    Enforce Safe Alignment: Disabled (default)
-    
-  Module "USBX Device Class CDC-ACM Source"
-  Module "USBX Port DCD on sf_el_ux for USBFS"
-    Full Speed Interrupt Priority: Priority 2
-    LDO Regulator(Only for S3 and S1 part MCUs): Disable
-    
   Module "FileX Source"
     Error Checking: Enabled (default)
     Max Long Name Len: 
@@ -445,8 +388,6 @@ Synergy Configuration
     Software Start: Enabled
     Linker section to keep DTC vector table: .ssp_dtc_vector_table
     
-  Module "USBX Device Class CDC-ACM"
-  Module "FileX on USB Mass Storage"
   Module "FileX on Block Media"
   Module "FileX Port Block Media Framework on sf_el_fx"
     Parameter Checking: Default (BSP)
@@ -456,6 +397,9 @@ Synergy Configuration
     
   Module "SD/MMC Driver on r_sdmmc"
     Parameter Checking Enable: Default (BSP)
+    
+  Module "Transfer Driver on r_dmac"
+    Parameter Checking: Default (BSP)
     
   Module "ADC Driver on r_adc"
     Parameter Checking: Enabled
@@ -585,7 +529,7 @@ Synergy Configuration
   Thread "TitanMain"
     Symbol: TitanMain
     Name: TitanMain
-    Stack size (bytes): 2048
+    Stack size (bytes): 4096
     Priority: 2
     Auto start: Enabled
     Time slicing interval (ticks): 1
@@ -725,204 +669,6 @@ Synergy Configuration
           Callback (Only valid with Software start): NULL
           ELC Software Event Interrupt Priority: Disabled
           
-  Thread "USBDevice"
-    Symbol: USBDevice
-    Name: USBDevice
-    Stack size (bytes): 1024
-    Priority: 6
-    Auto start: Enabled
-    Time slicing interval (ticks): 1
-    
-    Instance "g_ux_device_class_cdc_acm1 USBX Device Class CDC-ACM"
-      Name: g_ux_device_class_cdc_acm1
-      USBX CDC-ACM instance_activate Function Callback: ux_cdc_device1_instance_activate
-      USBX CDC-ACM instance_deactivate Function Callback: ux_cdc_device1_instance_deactivate
-      USBX CDC-ACM parameter_change Function Callback: NULL
-      Name of generated initialization function: ux_device_class_cdc_acm_init1
-      Auto Initialization: Enable
-      
-      Instance "USBX Device Class CDC-ACM Source"
-        Show linkage warning: Disabled
-        
-      Instance "USBX Device Configuration"
-        Vendor ID: 0x045B
-        Product ID: 0x0000
-        Device Release Number: 0x0000
-        Index of Manufacturer String Descriptor: 0x00
-        Index of Product String Descriptor: 0x00
-        Index of Serial Number String Descriptor: 0x00
-        Class Code: Communications(CDC)
-        Index of String Descriptor describing this configuration: 0x00
-        Size of USB Descriptor in bytes for this configuration (Modify this value only for Vendor-specific Class, otherwise set zero): 0x00
-        Number of Interfaces (Modify this value only for Vendor-specific Class, otherwise set zero): 0x00
-        Self-Powered: Enable
-        Remote Wakeup: Disable
-        Maximum Power Consumption (in 2mA units): 50
-        Supported Language Code: 0x0409
-        Name of USBX String Framework: NULL
-        Total index number of USB String Descriptors in USBX String Framework: 0
-        Name of USBX Language Framework: NULL
-        Number of Languages to support (US English is applied if zero is set): 0
-        Name of generated initialization function: ux_device_init0
-        Auto Initialization: Enable
-        
-        Instance "g_sf_el_ux_dcd_fs_0 USBX Port DCD on sf_el_ux for USBFS"
-          Name: g_sf_el_ux_dcd_fs_0
-          USB Controller Selection: USBFS
-          
-          Instance "g_transfer2 Transfer Driver on r_dmac USBFS FIFO 0"
-            Name: g_transfer2
-            Channel: 2
-            Mode: Block
-            Transfer Size: 1 Byte
-            Destination Address Mode: Fixed
-            Source Address Mode: Incremented
-            Repeat Area (Unused in Normal Mode): Source
-            Destination Pointer: NULL
-            Source Pointer: NULL
-            Number of Transfers: 0
-            Number of Blocks (Valid only in Repeat and Block Mode): 0
-            Offset value: 0
-            Activation Source: USBFS FIFO 0
-            Auto Enable: False
-            Callback: NULL
-            Transfer End Interrupt Priority: Priority 1
-            
-          Instance "g_transfer3 Transfer Driver on r_dmac USBFS FIFO 1"
-            Name: g_transfer3
-            Channel: 3
-            Mode: Block
-            Transfer Size: 1 Byte
-            Destination Address Mode: Incremented
-            Source Address Mode: Fixed
-            Repeat Area (Unused in Normal Mode): Destination
-            Destination Pointer: NULL
-            Source Pointer: NULL
-            Number of Transfers: 0
-            Number of Blocks (Valid only in Repeat and Block Mode): 0
-            Offset value: 0
-            Activation Source: USBFS FIFO 1
-            Auto Enable: False
-            Callback: NULL
-            Transfer End Interrupt Priority: Priority 1
-            
-        Instance "USBX on ux"
-          USBX Pool Memory Name: g_ux_pool_memory
-          USBX Pool Memory Size: 65536
-          User Callback for Host Event Notification(Only valid for USB Host): usb_host_plug_event_notification
-          User Callback for Device Event Notification(Only valid for USB Device): NULL
-          Name of generated initialization function: ux_common_init0
-          Auto Initialization: Enable
-          
-          Instance "USBX Source"
-            Show linkage warning: Disabled
-            
-      Instance "g_usb_interface_desc_cdcacm_0 USBX Interface Configuration CDC-ACM"
-        Name: g_usb_interface_desc_cdcacm_0
-        Interface Number of Communications Class interface: 0x00
-        Interrupt Transfer endpoint to use for Communications Class: Endpoint 3
-        Polling period for Interrupt Endpoint (in mS/125us units for FS/HS): 0x0F
-        Interface Number of Data Class interface: 0x01
-        Bulk In Transfer endpoint to use for Data Class: Endpoint 1
-        Bulk Out Transfer endpoint to use for Data Class: Endpoint 2
-        Index of String Descriptor Describing Communications Class interface (Interface Descriptor:iInterface).: 0x00
-        Index of String Descriptor Describing Data Class interface (Interface Descriptor:iInterface).: 0x00
-        
-    Object "g_cdc_activate_semaphore Semaphore"
-      Name: New Semaphore
-      Symbol: g_cdc_activate_semaphore
-      Initial count: 0
-      
-  Thread "USBHost"
-    Symbol: USBHost
-    Name: USBHost
-    Stack size (bytes): 4096
-    Priority: 6
-    Auto start: Enabled
-    Time slicing interval (ticks): 1
-    
-    Instance "g_fx_media1 FileX on USB Mass Storage"
-      Name: g_fx_media1
-      Name of FileX Media Control block initialization: fx_media_init_function1
-      Auto Media Initialization: Disable
-      Timeout ticks for Media Initialization (Specify 0 if no need of thread suspension): 1000
-      
-      Instance "g_ux_host_class_storage0 USBX Host Class Mass Storage"
-        Name: g_ux_host_class_storage0
-        
-        Instance "USBX Host Class Mass Storage Source"
-          Show linkage warning: Disabled
-          
-        Instance "USBX Host Configuration g_ux_host_0"
-          Name: g_ux_host_0
-          Name of generated initialization function: ux_host_init0
-          Auto Initialization: Enable
-          
-          Instance "g_sf_el_ux_hcd_hs_0 USBX Port HCD on sf_el_ux for USBHS"
-            Name: g_sf_el_ux_hcd_hs_0
-            USB Controller Selection: USBHS
-            
-            Instance "g_transfer0 Transfer Driver on r_dmac ELC SOFTWARE EVENT 0"
-              Name: g_transfer0
-              Channel: 0
-              Mode: Block
-              Transfer Size: 1 Byte
-              Destination Address Mode: Fixed
-              Source Address Mode: Incremented
-              Repeat Area (Unused in Normal Mode): Source
-              Destination Pointer: NULL
-              Source Pointer: NULL
-              Number of Transfers: 0
-              Number of Blocks (Valid only in Repeat and Block Mode): 0
-              Offset value: 0
-              Activation Source: ELC SOFTWARE EVENT 0
-              Auto Enable: False
-              Callback: NULL
-              Transfer End Interrupt Priority: Priority 1
-              
-            Instance "g_transfer1 Transfer Driver on r_dmac ELC SOFTWARE EVENT 1"
-              Name: g_transfer1
-              Channel: 1
-              Mode: Block
-              Transfer Size: 1 Byte
-              Destination Address Mode: Incremented
-              Source Address Mode: Fixed
-              Repeat Area (Unused in Normal Mode): Destination
-              Destination Pointer: NULL
-              Source Pointer: NULL
-              Number of Transfers: 0
-              Number of Blocks (Valid only in Repeat and Block Mode): 0
-              Offset value: 0
-              Activation Source: ELC SOFTWARE EVENT 1
-              Auto Enable: False
-              Callback: NULL
-              Transfer End Interrupt Priority: Priority 1
-              
-          Instance "USBX on ux"
-            USBX Pool Memory Name: g_ux_pool_memory
-            USBX Pool Memory Size: 65536
-            User Callback for Host Event Notification(Only valid for USB Host): usb_host_plug_event_notification
-            User Callback for Device Event Notification(Only valid for USB Device): NULL
-            Name of generated initialization function: ux_common_init0
-            Auto Initialization: Enable
-            
-            Instance "USBX Source"
-              Show linkage warning: Disabled
-              
-      Instance "FileX Common on fx"
-        Name of generated initialization function: fx_common_init0
-        Auto Initialization: Enable
-        
-        Instance "FileX Source"
-          Show linkage warning: Disabled
-          
-          Instance "ThreadX Source"
-            Show linkage warning: Disabled
-            
-    Object "g_usb_plug_events Event Flags"
-      Name: USB Plug Event Flags
-      Symbol: g_usb_plug_events
-      
   Thread "SDStorage"
     Symbol: SDStorage
     Name: SDStorage
