@@ -428,14 +428,14 @@ void commandHandler(struct instruction *data)
         if (strchr (data->cmdString, 'y') || strchr (data->cmdString, 'Y'))
         {
             UDPHomeMotor (motorBlockY);
-            UDPHomeMotor (motorBlockA);
+//            UDPHomeMotor (motorBlockA);
         }
         if (strchr (data->cmdString, 'z') || strchr (data->cmdString, 'Z'))
         {
             UDPHomeMotor (motorBlockZ);
-            UDPHomeMotor (motorBlockB);
-            UDPHomeMotor (motorBlockC);
-            UDPHomeMotor (motorBlockD);
+//            UDPHomeMotor (motorBlockB);
+//            UDPHomeMotor (motorBlockC);
+//            UDPHomeMotor (motorBlockD);
         }
     }
     else if (strcmp (data->cmd, "G54") == 0)

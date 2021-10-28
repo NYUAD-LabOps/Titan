@@ -22,13 +22,17 @@ void Management_entry(void)
     ioport_level_t level;
     ssp_err_t err;
 
-    double tempSet = 280.0;
-    double bedTempSet = 85.0;
+    double tempSet = 260.0;
 
     while (machineGlobalsBlock->globalsInit != 1)
     {
         tx_thread_sleep (500);
     }
+
+    err = g_timer6.p_api->open (g_timer6.p_ctrl, g_timer6.p_cfg);
+    err = g_timer6.p_api->start(g_timer6.p_ctrl);
+    err = g_timer6.p_api->periodSet (g_timer6.p_ctrl, 1, TIMER_UNIT_PERIOD_SEC);
+    err = g_timer6.p_api->dutyCycleSet (g_timer6.p_ctrl, 20, TIMER_PWM_UNIT_PERCENT, 0);
 
     UINT status;
     ///ADC setup goes here
@@ -62,7 +66,7 @@ void Management_entry(void)
     while (1)
     {
 
-        g_adc0.p_api->read (g_adc0.p_ctrl, ADC_REG_CHANNEL_2, &adc_data);
+        g_adc0.p_api->read (g_adc0.p_ctrl, ADC_REG_CHANNEL_0, &adc_data);
         voltage = 3.3;
         voltage = voltage / 4095.0;
         voltage *= adc_data;
@@ -81,10 +85,10 @@ void Management_entry(void)
                 printf ("\nVoltage Read: %f", voltage);
             }
 
-            if (T < tempSet)
+            if (T < tempSet && T > 20.0)
             {
-                err = g_ioport.p_api->pinWrite (IOPORT_PORT_08_PIN_04, IOPORT_LEVEL_HIGH); //heater
-
+                err = g_ioport.p_api->pinWrite (IOPORT_PORT_04_PIN_15, IOPORT_LEVEL_LOW); //heater
+                g_timer6.p_api->dutyCycleSet (g_timer6.p_ctrl, 20, TIMER_PWM_UNIT_PERCENT, 0);
                 //    err = g_ioport.p_api->pinWrite (IOPORT_PORT_03_PIN_14, IOPORT_LEVEL_LOW);
 //                err = g_ioport.p_api->pinWrite (IOPORT_PORT_02_PIN_06, IOPORT_LEVEL_HIGH); //fan
                 if (PRINTF)
@@ -95,7 +99,9 @@ void Management_entry(void)
             }
             else if (T > tempSet)
             {
-                err = g_ioport.p_api->pinWrite (IOPORT_PORT_08_PIN_04, IOPORT_LEVEL_LOW); //heater
+//                err = g_ioport.p_api->pinWrite (IOPORT_PORT_04_PIN_15, IOPORT_LEVEL_HIGH); //heater
+
+                g_timer6.p_api->dutyCycleSet (g_timer6.p_ctrl, 90, TIMER_PWM_UNIT_PERCENT, 0);
 
                 //    err = g_ioport.p_api->pinWrite (IOPORT_PORT_03_PIN_14, IOPORT_LEVEL_LOW);
 //                err = g_ioport.p_api->pinWrite (IOPORT_PORT_02_PIN_06, IOPORT_LEVEL_HIGH); //fan
@@ -104,63 +110,70 @@ void Management_entry(void)
                     printf ("\nCooling...");
                 }
             }
+            else
+            {
+                ///Temperature out of range. Shut down.
+//                err = g_ioport.p_api->pinWrite (IOPORT_PORT_04_PIN_15, IOPORT_LEVEL_HIGH);
+                g_timer6.p_api->dutyCycleSet (g_timer6.p_ctrl, 90, TIMER_PWM_UNIT_PERCENT, 0);
+            }
         }
         else
         {
 //            printf ("\nVoltage out of range. Cooling...");
-            err = g_ioport.p_api->pinWrite (IOPORT_PORT_08_PIN_04, IOPORT_LEVEL_LOW);
+//            err = g_ioport.p_api->pinWrite (IOPORT_PORT_08_PIN_04, IOPORT_LEVEL_LOW);
+            g_timer6.p_api->dutyCycleSet (g_timer6.p_ctrl, 90, TIMER_PWM_UNIT_PERCENT, 0);
         }
 
         ///Build Plate
-        g_adc0.p_api->read (g_adc0.p_ctrl, ADC_REG_CHANNEL_0, &adc_data);
-        voltage = 3.3;
-        voltage = voltage / 4095.0;
-        voltage *= adc_data;
+//        g_adc0.p_api->read (g_adc0.p_ctrl, ADC_REG_CHANNEL_2, &adc_data);
+//        voltage = 3.3;
+//        voltage = voltage / 4095.0;
+//        voltage *= adc_data;
+//
+//        if (voltage < 3.3)
+//        {
+//            buildPlateT = (voltage - 1.25) / 0.005;
+//
+//            if (PRINTF)
+//            {
+//
+//                printf ("\nBed Set: %f", bedTempSet);
+//
+//                printf ("\nBed Read: %f", buildPlateT);
+//                printf ("\nVoltage Read: %f", voltage);
+//            }
+//
+//            if (buildPlateT < bedTempSet)
+//            {
+//                err = g_ioport.p_api->pinWrite (IOPORT_PORT_08_PIN_03, IOPORT_LEVEL_HIGH); //heater
+//
+//                //    err = g_ioport.p_api->pinWrite (IOPORT_PORT_03_PIN_14, IOPORT_LEVEL_LOW);
+//                //                err = g_ioport.p_api->pinWrite (IOPORT_PORT_02_PIN_06, IOPORT_LEVEL_HIGH); //fan
+//                if (PRINTF)
+//                {
+//
+//                    printf ("\nHeating...");
+//                }
+//            }
+//            else if (buildPlateT > bedTempSet)
+//            {
+//                err = g_ioport.p_api->pinWrite (IOPORT_PORT_08_PIN_03, IOPORT_LEVEL_LOW); //heater
+//
+//                //    err = g_ioport.p_api->pinWrite (IOPORT_PORT_03_PIN_14, IOPORT_LEVEL_LOW);
+//                //                err = g_ioport.p_api->pinWrite (IOPORT_PORT_02_PIN_06, IOPORT_LEVEL_HIGH); //fan
+//                if (PRINTF)
+//                {
+//                    printf ("\nCooling...");
+//                }
+//            }
+//        }
+//        else
+//        {
+//            //            printf ("\nVoltage out of range. Cooling...");
+//            err = g_ioport.p_api->pinWrite (IOPORT_PORT_08_PIN_03, IOPORT_LEVEL_LOW);
+//        }
 
-        if (voltage < 3.3)
-        {
-            buildPlateT = (voltage - 1.25) / 0.005;
-
-            if (PRINTF)
-            {
-
-                printf ("\nBed Set: %f", bedTempSet);
-
-                printf ("\nBed Read: %f", buildPlateT);
-                printf ("\nVoltage Read: %f", voltage);
-            }
-
-            if (buildPlateT < bedTempSet)
-            {
-                err = g_ioport.p_api->pinWrite (IOPORT_PORT_08_PIN_03, IOPORT_LEVEL_HIGH); //heater
-
-                //    err = g_ioport.p_api->pinWrite (IOPORT_PORT_03_PIN_14, IOPORT_LEVEL_LOW);
-                //                err = g_ioport.p_api->pinWrite (IOPORT_PORT_02_PIN_06, IOPORT_LEVEL_HIGH); //fan
-                if (PRINTF)
-                {
-
-                    printf ("\nHeating...");
-                }
-            }
-            else if (buildPlateT > bedTempSet)
-            {
-                err = g_ioport.p_api->pinWrite (IOPORT_PORT_08_PIN_03, IOPORT_LEVEL_LOW); //heater
-
-                //    err = g_ioport.p_api->pinWrite (IOPORT_PORT_03_PIN_14, IOPORT_LEVEL_LOW);
-                //                err = g_ioport.p_api->pinWrite (IOPORT_PORT_02_PIN_06, IOPORT_LEVEL_HIGH); //fan
-                if (PRINTF)
-                {
-                    printf ("\nCooling...");
-                }
-            }
-        }
-        else
-        {
-            //            printf ("\nVoltage out of range. Cooling...");
-            err = g_ioport.p_api->pinWrite (IOPORT_PORT_08_PIN_03, IOPORT_LEVEL_LOW);
-        }
-
-        tx_thread_sleep (500);
+        tx_thread_sleep (1000);
 //        tx_thread_suspend (tx_thread_identify ());
     }
 }

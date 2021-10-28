@@ -1,6 +1,26 @@
 /* generated HAL source file - do not edit */
 #include "hal_data.h"
 #if (BSP_IRQ_DISABLED) != BSP_IRQ_DISABLED
+#if !defined(SSP_SUPPRESS_ISR_g_timer6) && !defined(SSP_SUPPRESS_ISR_GPT6)
+SSP_VECTOR_DEFINE_CHAN(gpt_counter_overflow_isr, GPT, COUNTER_OVERFLOW, 6);
+#endif
+#endif
+static gpt_instance_ctrl_t g_timer6_ctrl;
+static const timer_on_gpt_cfg_t g_timer6_extend =
+{ .gtioca =
+{ .output_enabled = true, .stop_level = GPT_PIN_LEVEL_LOW },
+  .gtiocb =
+  { .output_enabled = false, .stop_level = GPT_PIN_LEVEL_LOW },
+  .shortest_pwm_signal = GPT_SHORTEST_LEVEL_OFF, };
+static const timer_cfg_t g_timer6_cfg =
+{ .mode = TIMER_MODE_PWM, .period = 1, .unit = TIMER_UNIT_PERIOD_SEC, .duty_cycle = 20, .duty_cycle_unit =
+          TIMER_PWM_UNIT_RAW_COUNTS,
+  .channel = 6, .autostart = false, .p_callback = NULL, .p_context = &g_timer6, .p_extend = &g_timer6_extend, .irq_ipl =
+          (BSP_IRQ_DISABLED), };
+/* Instance structure to use this module. */
+const timer_instance_t g_timer6 =
+{ .p_ctrl = &g_timer6_ctrl, .p_cfg = &g_timer6_cfg, .p_api = &g_timer_on_gpt };
+#if (BSP_IRQ_DISABLED) != BSP_IRQ_DISABLED
 #if !defined(SSP_SUPPRESS_ISR_g_adc0) && !defined(SSP_SUPPRESS_ISR_ADC0)
 SSP_VECTOR_DEFINE_CHAN(adc_scan_end_isr, ADC, SCAN_END, 0);
 #endif
@@ -33,20 +53,21 @@ const adc_cfg_t g_adc0_cfg =
 const adc_channel_cfg_t g_adc0_channel_cfg =
         { .scan_mask = (uint32_t) (
                 ((uint64_t) ADC_MASK_CHANNEL_0) | ((uint64_t) 0) | ((uint64_t) ADC_MASK_CHANNEL_2) | ((uint64_t) 0)
+                        | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) ADC_MASK_CHANNEL_6) | ((uint64_t) 0)
                         | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) 0)
                         | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) 0)
                         | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) 0)
                         | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) 0)
-                        | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) 0) | (0)),
+                        | ((uint64_t) 0) | (0)),
           /** Group B channel mask is right shifted by 32 at the end to form the proper mask */
           .scan_mask_group_b = (uint32_t) (
                   (((uint64_t) ADC_MASK_CHANNEL_0) | ((uint64_t) 0) | ((uint64_t) ADC_MASK_CHANNEL_2) | ((uint64_t) 0)
+                          | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) ADC_MASK_CHANNEL_6) | ((uint64_t) 0)
                           | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) 0)
                           | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) 0)
                           | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) 0)
                           | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) 0)
-                          | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) 0) | (0))
-                          >> 32),
+                          | ((uint64_t) 0) | (0)) >> 32),
           .priority_group_a = ADC_GROUP_A_PRIORITY_OFF, .add_mask = (uint32_t) (
                   (ADC_MASK_CHANNEL_0) | (0) | (ADC_MASK_CHANNEL_2) | (0) | (0) | (0) | (0) | (0) | (0) | (0) | (0)
                           | (0) | (0) | (0) | (0) | (0) | (0) | (0) | (0) | (0) | (0) | (0) | (0) | (0) | (0) | (0)

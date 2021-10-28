@@ -396,7 +396,7 @@
       <property id="module.driver.adc.channel_3" value="module.driver.adc.scan_mask.channel_3.unused"/>
       <property id="module.driver.adc.channel_4" value="module.driver.adc.scan_mask.channel_4.unused"/>
       <property id="module.driver.adc.channel_5" value="module.driver.adc.scan_mask.channel_5.unused"/>
-      <property id="module.driver.adc.channel_6" value="module.driver.adc.scan_mask.channel_6.unused"/>
+      <property id="module.driver.adc.channel_6" value="module.driver.adc.channel_6.used"/>
       <property id="module.driver.adc.channel_7" value="module.driver.adc.scan_mask.channel_7.unused"/>
       <property id="module.driver.adc.channel_8" value="module.driver.adc.scan_mask.channel_8.unused"/>
       <property id="module.driver.adc.channel_9" value="module.driver.adc.scan_mask.channel_9.unused"/>
@@ -470,6 +470,23 @@
       <property id="module.driver.adc.pga1" value="module.driver.adc.pga.disabled"/>
       <property id="module.driver.adc.pga2" value="module.driver.adc.pga.disabled"/>
     </module>
+    <module id="module.driver.timer_on_gpt.236685015">
+      <property id="module.driver.timer.name" value="g_timer6"/>
+      <property id="module.driver.timer.channel" value="6"/>
+      <property id="module.driver.timer.mode" value="module.driver.timer.mode.mode_pwm"/>
+      <property id="module.driver.timer.shortest_pwm_signal" value="module.driver.timer.mode.shortest_pwm_signal_disabled"/>
+      <property id="module.driver.timer.period" value="1"/>
+      <property id="module.driver.timer.unit" value="module.driver.timer.unit.unit_period_sec"/>
+      <property id="module.driver.timer.duty_cycle" value="20"/>
+      <property id="module.driver.timer.duty_cycle_unit" value="module.driver.timer.duty_cycle_unit.unit_percent"/>
+      <property id="module.driver.timer.autostart" value="module.driver.timer.autostart.false"/>
+      <property id="module.driver.timer.gtioca_output_enabled" value="module.driver.timer.gtioca_output_enabled.true"/>
+      <property id="module.driver.timer.gtioca_stop_level" value="module.driver.timer.gtioca_stop_level.pin_level_low"/>
+      <property id="module.driver.timer.gtiocb_output_enabled" value="module.driver.timer.gtiocb_output_enabled.false"/>
+      <property id="module.driver.timer.gtiocb_stop_level" value="module.driver.timer.gtiocb_stop_level.pin_level_low"/>
+      <property id="module.driver.timer.p_callback" value="NULL"/>
+      <property id="module.driver.timer.irq_ipl" value="board.icu.common.irq.disabled"/>
+    </module>
     <context id="_hal.0">
       <stack module="module.driver.cgc_on_cgc.0"/>
       <stack module="module.driver.ioport_on_ioport.0"/>
@@ -478,6 +495,7 @@
       <stack module="module.framework.tx_src.919340895"/>
       <stack module="module.driver.timer_on_gpt.392727502"/>
       <stack module="module.driver.adc_on_adc.445834573"/>
+      <stack module="module.driver.timer_on_gpt.236685015"/>
     </context>
     <context id="rtos.threadx.thread.265113385">
       <property id="_symbol" value="TitanMain"/>
