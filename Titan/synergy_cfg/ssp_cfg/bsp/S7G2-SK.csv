@@ -6,10 +6,10 @@
 "P000","169","ADC0_AN00","","","","Analog mode","","","ADC0: AN00
 CMP0: IVCMP2
 IRQ0: IRQ06"
-"P001","168","","","","","Disabled","","","ADC0: AN01
+"P001","168","ADC0_AN01","","","","Analog mode","","","ADC0: AN01
 CMP0: IVCMP2
 IRQ0: IRQ07"
-"P002","167","ADC0_AN02","","","","Analog mode","","","ADC0: AN02
+"P002","167","","","","","Disabled","","","ADC0: AN02
 CMP0: IVCMP2
 IRQ0: IRQ08"
 "P003","166","","","","","Disabled","","","ADC0: PGAVSS0"
@@ -285,14 +285,14 @@ SDHI0: DAT7"
 GLCDC0: LCD_TCON1"
 "P315","57","","","","","Disabled","","","BUS0: A22
 GLCDC0: LCD_TCON0"
-"P400","1","GPIO","GPIO10","","IRQ0","Input mode","","None","ADC1: ADTRG
+"P400","1","GPT6_GTIOCA","","","None","Peripheral mode","CMOS","None","ADC1: ADTRG
 GPT6: GTIOCA
 IIC0: SCL
 IRQ0: IRQ00
 SCI4: SCK
 SCI7: SCK
 SSI: AUDIO_CLK"
-"P401","2","CAN0_CTX","CAN0_CTX0","","None","Peripheral mode","CMOS","None","CAN0: CTX
+"P401","2","GPT6_GTIOCB","","","None","Peripheral mode","CMOS","None","CAN0: CTX
 ETHERC0: MDC
 GPT6: GTIOCB
 IIC0: SDA
@@ -301,7 +301,7 @@ POEG0: GTETRG
 SCI4: CTS_RTS_SS
 SCI7: SDA
 SCI7: TXD_MOSI"
-"P402","3","CAN0_CRX","CAN0_CRX0","Low","None","Peripheral mode","CMOS","None","AGT0: AGTIO
+"P402","3","","","","","Disabled","","","AGT0: AGTIO
 AGT1: AGTIO
 CAN0: CRX
 ETHERC0: MDIO

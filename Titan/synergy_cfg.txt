@@ -69,8 +69,8 @@ Synergy Configuration
       AVSS0 156 ADC_AVSS0 - - - - - - - 
       AVSSUSBHS 28 USBHS0_AVSSUSBHS - - - - - - - 
       P000 169 ADC0_AN00 - - - "Analog mode" - - "ADC0: AN00; CMP0: IVCMP2; IRQ0: IRQ06" 
-      P001 168 - - - - Disabled - - "ADC0: AN01; CMP0: IVCMP2; IRQ0: IRQ07" 
-      P002 167 ADC0_AN02 - - - "Analog mode" - - "ADC0: AN02; CMP0: IVCMP2; IRQ0: IRQ08" 
+      P001 168 ADC0_AN01 - - - "Analog mode" - - "ADC0: AN01; CMP0: IVCMP2; IRQ0: IRQ07" 
+      P002 167 - - - - Disabled - - "ADC0: AN02; CMP0: IVCMP2; IRQ0: IRQ08" 
       P003 166 - - - - Disabled - - "ADC0: PGAVSS0" 
       P004 165 GPIO GPIO26 - IRQ9-DS "Input mode" - - "ADC1: AN00; CMP0: IVCMP2; IRQ0: IRQ09" 
       P005 164 GPIO GPIO25 - IRQ10-DS "Input mode" - - "ADC1: AN01; CMP0: IVCMP2; IRQ0: IRQ10" 
@@ -123,9 +123,9 @@ Synergy Configuration
       P313 55 - - - - Disabled - - "BUS0: A20; GLCDC0: LCD_TCON2; SDHI0: DAT7" 
       P314 56 - - - - Disabled - - "BUS0: A21; GLCDC0: LCD_TCON1" 
       P315 57 - - - - Disabled - - "BUS0: A22; GLCDC0: LCD_TCON0" 
-      P400 1 GPIO GPIO10 - IRQ0 "Input mode" - None "ADC1: ADTRG; GPT6: GTIOCA; IIC0: SCL; IRQ0: IRQ00; SCI4: SCK; SCI7: SCK; SSI: AUDIO_CLK" 
-      P401 2 CAN0_CTX CAN0_CTX0 - None "Peripheral mode" CMOS None "CAN0: CTX; ETHERC0: MDC; GPT6: GTIOCB; IIC0: SDA; IRQ0: IRQ05; POEG0: GTETRG; SCI4: CTS_RTS_SS; SCI7: SDA; SCI7: TXD_MOSI" 
-      P402 3 CAN0_CRX CAN0_CRX0 Low None "Peripheral mode" CMOS None "AGT0: AGTIO; AGT1: AGTIO; CAN0: CRX; ETHERC0: MDIO; IRQ0: IRQ04; RTC0: RTCIC0; SCI7: RXD_MISO; SCI7: SCL" 
+      P400 1 GPT6_GTIOCA - - None "Peripheral mode" CMOS None "ADC1: ADTRG; GPT6: GTIOCA; IIC0: SCL; IRQ0: IRQ00; SCI4: SCK; SCI7: SCK; SSI: AUDIO_CLK" 
+      P401 2 GPT6_GTIOCB - - None "Peripheral mode" CMOS None "CAN0: CTX; ETHERC0: MDC; GPT6: GTIOCB; IIC0: SDA; IRQ0: IRQ05; POEG0: GTETRG; SCI4: CTS_RTS_SS; SCI7: SDA; SCI7: TXD_MOSI" 
+      P402 3 - - - - Disabled - - "AGT0: AGTIO; AGT1: AGTIO; CAN0: CRX; ETHERC0: MDIO; IRQ0: IRQ04; RTC0: RTCIC0; SCI7: RXD_MISO; SCI7: SCL" 
       P403 4 RMII_MDC Ethernet_Controller_1_RMII_ET1_MDC Medium - "Peripheral mode" CMOS None "AGT0: AGTIO; AGT1: AGTIO; ETHERC1: MDC; GPT3: GTIOCA; PDC0: PIXD7; RTC0: RTCIC1; SCI7: CTS_RTS_SS; SSI0: SSISCK" 
       P404 5 RMII_MDIO Ethernet_Controller_1_RMII_ET1_MDIO Medium - "Peripheral mode" CMOS None "ETHERC1: MDIO; GPT3: GTIOCB; PDC0: PIXD6; RTC0: RTCIC2; SSI0: SSIWS" 
       P405 6 RMII_TXD_EN Ethernet_Controller_1_RMII_RMII1_TXD_EN High - "Peripheral mode" CMOS None "ETHERC1: TXD_EN; GPT1: GTIOCA; PDC0: PIXD5; SSI0: SSITXD" 
@@ -447,12 +447,12 @@ Synergy Configuration
       Internal Calibration During Open(): Enabled
       Channel Scan Mask (channel availability varies by MCU): Select channels below
           Channel 0: Use in Normal/Group A
-          Channel 1: Unused
+          Channel 1: Use in Normal/Group A
           Channel 2: Use in Normal/Group A
           Channel 3: Unused
           Channel 4: Unused
           Channel 5: Unused
-          Channel 6: Unused
+          Channel 6: Use in Normal/Group A
           Channel 7: Unused
           Channel 8: Unused
           Channel 9: Unused
@@ -525,6 +525,23 @@ Synergy Configuration
       PGA 0: Disabled
       PGA 1: Disabled
       PGA 2: Disabled
+      
+    Instance "g_timer6 Timer Driver on r_gpt"
+      Name: g_timer6
+      Channel: 6
+      Mode: PWM
+      Duty Cycle Range (only applicable in PWM mode): Shortest: 2 PCLK, Longest: (Period - 1) PCLK
+      Period Value: 1
+      Period Unit: Seconds
+      Duty Cycle Value: 20
+      Duty Cycle Unit: Unit Raw Counts
+      Auto Start: False
+      GTIOCA Output Enabled: True
+      GTIOCA Stop Level: Pin Level Low
+      GTIOCB Output Enabled: True
+      GTIOCB Stop Level: Pin Level Low
+      Callback: NULL
+      Overflow Interrupt Priority: Disabled
       
   Thread "TitanMain"
     Symbol: TitanMain

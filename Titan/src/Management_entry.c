@@ -18,11 +18,12 @@ void Management_entry(void)
     double tempRead;
     int ThermistorPin = 0;
     int Vo;
-    double T, buildPlateT;
+    double T, buildPlateT, preHeatT;
     ioport_level_t level;
     ssp_err_t err;
 
     double tempSet = 260.0;
+    double preHeatTSet = 75.0;
 
     while (machineGlobalsBlock->globalsInit != 1)
     {
@@ -50,6 +51,8 @@ void Management_entry(void)
     {
         if (1)
             printf ("\nadc0 scanCfg success.");
+    } else {
+        printf ("\nadc0 scanCfg fail.");
     }
 
     //Start the ADC scan
@@ -66,11 +69,62 @@ void Management_entry(void)
     while (1)
     {
 
-        g_adc0.p_api->read (g_adc0.p_ctrl, ADC_REG_CHANNEL_0, &adc_data);
+        ///Pre-heater
+        g_adc0.p_api->read (g_adc0.p_ctrl, ADC_REG_CHANNEL_1, &adc_data);
         voltage = 3.3;
         voltage = voltage / 4095.0;
         voltage *= adc_data;
 
+        if (voltage < 3.3)
+        {
+            preHeatT = (voltage - 1.25) / 0.005;
+
+//            if (PRINTF)
+//            {
+//
+//                printf ("\nBed Set: %f", preHeatTSet);
+//
+//                printf ("\nBed Read: %f", preHeatT);
+//                printf ("\nVoltage Read: %f", voltage);
+//            }
+
+            if (preHeatT < preHeatTSet && preHeatT > 20.0)
+            {
+
+                g_timer6.p_api->dutyCycleSet (g_timer6.p_ctrl, 20, TIMER_PWM_UNIT_PERCENT, 1);
+                //    err = g_ioport.p_api->pinWrite (IOPORT_PORT_03_PIN_14, IOPORT_LEVEL_LOW);
+                //                err = g_ioport.p_api->pinWrite (IOPORT_PORT_02_PIN_06, IOPORT_LEVEL_HIGH); //fan
+                if (PRINTF)
+                {
+
+                    printf ("\nHeating...");
+                }
+            }
+            else if (preHeatT > preHeatTSet)
+            {
+                g_timer6.p_api->dutyCycleSet (g_timer6.p_ctrl, 100, TIMER_PWM_UNIT_PERCENT, 1);
+
+                //    err = g_ioport.p_api->pinWrite (IOPORT_PORT_03_PIN_14, IOPORT_LEVEL_LOW);
+                //                err = g_ioport.p_api->pinWrite (IOPORT_PORT_02_PIN_06, IOPORT_LEVEL_HIGH); //fan
+                if (PRINTF)
+                {
+                    printf ("\nCooling...");
+                }
+            } else{
+                ///Out of range. Shut down.
+                g_timer6.p_api->dutyCycleSet (g_timer6.p_ctrl, 100, TIMER_PWM_UNIT_PERCENT, 1);
+            }
+        }
+        else
+        {
+            //            printf ("\nVoltage out of range. Cooling...");
+            g_timer6.p_api->dutyCycleSet (g_timer6.p_ctrl, 100, TIMER_PWM_UNIT_PERCENT, 1);
+        }
+
+        g_adc0.p_api->read (g_adc0.p_ctrl, ADC_REG_CHANNEL_0, &adc_data);
+        voltage = 3.3;
+        voltage = voltage / 4095.0;
+        voltage *= adc_data;
         ///Extruder
         if (voltage < 3.3)
         {
@@ -101,7 +155,7 @@ void Management_entry(void)
             {
 //                err = g_ioport.p_api->pinWrite (IOPORT_PORT_04_PIN_15, IOPORT_LEVEL_HIGH); //heater
 
-                g_timer6.p_api->dutyCycleSet (g_timer6.p_ctrl, 90, TIMER_PWM_UNIT_PERCENT, 0);
+                g_timer6.p_api->dutyCycleSet (g_timer6.p_ctrl, 95, TIMER_PWM_UNIT_PERCENT, 0);
 
                 //    err = g_ioport.p_api->pinWrite (IOPORT_PORT_03_PIN_14, IOPORT_LEVEL_LOW);
 //                err = g_ioport.p_api->pinWrite (IOPORT_PORT_02_PIN_06, IOPORT_LEVEL_HIGH); //fan
@@ -114,14 +168,14 @@ void Management_entry(void)
             {
                 ///Temperature out of range. Shut down.
 //                err = g_ioport.p_api->pinWrite (IOPORT_PORT_04_PIN_15, IOPORT_LEVEL_HIGH);
-                g_timer6.p_api->dutyCycleSet (g_timer6.p_ctrl, 90, TIMER_PWM_UNIT_PERCENT, 0);
+                g_timer6.p_api->dutyCycleSet (g_timer6.p_ctrl, 95, TIMER_PWM_UNIT_PERCENT, 0);
             }
         }
         else
         {
 //            printf ("\nVoltage out of range. Cooling...");
 //            err = g_ioport.p_api->pinWrite (IOPORT_PORT_08_PIN_04, IOPORT_LEVEL_LOW);
-            g_timer6.p_api->dutyCycleSet (g_timer6.p_ctrl, 90, TIMER_PWM_UNIT_PERCENT, 0);
+            g_timer6.p_api->dutyCycleSet (g_timer6.p_ctrl, 95, TIMER_PWM_UNIT_PERCENT, 0);
         }
 
         ///Build Plate

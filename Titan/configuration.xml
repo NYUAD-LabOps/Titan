@@ -391,7 +391,7 @@
       <property id="module.driver.adc.skip_internal_calibration" value="module.driver.adc.skip_internal_calibration.skip_internal_calibration_false"/>
       <property id="module.driver.adc.scan_mask" value="module.driver.adc.scan_mask.default"/>
       <property id="module.driver.adc.channel_0" value="module.driver.adc.channel_0.used"/>
-      <property id="module.driver.adc.channel_1" value="module.driver.adc.scan_mask.channel_1.unused"/>
+      <property id="module.driver.adc.channel_1" value="module.driver.adc.channel_1.used"/>
       <property id="module.driver.adc.channel_2" value="module.driver.adc.channel_2.used"/>
       <property id="module.driver.adc.channel_3" value="module.driver.adc.scan_mask.channel_3.unused"/>
       <property id="module.driver.adc.channel_4" value="module.driver.adc.scan_mask.channel_4.unused"/>
@@ -482,7 +482,7 @@
       <property id="module.driver.timer.autostart" value="module.driver.timer.autostart.false"/>
       <property id="module.driver.timer.gtioca_output_enabled" value="module.driver.timer.gtioca_output_enabled.true"/>
       <property id="module.driver.timer.gtioca_stop_level" value="module.driver.timer.gtioca_stop_level.pin_level_low"/>
-      <property id="module.driver.timer.gtiocb_output_enabled" value="module.driver.timer.gtiocb_output_enabled.false"/>
+      <property id="module.driver.timer.gtiocb_output_enabled" value="module.driver.timer.gtiocb_output_enabled.true"/>
       <property id="module.driver.timer.gtiocb_stop_level" value="module.driver.timer.gtiocb_stop_level.pin_level_low"/>
       <property id="module.driver.timer.p_callback" value="NULL"/>
       <property id="module.driver.timer.irq_ipl" value="board.icu.common.irq.disabled"/>

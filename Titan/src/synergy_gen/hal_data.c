@@ -10,7 +10,7 @@ static const timer_on_gpt_cfg_t g_timer6_extend =
 { .gtioca =
 { .output_enabled = true, .stop_level = GPT_PIN_LEVEL_LOW },
   .gtiocb =
-  { .output_enabled = false, .stop_level = GPT_PIN_LEVEL_LOW },
+  { .output_enabled = true, .stop_level = GPT_PIN_LEVEL_LOW },
   .shortest_pwm_signal = GPT_SHORTEST_LEVEL_OFF, };
 static const timer_cfg_t g_timer6_cfg =
 { .mode = TIMER_MODE_PWM, .period = 1, .unit = TIMER_UNIT_PERIOD_SEC, .duty_cycle = 20, .duty_cycle_unit =
@@ -52,22 +52,22 @@ const adc_cfg_t g_adc0_cfg =
   .pga2 = PGA_DISABLE, };
 const adc_channel_cfg_t g_adc0_channel_cfg =
         { .scan_mask = (uint32_t) (
-                ((uint64_t) ADC_MASK_CHANNEL_0) | ((uint64_t) 0) | ((uint64_t) ADC_MASK_CHANNEL_2) | ((uint64_t) 0)
-                        | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) ADC_MASK_CHANNEL_6) | ((uint64_t) 0)
+                ((uint64_t) ADC_MASK_CHANNEL_0) | ((uint64_t) ADC_MASK_CHANNEL_1) | ((uint64_t) ADC_MASK_CHANNEL_2)
+                        | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) ADC_MASK_CHANNEL_6)
                         | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) 0)
                         | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) 0)
                         | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) 0)
                         | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) 0)
-                        | ((uint64_t) 0) | (0)),
+                        | ((uint64_t) 0) | ((uint64_t) 0) | (0)),
           /** Group B channel mask is right shifted by 32 at the end to form the proper mask */
           .scan_mask_group_b = (uint32_t) (
-                  (((uint64_t) ADC_MASK_CHANNEL_0) | ((uint64_t) 0) | ((uint64_t) ADC_MASK_CHANNEL_2) | ((uint64_t) 0)
-                          | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) ADC_MASK_CHANNEL_6) | ((uint64_t) 0)
+                  (((uint64_t) ADC_MASK_CHANNEL_0) | ((uint64_t) ADC_MASK_CHANNEL_1) | ((uint64_t) ADC_MASK_CHANNEL_2)
+                          | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) ADC_MASK_CHANNEL_6)
                           | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) 0)
                           | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) 0)
                           | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) 0)
                           | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) 0) | ((uint64_t) 0)
-                          | ((uint64_t) 0) | (0)) >> 32),
+                          | ((uint64_t) 0) | ((uint64_t) 0) | (0)) >> 32),
           .priority_group_a = ADC_GROUP_A_PRIORITY_OFF, .add_mask = (uint32_t) (
                   (ADC_MASK_CHANNEL_0) | (0) | (ADC_MASK_CHANNEL_2) | (0) | (0) | (0) | (0) | (0) | (0) | (0) | (0)
                           | (0) | (0) | (0) | (0) | (0) | (0) | (0) | (0) | (0) | (0) | (0) | (0) | (0) | (0) | (0)
