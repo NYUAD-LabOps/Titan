@@ -22,16 +22,23 @@ void Management_entry(void)
     ioport_level_t level;
     ssp_err_t err;
 
-    double tempSet = 260.0;
-    double preHeatTSet = 75.0;
+    double tempSet = 300.0;
+    double preHeatTSet = 0.0;
 
     while (machineGlobalsBlock->globalsInit != 1)
     {
         tx_thread_sleep (500);
     }
 
+    ///Start the conveyor PWM.
+    err = g_timer0.p_api->open (g_timer0.p_ctrl, g_timer0.p_cfg);
+    err = g_timer0.p_api->start (g_timer0.p_ctrl);
+    err = g_timer0.p_api->periodSet (g_timer0.p_ctrl, 15, TIMER_UNIT_PERIOD_SEC);
+    err = g_timer0.p_api->dutyCycleSet (g_timer0.p_ctrl, 15, TIMER_PWM_UNIT_PERCENT, 0);
+    err = g_timer0.p_api->dutyCycleSet (g_timer0.p_ctrl, 15, TIMER_PWM_UNIT_PERCENT, 1);
+
     err = g_timer6.p_api->open (g_timer6.p_ctrl, g_timer6.p_cfg);
-    err = g_timer6.p_api->start(g_timer6.p_ctrl);
+    err = g_timer6.p_api->start (g_timer6.p_ctrl);
     err = g_timer6.p_api->periodSet (g_timer6.p_ctrl, 1, TIMER_UNIT_PERIOD_SEC);
     err = g_timer6.p_api->dutyCycleSet (g_timer6.p_ctrl, 20, TIMER_PWM_UNIT_PERCENT, 0);
 
@@ -51,7 +58,9 @@ void Management_entry(void)
     {
         if (1)
             printf ("\nadc0 scanCfg success.");
-    } else {
+    }
+    else
+    {
         printf ("\nadc0 scanCfg fail.");
     }
 
@@ -110,7 +119,9 @@ void Management_entry(void)
                 {
                     printf ("\nCooling...");
                 }
-            } else{
+            }
+            else
+            {
                 ///Out of range. Shut down.
                 g_timer6.p_api->dutyCycleSet (g_timer6.p_ctrl, 100, TIMER_PWM_UNIT_PERCENT, 1);
             }

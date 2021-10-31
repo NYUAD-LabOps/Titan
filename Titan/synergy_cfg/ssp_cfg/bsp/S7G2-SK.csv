@@ -457,14 +457,14 @@ SDHI1: CD"
 "P507","147","","","","","Disabled","","","ADC1: AN19
 SCI5: CTS_RTS_SS
 SDHI1: WP"
-"P511","176","","","","","Disabled","","","CAN1: CRX
+"P511","176","GPT0_GTIOCB","","","None","Peripheral mode","CMOS","None","CAN1: CRX
 GPT0: GTIOCB
 IIC2: SDA
 IRQ0: IRQ15
 PDC0: PCKO
 SCI4: RXD_MISO
 SCI4: SCL"
-"P512","175","","","","","Disabled","","","CAN1: CTX
+"P512","175","GPT0_GTIOCA","","","None","Peripheral mode","CMOS","None","CAN1: CTX
 GPT0: GTIOCA
 IIC2: SCL
 IRQ0: IRQ14

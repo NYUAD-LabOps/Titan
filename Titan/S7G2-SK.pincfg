@@ -687,7 +687,7 @@
     <v1:connectionSetting altId="p502.sdhi1.dat0"/>
   </v1:configSetting>
   <v1:configSetting configurationId="p500.gpio_pupd" altId="p500.gpio_pupd.gpio_pupd_ip_up"/>
-  <v1:configSetting configurationId="adc0.an02" altId="adc0.an02.none"></v1:configSetting>
+  <v1:configSetting configurationId="adc0.an02" altId="adc0.an02.none"/>
   <v1:configSetting configurationId="p504.gpio_pupd" altId="p504.gpio_pupd.gpio_pupd_ip_up"/>
   <v1:configSetting configurationId="p504.gpio_mode" altId="p504.gpio_mode.gpio_mode_peripheral"/>
   <v1:configSetting configurationId="p505" altId="p505.sdhi1.dat3">
@@ -734,4 +734,19 @@
   <v1:configSetting configurationId="p001" altId="p001.adc0.an01">
     <v1:connectionSetting altId="adc0.an01.p001"/>
   </v1:configSetting>
+  <v1:configSetting configurationId="gpt0.mode" altId="gpt0.mode.gtiocaandgtiocb.free"/>
+  <v1:configSetting configurationId="gpt0.gtiocb" altId="gpt0.gtiocb.p511">
+    <v1:connectionSetting altId="p511.gpt0.gtiocb"/>
+  </v1:configSetting>
+  <v1:configSetting configurationId="gpt0.gtioca" altId="gpt0.gtioca.p512">
+    <v1:connectionSetting altId="p512.gpt0.gtioca"/>
+  </v1:configSetting>
+  <v1:configSetting configurationId="p512.gpio_mode" altId="p512.gpio_mode.gpio_mode_peripheral"/>
+  <v1:configSetting configurationId="p512" altId="p512.gpt0.gtioca">
+    <v1:connectionSetting altId="gpt0.gtioca.p512"/>
+  </v1:configSetting>
+  <v1:configSetting configurationId="p511" altId="p511.gpt0.gtiocb">
+    <v1:connectionSetting altId="gpt0.gtiocb.p511"/>
+  </v1:configSetting>
+  <v1:configSetting configurationId="p511.gpio_mode" altId="p511.gpio_mode.gpio_mode_peripheral"/>
 </v1:pinSettings>

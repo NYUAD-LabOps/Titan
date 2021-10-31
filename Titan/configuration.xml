@@ -265,19 +265,19 @@
     <module id="module.driver.timer_on_gpt.392727502">
       <property id="module.driver.timer.name" value="g_timer0"/>
       <property id="module.driver.timer.channel" value="0"/>
-      <property id="module.driver.timer.mode" value="module.driver.timer.mode.mode_periodic"/>
+      <property id="module.driver.timer.mode" value="module.driver.timer.mode.mode_pwm"/>
       <property id="module.driver.timer.shortest_pwm_signal" value="module.driver.timer.mode.shortest_pwm_signal_disabled"/>
-      <property id="module.driver.timer.period" value="10"/>
-      <property id="module.driver.timer.unit" value="module.driver.timer.unit.unit_period_msec"/>
-      <property id="module.driver.timer.duty_cycle" value="50"/>
-      <property id="module.driver.timer.duty_cycle_unit" value="module.driver.timer.duty_cycle_unit.unit_percent"/>
+      <property id="module.driver.timer.period" value="15"/>
+      <property id="module.driver.timer.unit" value="module.driver.timer.unit.unit_period_sec"/>
+      <property id="module.driver.timer.duty_cycle" value="33"/>
+      <property id="module.driver.timer.duty_cycle_unit" value="module.driver.timer.unit.unit_percent"/>
       <property id="module.driver.timer.autostart" value="module.driver.timer.autostart.false"/>
-      <property id="module.driver.timer.gtioca_output_enabled" value="module.driver.timer.gtioca_output_enabled.false"/>
+      <property id="module.driver.timer.gtioca_output_enabled" value="module.driver.timer.gtioca_output_enabled.true"/>
       <property id="module.driver.timer.gtioca_stop_level" value="module.driver.timer.gtioca_stop_level.pin_level_low"/>
-      <property id="module.driver.timer.gtiocb_output_enabled" value="module.driver.timer.gtiocb_output_enabled.false"/>
+      <property id="module.driver.timer.gtiocb_output_enabled" value="module.driver.timer.gtiocb_output_enabled.true"/>
       <property id="module.driver.timer.gtiocb_stop_level" value="module.driver.timer.gtiocb_stop_level.pin_level_low"/>
-      <property id="module.driver.timer.p_callback" value="getTemp_callback"/>
-      <property id="module.driver.timer.irq_ipl" value="board.icu.common.irq.priority6"/>
+      <property id="module.driver.timer.p_callback" value="NULL"/>
+      <property id="module.driver.timer.irq_ipl" value="board.icu.common.irq.disabled"/>
     </module>
     <module id="module.framework.sf_comms_on_sf_uart_comms.524131596">
       <property id="module.framework.sf_comms.name" value="g_sf_comms0"/>

@@ -423,19 +423,19 @@ Synergy Configuration
     Instance "g_timer0 Timer Driver on r_gpt"
       Name: g_timer0
       Channel: 0
-      Mode: Periodic
+      Mode: PWM
       Duty Cycle Range (only applicable in PWM mode): Shortest: 2 PCLK, Longest: (Period - 1) PCLK
-      Period Value: 10
-      Period Unit: Milliseconds
-      Duty Cycle Value: 50
-      Duty Cycle Unit: Unit Raw Counts
+      Period Value: 15
+      Period Unit: Seconds
+      Duty Cycle Value: 33
+      Duty Cycle Unit: Unit Percent
       Auto Start: False
-      GTIOCA Output Enabled: False
+      GTIOCA Output Enabled: True
       GTIOCA Stop Level: Pin Level Low
-      GTIOCB Output Enabled: False
+      GTIOCB Output Enabled: True
       GTIOCB Stop Level: Pin Level Low
-      Callback: getTemp_callback
-      Overflow Interrupt Priority: Priority 6
+      Callback: NULL
+      Overflow Interrupt Priority: Disabled
       
     Instance "g_adc0 ADC Driver on r_adc"
       Name: g_adc0

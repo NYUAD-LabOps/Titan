@@ -24,8 +24,8 @@ void NULL(adc_callback_args_t *p_args);
 #endif
 /** Timer on GPT Instance. */
 extern const timer_instance_t g_timer0;
-#ifndef getTemp_callback
-void getTemp_callback(timer_callback_args_t *p_args);
+#ifndef NULL
+void NULL(timer_callback_args_t *p_args);
 #endif
 void hal_entry(void);
 void g_hal_init(void);
