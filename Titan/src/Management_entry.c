@@ -132,11 +132,13 @@ void Management_entry(void)
             g_timer6.p_api->dutyCycleSet (g_timer6.p_ctrl, 100, TIMER_PWM_UNIT_PERCENT, 1);
         }
 
+        ///Extruder
+
         g_adc0.p_api->read (g_adc0.p_ctrl, ADC_REG_CHANNEL_0, &adc_data);
         voltage = 3.3;
         voltage = voltage / 4095.0;
         voltage *= adc_data;
-        ///Extruder
+
         if (voltage < 3.3)
         {
             T = (voltage - 1.25) / 0.005;
@@ -150,10 +152,22 @@ void Management_entry(void)
                 printf ("\nVoltage Read: %f", voltage);
             }
 
-            if (T < tempSet && T > 20.0)
+            if (T < tempSet && T > 20.0 && T < 200.0)
             {
                 err = g_ioport.p_api->pinWrite (IOPORT_PORT_04_PIN_15, IOPORT_LEVEL_LOW); //heater
-                g_timer6.p_api->dutyCycleSet (g_timer6.p_ctrl, 20, TIMER_PWM_UNIT_PERCENT, 0);
+                g_timer6.p_api->dutyCycleSet (g_timer6.p_ctrl, 40, TIMER_PWM_UNIT_PERCENT, 0);
+                //    err = g_ioport.p_api->pinWrite (IOPORT_PORT_03_PIN_14, IOPORT_LEVEL_LOW);
+                //                err = g_ioport.p_api->pinWrite (IOPORT_PORT_02_PIN_06, IOPORT_LEVEL_HIGH); //fan
+                if (PRINTF)
+                {
+
+                    printf ("\nHeating...");
+                }
+            }
+            else if (T < tempSet && T > 20.0 && T >= 200.0)
+            {
+                err = g_ioport.p_api->pinWrite (IOPORT_PORT_04_PIN_15, IOPORT_LEVEL_LOW); //heater
+                g_timer6.p_api->dutyCycleSet (g_timer6.p_ctrl, 60, TIMER_PWM_UNIT_PERCENT, 0);
                 //    err = g_ioport.p_api->pinWrite (IOPORT_PORT_03_PIN_14, IOPORT_LEVEL_LOW);
 //                err = g_ioport.p_api->pinWrite (IOPORT_PORT_02_PIN_06, IOPORT_LEVEL_HIGH); //fan
                 if (PRINTF)
