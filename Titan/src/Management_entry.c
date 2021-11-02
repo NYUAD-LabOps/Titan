@@ -23,7 +23,7 @@ void Management_entry(void)
     ssp_err_t err;
 
     double tempSet = 300.0;
-    double preHeatTSet = 0.0;
+    double preHeatTSet = 300.0;
 
     while (machineGlobalsBlock->globalsInit != 1)
     {
@@ -97,10 +97,22 @@ void Management_entry(void)
 //                printf ("\nVoltage Read: %f", voltage);
 //            }
 
-            if (preHeatT < preHeatTSet && preHeatT > 20.0)
+            if (preHeatT < preHeatTSet && preHeatT > 20.0 && preHeatT < 200.0)
             {
 
-                g_timer6.p_api->dutyCycleSet (g_timer6.p_ctrl, 20, TIMER_PWM_UNIT_PERCENT, 1);
+                g_timer6.p_api->dutyCycleSet (g_timer6.p_ctrl, 40, TIMER_PWM_UNIT_PERCENT, 1);
+                //    err = g_ioport.p_api->pinWrite (IOPORT_PORT_03_PIN_14, IOPORT_LEVEL_LOW);
+                //                err = g_ioport.p_api->pinWrite (IOPORT_PORT_02_PIN_06, IOPORT_LEVEL_HIGH); //fan
+                if (PRINTF)
+                {
+
+                    printf ("\nHeating...");
+                }
+            }
+            else if (preHeatT < preHeatTSet && preHeatT > 20.0 && preHeatT > 200.0)
+            {
+
+                g_timer6.p_api->dutyCycleSet (g_timer6.p_ctrl, 60, TIMER_PWM_UNIT_PERCENT, 1);
                 //    err = g_ioport.p_api->pinWrite (IOPORT_PORT_03_PIN_14, IOPORT_LEVEL_LOW);
                 //                err = g_ioport.p_api->pinWrite (IOPORT_PORT_02_PIN_06, IOPORT_LEVEL_HIGH); //fan
                 if (PRINTF)
@@ -111,7 +123,7 @@ void Management_entry(void)
             }
             else if (preHeatT > preHeatTSet)
             {
-                g_timer6.p_api->dutyCycleSet (g_timer6.p_ctrl, 100, TIMER_PWM_UNIT_PERCENT, 1);
+                g_timer6.p_api->dutyCycleSet (g_timer6.p_ctrl, 95, TIMER_PWM_UNIT_PERCENT, 1);
 
                 //    err = g_ioport.p_api->pinWrite (IOPORT_PORT_03_PIN_14, IOPORT_LEVEL_LOW);
                 //                err = g_ioport.p_api->pinWrite (IOPORT_PORT_02_PIN_06, IOPORT_LEVEL_HIGH); //fan
@@ -123,13 +135,13 @@ void Management_entry(void)
             else
             {
                 ///Out of range. Shut down.
-                g_timer6.p_api->dutyCycleSet (g_timer6.p_ctrl, 100, TIMER_PWM_UNIT_PERCENT, 1);
+                g_timer6.p_api->dutyCycleSet (g_timer6.p_ctrl, 95, TIMER_PWM_UNIT_PERCENT, 1);
             }
         }
         else
         {
             //            printf ("\nVoltage out of range. Cooling...");
-            g_timer6.p_api->dutyCycleSet (g_timer6.p_ctrl, 100, TIMER_PWM_UNIT_PERCENT, 1);
+            g_timer6.p_api->dutyCycleSet (g_timer6.p_ctrl, 95, TIMER_PWM_UNIT_PERCENT, 1);
         }
 
         ///Extruder
