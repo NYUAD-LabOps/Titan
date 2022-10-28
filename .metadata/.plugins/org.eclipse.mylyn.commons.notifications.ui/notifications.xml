@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notifications>
+<event id="com.renesas.e2studio.ddsc.smartdemo.notificationevent">
+<action selected="false" sink="org.eclipse.mylyn.commons.notifications.sink.Popup"/>
+</event>
+<event id="com.renesas.e2studio.synergy.smartdemo.notificationevent">
+<action selected="true" sink="org.eclipse.mylyn.commons.notifications.sink.Popup"/>
+</event>
+</notifications>

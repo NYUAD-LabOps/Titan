@@ -1,0 +1,9 @@
+eclipse.preferences.version=1
+environment/workspace/AMS_KEEP_FILE/delimiter=;
+environment/workspace/AMS_KEEP_FILE/operation=replace
+environment/workspace/AMS_KEEP_FILE/value=${synergyKeepFile}
+environment/workspace/AMS_LICENSE_PATH/delimiter=;
+environment/workspace/AMS_LICENSE_PATH/operation=replace
+environment/workspace/AMS_LICENSE_PATH/value=${synergyLicenseFile}
+environment/workspace/append=true
+environment/workspace/appendContributed=true
