@@ -1,95 +1,82 @@
-#ifdef AMS_ENCRYPT_PACKAGE
------BEGIN ENCRYPTED FILE v0.6-----
-9S04Fc0roaJnwZGP6OG7EDBImvEWKQdoMQNOXjk4ZvxTSJPk3yRkrUfzmivV40+I
-O5vHVn/TuiHbeSlU7Ltzuziq3KyX1LWuZApe52bi2PCQ6TmHmWcLZYNyrLG1/4gT
-4p1APv1pBU+YVAbcqSehzWem8fEx8NmowqEaGVtP1giIrcEOzDUyQ0lVPLdGW5CP
-sLhnv5PrFHSrfhbf9RmipQKme+owq29JurWCYmlEG7UcQrhaJawKP20NjTO/IlCo
-56yLD7YJmU8qsK1nh0ulTlrt14gULUfZR5MDdVO3mA5m3hb6qimTKzJzu/qCOMyb
-65phGgzzM0TFT4kGM1vejwPIFmJHvPKh/OoCV3f7sQ+VSJHDySxg5kwwyoUlmBd2
-9zbScmi7677meMGzc0brrf5Q7uZBnQkww6Rx6Wa9XTxefz6gQdH8Ul30ZXYkhS7n
-XSdUrHE+I4FzgxfIe8DtdOLJeA33BF+AybgjFgTHsf6upRtsH2YkOX6jEEoYTS2l
-4ojUgLNywAkwt79JoAo9riyA3sPJ8yUeNJgr9OBYrb1j+5V6gUgylho97CPBOfYY
-in6ykSO6JGbg3DCNLfAIBhNUm3LZUDfp8qopmpEiO76ocu4o2gEfKSLHkBp770lC
-iAc6WBMtWntNjPDFWT2ArWPpe2hlkkTuOHXoR7mqNWt+tghVRG25xXiDIztdKKWi
-l2WTpL3D1cTEEfm0zRrNUq+LROMLGgtLq8jqOKfG50w0Aq2LHiJ4oX13N/QXydwf
-HGJpZWtfYqwxXHpo8XVLCAywGENRm0u5htbDHJcrg+9qq8cZTZmGcsKxKGCybtZo
-N+70f4EZUxPeTTy6jTAfacdTxEBGiDnQeKAAV4hVyXek3HdpmuT3tQ5KM64TOHTs
-9shEDGBTvX89TvTlGC4HkRpNJ0JQg2l1YMo+yCpF3IlxiKSRbZ3Gz59n7NzM+aLs
-qCciRDEJN3Cf4KMNIvBzeeJfj82U+gpGV+cE0qxnwA5ieQeRauANlbtktu5xb4uW
-TtiQtROfZXjQueYQDdhalsOl2J/cf60FG8DGp4w4XJ3JZINUcGwr1YaWY/uJRtlv
-1UTEZaEfHse/e5sEKFnc5fw5nzB1Rgy8nTylvrXp2mnyDH9mKoVBgOYKCqdeilQj
-gJPCOLnV+1wFDG2IXY/1MTyh0/B877k7o15sZjuH7if3dLM7x+0ugBEI1OIyI0KD
-rkFx28oTOP7wqVJYNj0G+lTdy/VixxrrYkdvXoE93MaCrimY8R7osIvhy7xvmom0
-xxfXuYruMwiPYWqlLCKMw+rx1t4wK1TpXwqWGNIZMWcnXmZpBn5xFX7rGSRBJidJ
-XNtDXGAnQpRfgoEEGbOWbqF9KRhnIdyjNFtlBFFBN6EzjoGrzE9hOc3yO1Aom/Ep
-kMr49iHDsXDFg6Qh2kwi1aZa7AVCupQ0blPS0SXZj5NXKr1jdcbux+ioFt8wNkwL
-F9w5LhZpENL7rsElfwtVoTnb0MtpQ7fUNPvOLfdU00F1zdHIj/5D6gFnr/xV/67L
-34pnIaDU50JkStD9S3txBqS6tMmoHgPUKZGS+edgDt0G1wcz5IExipY/2Bmx2QFc
-R6GLBSYZ8SQrQNLBntsDtFbLQ0UcJGc1fJ1sLlm5tR4+FxDEf5NaqegiNdH7AUjT
-BkWdvaEp6UR8HdOXpQlY00Oa2HoMlnHry75BPZopeM5zRXCq+8DdHWZgJG0l/x+o
-5cvmWb2WiBrCnT/bVgMhs5W2qCYbUWCCrsghW0H94buGeCU+1+rXdxW6heqkagxG
-JREwN+Q+gbAR3rbgogMMSiQc1IjYyVw3ZfhIDbNSvNpcfrU5p6zgtxIj3ObnRGQg
-OLR8ACL5g4uo0yPY5hecQ+/Z5wuUyJnPSG/PDJSN912lNsfzcu6yx9lAGWuIyrty
-fbRKd9zUEOZri6TmQKSahv+FXjGUFsd9U99f50QU6lobETgYASFIOAu4cOyy53wi
-HQf79Z3mCph2VIpkC2RSrz+A4UoLbYwd1G5/lDyUNTSSaUveend3oroUdRXsN61U
-MZLxy1iXYOWqemyY87wk62kmJ6BwV/FO/IwjKcxcVaa6kpEw6yPR9hTFG9GJp+Zj
-uu92XDZz6dvkcG4FjslD9TigPuda9MfyygAnjkCClPtmlwgsfv/NpHCbXmFDqJeZ
-oHf4QBDk9CkgAIekl7jQSQHsbPfq/BjkswzH0axEekdtEC5wi+sjUJX+2eybFBj0
-/I8at7sLAdjfUJuhMu/Yyy2WI/19f7aKGk1JLIg+72RCTInz+6cvD3g2wtl9bp5B
-C9a8fkoGxC+0w0Ya8u8QerE8ZXzOgngaQhUiEJeTVrCfOA220Bks1cfmtKdlIcHA
-pRRf9pydKozk6P22JSZ7s5zq3TizsRGJYDxV3/mvp01QkSFhWkqAECF3gj/Owfok
-YNvzO0B7wmZyLlUDXgmPbundm7PAkNFkNfmEFgsSHeh5P+rfhXI75D0Wvn9xqMo9
-eT3hHpqBYb7vZY1DvkIy9/NvT5XGLeTKWQXgrdgtKYljqoGoW5NO1iKQ1MYZeJND
-ZDST0XuJlBL6kxkSmZZWgq+O5raQCWTVrJ3PmnAVzbqKk00azRWkCuRilO5pwm/4
-yTHw/L3eTiC6BH00seNnqq5lS9PrZgAK/yx1VdbN3/k2Xz8MjpmtmdOM5GE1UGFj
-r/lwmwEZI6ZIaaCkroXNjluaaI0Unc70fm9u9SBrBykImCc/xqONMYfRGeaQsAn7
-FTZhsgWiuvEh0H3nUw3LEMmfmTGC+zsb1TSa27FqPLOpLCHsQcpjq3xafchD6099
-r8fGxh05q9Ci7iQyUEZNoc7T1jVc+YGtD5Sa8sYfdLYAryaaKchUlrrAyhAN9NSK
-RDmfkKGDUN+UzIoI23Ovv8RCDSJ2JwGQFgQh4OzN5Yyevvp5QyvCFoZ+XyIl9Vr4
-JNih3JODSSlkMXjzcxFsJDXCjjak2k+0DYuLz8ooDKBRqZWoqwiROuSS/l6yOmej
-QOqA3NFk4qEZ6esDZe569QGP7E32IGVG9ebj23SLDNO5TFYgsiqyrzaOgh/WrGkO
-dDxNFl56jlGHzWilhaE52IzyvHmvDLzL3l1rhwWAPECeCUiAh9wP8fjyBPCS5Bbn
-hBIJ9A+PeeXSXxtnZkvoxTTv1Tj7ruj0wto5QfwNr0b84CC7nkbXl7YvNnuOIH97
-/mgdubEzmgcVaRzqab+mRmryVwfGJdEUaD8IhoTnJ0Dne220kEEmKiyMg02ymnkm
-9NnxzfNbc4pglCfZ2Fr1A0vRHYIUmrgnmPofA4eqHQWo1k6jLw0Fr6DQkHXzAqdL
-BdZUxFju4pzV2b/f/5/nN/Es7Z12w633PaXxmUAf0Qi4B+T8rPq8deTCi80q7CwS
-9Aro1mDGz5bE5zH00UilMrjra13StfNShvEb3hRPKNJJAPEN3qUN1I02HHwrD1IR
-1GdMSxS+G1qFTriv42iydScwf+esc5N2ePvBfviWMUuHLSgdqdGK889nrxoXjAMp
-6qYXKGXU82IFtNRsI3t/4AL8Er7G5Nf120C3MPw3COIdrgcUxuA4rkT0lo29yT13
-I1t4rI2xboeF+5VYIzhGZDBa0LCtfE+eZcZ7MkRmizaxOGfVZO/N8qbtb+nhOX8p
-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
-LtDXTe+UcgtSD7ykAQag1A==
------END ENCRYPTED FILE-----
-#else
-#error "Secure builder required to compile this file"
-#endif
+/*LDRA_INSPECTED 119 S */
+/**************************************************************************/
+/*                                                                        */
+/*       Copyright (c) Microsoft Corporation. All rights reserved.        */
+/*                                                                        */
+/*       This software is licensed under the Microsoft Software License   */
+/*       Terms for Microsoft Azure RTOS. Full text of the license can be  */
+/*       found in the LICENSE file at https://aka.ms/AzureRTOS_EULA       */
+/*       and in the root directory of this software.                      */
+/*                                                                        */
+/**************************************************************************/
+
+
+/**************************************************************************/
+/**************************************************************************/
+/**                                                                       */
+/** ThreadX Component                                                     */
+/**                                                                       */
+/**   Thread                                                              */
+/**                                                                       */
+/**************************************************************************/
+/**************************************************************************/
+
+#define TX_SOURCE_CODE
+
+
+/* Include necessary system files.  */
+
+/*LDRA_NOANALYSIS These include files are maintained by Express Logic. */
+#include "tx_api.h"
+#include "../tx_thread.h"
+#include "tx_cmsis.h"
+/*LDRA_ANALYSIS */
+
+/***********************************************************************//**
+ * @addtogroup TX_SYNERGY_PORT
+ * @{
+ **************************************************************************/
+
+/*LDRA_INSPECTED 219 S API is defined by Express Logic, must start with
+ * underscore. */
+VOID   _tx_thread_interrupt_restore(UINT new_posture);
+
+/***********************************************************************//**
+ *
+ *  FUNCTION                                               RELEASE
+ *
+ *    _tx_thread_interrupt_restore                         Synergy
+ *
+ *  DESCRIPTION
+ *
+ *    This function is responsible for restoring the previous
+ *    interrupt lockout posture.
+ *
+ *  INPUT
+ *
+ *    new_posture                           New interrupt posture
+ *
+ *  OUTPUT
+ *
+ *    None
+ *
+ *  CALLS
+ *
+ *    None
+ *
+ *  CALLED BY
+ *
+ *    Application Code
+ *
+ **************************************************************************/
+/*LDRA_INSPECTED 219 S API is defined by Express Logic, must start with
+ * underscore. */
+VOID   _tx_thread_interrupt_restore(UINT new_posture)
+{
+    /** Restore previous interrupt lockout posture.  */
+    __set_PRIMASK(new_posture);
+}
+
+/***********************************************************************//**
+ * @} (end addtogroup TX_SYNERGY_PORT)
+ **************************************************************************/

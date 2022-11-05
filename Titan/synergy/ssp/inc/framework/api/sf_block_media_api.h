@@ -1,6 +1,6 @@
 /***********************************************************************************************************************
- * Copyright [2015-2017] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
- *
+ * Copyright [2015-2021] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
+ * 
  * This file is part of Renesas SynergyTM Software Package (SSP)
  *
  * The contents of this file (the "contents") are proprietary and confidential to Renesas Electronics Corporation
@@ -57,8 +57,8 @@ SSP_HEADER
 /**********************************************************************************************************************
  * Macro definitions
  **********************************************************************************************************************/
-#define BLOCK_MEDIA_API_VERSION_MAJOR (1U)
-#define BLOCK_MEDIA_API_VERSION_MINOR (6U)
+#define BLOCK_MEDIA_API_VERSION_MAJOR (2U)
+#define BLOCK_MEDIA_API_VERSION_MINOR (0U)
 
 /**********************************************************************************************************************
  * Typedef definitions

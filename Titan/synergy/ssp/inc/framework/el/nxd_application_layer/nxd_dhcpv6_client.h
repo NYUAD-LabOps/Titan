@@ -1,23 +1,11 @@
-/**************************************************************************/ 
-/*                                                                        */ 
-/*            Copyright (c) 1996-2019 by Express Logic Inc.               */ 
-/*                                                                        */ 
-/*  This software is copyrighted by and is the sole property of Express   */ 
-/*  Logic, Inc.  All rights, title, ownership, or other interests         */ 
-/*  in the software remain the property of Express Logic, Inc.  This      */ 
-/*  software may only be used in accordance with the corresponding        */ 
-/*  license agreement.  Any unauthorized use, duplication, transmission,  */ 
-/*  distribution, or disclosure of this software is expressly forbidden.  */ 
+/**************************************************************************/
 /*                                                                        */
-/*  This Copyright notice may not be removed or modified without prior    */ 
-/*  written consent of Express Logic, Inc.                                */ 
-/*                                                                        */ 
-/*  Express Logic, Inc. reserves the right to modify this software        */ 
-/*  without notice.                                                       */ 
-/*                                                                        */ 
-/*  Express Logic, Inc.                     info@expresslogic.com         */
-/*  11423 West Bernardo Court               http://www.expresslogic.com   */
-/*  San Diego, CA  92127                                                  */
+/*       Copyright (c) Microsoft Corporation. All rights reserved.        */
+/*                                                                        */
+/*       This software is licensed under the Microsoft Software License   */
+/*       Terms for Microsoft Azure RTOS. Full text of the license can be  */
+/*       found in the LICENSE file at https://aka.ms/AzureRTOS_EULA       */
+/*       and in the root directory of this software.                      */
 /*                                                                        */
 /**************************************************************************/
 
@@ -38,11 +26,11 @@
 /*  APPLICATION INTERFACE DEFINITION                       RELEASE        */ 
 /*                                                                        */ 
 /*    nxd_dhcpv6_client.h                                 PORTABLE C      */ 
-/*                                                           5.12         */
-/*  AUTHOR                                                                */ 
-/*                                                                        */ 
-/*    William E. Lamie, Express Logic, Inc.                               */ 
-/*                                                                        */ 
+/*                                                           6.1.9        */
+/*  AUTHOR                                                                */
+/*                                                                        */
+/*    Yuxin Zhou, Microsoft Corporation                                   */
+/*                                                                        */
 /*  DESCRIPTION                                                           */ 
 /*                                                                        */ 
 /*    This file defines the NetX Dynamic Host Configuration Protocol over */ 
@@ -52,79 +40,17 @@
 /*                                                                        */ 
 /*  RELEASE HISTORY                                                       */ 
 /*                                                                        */ 
-/*    DATE              NAME                      DESCRIPTION             */ 
-/*                                                                        */ 
-/*  06-01-2010     William E. Lamie         Initial Version 5.0           */ 
-/*  03-01-2011     Janet Christiansen       Modified comment(s),          */
-/*                                            added multihome support,    */
-/*                                            resulting in version 5.1    */
-/*  10-10-2011     Janet Christiansen       Modified comment(s),          */
-/*                                            added multihome support,    */
-/*                                            resulting in version 5.2    */
-/*  01-12-2012     Janet Christiansen       Modified comment(s),          */
-/*                                            corrected default value of  */
-/*                                            NX_DHCPV6_TIME_INTERVAL,    */
-/*                                            added a BOUND state to the  */
-/*                                            DHCPv6 Client set of states,*/
-/*                                            added an address index to   */
-/*                                            the DHCPv6 Client struct,   */
-/*                                            added new services,         */
-/*                                            and stack size argument to  */
-/*                                            nx_dhcpv6_client_create,    */
-/*                                            removed address_status in   */
-/*                                            DHCPv6 Client 'get'         */
-/*                                            services, removed debug     */
-/*                                            output macros,              */
-/*                                            resulting in version 5.3    */
-/*  01-31-2013     Janet Christiansen       Modified comment(s), and      */
-/*                                            added support for multiple  */
-/*                                            IP address assignment, rapid*/
-/*                                            commit option, choosing     */
-/*                                            Server by preference value, */
-/*                                            and DAD/IP address          */
-/*                                            registration with the IP    */
-/*                                            instance, added more DHCP   */
-/*                                            option codes for DHCP Client*/
-/*                                            requests,                   */
-/*                                            resulting in version 5.4    */
-/*  01-12-2015     Janet Christiansen       Modified comment(s), and      */
-/*                                            converted macros for DHCPv6 */
-/*                                            Client message transmission */
-/*                                            to configuration options,   */
-/*                                            added support for the FQDN  */
-/*                                            option, added support for   */ 
-/*                                            obtaining the time server   */ 
-/*                                            address, defined the error  */
-/*                                            status code location,       */ 
-/*                                            supported for DHCPv6 state  */ 
-/*                                            restore feature,            */ 
-/*                                            added the function to flush */ 
-/*                                            the useless queue packets,  */ 
-/*                                            optimized DHCPv6 struct,    */  
-/*                                            resulting in version 5.8    */
-/*  02-22-2016     Yuxin Zhou               Modified comment(s), and      */
-/*                                            unified ticks per second,   */
-/*                                            added conditional code      */
-/*                                            for DAD notify declaration, */
-/*                                            fixed compiler warnings.    */
-/*                                            resulting in version 5.9    */
-/*  05-10-2016     Yuxin Zhou               Modified comment(s),          */
-/*                                            resulting in version 5.10   */
-/*  07-15-2018     Yuxin Zhou               Modified comment(s), and      */
-/*                                            corrected the symbol name   */
-/*                                            and value for hardware type,*/
-/*                                            added support for EUI-64    */
-/*                                            hardware type, added        */
-/*                                            function to set the         */
-/*                                            destination address where   */
-/*                                            DHCP message should be sent,*/
-/*                                            added support for setting   */
-/*                                            server as default router,   */
-/*                                            resulting in version 5.11   */
-/*  08-15-2019     Yuxin Zhou               Modified comment(s),          */
-/*                                            resulting in version 5.12   */
-/*                                                                        */ 
-/**************************************************************************/ 
+/*    DATE              NAME                      DESCRIPTION             */
+/*                                                                        */
+/*  05-19-2020     Yuxin Zhou               Initial Version 6.0           */
+/*  09-30-2020     Yuxin Zhou               Modified comment(s), improved */
+/*                                            packet length verification, */
+/*                                            resulting in version 6.1    */
+/*  10-15-2021     Yuxin Zhou               Modified comment(s), included */
+/*                                            necessary header file,      */
+/*                                            resulting in version 6.1.9  */
+/*                                                                        */
+/**************************************************************************/
 
 #ifndef NXD_DHCPV6_CLIENT_H
 #define NXD_DHCPV6_CLIENT_H
@@ -138,7 +64,8 @@
 extern   "C" {
 
 #endif
-                
+
+#include "nx_api.h"
 
 /*  Enable support for DHCPv6 client state preserved between reboots  */ 
 /*
@@ -1105,18 +1032,18 @@ UINT        _nx_dhcpv6_scan_packet_options(NX_DHCPV6 *dhcpv6_ptr, NX_PACKET *pac
 UINT        _nx_dhcpv6_preprocess_packet_information(NX_DHCPV6 *dhcpv6_ptr, NX_PACKET *packet_ptr);
 UINT        _nx_dhcpv6_extract_packet_information(NX_DHCPV6 *dhcpv6_ptr, NX_PACKET *packet_ptr);       
 VOID        _nx_dhcpv6_flush_queue_packets(NX_DHCPV6 *dhcpv6_ptr);
-UINT        _nx_dhcpv6_process_client_duid(NX_DHCPV6 *dhcpv6_ptr, UCHAR *received_buffer, UINT length);
-UINT        _nx_dhcpv6_process_DNS_server(NX_DHCPV6 *dhcpv6_ptr, UCHAR *received_buffer, UINT length);
-UINT        _nx_dhcpv6_process_domain_name(NX_DHCPV6 *dhcpv6_ptr, UCHAR *packet_start, UCHAR *received_buffer, UINT length);
-UINT        _nx_dhcpv6_process_ia(NX_DHCPV6 *dhcpv6_ptr, UCHAR *received_buffer, UINT length, UINT ia_index);
-UINT        _nx_dhcpv6_process_iana(NX_DHCPV6 *dhcpv6_ptr, UCHAR *received_buffer, UINT length);
-UINT        _nx_dhcpv6_process_preference(NX_DHCPV6 *dhcpv6_ptr, UCHAR *received_buffer, UINT length);
-UINT        _nx_dhcpv6_process_server_duid(NX_DHCPV6 *dhcpv6_ptr, UCHAR *received_buffer, UINT length);
-UINT        _nx_dhcpv6_process_status(NX_DHCPV6 *dhcpv6_ptr, UCHAR *received_buffer, UINT length);
-UINT        _nx_dhcpv6_process_time_zone(NX_DHCPV6 *dhcpv6_ptr, UCHAR *received_buffer, UINT length);
-UINT        _nx_dhcpv6_process_time_server(NX_DHCPV6 *dhcpv6_ptr, UCHAR *received_buffer, UINT length);
-VOID        _nx_dhcpv6_IP_lifetime_timeout_entry(NX_DHCPV6 *dhcpv6_ptr);
-VOID        _nx_dhcpv6_session_timeout_entry(NX_DHCPV6 *dhcpv6_ptr);
+UINT        _nx_dhcpv6_process_client_duid(NX_DHCPV6 *dhcpv6_ptr, UCHAR *option_data, UINT option_length);
+UINT        _nx_dhcpv6_process_DNS_server(NX_DHCPV6 *dhcpv6_ptr, UCHAR *option_data, UINT option_length);
+UINT        _nx_dhcpv6_process_domain_name(NX_DHCPV6 *dhcpv6_ptr, UCHAR *packet_start, UCHAR *option_data, UINT option_length);
+UINT        _nx_dhcpv6_process_ia(NX_DHCPV6 *dhcpv6_ptr, UCHAR *option_data, UINT option_length, UINT ia_index);
+UINT        _nx_dhcpv6_process_iana(NX_DHCPV6 *dhcpv6_ptr, UCHAR *option_data, UINT option_length);
+UINT        _nx_dhcpv6_process_preference(NX_DHCPV6 *dhcpv6_ptr, UCHAR *option_data, UINT option_length);
+UINT        _nx_dhcpv6_process_server_duid(NX_DHCPV6 *dhcpv6_ptr, UCHAR *option_data, UINT option_length);
+UINT        _nx_dhcpv6_process_status(NX_DHCPV6 *dhcpv6_ptr, UCHAR *option_data, UINT option_length);
+UINT        _nx_dhcpv6_process_time_zone(NX_DHCPV6 *dhcpv6_ptr, UCHAR *option_data, UINT option_length);
+UINT        _nx_dhcpv6_process_time_server(NX_DHCPV6 *dhcpv6_ptr, UCHAR *option_data, UINT option_length);
+VOID        _nx_dhcpv6_IP_lifetime_timeout_entry(ULONG dhcpv6_ptr_value);
+VOID        _nx_dhcpv6_session_timeout_entry(ULONG dhcpv6_ptr_value);
 UINT        _nx_dhcpv6_utility_get_block_option_length(UCHAR *buffer_ptr, ULONG *option, ULONG *length);
 UINT        _nx_dhcpv6_utility_get_data(UCHAR *buffer, UINT size, ULONG *value);
 INT         _nx_dhcpv6_utility_time_randomize(void);

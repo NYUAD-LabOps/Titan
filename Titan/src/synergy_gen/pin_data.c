@@ -113,14 +113,6 @@ const ioport_pin_cfg_t g_bsp_pin_cfg_data[] = {
 		.pin_cfg = (IOPORT_CFG_PERIPHERAL_PIN | IOPORT_PERIPHERAL_CTSU),
 	},
 	{
-		.pin = IOPORT_PORT_02_PIN_12,
-		.pin_cfg = (IOPORT_CFG_PERIPHERAL_PIN | IOPORT_PERIPHERAL_CLKOUT_COMP_RTC),
-	},
-	{
-		.pin = IOPORT_PORT_02_PIN_13,
-		.pin_cfg = (IOPORT_CFG_PERIPHERAL_PIN | IOPORT_PERIPHERAL_CLKOUT_COMP_RTC),
-	},
-	{
 		.pin = IOPORT_PORT_03_PIN_00,
 		.pin_cfg = (IOPORT_CFG_PERIPHERAL_PIN | IOPORT_PERIPHERAL_DEBUG),
 	},

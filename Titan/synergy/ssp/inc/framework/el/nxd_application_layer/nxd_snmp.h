@@ -1,23 +1,11 @@
-/**************************************************************************/ 
-/*                                                                        */ 
-/*            Copyright (c) 1996-2019 by Express Logic Inc.               */ 
-/*                                                                        */ 
-/*  This software is copyrighted by and is the sole property of Express   */ 
-/*  Logic, Inc.  All rights, title, ownership, or other interests         */ 
-/*  in the software remain the property of Express Logic, Inc.  This      */ 
-/*  software may only be used in accordance with the corresponding        */ 
-/*  license agreement.  Any unauthorized use, duplication, transmission,  */ 
-/*  distribution, or disclosure of this software is expressly forbidden.  */ 
+/**************************************************************************/
 /*                                                                        */
-/*  This Copyright notice may not be removed or modified without prior    */ 
-/*  written consent of Express Logic, Inc.                                */ 
-/*                                                                        */ 
-/*  Express Logic, Inc. reserves the right to modify this software        */ 
-/*  without notice.                                                       */ 
-/*                                                                        */ 
-/*  Express Logic, Inc.                     info@expresslogic.com         */
-/*  11423 West Bernardo Court               http://www.expresslogic.com   */
-/*  San Diego, CA  92127                                                  */
+/*       Copyright (c) Microsoft Corporation. All rights reserved.        */
+/*                                                                        */
+/*       This software is licensed under the Microsoft Software License   */
+/*       Terms for Microsoft Azure RTOS. Full text of the license can be  */
+/*       found in the LICENSE file at https://aka.ms/AzureRTOS_EULA       */
+/*       and in the root directory of this software.                      */
 /*                                                                        */
 /**************************************************************************/
 
@@ -38,11 +26,11 @@
 /*  APPLICATION INTERFACE DEFINITION                       RELEASE        */ 
 /*                                                                        */ 
 /*    nxd_snmp.h                                          PORTABLE C      */ 
-/*                                                           5.12         */
-/*  AUTHOR                                                                */ 
-/*                                                                        */ 
-/*    William E. Lamie, Express Logic, Inc.                               */ 
-/*                                                                        */ 
+/*                                                           6.1          */
+/*  AUTHOR                                                                */
+/*                                                                        */
+/*    Yuxin Zhou, Microsoft Corporation                                   */
+/*                                                                        */
 /*  DESCRIPTION                                                           */ 
 /*                                                                        */ 
 /*    This file defines the NetX Simple Network Management Protocol       */ 
@@ -52,52 +40,13 @@
 /*                                                                        */ 
 /*  RELEASE HISTORY                                                       */ 
 /*                                                                        */ 
-/*    DATE              NAME                      DESCRIPTION             */ 
-/*  03-01-2011     Janet Christiansen       Initial Version 5.0           */ 
-/*  11-21-2011     Janet Christiansen       Modified comment(s),          */
-/*                                            added support for both IPv4 */
-/*                                            and IPv6 packet handling,   */
-/*                                            resulting in version 5.1    */
-/*  09-05-2013     Janet Christiansen       Modified comment(s), and      */
-/*                                            added support for changing  */
-/*                                            agent SNMP version at run   */
-/*                                            time and private strings,   */
-/*                                            added support for processing*/
-/*                                            negative SNMP data, added   */
-/*                                            support for SNMPv3 trap     */
-/*                                            security,                   */
-/*                                            resulting in version 5.2    */
-/*  04-15-2014     Janet Christiansen       Modified comment(s), and      */
-/*                                            added support for changing  */
-/*                                            api names, adding new api,  */
-/*                                            resulting in version 5.8    */
-/*  02-22-2016     Janet Christiansen       Modified comment(s), and      */
-/*                                            renamed internal functions  */
-/*                                            for setting size in sequence*/
-/*                                            headers, put conditional    */
-/*                                            compiler directives around  */
-/*                                            SNMPv3 declarations and     */
-/*                                            include files,              */
-/*                                            resulting in version 5.9    */
-/*  05-10-2016     Yuxin Zhou               Modified comment(s),          */
-/*                                            resulting in version 5.10   */
-/*  07-15-2018     Yuxin Zhou               Modified comment(s),          */
-/*                                            updated definition of       */
-/*                                            internal functions modified */
-/*                                            to check for boundary       */
-/*                                            overflow, removed the       */
-/*                                            #include nx_tcp.h,          */
-/*                                            added function and ASN1     */
-/*                                            macros for TLV parsing,     */
-/*                                            redefined IPv6 address type */
-/*                                            as an ASN1 Octet string type*/
-/*                                            resulting in version 5.11   */
-/*  08-15-2019     Yuxin Zhou               Modified comment(s), improved */
-/*                                            buffer length and string    */
-/*                                            length verification,        */
-/*                                            resulting in version 5.12   */
-/*                                                                        */ 
-/**************************************************************************/ 
+/*    DATE              NAME                      DESCRIPTION             */
+/*                                                                        */
+/*  05-19-2020     Yuxin Zhou               Initial Version 6.0           */
+/*  09-30-2020     Yuxin Zhou               Modified comment(s),          */
+/*                                            resulting in version 6.1    */
+/*                                                                        */
+/**************************************************************************/
 
 #ifndef NXD_SNMP_H
 #define NXD_SNMP_H

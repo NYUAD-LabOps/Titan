@@ -1,23 +1,11 @@
 /**************************************************************************/
 /*                                                                        */
-/*            Copyright (c) 1996-2019 by Express Logic Inc.               */
+/*       Copyright (c) Microsoft Corporation. All rights reserved.        */
 /*                                                                        */
-/*  This software is copyrighted by and is the sole property of Express   */
-/*  Logic, Inc.  All rights, title, ownership, or other interests         */
-/*  in the software remain the property of Express Logic, Inc.  This      */
-/*  software may only be used in accordance with the corresponding        */
-/*  license agreement.  Any unauthorized use, duplication, transmission,  */
-/*  distribution, or disclosure of this software is expressly forbidden.  */
-/*                                                                        */
-/*  This Copyright notice may not be removed or modified without prior    */
-/*  written consent of Express Logic, Inc.                                */
-/*                                                                        */
-/*  Express Logic, Inc. reserves the right to modify this software        */
-/*  without notice.                                                       */
-/*                                                                        */
-/*  Express Logic, Inc.                     info@expresslogic.com         */
-/*  11423 West Bernardo Court               http://www.expresslogic.com   */
-/*  San Diego, CA  92127                                                  */
+/*       This software is licensed under the Microsoft Software License   */
+/*       Terms for Microsoft Azure RTOS. Full text of the license can be  */
+/*       found in the LICENSE file at https://aka.ms/AzureRTOS_EULA       */
+/*       and in the root directory of this software.                      */
 /*                                                                        */
 /**************************************************************************/
 
@@ -38,10 +26,10 @@
 /*  COMPONENT DEFINITION                                   RELEASE        */
 /*                                                                        */
 /*    nx_udp.h                                            PORTABLE C      */
-/*                                                           5.12         */
+/*                                                           6.1.9        */
 /*  AUTHOR                                                                */
 /*                                                                        */
-/*    William E. Lamie, Express Logic, Inc.                               */
+/*    Yuxin Zhou, Microsoft Corporation                                   */
 /*                                                                        */
 /*  DESCRIPTION                                                           */
 /*                                                                        */
@@ -53,45 +41,22 @@
 /*                                                                        */
 /*    DATE              NAME                      DESCRIPTION             */
 /*                                                                        */
-/*  12-12-2005     William E. Lamie         Initial Version 5.0           */
-/*  08-09-2007     William E. Lamie         Modified comment(s), and      */
-/*                                            changed UL to ULONG cast,   */
-/*                                            resulting in version 5.1    */
-/*  12-30-2007     Yuxin Zhou               Modified comment(s), and      */
-/*                                            added support for IPv6,     */
-/*                                            resulting in version 5.2    */
-/*  08-03-2009     William E. Lamie         Modified comment(s),          */
-/*                                            resulting in version 5.3    */
-/*  11-23-2009     Yuxin Zhou               Modified comment(s),          */
-/*                                            resulting in version 5.4    */
-/*  06-01-2010     Yuxin Zhou               Removed internal debug logic, */
-/*                                            resulting in version 5.5    */
-/*  10-10-2011     Yuxin Zhou               Modified comment(s), added    */
-/*                                            new service APIS,           */
-/*                                            resulting in version 5.6    */
-/*  01-31-2013     Yuxin Zhou               Modified comment(s),          */
-/*                                            resulting in version 5.7    */
-/*  01-12-2015     Yuxin Zhou               Modified comment(s),          */
-/*                                            resulting in version 5.8    */
-/*  02-22-2016     Yuxin Zhou               Modified comment(s), and      */
-/*                                            cleaned up function         */
-/*                                            declarations, resulting     */
-/*                                            in version 5.9              */
-/*  05-10-2016     Yuxin Zhou               Modified comment(s), and      */
-/*                                            removed deprecated function */
-/*                                            declaration, resulting in   */
-/*                                            version 5.10                */
-/*  07-15-2018     Yuxin Zhou               Modified comment(s), and      */
-/*                                            modified to be compatible   */
-/*                                            with ThreadX 5.8 or later,  */
-/*                                            resulting in version 5.11   */
-/*  08-15-2019     Yuxin Zhou               Modified comment(s),          */
-/*                                            resulting in version 5.12   */
+/*  05-19-2020     Yuxin Zhou               Initial Version 6.0           */
+/*  09-30-2020     Yuxin Zhou               Modified comment(s),          */
+/*                                            resulting in version 6.1    */
+/*  08-02-2021     Yuxin Zhou               Modified comment(s), and      */
+/*                                            supported TCP/IP offload,   */
+/*                                            resulting in version 6.1.8  */
+/*  10-15-2021     Yuxin Zhou               Modified comment(s), included */
+/*                                            necessary header file,      */
+/*                                            resulting in version 6.1.9  */
 /*                                                                        */
 /**************************************************************************/
 
 #ifndef NX_UDP_H
 #define NX_UDP_H
+
+#include "nx_api.h"
 
 
 /* Define UDP constants.  */
@@ -159,6 +124,11 @@ UINT _nx_udp_socket_unbind(NX_UDP_SOCKET *socket_ptr);
 UINT _nx_udp_source_extract(NX_PACKET *packet_ptr, ULONG *ip_address, UINT *port);
 UINT _nx_udp_packet_info_extract(NX_PACKET *packet_ptr, ULONG *ip_address, UINT *protocol, UINT *port, UINT *interface_index);
 UINT _nxd_udp_source_extract(NX_PACKET *packet_ptr, NXD_ADDRESS *ip_address, UINT *port);
+#ifdef NX_ENABLE_TCPIP_OFFLOAD
+/* Define the direct UDP packet receive processing. This is used with TCP/IP offload feature.  */
+VOID _nx_udp_socket_driver_packet_receive(NX_UDP_SOCKET *socket_ptr, NX_PACKET *packet_ptr,
+                                          NXD_ADDRESS *local_ip, NXD_ADDRESS *remote_ip, UINT remote_port);
+#endif /* NX_ENABLE_TCPIP_OFFLOAD */
 
 /* Define error checking shells for API services.  These are only referenced by the
    application.  */

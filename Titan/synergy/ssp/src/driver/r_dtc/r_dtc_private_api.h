@@ -1,5 +1,5 @@
 /***********************************************************************************************************************
- * Copyright [2015-2017] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
+ * Copyright [2015-2021] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
  * 
  * This file is part of Renesas SynergyTM Software Package (SSP)
  *
@@ -47,6 +47,7 @@ ssp_err_t R_DTC_BlockReset (transfer_ctrl_t   * const p_ctrl,
                             uint16_t            const length,
                             transfer_size_t           size,
                             uint16_t            const num_transfers);
+ssp_err_t R_DTC_Stop_ActivationRequest(transfer_ctrl_t        * const p_ctrl);
 
 /* Common macro for SSP header files. There is also a corresponding SSP_HEADER macro at the top of this file. */
 SSP_FOOTER

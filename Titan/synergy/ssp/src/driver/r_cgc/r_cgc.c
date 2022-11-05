@@ -1,5 +1,5 @@
 /***********************************************************************************************************************
- * Copyright [2015-2017] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
+ * Copyright [2015-2021] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
  * 
  * This file is part of Renesas SynergyTM Software Package (SSP)
  *
@@ -33,6 +33,8 @@
 /* Configuration for this package. */
 #include "r_cgc_cfg.h"
 #include "./hw/hw_cgc.h"
+#include "bsp_cfg.h"
+
 
 #if (1 == BSP_CFG_RTOS)
 #include "tx_api.h"
@@ -61,8 +63,14 @@
 /* From user's manual and discussions with hardware group, 
  * using the maximum is safe for all MCUs, will be updated and restored in LPMV2 when entering
  * low power mode on S7 and S5 MCUs (lowPowerModeEnter())
- */
-#define MAXIMUM_HOCOWTR_HSTS    ((uint8_t)0x6U)
+ * For S1 and S3 series, When clock source is HOCO and its frequency is 32MHz or lower,
+ * the HSTS value "05" is used to account for low power wakeup time, and as the S5 and S7 series
+ * doesn't support 24 MHz and 32 MHz frequency they are automatically excluded */
+#if((BSP_HOCO_HZ == 24000000) || (BSP_HOCO_HZ == 32000000))
+  #define MAXIMUM_HOCOWTR_HSTS    ((uint8_t)0x5U)
+#else
+  #define MAXIMUM_HOCOWTR_HSTS    ((uint8_t)0x6U)
+#endif
 
 #define CGC_PLL_DIV_1_SETTING 0
 #define CGC_PLL_DIV_2_SETTING 1
@@ -868,8 +876,9 @@ ssp_err_t R_CGC_OscStopDetect (void (* p_callback) (cgc_callback_args_t * p_args
             /* Do nothing */
         }
 #endif
-        /* - add callback function to BSP */
-        R_BSP_GroupIrqWrite(BSP_GRP_IRQ_OSC_STOP_DETECT, (bsp_grp_irq_cb_t) p_callback);
+        /** add callback function to BSP */
+        bsp_grp_irq_cb_t * p_cgc_callback = (bsp_grp_irq_cb_t *) p_callback;
+        R_BSP_GroupIrqWrite(BSP_GRP_IRQ_OSC_STOP_DETECT, (bsp_grp_irq_cb_t) p_cgc_callback);
         r_cgc_oscstop_detect_enable(gp_system_reg);          // enable hardware oscillator stop detect
     }
     else
@@ -2618,6 +2627,11 @@ static void r_cgc_system_dividers_set (R_SYSTEM_Type * p_system_reg, cgc_system_
     /* All MCUs have ICLK. */
     sckdivcr.sckdivcr_b.ick  = (uint32_t)(cfg->iclk_div  & 0x7);
 
+    /** If the MCU requires, set bck divider with pckb divider bits */
+    if(1U == gp_cgc_feature->set_bck_with_pckb)
+    {
+        sckdivcr.sckdivcr_b.bck = (uint32_t)(cfg->pclkb_div & 0x7);
+    }
     /* Set the system dividers */
     HW_CGC_HardwareUnLock();
     p_system_reg->SCKDIVCR       = sckdivcr.sckdivcr_w;

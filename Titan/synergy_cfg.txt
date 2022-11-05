@@ -147,8 +147,8 @@ Synergy Configuration
       P505 145 SDHI1_DAT3 - High None "Peripheral mode" CMOS "input pull-up" "ADC1: AN18; GPT13: GTIOCB; IRQ0: IRQ14; QSPI0: QIO3; SCI6: RXD_MISO; SCI6: SCL; SDHI1: DAT3" 
       P506 146 - - - - Disabled - - "ADC0: AN19; IRQ0: IRQ15; SCI6: SDA; SCI6: TXD_MOSI; SDHI1: CD" 
       P507 147 - - - - Disabled - - "ADC1: AN19; SCI5: CTS_RTS_SS; SDHI1: WP" 
-      P511 176 - - - - Disabled - - "CAN1: CRX; GPT0: GTIOCB; IIC2: SDA; IRQ0: IRQ15; PDC0: PCKO; SCI4: RXD_MISO; SCI4: SCL" 
-      P512 175 - - - - Disabled - - "CAN1: CTX; GPT0: GTIOCA; IIC2: SCL; IRQ0: IRQ14; PDC0: VSYNC; SCI4: SDA; SCI4: TXD_MOSI" 
+      P511 176 GPT0_GTIOCB - - None "Peripheral mode" CMOS None "CAN1: CRX; GPT0: GTIOCB; IIC2: SDA; IRQ0: IRQ15; PDC0: PCKO; SCI4: RXD_MISO; SCI4: SCL" 
+      P512 175 GPT0_GTIOCA - - None "Peripheral mode" CMOS None "CAN1: CTX; GPT0: GTIOCA; IIC2: SCL; IRQ0: IRQ14; PDC0: VSYNC; SCI4: SDA; SCI4: TXD_MOSI" 
       P513 174 - - - - Disabled - - "GLCDC0: LCD_DATA16" 
       P600 122 GPIO GPIO11 Medium - "Output mode (Initial Low)" CMOS None "BUS0: RD; GLCDC0: LCD_DATA02" 
       P601 121 GPIO GPIO9 Medium - "Output mode (Initial Low)" CMOS None "BUS0: WR_WR0_DQM0; GLCDC0: LCD_DATA03" 
@@ -271,6 +271,7 @@ Synergy Configuration
     Timer Thread Stack Size: 
     Timer Thread Priority: 
     Trace Time Mask: 
+    No FileX Pointer: Disabled (default)
     Timer Process In ISR: Enabled (default)
     Reactivate Inline: Disabled (default)
     Stack Filling: Enabled (default)
@@ -332,12 +333,14 @@ Synergy Configuration
   Module "FileX Common on fx"
   Module "FileX Source"
     Error Checking: Enabled (default)
+    exFAT Support: Disabled(default)
     Max Long Name Len: 
     Max Last Name Len: 
     Max Sector Cache: 
     Fat Map Size: 
     Max Fat Cache: 
     Update Rate (Seconds): 
+    Max exFat Cache Size: 
     No Timer: Disabled (default)
     Single Thread: Disabled (default)
     Don't Update Open Files: Disabled (default)
@@ -351,6 +354,15 @@ Synergy Configuration
     Fault Tolerant: Disabled (default)
     64-bit LBA: Disabled (default)
     Fault Tolerant Service: Disabled (default)
+    Standalone enable: Disabled (default)
+    Disable cache: Disabled (default)
+    Disable file close: Disabled (default)
+    Disable fast open: Disabled (default)
+    Disable force memory operation: Disabled (default)
+    Disable build option: Disabled (default)
+    Disable one line function: Disabled (default)
+    Disable fat entry refresh: Disabled (default)
+    Disable consecutive detect: Disabled (default)
     Fault Tolerant Boot Index: 
     Fault Tolerant Minimal Cluster Size: 
     
@@ -706,12 +718,16 @@ Synergy Configuration
           Total Sectors: 3751936
           Bytes per Sector: 512
           Sectors per Cluster: 1
+          Volume Serial Number: 12345
+          Boundary unit: 128
       Working media memory size: 512
       Name of generated initialization function: fx_media_init0
       Auto Initialization: Disable
       
       Instance "g_sf_el_fx0 FileX Port Block Media Framework on sf_el_fx"
         Name: g_sf_el_fx0
+        Partition info callback: NULL
+        Total Partitions: 0
         
         Instance "g_sf_block_media_sdmmc0 Block Media Framework on sf_block_media_sdmmc"
           Name: g_sf_block_media_sdmmc0
@@ -730,7 +746,7 @@ Synergy Configuration
             Card Interrupt Priority: Disabled
             DTC Interrupt Priority: Disabled
             
-            Instance "g_transfer5 Transfer Driver on r_dmac ADC0 COMPARE MATCH"
+            Instance "g_transfer5 Transfer Driver on r_dmac SDHIMMC1 DMA REQ"
               Name: g_transfer5
               Channel: 4
               Mode: Normal
@@ -743,7 +759,7 @@ Synergy Configuration
               Number of Transfers: 0
               Number of Blocks (Valid only in Repeat and Block Mode): 0
               Offset value: 0
-              Activation Source: ADC0 COMPARE MATCH
+              Activation Source: SDHIMMC1 DMA REQ
               Auto Enable: False
               Callback: NULL
               Transfer End Interrupt Priority: Priority 12

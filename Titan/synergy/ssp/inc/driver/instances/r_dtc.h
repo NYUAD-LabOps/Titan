@@ -1,5 +1,5 @@
 /***********************************************************************************************************************
- * Copyright [2015-2017] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
+ * Copyright [2015-2021] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
  * 
  * This file is part of Renesas SynergyTM Software Package (SSP)
  *
@@ -53,8 +53,8 @@ SSP_HEADER
 /***********************************************************************************************************************
  * Macro definitions
  **********************************************************************************************************************/
-#define DTC_CODE_VERSION_MAJOR (1U)
-#define DTC_CODE_VERSION_MINOR (12U)
+#define DTC_CODE_VERSION_MAJOR (2U)
+#define DTC_CODE_VERSION_MINOR (0U)
 
 /** Length limited to 256 transfers for repeat and block mode */
 #define DTC_REPEAT_BLOCK_MAX_LENGTH (0x100)

@@ -1,220 +1,141 @@
-#ifdef AMS_ENCRYPT_PACKAGE
------BEGIN ENCRYPTED FILE v0.6-----
-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
------END ENCRYPTED FILE-----
-#else
-#error "Secure builder required to compile this file"
-#endif
+/**************************************************************************/
+/*                                                                        */
+/*       Copyright (c) Microsoft Corporation. All rights reserved.        */
+/*                                                                        */
+/*       This software is licensed under the Microsoft Software License   */
+/*       Terms for Microsoft Azure RTOS. Full text of the license can be  */
+/*       found in the LICENSE file at https://aka.ms/AzureRTOS_EULA       */
+/*       and in the root directory of this software.                      */
+/*                                                                        */
+/**************************************************************************/
+
+
+/**************************************************************************/
+/**************************************************************************/
+/**                                                                       */
+/** ThreadX Component                                                     */
+/**                                                                       */
+/**   Semaphore                                                           */
+/**                                                                       */
+/**************************************************************************/
+/**************************************************************************/
+
+#define TX_SOURCE_CODE
+
+
+/* Include necessary system files.  */
+
+#include "tx_api.h"
+#include "tx_trace.h"
+#include "tx_semaphore.h"
+
+
+/**************************************************************************/
+/*                                                                        */
+/*  FUNCTION                                               RELEASE        */
+/*                                                                        */
+/*    _tx_semaphore_info_get                              PORTABLE C      */
+/*                                                           6.1          */
+/*  AUTHOR                                                                */
+/*                                                                        */
+/*    William E. Lamie, Microsoft Corporation                             */
+/*                                                                        */
+/*  DESCRIPTION                                                           */
+/*                                                                        */
+/*    This function retrieves information from the specified semaphore.   */
+/*                                                                        */
+/*  INPUT                                                                 */
+/*                                                                        */
+/*    semaphore_ptr                     Pointer to semaphore control block*/
+/*    name                              Destination for the semaphore name*/
+/*    current_value                     Destination for current value of  */
+/*                                        the semaphore                   */
+/*    first_suspended                   Destination for pointer of first  */
+/*                                        thread suspended on semaphore   */
+/*    suspended_count                   Destination for suspended count   */
+/*    next_semaphore                    Destination for pointer to next   */
+/*                                        semaphore on the created list   */
+/*                                                                        */
+/*  OUTPUT                                                                */
+/*                                                                        */
+/*    status                            Completion status                 */
+/*                                                                        */
+/*  CALLS                                                                 */
+/*                                                                        */
+/*    None                                                                */
+/*                                                                        */
+/*  CALLED BY                                                             */
+/*                                                                        */
+/*    Application Code                                                    */
+/*                                                                        */
+/*  RELEASE HISTORY                                                       */
+/*                                                                        */
+/*    DATE              NAME                      DESCRIPTION             */
+/*                                                                        */
+/*  05-19-2020     William E. Lamie         Initial Version 6.0           */
+/*  09-30-2020     Yuxin Zhou               Modified comment(s),          */
+/*                                            resulting in version 6.1    */
+/*                                                                        */
+/**************************************************************************/
+UINT  _tx_semaphore_info_get(TX_SEMAPHORE *semaphore_ptr, CHAR **name, ULONG *current_value,
+                    TX_THREAD **first_suspended, ULONG *suspended_count,
+                    TX_SEMAPHORE **next_semaphore)
+{
+
+TX_INTERRUPT_SAVE_AREA
+
+
+    /* Disable interrupts.  */
+    TX_DISABLE
+
+    /* If trace is enabled, insert this event into the trace buffer.  */
+    TX_TRACE_IN_LINE_INSERT(TX_TRACE_SEMAPHORE_INFO_GET, semaphore_ptr, 0, 0, 0, TX_TRACE_SEMAPHORE_EVENTS)
+
+    /* Log this kernel call.  */
+    TX_EL_SEMAPHORE_INFO_GET_INSERT
+
+    /* Retrieve all the pertinent information and return it in the supplied
+       destinations.  */
+
+    /* Retrieve the name of the semaphore.  */
+    if (name != TX_NULL)
+    {
+
+        *name =  semaphore_ptr -> tx_semaphore_name;
+    }
+
+    /* Retrieve the current value of the semaphore.  */
+    if (current_value != TX_NULL)
+    {
+
+        *current_value =  semaphore_ptr -> tx_semaphore_count;
+    }
+
+    /* Retrieve the first thread suspended on this semaphore.  */
+    if (first_suspended != TX_NULL)
+    {
+
+        *first_suspended =  semaphore_ptr -> tx_semaphore_suspension_list;
+    }
+
+    /* Retrieve the number of threads suspended on this semaphore.  */
+    if (suspended_count != TX_NULL)
+    {
+
+        *suspended_count =  (ULONG) semaphore_ptr -> tx_semaphore_suspended_count;
+    }
+
+    /* Retrieve the pointer to the next semaphore created.  */
+    if (next_semaphore != TX_NULL)
+    {
+
+        *next_semaphore =  semaphore_ptr -> tx_semaphore_created_next;
+    }
+
+    /* Restore interrupts.  */
+    TX_RESTORE
+
+    /* Return completion status.  */
+    return(TX_SUCCESS);
+}
+

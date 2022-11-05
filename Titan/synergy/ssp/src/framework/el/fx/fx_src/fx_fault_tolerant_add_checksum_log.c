@@ -1,63 +1,155 @@
-#ifdef AMS_ENCRYPT_PACKAGE
------BEGIN ENCRYPTED FILE v0.6-----
-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
-WilB0d+djDSpTOs4FvYaHg==
------END ENCRYPTED FILE-----
-#else
-#error "Secure builder required to compile this file"
-#endif
+/**************************************************************************/
+/*                                                                        */
+/*       Copyright (c) Microsoft Corporation. All rights reserved.        */
+/*                                                                        */
+/*       This software is licensed under the Microsoft Software License   */
+/*       Terms for Microsoft Azure RTOS. Full text of the license can be  */
+/*       found in the LICENSE file at https://aka.ms/AzureRTOS_EULA       */
+/*       and in the root directory of this software.                      */
+/*                                                                        */
+/**************************************************************************/
+
+
+/**************************************************************************/
+/**************************************************************************/
+/**                                                                       */
+/** FileX Component                                                       */
+/**                                                                       */
+/**   Fault Tolerant                                                      */
+/**                                                                       */
+/**************************************************************************/
+/**************************************************************************/
+
+#define FX_SOURCE_CODE
+
+#include "fx_api.h"
+#include "fx_utility.h"
+#include "fx_fault_tolerant.h"
+
+
+#if defined(FX_ENABLE_FAULT_TOLERANT) && defined(FX_ENABLE_EXFAT)
+/**************************************************************************/
+/*                                                                        */
+/*  FUNCTION                                               RELEASE        */
+/*                                                                        */
+/*    _fx_fault_tolerant_add_checksum_log                 PORTABLE C      */
+/*                                                           6.1          */
+/*  AUTHOR                                                                */
+/*                                                                        */
+/*    William E. Lamie, Microsoft Corporation                             */
+/*                                                                        */
+/*  DESCRIPTION                                                           */
+/*                                                                        */
+/*    This function converts checksum of exFAT directory entry write into */
+/*    log entries and add it into log file.                               */
+/*                                                                        */
+/*  INPUT                                                                 */
+/*                                                                        */
+/*    media_ptr                             Media control block pointer   */
+/*    logical_sector                        Original sector to write to   */
+/*    offset                                Offset in original sector     */
+/*    checksum                              Value of checksum             */
+/*                                                                        */
+/*  OUTPUT                                                                */
+/*                                                                        */
+/*    return status                                                       */
+/*                                                                        */
+/*  CALLS                                                                 */
+/*                                                                        */
+/*    _fx_utility_16_unsigned_read          Read a USHORT from memory     */
+/*    _fx_utility_32_unsigned_read          Read a ULONG from memory      */
+/*    _fx_utility_64_unsigned_read          Read a ULONG64 from memory    */
+/*    _fx_utility_16_unsigned_write         Write a USHORT from memory    */
+/*    memcpy                                Memory Copy                   */
+/*                                                                        */
+/*  CALLED BY                                                             */
+/*                                                                        */
+/*    _fx_directory_exFAT_unicode_entry_write                             */
+/*                                                                        */
+/*  RELEASE HISTORY                                                       */
+/*                                                                        */
+/*    DATE              NAME                      DESCRIPTION             */
+/*                                                                        */
+/*  05-19-2020     William E. Lamie         Initial Version 6.0           */
+/*  09-30-2020     William E. Lamie         Modified comment(s),          */
+/*                                            resulting in version 6.1    */
+/*                                                                        */
+/**************************************************************************/
+UINT _fx_fault_tolerant_add_checksum_log(FX_MEDIA *media_ptr, ULONG64 logical_sector, ULONG offset, USHORT checksum)
+{
+ULONG                      logs_remaining;
+UCHAR                     *current_ptr;
+ULONG                      size;
+USHORT                     type;
+ULONG                      log_len;
+ULONG64                    log_sector;
+ULONG                      log_offset;
+FX_FAULT_TOLERANT_DIR_LOG *dir_log;
+
+    /* Get fault tolerant data. */
+    logs_remaining = media_ptr -> fx_media_fault_tolerant_total_logs;
+
+    /* Get size of all logs. */
+    size = media_ptr -> fx_media_fault_tolerant_file_size - FX_FAULT_TOLERANT_LOG_CONTENT_OFFSET;
+
+    /* Get the first log pointer. */
+    current_ptr = media_ptr -> fx_media_fault_tolerant_memory_buffer +
+                  FX_FAULT_TOLERANT_LOG_CONTENT_OFFSET +
+                  FX_FAULT_TOLERANT_LOG_CONTENT_HEADER_SIZE;
+
+    /* Loop throught all DIR logs. */
+    while (logs_remaining)
+    {
+
+        /* Check log type. */
+        type = (USHORT)_fx_utility_16_unsigned_read(current_ptr);
+
+        /* Get log length. */
+        log_len = _fx_utility_16_unsigned_read(current_ptr + 2);
+
+        /* Validate the size value. */
+        if (log_len > size)
+        {
+
+            /* Log file is corrupted.  Nothing can be done.  Return.*/
+            return(FX_FILE_CORRUPT);
+        }
+        size -= log_len;
+
+        /* Check log type. */
+        if (type == FX_FAULT_TOLERANT_DIR_LOG_TYPE)
+        {
+
+            /* Set the log pointer. */
+            dir_log = (FX_FAULT_TOLERANT_DIR_LOG *)current_ptr;
+
+            /* Get the sector of log. */
+            log_sector = _fx_utility_64_unsigned_read((UCHAR *)&dir_log -> fx_fault_tolerant_dir_log_sector);
+
+            /* Get the offset of log. */
+            log_offset = _fx_utility_32_unsigned_read((UCHAR *)&dir_log -> fx_fault_tolerant_dir_log_offset);
+
+            /* Is the checksum for this directory log? */
+            if ((log_sector == logical_sector) && (offset == log_offset + 2))
+            {
+
+                /* Yes. Update the checksum field. */
+                _fx_utility_16_unsigned_write(current_ptr + FX_FAULT_TOLERANT_DIR_LOG_ENTRY_SIZE + 2, checksum);
+
+                /* Return success. */
+                return(FX_SUCCESS);
+            }
+        }
+
+        /* Decrease the logs_remaining counter. */
+        logs_remaining--;
+
+        /* Move to start position of next log entry. */
+        current_ptr += log_len;
+    }
+
+    /* The directory is not found. Log file is corrupted. */
+    return(FX_FILE_CORRUPT);
+}
+#endif /* FX_ENABLE_FAULT_TOLERANT && FX_ENABLE_EXFAT */
+

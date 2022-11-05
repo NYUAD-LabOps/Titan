@@ -1,309 +1,250 @@
-#ifdef AMS_ENCRYPT_PACKAGE
------BEGIN ENCRYPTED FILE v0.6-----
-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
-2HdWwCpsDvhMxymtX09JtY400zKjoWJmDIOizltHrsg+JhxzBsC9Z6va4M4loRId
-0Cy2uNZ1yyzUQXVxShUr++s0Fh63Zmcjjc0SGXCr7ZNAxYj3aAsqVt3zk6+xJ+Tc
-iYJmoWTQ6/Mk+Dd70/eJ0aTVlKk3xkZfQJxF2HD12UTriGOU2SB94t5qR1uy0C9G
-sGesOoBxlDsyPvmeWSU9M/LNysg9wgy+MptRH4Mnv0cn0ErG8wXKmO15wbVwHahm
-I9RQSREd37i+Tcy+WM5hPQpazS99lDcGmWlbDlCJRXrbFot7zshca/bbN830nT+U
-4JeKXhQmmWDzDPj6kzOWxPvUrGL+SebORWG1CTAkkyE2+M8qyejkZ7b1FZWwceLs
-1BZ7APMvJqbVVw+urnf5ReYW8wPrAvN6XGUpN9+zAKbpO2Ytu7I48LmAYjbKG10f
-xd8HOsvqEQHZ8qYiavhE14+26ukiwqeMYJbVA6N3wV/e46KHyXQx0/4ksiOkrHEj
-cTTVQgVPiJpXvrRH98P9GvsEnfR+FTSZ38oltaLoHshJkirKINOzK1b8kr5sSRYy
-nUKUJtINqtz25IttukEU4+7eKHxaKG8W0SbbGIsD0DGCE8jmr4O+92uVrAOMKVIb
-rj0JPD3f3AED1/HoWX/7rq+9JNhAiV8FC07Aewz41CvkcFDW8kGE/n9NBt5/Xg/f
-xO3uz7Uhj7qkDIC2RvzlOwzCUQp+6qesRfJXcyqC59RMYwvoSfFEplQQnZ4t8Zp/
-a8WQ332EoKl6LdS3MynCGWCtkLFq0O4OIGnYbkEPe1FfrlYvfBXN1/EnJ2xU+rBJ
-Ced1iiXfzTJaCRaR+oInH1qPs3caIxmx51TnahzFtTfTC7nlOYPOnqIlV9L08D6u
-3j9jCsSInyWDbqx81v90yWoFcJpiAWI+l3+keR23jPOTNa2qPBO3HUidfRwmxvSI
-z61Webam95AREyC3FJS/YAUBE3rS1qBUiVdlQ1LvFzjrkZublcLy+Uj35Wn5+43w
-dWXdxm36BP8zG6Z5f5LROdnl7Aje1hWkEk4gjgS21bj4YP1pohlBMUUrNtXzOECI
-AloH1owuxZcTfDmi91AsJfG2EcZggNj//nJq4L4Nk5lZW1XsDb3/L5kgGRJ1f07F
-H4d4+of1uIjBsZhjYRtCm2r3VfHUDm0dUV9UzN4EKsDkLzMysidqx5MdXRuHI/Da
-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
-T+GIxbkGEM15yi7CSglY9g==
------END ENCRYPTED FILE-----
-#else
-#error "Secure builder required to compile this file"
-#endif
+/**************************************************************************/
+/*                                                                        */
+/*       Copyright (c) Microsoft Corporation. All rights reserved.        */
+/*                                                                        */
+/*       This software is licensed under the Microsoft Software License   */
+/*       Terms for Microsoft Azure RTOS. Full text of the license can be  */
+/*       found in the LICENSE file at https://aka.ms/AzureRTOS_EULA       */
+/*       and in the root directory of this software.                      */
+/*                                                                        */
+/**************************************************************************/
+
+
+/**************************************************************************/
+/**************************************************************************/
+/**                                                                       */
+/** ThreadX Component                                                     */
+/**                                                                       */
+/**   Timer                                                               */
+/**                                                                       */
+/**************************************************************************/
+/**************************************************************************/
+
+#define TX_SOURCE_CODE
+
+
+/* Include necessary system files.  */
+
+#include "tx_api.h"
+#include "tx_trace.h"
+#include "tx_timer.h"
+
+
+/**************************************************************************/
+/*                                                                        */
+/*  FUNCTION                                               RELEASE        */
+/*                                                                        */
+/*    _tx_timer_info_get                                  PORTABLE C      */
+/*                                                           6.1          */
+/*  AUTHOR                                                                */
+/*                                                                        */
+/*    William E. Lamie, Microsoft Corporation                             */
+/*                                                                        */
+/*  DESCRIPTION                                                           */
+/*                                                                        */
+/*    This function retrieves information from the specified timer.       */
+/*                                                                        */
+/*  INPUT                                                                 */
+/*                                                                        */
+/*    timer_ptr                         Pointer to timer control block    */
+/*    name                              Destination for the timer name    */
+/*    active                            Destination for active flag       */
+/*    remaining_ticks                   Destination for remaining ticks   */
+/*                                        before expiration               */
+/*    reschedule_ticks                  Destination for reschedule ticks  */
+/*    next_timer                        Destination for next timer on the */
+/*                                        created list                    */
+/*                                                                        */
+/*  OUTPUT                                                                */
+/*                                                                        */
+/*    status                            Completion status                 */
+/*                                                                        */
+/*  CALLS                                                                 */
+/*                                                                        */
+/*    None                                                                */
+/*                                                                        */
+/*  CALLED BY                                                             */
+/*                                                                        */
+/*    Application Code                                                    */
+/*                                                                        */
+/*  RELEASE HISTORY                                                       */
+/*                                                                        */
+/*    DATE              NAME                      DESCRIPTION             */
+/*                                                                        */
+/*  05-19-2020     William E. Lamie         Initial Version 6.0           */
+/*  09-30-2020     Yuxin Zhou               Modified comment(s),          */
+/*                                            resulting in version 6.1    */
+/*                                                                        */
+/**************************************************************************/
+UINT  _tx_timer_info_get(TX_TIMER *timer_ptr, CHAR **name, UINT *active, ULONG *remaining_ticks,
+                ULONG *reschedule_ticks, TX_TIMER **next_timer)
+{
+
+TX_INTERRUPT_SAVE_AREA
+
+TX_TIMER_INTERNAL   *internal_ptr;
+TX_TIMER_INTERNAL   **list_head;
+ULONG               ticks_left;
+UINT                timer_active;
+UINT                active_timer_list;
+
+
+    /* Disable interrupts.  */
+    TX_DISABLE
+
+    /* If trace is enabled, insert this event into the trace buffer.  */
+    TX_TRACE_IN_LINE_INSERT(TX_TRACE_TIMER_INFO_GET, timer_ptr, TX_POINTER_TO_ULONG_CONVERT(&ticks_left), 0, 0, TX_TRACE_TIMER_EVENTS)
+
+    /* Log this kernel call.  */
+    TX_EL_TIMER_INFO_GET_INSERT
+
+    /* Retrieve the name of the timer.  */
+    if (name != TX_NULL)
+    {
+
+        *name =  timer_ptr -> tx_timer_name;
+    }
+
+    /* Pickup address of internal timer structure.  */
+    internal_ptr =  &(timer_ptr -> tx_timer_internal);
+
+    /* Retrieve all the pertinent information and return it in the supplied
+       destinations.  */
+
+    /* Default active to false.  */
+    timer_active =  TX_FALSE;
+
+    /* Default the ticks left to the remaining ticks.  */
+    ticks_left =  internal_ptr -> tx_timer_internal_remaining_ticks;
+
+    /* Determine if the timer is still active.  */
+    if (internal_ptr -> tx_timer_internal_list_head != TX_NULL)
+    {
+
+        /* Indicate this timer is active.  */
+        timer_active =  TX_TRUE;
+
+        /* Default the active timer list flag to false.  */
+        active_timer_list =  TX_FALSE;
+
+        /* Determine if the timer is still active.  */
+        if (internal_ptr -> tx_timer_internal_list_head >= _tx_timer_list_start)
+        {
+
+            /* Determine if the list head is before the end of the list.  */
+            if (internal_ptr -> tx_timer_internal_list_head < _tx_timer_list_end)
+            {
+
+                /* This timer is active and has not yet expired.  */
+                active_timer_list =  TX_TRUE;
+            }
+        }
+
+        /* Determine if the timer is on the active timer list.  */
+        if (active_timer_list == TX_TRUE)
+        {
+
+            /* Calculate the amount of time that has elapsed since the timer
+               was activated.  */
+
+            /* Setup the list head pointer.  */
+            list_head =  internal_ptr -> tx_timer_internal_list_head;
+
+            /* Is this timer's entry after the current timer pointer?  */
+            if (internal_ptr -> tx_timer_internal_list_head >= _tx_timer_current_ptr)
+            {
+
+                /* Calculate ticks left to expiration - just the difference between this
+                   timer's entry and the current timer pointer.  */
+                ticks_left =  ((TX_TIMER_POINTER_DIF(list_head, _tx_timer_current_ptr)) + ((ULONG) 1));
+            }
+            else
+            {
+
+                /* Calculate the ticks left with a wrapped list condition.  */
+                ticks_left =  ((TX_TIMER_POINTER_DIF(list_head, _tx_timer_list_start)));
+
+                ticks_left =  ticks_left + ((TX_TIMER_POINTER_DIF(_tx_timer_list_end, _tx_timer_current_ptr)) + ((ULONG) 1));
+            }
+
+            /* Adjust the remaining ticks accordingly.  */
+            if (internal_ptr -> tx_timer_internal_remaining_ticks > TX_TIMER_ENTRIES)
+            {
+
+                /* Subtract off the last full pass through the timer list and add the
+                   time left.  */
+                ticks_left =  (internal_ptr -> tx_timer_internal_remaining_ticks - TX_TIMER_ENTRIES) + ticks_left;
+            }
+
+        }
+        else
+        {
+
+            /* The timer is not on the actual timer list so it must either be being processed
+               or on a temporary list to be processed.   */
+
+            /* Check to see if this timer is the timer currently being processed.  */
+            if (_tx_timer_expired_timer_ptr == internal_ptr)
+            {
+
+                /* Timer dispatch routine is executing, waiting to execute, or just finishing. No more remaining ticks for this expiration.  */
+                ticks_left =  ((ULONG) 0);
+            }
+            else
+            {
+
+                /* Timer is not the one being processed, which means it must be on the temporary expiration list
+                   waiting to be processed.  */
+
+                /* Calculate the remaining ticks for a timer in the process of expiring.  */
+                if (ticks_left > TX_TIMER_ENTRIES)
+                {
+
+                    /* Calculate the number of ticks remaining.  */
+                    ticks_left =  internal_ptr -> tx_timer_internal_remaining_ticks - TX_TIMER_ENTRIES;
+                }
+                else
+                {
+
+                    /* Timer dispatch routine is waiting to execute, no more remaining ticks for this expiration.  */
+                    ticks_left =  ((ULONG) 0);
+                }
+            }
+        }
+    }
+
+    /* Setup return values for an inactive timer.  */
+    if (active != TX_NULL)
+    {
+
+       /* Setup the timer active indication.  */
+       *active =  timer_active;
+    }
+    if (remaining_ticks != TX_NULL)
+    {
+
+        /* Setup the default remaining ticks value.  */
+        *remaining_ticks =  ticks_left;
+    }
+
+    /* Pickup the reschedule ticks value.  */
+    if (reschedule_ticks != TX_NULL)
+    {
+
+        *reschedule_ticks =  internal_ptr -> tx_timer_internal_re_initialize_ticks;
+    }
+
+    /* Pickup the next created application timer.  */
+    if (next_timer != TX_NULL)
+    {
+
+        *next_timer =  timer_ptr -> tx_timer_created_next;
+    }
+
+    /* Restore interrupts.  */
+    TX_RESTORE
+
+    /* Return completion status.  */
+    return(TX_SUCCESS);
+}
+

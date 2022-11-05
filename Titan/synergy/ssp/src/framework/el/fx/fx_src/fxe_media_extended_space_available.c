@@ -1,152 +1,96 @@
-#ifdef AMS_ENCRYPT_PACKAGE
------BEGIN ENCRYPTED FILE v0.6-----
-9S04Fc0roaJnwZGP6OG7EDBImvEWKQdoMQNOXjk4ZvxfUG0rxoYwcreD1972YQCg
-djNt5+euMQhKiNCumhThvdiocK55AtqF8lH4K8u1F1jwoBL3RqGfhmGwnXU3Irt6
-PMnRNN0VG0qdCSNIK9J6Z/QSDfUtpJmstoSGRivHJvIQ1nh+WKgnYZHpYaq199K9
-35EuruCOWgbxKXF9DjOEQlfCJFOcM507+DWoa92x0gCByAJHQ7gLU+DISzfc1qCh
-RZUB6zUIu7C8U5eSJ6TnAPYbJLRfLWphWTK2zgirmKdUDze5rEVy6sqpR/re/d/n
-3g44p53h68cC5VHvCcyyl7y+zY4ieRYZ/71zMQTCu1abAfxOgfHYe3wuqJJe9Jr4
-LQQqerwFlOXjnH0rNdvN+19mmOh00jGtEor+UX0vYIgUT5lPf9oYlBW+8iABRVqi
-2Oa0m6SIjhJNKxOY3GWxUF5aILe3RwxT5GTCWwObs4jHqFpSjUNC+U8ecEea9UBg
-ObIOJcc+ejIK+oFp1sqK8XbLeuam/yxoFdO7MuLezNS1hRdWH1/eb8/qbMLSRfZl
-zFHaA/KahPW8XVjX/XS8qZyyn1OfmEbTIBE6bt5XSb03oPmczDd8mg9WCCGulqGv
-+6PsmRpC1aJROVSKPaPZiCWmRohPPQvmR3orZNoyiy6KIdkKvgdipY68M1LHPUd2
-SLWcLhZIIWgzo/BAzN8MYyQGAmWWOnFq7qtzQvVISp/CPav5c3JrOB5976ZNUX7s
-KOnRHatTFlUmBiIf2YCt6F37qZ4wIcTPSIZZk0FQJC7SSWZIasB4lp/Jci2XoME1
-A4V+kd4jQpE/tE0PLY24lOLjzKTiVxiDRkJsSN40mGAmDhjYR/7HP0gAb3dhjzhT
-noSDkBj8mfi/PghNOhKSbwk9RUe7fLW8u71X4aFUnzr6Q907qwSTD8Dj7zTK6iIe
-F9Pamk0F3CGrnbIJMBqoc1p97mHSnR734UD5IWKlUf+v79ATGldYGutJYxesihsZ
-3WqzFQlSyFxfGRDwQTV5hkTlbo2rir98g0xfRXIsIbFifyIPUb1/hMqFeASHwHCd
-6ZqO4JHRnyxETY3q+ywWzeMhTDcTNgbYaEV3Mm/JkOtOGVSd9gfz1OkBO8AagGWX
-a3uE9ntKiAxfDl4jUKbGpMfEAZG/UNHA4Tp5qvcxPDXQKPj6k48q63ZizELm4wYy
-C4TsVmDWk86MvxavRmXsrrf5OT6cV4N6+SjcwGQwyenz4dGFWHWqU00oqMBNrs6O
-mPLowaX5wmQoWUYC7UFLJ4eEbzToAjOzaORgAXHS8Zn8U7GFBqfQ3z08lhot+qoV
-TFmQ8B4rJBNALOJP4SffnM3+3/g8gijLkWgqI1xw+W//EEeL14zHimcDR2ZaO8p9
-EjLS5oWx4sCgKvvw2n3+ovpc08Ag4g0cYPkO+i8Vj0F34oQDneX7pxq0Hs8nNMN8
-1UVmrrgitK09dCOV+e85AVyfg6i5cLiRcBGQWRJDkUjgZQrR4QEc/aQfPxCKq1LL
-FBF2/0alFjLUvYj0Uf95uh/R12bSIUg4Ukzw1G2YiSqdAN1gQ/eTlyKy+ybyqApa
-MdQO2U5cdb/dWNS02lRIFfC917PS7L2bKdGYKHXPRofoaQM5W08aozwTOYtRkLvD
-4hYY6+1SHfhstlezni+CfK5UwtMcVeM59SnrUJ4k0uWk42XJseblkMoGTmWVGxHR
-5RBWghVkHuggP+95qdB6amg9Nw0YnZlv4GCi44IGQxkBYR2tUas16gbotoqc4IzQ
-oNytfKfFXmV4Dgtc2KkOOfs9GDT45VtbA18QMxtzOafv2KEddRa4/5rMaIppM41x
-3YcA5oZMuz2ibN742cmtpg1DyOb4i8Az7dfr3Y5vG2c/Pv7sgJdkfj5FySEvsZDH
-pDxI2XBqvsfkaRKOzIEv4SSca1XuwOaG2jrvro0tzZwwWLLDfHw8Xf/pnkbWc04f
-0EnFkzKEgI4qyi+gWLwdBYb8uf8sBsWuDuOBmZsrf7plFecM4dLsqRD6IuzRbzsL
-sYA10t3rkVRB5OovSJPyhFG36yyVRrn8peQmAoVIdvOR6KHFAd+uIUnVuxvypKbD
-N6oXVsNPPB/UDPqwh9pv1nqGn/D7yI/hHQUAEooCGjiy2pSa36neYP50+HP7ndpx
-uUDjLXwCDHrmItEH2/lsY6IFbyByFK/QzsW+CXMaArJ6CSs3SUxZ9xKyeA92Nv0n
-IE08v3TufX60kS3pTw6srapky/YwgCcrYCs11x2Q+t/m4voGIE5ebG13GbJDhfAq
-ell1nLs5DNIuxHRzso4ghQWVXJGqKsIvEaNZT+62JNz63R4/v/Tp/1QxVtrgi/Wm
-BpT4VulTa139Cwd4DDsv5mlPO0DBPO9KBcTJX20PRTxehaFveCrIIoS/MNXKr09A
-SPLkZ29ljddl9nkCCzr4lKi0EGxMFT+pY4jf0scImXvkTucmbTiCmaAyTdp3NsqO
-y1/jsvGSiRyCbRA/hZP/r98hwEy6/mF9WvIBgT2A4Oq0ys+7XVqOQY8oCZBEQ3Nz
-6BaT8LDxJW2T52gfYMsIUlCSzN7Nfieffe5Am6iCx6tSnadOHAEFiusUKg7zaMxo
-AeEB34FQSYJOgEziuHFzeMvlfp0AzCG6ZW8GAeuWDJMxtXeMoI8eiA+ZoNRYWtu/
-YGfk1kVUZR3l40jc25OcczxZ/gA1slXgelhimjyD4nRtmaEhj5zLFELrJPFesX8l
-9GTl+xy73Y4rU+rTNtr50+SrD7ToTB248eyEwAiCBmyoreGDy7d5RGkqOCDirLpO
-rg3DWLqvo2qfPqPLO1KQh6xNABfTfqEzikDpeTh/9V5TsVmRtgyMzAacuA4UQ2pe
-OGDpzT/1uWgqgHlltuXmd+nuC6MQeifJQ5HQ8fxJSbmcRcIOmW4pwNNAWcvV+WnJ
-xQwVViXfWP99yxSyziTE+XFtxti/2cs4WYWUik+xD6T+VSsrle1TNmtuj/DrdoLm
-6s3ZX1Oqq3V2Vv3/3utiEfHuf3m927kHSYCSCRbLWFwR/nnEfoEGKwOHcCU4BTuU
-GIvAGFvx8LL2YoD49mkvWtvtv08xq4PrXUDt7kS2iKDeStmVc5f2svGmrnQIdrvV
-LdKO4KkvpY+sC/3od2o8NMmlJiiEWK1yywSzcAm1n/SRoinrpm6YJZR9SE7BFAPh
-T7TdcxphHITgybWE/s7OfLocAcHot5k2WRbkyB1YpVDvPjgtN2nYp6ul9DKE8H3s
-IvAJRvPR8ChzYtuDeqIPD43k5ui6b5kqeCLHPOY4j7cgocqbb7v2JdXFSwknfcRb
-ML9Xww4xWBBLXgbtz2pBAZGLMCEhBNUdB7rA03VBRM6wKZTNGW9PutBzVLtHQuOd
-cVtsiHvdmxFJ09xn4vH17Ypb31h0CxLlm/69EUZ/0OEN9IyjVvTZDPSZU7POspp/
-htcxQEWOIV2bSZvHcDhgpYInx7G9H0NQ3ZvyYxp7hKh61Q1SrBywq34/AdEkeCPU
-AhqQjOH171PxbMwj4P0+3C+hdhqWjmpqg9yrXOByTW7PSAx2mWY7bLwwAUSjgMc1
-P3flzVEwUxc3QOeqsz0Ph2fPBi0jJhCHyAd8qmVF96Bv0q9/HsJax3MsdPM50NZE
-gIZwiPM0YHI3cB6jKQ2s+xgSN8aN+yKuQ1j1yHhJLLX23qyPkZC3lZlFv1xUJp8t
-68vS04KEYp6FL3D8heAQmUyGYY2zxLm4hbq+Oc1CkXCBpe94HRtiRWU3/Y6mWm5M
-y5iJPQESy4c+GJtWnYQr6moeOWlS0suu+UpyFSBFICqh3AX+NSgNCoIZgzW6r/g2
-aZ4I/XT/vc0aIDSOpB5o12b1bSIBonrL+7UjYuliqv1wSskQxzEXdaKE2S2VejNZ
-x5Ol9Yl6EW0KhTL9MuOFKI5VEK28Oxu4O7b7NToArjcwPLqpr6AMFf1QoPbqwmMZ
-LZ4ejUWM0+2Ija7RqBsKV8JmkMeDyW5xsKWUHCjlZyeNFm7xD7zvFXmMniL7aanJ
-29kbC6yYN2kKZLw1F4TTeVhhxUX4CwEz8L03p/RrKXI67tXg9Vj4KGW+wGil6Ruu
-vgKASQ56unn2/aC0NXfs/8maOHxGm/23A/LHKLCPGFB3hZ0HrP+YCR6wzZWUUUyc
-NFMG4gr/2eWmqYhBBSeRk94FfvF/IOg2P2hCbr6svzYKuzPU8nwGjxHYqJqxrJui
-UPS6XGlcFYYRBQ5XmRiSbem1MgILaG0NBHfL3AvTkxx6oAxvOFuZrvIrwDIwDQt1
-ftOOqwr7SaZufnV8ezNdC/wJgzsjq1aOAG64mKPQ1jaoDZU1cP/DC0Liw9ElUmRH
-rbJbRFfWLmJiX7ncgnDt1qUl4yzIjrN+RIkGCb6yZ8Hg/WLcNIUhCwSd3TKVEfyp
-YVV0n34oB3JGXOUmNRIluwECj5PlZOHJUw+5tZ0NKaLqSxYqXCdaINwPOH+Rho8T
-TKHgyNkHKTk5S/xMEbVwtMptEm3jpWIV1oJwLl+l/iH1Yk9HxzzqfSAQlci+TeES
-W6pRA+nju3dUozUJ9JkkfLaxmxrF2CTJSW1WY+i65mx22U2ehBsp2s5F82+76AS5
-gHe9Gz4DoN/6Fl6TQWHY6It8ppKXLUYxw7JTpjzTHSjZmxbYSekdOlIALwm5G148
-Sb4ZxEukIiDqBna1knDpL7JkzmXHtFU7imwy2YXg58m5PKjN+Vp+hoUyFI1iJa4z
-Pk6M8KJ/nV9Bil14ALHJYHyKED1K9zTw3WpjhHL9Txx0O6qe8XcnsydG6Vdpb7tX
-XNoN6MFJlR16UQP3UqDyIDXQl+m9Z2p4DEtP/ruDNEn9Rh73Ycbgkt0KBAGFQDn6
-Fx9SulFqztTBguIBaFVgsdGVl8BVLyWxfJ5KUxdm5Z0XDtZqjzY6PpRMJfcQiL4D
-VDZZwi3/V3lbb94KGSleFulk/8HCywKj1ez2JloHr9Q0NblvKJhD7Ian8kUXB8E7
-0xDsRUT/gcxUy2SlnsHgYT0ZLP43O84XBFVFomJES+HzcyMjjD7puji58EWCSc+8
-E1TTaocFFyHaYCAc/3XNeeN05PQQ81Ir2D821KsJ1eHXJa4yMv8dPHh9i0r8ZaME
-q3bjqom970LrHVuibsX0Rbj4R0bIVLDBENiam/HpdTnhggHHSQbytnjNsBYzoKZU
-68czn5O564NnMWVDx6fugwx8f0mEsRiaZ29eNpodu4mnvlXCn1GhYfqduFlwKRdO
-8jSG1Jckc6UaCxVzKGsiVoA2JXz63OvBJEAr7GVd3Vpfw8y1yMox3QBNLYW9jZkC
-wyLu1V7whcKgYEuH779xi7cD5HPUOkSssCv7Ff0q1csb6cjL6anwDOsyrv5zfUm8
-3GtU/5Erdi50nNSCtBv9IG8W7rkw5vU3oTkXad+dFUT7xpE9t3vMyG9ENUrAHjTS
-m5NTxHtUGdzOQn4ysK6kuo532sHbIklu4byNtLXId+fAUrXIA2icBgug+eNeJA2P
-9Y9D8sp9Kgm+Hdlod28A9f4lBTzn4oozlN/R1P3q163JM/Bi3iR/PWS2XuGyHuWq
-ZW/p/M/lY+AJmSBGOu79SOP6tKRMwt1LCRqODwCJub0NY0GlG2x1VkFRyap8d0d/
-85V1BVeibXEQEaBWPmOaq537jI36z44YbXOOoRkP/iV/TyzWcImeXlvEoo+nkrKJ
-AlFiAeLbAyPtDe6HICVGg7OmgunNnvnRvk/YlMNCrHhCkr1U2tYSjyIs6qlvwF1I
-lur4xaQLLwA7vuCxKKGKC5jbyqdi5F12doNeFHD1UHP4wbLKAF6avcFW7bTp+o5E
-6Umo67ZohZSisW5bHtnpFb1Sn2Zt9R9zOWj2UhJ27HndzffCUEU7VMWENWCApKMd
-EDhhOmON3AXL4aeYFkc7yxL4gFKIm82y/NI4UK//cO4eXXmnWaq8Dd2p6hWwPogi
-2mPS4HRTapFLtMQMmuP5FVIh+r8v9b6kywxtRizwMcLVakLp6DBZO0Ez9pGqIsr1
-X8L81mfj7D7tGViKF0Wtirgrqt5JTwQTLRhH/J8VytpHeNe44GF8E05k1ythGRLf
-wcDBR9fukQn7hYxgAKvbI8xi7sy0VUnUSPpWKQY7c6Hwok2kukZl8hbjQfVpmqQ8
-WJ8yFc2yuXtMl1/v8gyQcKqJLLzQeGf1dAyhfakwFECDba+G+3r1+EI+dTPcgLXF
-REG+9udPf8G98RNOT+3p6/qGQJwknFOaHy6YzEtfWfV7/V+V2jZMx0gmkBV4hkao
-KYwQNmVr6r7aC7Giy1Nk/ljL5749iCdV4kFqnmikxLrTXO2VWXmqw+naogugWVxs
-MisF73MJqY7qCtE7jS8yyLiHKfC79g++wHg5rV+0nT5e4dVtD9/hJytDJPZRZgXr
-/HDwBufxP3i5I5Fy1McHFimxFWAxwJPuQs8bGBRIYj/gIJRNdhU7qaPBPnJOREh0
-uL9+jX8ym28Jr67pnnZlHUh5FLdMe//p1mzxONe1MH9t7U9TFKBAGPC/SsTGR9S5
-0D4mteKM7NDbr4djQtOY6Um527/sZ3N6PCEoq3cgSiig8LsMEvUgh7h0fnnzs+Dw
-TdJP/BAHi28/MPAxOXvS9e8xc4SYxkczTI614ulm8rUO/+Q3huZ3PEVlpW4wfkD5
-z4R034nQ/k7bemugyrfRzBhAlm6skgN2yL4DjpR2Aghp4jSSo+844EV/C83XQKLn
-npKOP6gfZAjn7ZvPa7xTkJcig75IOCJD7gTgV8fMBx1ZOqT5gkHjyZc3QNB0hZiu
-GuwEYZE7q8iNCNfzZ65fVDbirEpzc5qLE6VXzvAQyGYWwgareLynMIv0nf70n4/y
-wQ7xBRBk7Y8Cfdbhk9fLD3qi4P4lwW2caco2J+Yo9FosiaofCMXICmfkphP4FhQU
-VC5Q/OgW7rccI119K4kkoL5nahjPFXRa92VmWDKHi2hF4lIAgVyUyunx0BRaNmIC
-rmYrxFYZ9QM6BSLSn4vCJagbwQ+svXEseVRKvBNg7uN9fD9MSERktby46ZZtibGL
-+YKuz3uM4IO888j1Ud89R0UQqWPcAhc/23lUciGT0JCVpUnpn1o6w51tV8ULKcVn
-4RvA1sWRdKnahOPkbgmGvUqsSLoTHehlkjx/7dBoVWHfB5IOTHspmAKkCXxC+yms
-+zyQT77qs9WyzEQcvKBH+2bSLROq1f1aAHdDOmqKIRxFzsR5pB9B2WFN2fR+2v3g
-K7eglTaavYawLSDEgoFTQof5htqX5RMycgkdkAt3a+FgkVKYRTxtBBZdTOjZWRM0
-bxSSfuScf8MyJLdAGYVJxrWubW/1PnVJq3fGENY8Q6VbZIc1roWNshzK/s4D70vv
-JAZo/Ckw75N8OImabnGYcmjvS8SSlKvdiS1tNSQOS+cAt/M4AfaeSuLXOBJurKYG
-plmYaAoUHYaRtHrpngX/AEOwfeAZpr8nxNVQatqqbnTzd6CQEuEYyq4hJt3692V1
-vVcrl8QACtFbhISHEbIPJVDBP2uoIU4zLiIiNnLYqQNwvOo4jWHLSwZbBb/Izcth
-S9Gozl9u8GgtmBMZRxQPdyjDaoDWESLAlSeNm27lpQLrLsAhwtm6eJWpiN8OeV25
-EujjSxnzrWukvtAV0Ssmg2eB6Mi1J0cXK/hoMLurdwXZWS50PXHd5vjC7z2SwPKR
-PFPpL7+qFAaGLeBp6iJmJhJU6/A4tLVOuca3hkFykr8VWCAEW4xq9KgP5yAWBL5A
-p06bTDiRquX9PbMgTGyUbH/LYgMROt8JtQSssGpA8S/xgCVBCEBMyzXZvr96dQ23
-sMTv4S68ec8N85fAMNPZo1saWFMTKD3HP7G84QoHMyH73XaKtjMPLP55d8OT8PFl
-7IxDGo/bzU9blQ1krAWI5Bbll8Zp/QzjdSmaVcY+ImUJLKyoDZwx3Be1K2yWSl3a
-T4xlDGevL02lLADncfwaiT+07aUqbkFLzH110kg4aiAJj36dAY3Fu1UZSsCaJMln
-bHGYzCF0dqupiyoUP1Jg00jyJPcuXbnlUiDgYsiCk5kEwjmHOKimEbp5xtR0Qvrx
-gMiiZa4wy7GnGM+FCC2Qz/D9Yx4PYO1My+B5f9HhiSlfe558KWdSOVEsZTHZWmw4
-pXg+eMGRITm6D/9bnqusbEjaBdlIkdvYGnqvFswJf84cWJ/WUKf8xgUXyLw3MZUM
-MI76rbs4UDiMDNOc/4yuIUpd8pHe0a92YbVKllm8Y2J3dseb2OAqWrra/l0tzbGr
-whoHT8f9oOG5riF1Qz+Gv/0lDe966CdkiD/83jLpO0vqM46xshpJYTvsakm7gx0/
-tmQedjPpbTpbet8JcDueiBBjLJnPKQW8S8rJMrpzFm1fsa+2mFe5JHfzVTKUM5PY
-13xTfwexWfdPjYHTk3w4yUr3IYEYqW1VB3E4j5xojg6UeflNFxKlYAhzXInC/FW4
-YzcNxQHd/fPu8jNnCHI+1X16PcybJPaQG/65cktBX8AI/Hg5+Yn4MQqY32xvWC5K
-wovzAzaq8nZ87q15EV9TBNk6UWP31YvC8ERdyfp/FZ0kSas+rnN24J/vDD1xhf2P
-z/t8FJrWRPJK66N6llssN2zQOJViakmQO9jv1YRsM7Hz83QmVo1Mk37uBfoZiUQl
-zGqRlj269Pr+fNtw8K9RRH3r2M23Oz67X+MHZriAz2KjaQTNixfeCOdVsVBMDMSO
-tsiwzTDzWq9psTEkpB3QWVt3elraNGYv6fL7NL2Bnu4a1Vk3nmZV/yX+IdU0i9LD
-N0NwFTfctrhmO9v6cTioOwsAQ8xerIyP9R+5ufPpyMv2XDN36gOy3qh+sxM1OkKq
-E+LyCg7kO94jbwn8WxVb80+W9+celF5cHXWq+q/nfZcX2Wj/ko3LAh5ucNWw13u7
-oRGJGz8H+4e46tShpkARBoiVejOithzJoFfSVh72lmbq04fDYlN5VHJAj1eNOjOo
-urvbRO9VbyHmQddfH6Ovra5TeTGUjYIXUh9uUzIhA1la97RcKr7YMhSUuELqqDal
-+6w88EA0V+O/3InTLH2/RqXDGSRuzJDel/MDirDaxusV4Xhiix663EmIgWK53siD
-wCPbQG3SGijp078GvCHiR9hoBB5EhvMnmk33V49xnon3I0gWjqfryBOpCUma7y4E
-oB2kOi4UyD/ieWCsn1KQ+Vc3E5zNPnk8OdpRUETBc+gWrmL4S9yEqULCQSHd2OQb
-9ENef5em06713XvJ3894oXbKWt/MoMMXDhUbdvyIKiWA63PPsADMAcCCLOtvvAeu
-i90s5/AKZ3TY6YXO11fwtw==
------END ENCRYPTED FILE-----
-#else
-#error "Secure builder required to compile this file"
-#endif
+/**************************************************************************/
+/*                                                                        */
+/*       Copyright (c) Microsoft Corporation. All rights reserved.        */
+/*                                                                        */
+/*       This software is licensed under the Microsoft Software License   */
+/*       Terms for Microsoft Azure RTOS. Full text of the license can be  */
+/*       found in the LICENSE file at https://aka.ms/AzureRTOS_EULA       */
+/*       and in the root directory of this software.                      */
+/*                                                                        */
+/**************************************************************************/
+
+
+/**************************************************************************/
+/**************************************************************************/
+/**                                                                       */
+/** FileX Component                                                       */
+/**                                                                       */
+/**   Media                                                               */
+/**                                                                       */
+/**************************************************************************/
+/**************************************************************************/
+
+#define FX_SOURCE_CODE
+
+
+/* Include necessary system files.  */
+
+#include "fx_api.h"
+#include "fx_media.h"
+
+FX_CALLER_CHECKING_EXTERNS
+
+
+/**************************************************************************/
+/*                                                                        */
+/*  FUNCTION                                               RELEASE        */
+/*                                                                        */
+/*    _fxe_media_extended_space_available                 PORTABLE C      */
+/*                                                           6.1          */
+/*  AUTHOR                                                                */
+/*                                                                        */
+/*    William E. Lamie, Microsoft Corporation                             */
+/*                                                                        */
+/*  DESCRIPTION                                                           */
+/*                                                                        */
+/*    This function checks for errors in the media space available call.  */
+/*                                                                        */
+/*  INPUT                                                                 */
+/*                                                                        */
+/*    media_ptr                             Media control block pointer   */
+/*    available_bytes_ptr                   Pointer to available bytes    */
+/*                                            destination                 */
+/*                                                                        */
+/*  OUTPUT                                                                */
+/*                                                                        */
+/*    return status                                                       */
+/*                                                                        */
+/*  CALLS                                                                 */
+/*                                                                        */
+/*    _fx_media_extended_space_available    Actual space available service*/
+/*                                                                        */
+/*  CALLED BY                                                             */
+/*                                                                        */
+/*    Application Code                                                    */
+/*                                                                        */
+/*  RELEASE HISTORY                                                       */
+/*                                                                        */
+/*    DATE              NAME                      DESCRIPTION             */
+/*                                                                        */
+/*  05-19-2020     William E. Lamie         Initial Version 6.0           */
+/*  09-30-2020     William E. Lamie         Modified comment(s),          */
+/*                                            resulting in version 6.1    */
+/*                                                                        */
+/**************************************************************************/
+UINT  _fxe_media_extended_space_available(FX_MEDIA *media_ptr, ULONG64 *available_bytes_ptr)
+{
+
+UINT status;
+
+
+    /* Check for a null media pointer or destination pointer.  */
+    if ((media_ptr == FX_NULL) || (available_bytes_ptr == FX_NULL))
+    {
+        return(FX_PTR_ERROR);
+    }
+
+    /* Check for a valid caller.  */
+    FX_CALLER_CHECKING_CODE
+
+    /* Call actual media space available service.  */
+    status =  _fx_media_extended_space_available(media_ptr, available_bytes_ptr);
+
+    /* Return status to the caller.  */
+    return(status);
+}
+

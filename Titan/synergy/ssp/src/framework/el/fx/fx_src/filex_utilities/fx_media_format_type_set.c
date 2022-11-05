@@ -1,156 +1,88 @@
-#ifdef AMS_ENCRYPT_PACKAGE
------BEGIN ENCRYPTED FILE v0.6-----
-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
-I74R5ZGyEQrTr6eaxRyz1A==
------END ENCRYPTED FILE-----
-#else
-#error "Secure builder required to compile this file"
-#endif
+/**************************************************************************/
+/*                                                                        */
+/*       Copyright (c) Microsoft Corporation. All rights reserved.        */
+/*                                                                        */
+/*       This software is licensed under the Microsoft Software License   */
+/*       Terms for Microsoft Azure RTOS. Full text of the license can be  */
+/*       found in the LICENSE file at https://aka.ms/AzureRTOS_EULA       */
+/*       and in the root directory of this software.                      */
+/*                                                                        */
+/**************************************************************************/
+
+
+/**************************************************************************/
+/**************************************************************************/
+/**                                                                       */ 
+/** FileX Component                                                       */ 
+/**                                                                       */
+/**   Media                                                               */
+/**                                                                       */
+/**************************************************************************/
+/**************************************************************************/
+
+#define FX_SOURCE_CODE
+
+
+/* Include necessary system files.  */
+
+#include "fx_api.h"
+#include "fx_media.h"
+
+
+/* Define external reference to media type.  */
+
+extern UCHAR   _fx_media_format_media_type;
+UINT  fx_media_format_type_set(UCHAR new_media_type);
+
+/**************************************************************************/ 
+/*                                                                        */ 
+/*  FUNCTION                                               RELEASE        */ 
+/*                                                                        */ 
+/*    _fx_media_format_type_set                           PORTABLE C      */ 
+/*                                                           6.1.5        */
+/*  AUTHOR                                                                */
+/*                                                                        */
+/*    William E. Lamie, Microsoft Corporation                             */
+/*                                                                        */
+/*  DESCRIPTION                                                           */
+/*                                                                        */ 
+/*    This function modifies the default media type for all formatting.   */ 
+/*                                                                        */ 
+/*                                                                        */ 
+/*  INPUT                                                                 */ 
+/*                                                                        */ 
+/*    new_media_type                        New media type value          */ 
+/*                                                                        */ 
+/*  OUTPUT                                                                */ 
+/*                                                                        */ 
+/*    Completion Status                                                   */ 
+/*                                                                        */ 
+/*  CALLS                                                                 */ 
+/*                                                                        */ 
+/*    None                                                                */ 
+/*                                                                        */ 
+/*  CALLED BY                                                             */ 
+/*                                                                        */ 
+/*    Application Code                                                    */ 
+/*                                                                        */ 
+/*  RELEASE HISTORY                                                       */ 
+/*                                                                        */ 
+/*    DATE              NAME                      DESCRIPTION             */
+/*                                                                        */
+/*  05-19-2020     William E. Lamie         Initial Version 6.0           */
+/*  09-30-2020     William E. Lamie         Modified comment(s),          */
+/*                                            resulting in version 6.1    */
+/*  03-02-2021     William E. Lamie         Modified comment(s),          */
+/*                                            resulting in version 6.1.5  */
+/*                                                                        */
+/**************************************************************************/
+UINT  fx_media_format_type_set(UCHAR new_media_type)
+{
+
+    /* Simply copy the new media type into the default location.  */
+    _fx_media_format_media_type =  new_media_type;
+
+    /* Return success.  */
+    return(FX_SUCCESS);
+}
+

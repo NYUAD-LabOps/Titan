@@ -1,151 +1,97 @@
-#ifdef AMS_ENCRYPT_PACKAGE
------BEGIN ENCRYPTED FILE v0.6-----
-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
------END ENCRYPTED FILE-----
-#else
-#error "Secure builder required to compile this file"
+/**************************************************************************/
+/*                                                                        */
+/*       Copyright (c) Microsoft Corporation. All rights reserved.        */
+/*                                                                        */
+/*       This software is licensed under the Microsoft Software License   */
+/*       Terms for Microsoft Azure RTOS. Full text of the license can be  */
+/*       found in the LICENSE file at https://aka.ms/AzureRTOS_EULA       */
+/*       and in the root directory of this software.                      */
+/*                                                                        */
+/**************************************************************************/
+
+
+/**************************************************************************/
+/**************************************************************************/
+/**                                                                       */
+/** FileX Component                                                       */
+/**                                                                       */
+/**   Trace                                                               */
+/**                                                                       */
+/**************************************************************************/
+/**************************************************************************/
+
+#ifndef TX_SOURCE_CODE
+#define TX_SOURCE_CODE
 #endif
+
+#ifndef FX_SOURCE_CODE
+#define FX_SOURCE_CODE
+#endif
+
+#include "fx_api.h"
+
+#ifdef TX_ENABLE_EVENT_TRACE
+
+
+/* Include necessary system files.  */
+
+#include "tx_trace.h"
+
+
+
+/**************************************************************************/
+/*                                                                        */
+/*  FUNCTION                                               RELEASE        */
+/*                                                                        */
+/*    _fx_trace_object_unregister                         PORTABLE C      */
+/*                                                           6.1          */
+/*  AUTHOR                                                                */
+/*                                                                        */
+/*    William E. Lamie, Microsoft Corporation                             */
+/*                                                                        */
+/*  DESCRIPTION                                                           */
+/*                                                                        */
+/*    This function unregisters a FileX object in the trace registry.     */
+/*                                                                        */
+/*  INPUT                                                                 */
+/*                                                                        */
+/*    object_ptr                            Address of system object      */
+/*                                                                        */
+/*  OUTPUT                                                                */
+/*                                                                        */
+/*    None                                                                */
+/*                                                                        */
+/*  CALLS                                                                 */
+/*                                                                        */
+/*    _tx_trace_object_unregister           Actual unregister function    */
+/*                                                                        */
+/*  CALLED BY                                                             */
+/*                                                                        */
+/*    FileX delete functions                                              */
+/*                                                                        */
+/*  RELEASE HISTORY                                                       */
+/*                                                                        */
+/*    DATE              NAME                      DESCRIPTION             */
+/*                                                                        */
+/*  05-19-2020     William E. Lamie         Initial Version 6.0           */
+/*  09-30-2020     William E. Lamie         Modified comment(s),          */
+/*                                            resulting in version 6.1    */
+/*                                                                        */
+/**************************************************************************/
+VOID  _fx_trace_object_unregister(VOID *object_ptr)
+{
+
+TX_INTERRUPT_SAVE_AREA
+
+
+    /* Disable interrupts.  */
+    TX_DISABLE
+
+    /* Call actual object unregister function.  */
+    _tx_trace_object_unregister(object_ptr);
+
+    /* Restore interrupts.  */
+    TX_RESTORE
+}
+#endif
+

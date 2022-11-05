@@ -1,6 +1,6 @@
 /***********************************************************************************************************************
- * Copyright [2015-2017] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
- *
+ * Copyright [2015-2021] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
+ * 
  * This file is part of Renesas SynergyTM Software Package (SSP)
  *
  * The contents of this file (the "contents") are proprietary and confidential to Renesas Electronics Corporation
@@ -214,6 +214,17 @@ typedef enum e_ssp_err
 	SSP_ERR_CTSU_OFFSET_ADJUSTMENT_FAILED = 0x8080,
 	/** Safety check failed **/
 	SSP_ERR_CTSU_SAFETY_CHECK_FAILED = 0x8100,
+
+    /** Start of CTSUV2 Driver specific */
+    SSP_ERR_CTSU_SCANNING              = 0x8200,    ///< Scanning.
+    SSP_ERR_CTSU_NOT_GET_DATA          = 0x8201,    ///< Not processed previous scan data.
+    SSP_ERR_CTSU_INCOMPLETE_TUNING     = 0x8202,    ///< Incomplete initial offset tuning.
+    SSP_ERR_CTSU_DIAG_NOT_YET          = 6003,      ///< Diagnosis of data collected no yet.
+    SSP_ERR_CTSU_DIAG_LDO_OVER_VOLTAGE = 6004,      ///< Diagnosis of LDO over voltage failed.
+    SSP_ERR_CTSU_DIAG_CCO_HIGH         = 6005,      ///< Diagnosis of CCO into 19.2uA failed.
+    SSP_ERR_CTSU_DIAG_CCO_LOW          = 6006,      ///< Diagnosis of CCO into 2.4uA failed.
+    SSP_ERR_CTSU_DIAG_SSCG             = 6007,      ///< Diagnosis of SSCG frequency failed.
+    SSP_ERR_CTSU_DIAG_DAC              = 6008,      ///< Diagnosis of non-touch count value failed.
 
     /** Start of SDMMC specific */
     SSP_ERR_CARD_INIT_FAILED     = 40000,       ///< SD card or eMMC device failed to initialize.

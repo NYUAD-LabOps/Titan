@@ -1,6 +1,6 @@
 /***********************************************************************************************************************
- * Copyright [2015-2017] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
- *
+ * Copyright [2015-2021] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
+ * 
  * This file is part of Renesas SynergyTM Software Package (SSP)
  *
  * The contents of this file (the "contents") are proprietary and confidential to Renesas Electronics Corporation
@@ -1957,8 +1957,9 @@ static bool r_sdmmc_emmc_check (sdmmc_instance_ctrl_t * const p_ctrl)
  **********************************************************************************************************************/
 static void r_sdmmc_write_protect_get (sdmmc_instance_ctrl_t * const p_ctrl)
 {
-    /** Update write protection status in the control block if the device is a card. */
-    if (SDMMC_MEDIA_TYPE_CARD ==  p_ctrl->hw.media_type)
+    /** Update write protection status in the control block if the device is a card, and if the user has enabled
+     * the write protect pin */
+    if ((SDMMC_MEDIA_TYPE_CARD ==  p_ctrl->hw.media_type) && (SDMMC_WRITE_PROTECT_WP == p_ctrl->write_protect))
     {
         p_ctrl->status.write_protected = (HW_SDMMC_WriteProtectGet(p_ctrl->p_reg) > 0U);
     }

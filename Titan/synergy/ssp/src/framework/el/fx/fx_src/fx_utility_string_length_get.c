@@ -1,150 +1,94 @@
-#ifdef AMS_ENCRYPT_PACKAGE
------BEGIN ENCRYPTED FILE v0.6-----
-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
------END ENCRYPTED FILE-----
-#else
-#error "Secure builder required to compile this file"
-#endif
+/**************************************************************************/
+/*                                                                        */
+/*       Copyright (c) Microsoft Corporation. All rights reserved.        */
+/*                                                                        */
+/*       This software is licensed under the Microsoft Software License   */
+/*       Terms for Microsoft Azure RTOS. Full text of the license can be  */
+/*       found in the LICENSE file at https://aka.ms/AzureRTOS_EULA       */
+/*       and in the root directory of this software.                      */
+/*                                                                        */
+/**************************************************************************/
+
+
+/**************************************************************************/
+/**************************************************************************/
+/**                                                                       */
+/** FileX Component                                                       */
+/**                                                                       */
+/**   Utility                                                             */
+/**                                                                       */
+/**************************************************************************/
+/**************************************************************************/
+
+#define FX_SOURCE_CODE
+
+
+/* Include necessary system files.  */
+
+#include "fx_api.h"
+#include "fx_utility.h"
+
+
+/**************************************************************************/
+/*                                                                        */
+/*  FUNCTION                                               RELEASE        */
+/*                                                                        */
+/*    _fx_utility_string_length_get                       PORTABLE C      */
+/*                                                           6.1          */
+/*  AUTHOR                                                                */
+/*                                                                        */
+/*    William E. Lamie, Microsoft Corporation                             */
+/*                                                                        */
+/*  DESCRIPTION                                                           */
+/*                                                                        */
+/*    This function returns length of string up to the maximum length.    */
+/*                                                                        */
+/*  INPUT                                                                 */
+/*                                                                        */
+/*    string                                Pointer to string             */
+/*    max_length                            Maximum length which can be   */
+/*                                            returned by function        */
+/*                                                                        */
+/*  OUTPUT                                                                */
+/*                                                                        */
+/*    return length of string                                             */
+/*                                                                        */
+/*  CALLS                                                                 */
+/*                                                                        */
+/*    None                                                                */
+/*                                                                        */
+/*  CALLED BY                                                             */
+/*                                                                        */
+/*    _fx_directory_exFAT_unicode_entry_write                             */
+/*    _fx_directory_exFAT_free_search                                     */
+/*    _fx_utility_absolute_path_get         Get absolute path             */
+/*                                                                        */
+/*  RELEASE HISTORY                                                       */
+/*                                                                        */
+/*    DATE              NAME                      DESCRIPTION             */
+/*                                                                        */
+/*  05-19-2020     William E. Lamie         Initial Version 6.0           */
+/*  09-30-2020     William E. Lamie         Modified comment(s),          */
+/*                                            resulting in version 6.1    */
+/*                                                                        */
+/**************************************************************************/
+UINT  _fx_utility_string_length_get(CHAR *string, UINT max_length)
+{
+
+UINT length;
+
+    /* Initialize length to 0.  */
+    length = 0;
+
+    /* Loop to calculate the length.  */
+    while (string[length] && (length < max_length))
+    {
+
+        /* Increment the length (index).  */
+        length++;
+    }
+
+    /* Return length.  */
+    return(length);
+}
+

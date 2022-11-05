@@ -1,23 +1,11 @@
 /**************************************************************************/
 /*                                                                        */
-/*            Copyright (c) 1996-2019 by Express Logic Inc.               */ 
+/*       Copyright (c) Microsoft Corporation. All rights reserved.        */
 /*                                                                        */
-/*  This software is copyrighted by and is the sole property of Express   */
-/*  Logic, Inc.  All rights, title, ownership, or other interests         */
-/*  in the software remain the property of Express Logic, Inc.  This      */
-/*  software may only be used in accordance with the corresponding        */
-/*  license agreement.  Any unauthorized use, duplication, transmission,  */
-/*  distribution, or disclosure of this software is expressly forbidden.  */
-/*                                                                        */
-/*  This Copyright notice may not be removed or modified without prior    */
-/*  written consent of Express Logic, Inc.                                */
-/*                                                                        */
-/*  Express Logic, Inc. reserves the right to modify this software        */
-/*  without notice.                                                       */
-/*                                                                        */
-/*  Express Logic, Inc.                     info@expresslogic.com         */
-/*  11423 West Bernardo Court               http://www.expresslogic.com   */
-/*  San Diego, CA  92127                                                  */
+/*       This software is licensed under the Microsoft Software License   */
+/*       Terms for Microsoft Azure RTOS. Full text of the license can be  */
+/*       found in the LICENSE file at https://aka.ms/AzureRTOS_EULA       */
+/*       and in the root directory of this software.                      */
 /*                                                                        */
 /**************************************************************************/
 
@@ -38,10 +26,10 @@
 /*  APPLICATION INTERFACE DEFINITION                       RELEASE        */
 /*                                                                        */
 /*    nxd_http_client.h                                   PORTABLE C      */
-/*                                                           5.12         */
+/*                                                           6.1.6        */
 /*  AUTHOR                                                                */
 /*                                                                        */
-/*    William E. Lamie, Express Logic, Inc.                               */
+/*    Yuxin Zhou, Microsoft Corporation                                   */
 /*                                                                        */
 /*  DESCRIPTION                                                           */
 /*                                                                        */
@@ -54,29 +42,13 @@
 /*                                                                        */
 /*    DATE              NAME                      DESCRIPTION             */
 /*                                                                        */
-/*  11-21-2011     William E. Lamie         Initial Version 5.1           */
-/*  01-31-2013     Janet Christiansen       Modified comment(s),          */
-/*                                            resulting in version 5.2    */
-/*  01-12-2015     Janet Christiansen       Modified comment(s),          */
-/*                                            added size check for        */
-/*                                            nxe_http_client_create,     */
-/*                                            modified NX_HTTP_MAX_STRING */
-/*                                            to ensure room for encoded, */
-/*                                            string,                     */
-/*                                            resulting in version 5.8.   */
-/*  02-22-2016     Yuxin Zhou               Modified comment(s),          */
-/*                                            unified ticks per second,   */
-/*                                            resulting in version 5.9    */
-/*  05-10-2016     Yuxin Zhou               Modified comment(s),          */
-/*                                            added service to change     */
-/*                                            connect port at run time,   */
-/*                                            resulting in version 5.10   */
-/*  07-15-2018     Yuxin Zhou               Modified comment(s),          */
-/*                                            resulting in version 5.11   */
-/*  08-15-2019     Yuxin Zhou               Modified comment(s), included */
-/*                                            necessary headers, improved */
-/*                                            string length verification, */
-/*                                            resulting in version 5.12   */
+/*  05-19-2020     Yuxin Zhou               Initial Version 6.0           */
+/*  09-30-2020     Yuxin Zhou               Modified comment(s),          */
+/*                                            resulting in version 6.1    */
+/*  04-02-2021     Yuxin Zhou               Modified comment(s), and      */
+/*                                            improved the logic of       */
+/*                                            parsing base64,             */
+/*                                            resulting in version 6.1.6  */
 /*                                                                        */
 /**************************************************************************/
 
@@ -139,8 +111,8 @@ extern   "C" {
 #define NX_HTTP_CLIENT_MIN_PACKET_SIZE      600
 #endif
 
-/* NX_HTTP_MAX_STRING is base64 of "name:password" and plus 1 if an extra conversion is needed. */
-#define NX_HTTP_MAX_STRING                  ((NX_HTTP_MAX_NAME + NX_HTTP_MAX_PASSWORD + 1) * 4 / 3 + 1)
+/* NX_HTTP_MAX_STRING is base64 of "name:password" and plus 1 if an extra conversion is needed and plus 2 pad if needed. */
+#define NX_HTTP_MAX_STRING                  ((NX_HTTP_MAX_NAME + NX_HTTP_MAX_PASSWORD + 1) * 4 / 3 + 1 + 2)
 #define NX_HTTP_MAX_BINARY_MD5              16
 #define NX_HTTP_MAX_ASCII_MD5               32
 
@@ -314,7 +286,6 @@ UINT        _nx_http_client_type_get(CHAR *name, CHAR *http_type_string);
 UINT        _nx_http_client_content_length_get(NX_PACKET *packet_ptr);
 UINT        _nx_http_client_calculate_content_offset(NX_PACKET *packet_ptr);
 UINT        _nx_http_client_number_convert(UINT number, CHAR *string);
-VOID        _nx_http_client_base64_encode(CHAR *name, UINT length, CHAR *base64name);
 
 
 #endif  /* NX_HTTP_SOURCE_CODE */

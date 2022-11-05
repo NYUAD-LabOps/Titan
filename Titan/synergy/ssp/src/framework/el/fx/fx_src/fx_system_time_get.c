@@ -1,172 +1,119 @@
-#ifdef AMS_ENCRYPT_PACKAGE
------BEGIN ENCRYPTED FILE v0.6-----
-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
------END ENCRYPTED FILE-----
-#else
-#error "Secure builder required to compile this file"
-#endif
+/**************************************************************************/
+/*                                                                        */
+/*       Copyright (c) Microsoft Corporation. All rights reserved.        */
+/*                                                                        */
+/*       This software is licensed under the Microsoft Software License   */
+/*       Terms for Microsoft Azure RTOS. Full text of the license can be  */
+/*       found in the LICENSE file at https://aka.ms/AzureRTOS_EULA       */
+/*       and in the root directory of this software.                      */
+/*                                                                        */
+/**************************************************************************/
+
+
+/**************************************************************************/
+/**************************************************************************/
+/**                                                                       */
+/** FileX Component                                                       */
+/**                                                                       */
+/**   System                                                              */
+/**                                                                       */
+/**************************************************************************/
+/**************************************************************************/
+
+#define FX_SOURCE_CODE
+
+
+/* Include necessary system files.  */
+
+#include "fx_api.h"
+#include "fx_system.h"
+
+
+/**************************************************************************/
+/*                                                                        */
+/*  FUNCTION                                               RELEASE        */
+/*                                                                        */
+/*    _fx_system_time_get                                 PORTABLE C      */
+/*                                                           6.1.7        */
+/*  AUTHOR                                                                */
+/*                                                                        */
+/*    William E. Lamie, Microsoft Corporation                             */
+/*                                                                        */
+/*  DESCRIPTION                                                           */
+/*                                                                        */
+/*    This function returns the current contents of the system time in    */
+/*    the fields specified by the caller.                                 */
+/*                                                                        */
+/*  INPUT                                                                 */
+/*                                                                        */
+/*    hour                                  Pointer to hour               */
+/*    minute                                Pointer to minute             */
+/*    second                                Pointer to second             */
+/*                                                                        */
+/*  OUTPUT                                                                */
+/*                                                                        */
+/*    FX_SUCCESS                                                          */
+/*                                                                        */
+/*  CALLS                                                                 */
+/*                                                                        */
+/*    None                                                                */
+/*                                                                        */
+/*  CALLED BY                                                             */
+/*                                                                        */
+/*    Application Code                                                    */
+/*                                                                        */
+/*  RELEASE HISTORY                                                       */
+/*                                                                        */
+/*    DATE              NAME                      DESCRIPTION             */
+/*                                                                        */
+/*  05-19-2020     William E. Lamie         Initial Version 6.0           */
+/*  09-30-2020     William E. Lamie         Modified comment(s),          */
+/*                                            resulting in version 6.1    */
+/*  06-02-2021     William E. Lamie         Modified comment(s),          */
+/*                                            checked null pointer,       */
+/*                                            resulting in version 6.1.7  */
+/*                                                                        */
+/**************************************************************************/
+UINT  _fx_system_time_get(UINT *hour, UINT *minute, UINT *second)
+{
+
+UINT time;
+
+
+    /* Get a copy of the current system time.  */
+    time =  _fx_system_time;
+
+    /* Check to see if the hour is required.  */
+    if (hour)
+    {
+
+        /* Pickup the hour.  */
+        *hour =  (time >> FX_HOUR_SHIFT) & FX_HOUR_MASK;
+    }
+
+    /* Check to see if the minute is required.  */
+    if (minute)
+    {
+
+        /* Pickup the minute.  */
+        *minute =  (time >> FX_MINUTE_SHIFT) & FX_MINUTE_MASK;
+    }
+
+    /* Check to see if the second is required.  */
+    if (second)
+    {
+
+        /* Pickup the second.  */
+        *second =  (time & FX_SECOND_MASK) * 2;
+    }
+
+    /* If trace is enabled, insert this event into the trace buffer.  */
+    if (hour && minute && second)
+    {
+        FX_TRACE_IN_LINE_INSERT(FX_TRACE_SYSTEM_TIME_GET, *hour, *minute, *second, 0, FX_TRACE_INTERNAL_EVENTS, 0, 0)
+    }
+
+    /* Return successful status.  */
+    return(FX_SUCCESS);
+}
+

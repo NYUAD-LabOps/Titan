@@ -29,6 +29,9 @@
 #include "nxd_dns_client_cfg.h"
 #endif
 #if (SYNERGY_NOT_DEFINED)
+#include "nxd_mdns_cfg.h"
+#endif
+#if (SYNERGY_NOT_DEFINED)
 #include "nxd_ftp_common_cfg.h"
 #endif
 #if (SYNERGY_NOT_DEFINED)

@@ -1,5 +1,5 @@
 /***********************************************************************************************************************
- * Copyright [2015-2017] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
+ * Copyright [2015-2021] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
  * 
  * This file is part of Renesas SynergyTM Software Package (SSP)
  *
@@ -67,8 +67,8 @@ SSP_HEADER
 /**********************************************************************************************************************
  * Macro definitions
  **********************************************************************************************************************/
-#define UART_API_VERSION_MAJOR (1U)
-#define UART_API_VERSION_MINOR (6U)
+#define UART_API_VERSION_MAJOR (2U)
+#define UART_API_VERSION_MINOR (0U)
 
 /**********************************************************************************************************************
  * Typedef definitions

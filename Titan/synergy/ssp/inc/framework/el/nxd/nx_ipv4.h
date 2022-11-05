@@ -1,23 +1,11 @@
 /**************************************************************************/
 /*                                                                        */
-/*            Copyright (c) 1996-2019 by Express Logic Inc.               */
+/*       Copyright (c) Microsoft Corporation. All rights reserved.        */
 /*                                                                        */
-/*  This software is copyrighted by and is the sole property of Express   */
-/*  Logic, Inc.  All rights, title, ownership, or other interests         */
-/*  in the software remain the property of Express Logic, Inc.  This      */
-/*  software may only be used in accordance with the corresponding        */
-/*  license agreement.  Any unauthorized use, duplication, transmission,  */
-/*  distribution, or disclosure of this software is expressly forbidden.  */
-/*                                                                        */
-/*  This Copyright notice may not be removed or modified without prior    */
-/*  written consent of Express Logic, Inc.                                */
-/*                                                                        */
-/*  Express Logic, Inc. reserves the right to modify this software        */
-/*  without notice.                                                       */
-/*                                                                        */
-/*  Express Logic, Inc.                     info@expresslogic.com         */
-/*  11423 West Bernardo Court               http://www.expresslogic.com   */
-/*  San Diego, CA  92127                                                  */
+/*       This software is licensed under the Microsoft Software License   */
+/*       Terms for Microsoft Azure RTOS. Full text of the license can be  */
+/*       found in the LICENSE file at https://aka.ms/AzureRTOS_EULA       */
+/*       and in the root directory of this software.                      */
 /*                                                                        */
 /**************************************************************************/
 
@@ -38,10 +26,10 @@
 /*  COMPONENT DEFINITION                                   RELEASE        */
 /*                                                                        */
 /*    nx_ipv4.h                                           PORTABLE C      */
-/*                                                           5.12         */
+/*                                                           6.1.9        */
 /*  AUTHOR                                                                */
 /*                                                                        */
-/*    William E. Lamie, Express Logic, Inc.                               */
+/*    Yuxin Zhou, Microsoft Corporation                                   */
 /*                                                                        */
 /*  DESCRIPTION                                                           */
 /*                                                                        */
@@ -53,52 +41,22 @@
 /*                                                                        */
 /*    DATE              NAME                      DESCRIPTION             */
 /*                                                                        */
-/*  12-12-2005     William E. Lamie         Initial Version 5.0           */
-/*  08-09-2007     William E. Lamie         Modified comment(s), and      */
-/*                                            changed UL to ULONG cast,   */
-/*                                            resulting in version 5.1    */
-/*  12-30-2007     Yuxin Zhou               Modified comment(s), and      */
-/*                                            added support for IPv6,     */
-/*                                            resulting in version 5.2    */
-/*  08-03-2009     William E. Lamie         Modified comment(s),          */
-/*                                            resulting in version 5.3    */
-/*  11-23-2009     Yuxin Zhou               Modified comment(s),          */
-/*                                            resulting in version 5.4    */
-/*  06-01-2010     Yuxin Zhou               Modified comment(s),          */
-/*                                            resulting in version 5.5    */
-/*  10-10-2011     Yuxin Zhou               Modified comment(s), added    */
-/*                                            prototype for new service,  */
-/*                                            resulting in version 5.6    */
-/*  01-31-2013     Yuxin Zhou               Modified comment(s),          */
-/*                                            resulting in version 5.7    */
-/*  01-12-2015     Yuxin Zhou               Modified comment(s), and      */
-/*                                            added router alert feature. */
-/*                                            added new service           */
-/*                                            nx_ip_gateway_address_clear,*/
-/*                                            optimized NX_PACKET_STRUCT, */
-/*                                            resulting in version 5.8    */
-/*  02-22-2016     Yuxin Zhou               Modified comment(s), and      */
-/*                                            removed redundant function  */
-/*                                            declarations, supported     */
-/*                                            IPv4 option processing,     */
-/*                                            resulting in version 5.9    */
-/*  05-10-2016     Yuxin Zhou               Modified comment(s), and      */
-/*                                            removed deprecated function */
-/*                                            declaration, avoided        */
-/*                                            redundant definition of     */
-/*                                            fragmentation symbols,      */
-/*                                            removed unused code,        */
-/*                                            resulting in version 5.10   */
-/*  07-15-2018     Yuxin Zhou               Modified comment(s), added    */
-/*                                            support for disabling IPv4, */
-/*                                            resulting in version 5.11   */
-/*  08-15-2019     Yuxin Zhou               Modified comment(s),          */
-/*                                            resulting in version 5.12   */
+/*  05-19-2020     Yuxin Zhou               Initial Version 6.0           */
+/*  09-30-2020     Yuxin Zhou               Modified comment(s),          */
+/*                                            resulting in version 6.1    */
+/*  08-02-2021     Yuxin Zhou               Modified comment(s), and      */
+/*                                            supported TCP/IP offload,   */
+/*                                            resulting in version 6.1.8  */
+/*  10-15-2021     Yuxin Zhou               Modified comment(s), included */
+/*                                            necessary header file,      */
+/*                                            resulting in version 6.1.9  */
 /*                                                                        */
 /**************************************************************************/
 
 #ifndef NX_IPV4_H
 #define NX_IPV4_H
+
+#include "nx_api.h"
 
 
 #ifndef NX_DISABLE_IPV4
@@ -201,7 +159,8 @@ typedef  struct NX_IPV4_HEADER_STRUCT
 VOID  _nx_ip_forward_packet_process(NX_IP *ip_ptr, NX_PACKET *packet_ptr);
 VOID  _nx_ip_fragment_forward_packet(NX_IP *ip_ptr, NX_PACKET *packet_ptr, ULONG destination_ip, ULONG fragment, ULONG next_hop_address);
 void  _nx_ip_packet_send(NX_IP *ip_ptr, NX_PACKET *packet_ptr, ULONG destination_ip, ULONG type_of_service, ULONG time_to_live, ULONG protocol, ULONG fragment, ULONG next_hop_address);
-UINT  _nx_ip_header_add(NX_IP *ip_ptr, NX_PACKET *packet_ptr, ULONG destination_ip, ULONG type_of_service, ULONG time_to_live, ULONG protocol, ULONG fragment);
+UINT  _nx_ip_header_add(NX_IP *ip_ptr, NX_PACKET *packet_ptr, ULONG source_ip, ULONG destination_ip,
+                        ULONG type_of_service, ULONG time_to_live, ULONG protocol, ULONG fragment);
 VOID  _nx_ip_driver_packet_send(NX_IP *ip_ptr, NX_PACKET *packet_ptr, ULONG destination_ip, ULONG fragment, ULONG next_hop_address);
 ULONG _nx_ip_route_find(NX_IP *ip_ptr, ULONG destination_address, NX_INTERFACE **nx_ip_interface, ULONG *next_hop_address);
 VOID  _nx_ipv4_packet_receive(NX_IP *ip_ptr, NX_PACKET *packet_ptr);

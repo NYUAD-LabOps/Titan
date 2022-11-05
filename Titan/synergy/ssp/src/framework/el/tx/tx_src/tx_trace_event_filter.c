@@ -1,175 +1,108 @@
-#ifdef AMS_ENCRYPT_PACKAGE
------BEGIN ENCRYPTED FILE v0.6-----
-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
------END ENCRYPTED FILE-----
-#else
-#error "Secure builder required to compile this file"
+/**************************************************************************/
+/*                                                                        */
+/*       Copyright (c) Microsoft Corporation. All rights reserved.        */
+/*                                                                        */
+/*       This software is licensed under the Microsoft Software License   */
+/*       Terms for Microsoft Azure RTOS. Full text of the license can be  */
+/*       found in the LICENSE file at https://aka.ms/AzureRTOS_EULA       */
+/*       and in the root directory of this software.                      */
+/*                                                                        */
+/**************************************************************************/
+
+
+/**************************************************************************/
+/**************************************************************************/
+/**                                                                       */
+/** ThreadX Component                                                     */
+/**                                                                       */
+/**   Trace                                                               */
+/**                                                                       */
+/**************************************************************************/
+/**************************************************************************/
+
+#ifndef TX_SOURCE_CODE
+#define TX_SOURCE_CODE
 #endif
+
+
+/* Include necessary system files.  */
+
+#include "tx_api.h"
+#include "tx_trace.h"
+
+
+/**************************************************************************/
+/*                                                                        */
+/*  FUNCTION                                               RELEASE        */
+/*                                                                        */
+/*    _tx_trace_event_filter                              PORTABLE C      */
+/*                                                           6.1          */
+/*  AUTHOR                                                                */
+/*                                                                        */
+/*    William E. Lamie, Microsoft Corporation                             */
+/*                                                                        */
+/*  DESCRIPTION                                                           */
+/*                                                                        */
+/*    This function sets up the event filter, which allows the            */
+/*    application to filter various trace events during run-time.         */
+/*                                                                        */
+/*  INPUT                                                                 */
+/*                                                                        */
+/*    event_filter_bits                     Trace filter event bit(s)     */
+/*                                                                        */
+/*  OUTPUT                                                                */
+/*                                                                        */
+/*    Completion Status                                                   */
+/*                                                                        */
+/*  CALLS                                                                 */
+/*                                                                        */
+/*    None                                                                */
+/*                                                                        */
+/*  CALLED BY                                                             */
+/*                                                                        */
+/*    Application Code                                                    */
+/*                                                                        */
+/*  RELEASE HISTORY                                                       */
+/*                                                                        */
+/*    DATE              NAME                      DESCRIPTION             */
+/*                                                                        */
+/*  05-19-2020     William E. Lamie         Initial Version 6.0           */
+/*  09-30-2020     Yuxin Zhou               Modified comment(s),          */
+/*                                            resulting in version 6.1    */
+/*                                                                        */
+/**************************************************************************/
+UINT  _tx_trace_event_filter(ULONG event_filter_bits)
+{
+
+#ifdef TX_ENABLE_EVENT_TRACE
+
+    /* Apply the specified filter by clearing the enable bits.  */
+    _tx_trace_event_enable_bits =  _tx_trace_event_enable_bits & (~event_filter_bits);
+
+    /* Return success.  */
+    return(TX_SUCCESS);
+
+#else
+
+UINT        status;
+
+
+    /* Access input arguments just for the sake of lint, MISRA, etc.  */
+    if (event_filter_bits != ((ULONG) 0))
+    {
+
+        /* Trace not enabled, return an error.  */
+        status =  TX_FEATURE_NOT_ENABLED;
+    }
+    else
+    {
+
+        /* Trace not enabled, return an error.  */
+        status =  TX_FEATURE_NOT_ENABLED;
+    }
+
+    /* Return completion status.  */
+    return(status);
+#endif
+}
+

@@ -1,5 +1,5 @@
 /***********************************************************************************************************************
- * Copyright [2015-2017] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
+ * Copyright [2015-2021] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
  * 
  * This file is part of Renesas SynergyTM Software Package (SSP)
  *
@@ -61,8 +61,8 @@ SSP_HEADER
 /**********************************************************************************************************************
  * Macro definitions
  **********************************************************************************************************************/
-#define INPUT_CAPTURE_API_VERSION_MAJOR (1U)
-#define INPUT_CAPTURE_API_VERSION_MINOR (7U)
+#define INPUT_CAPTURE_API_VERSION_MAJOR (2U)
+#define INPUT_CAPTURE_API_VERSION_MINOR (0U)
 
 /** Mapping of deprecated info_capture_info_t. */
 #define info_capture_info_t input_capture_info_t

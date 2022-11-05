@@ -1,147 +1,95 @@
-#ifdef AMS_ENCRYPT_PACKAGE
------BEGIN ENCRYPTED FILE v0.6-----
-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
------END ENCRYPTED FILE-----
-#else
-#error "Secure builder required to compile this file"
-#endif
+/**************************************************************************/
+/*                                                                        */
+/*       Copyright (c) Microsoft Corporation. All rights reserved.        */
+/*                                                                        */
+/*       This software is licensed under the Microsoft Software License   */
+/*       Terms for Microsoft Azure RTOS. Full text of the license can be  */
+/*       found in the LICENSE file at https://aka.ms/AzureRTOS_EULA       */
+/*       and in the root directory of this software.                      */
+/*                                                                        */
+/**************************************************************************/
+
+
+/**************************************************************************/
+/**************************************************************************/
+/**                                                                       */
+/** FileX Component                                                       */
+/**                                                                       */
+/**   File                                                                */
+/**                                                                       */
+/**************************************************************************/
+/**************************************************************************/
+
+#define FX_SOURCE_CODE
+
+
+/* Include necessary system files.  */
+
+#include "fx_api.h"
+#include "fx_file.h"
+
+FX_CALLER_CHECKING_EXTERNS
+
+
+/**************************************************************************/
+/*                                                                        */
+/*  FUNCTION                                               RELEASE        */
+/*                                                                        */
+/*    _fxe_file_extended_allocate                         PORTABLE C      */
+/*                                                           6.1          */
+/*  AUTHOR                                                                */
+/*                                                                        */
+/*    William E. Lamie, Microsoft Corporation                             */
+/*                                                                        */
+/*  DESCRIPTION                                                           */
+/*                                                                        */
+/*    This function checks for errors in the file allocate service.       */
+/*                                                                        */
+/*  INPUT                                                                 */
+/*                                                                        */
+/*    file_ptr                              File control block pointer    */
+/*    size                                  Number of bytes to allocate   */
+/*                                                                        */
+/*  OUTPUT                                                                */
+/*                                                                        */
+/*    return status                                                       */
+/*                                                                        */
+/*  CALLS                                                                 */
+/*                                                                        */
+/*    _fx_file_extended_allocate            Actual file allocate service  */
+/*                                                                        */
+/*  CALLED BY                                                             */
+/*                                                                        */
+/*    Application Code                                                    */
+/*                                                                        */
+/*  RELEASE HISTORY                                                       */
+/*                                                                        */
+/*    DATE              NAME                      DESCRIPTION             */
+/*                                                                        */
+/*  05-19-2020     William E. Lamie         Initial Version 6.0           */
+/*  09-30-2020     William E. Lamie         Modified comment(s),          */
+/*                                            resulting in version 6.1    */
+/*                                                                        */
+/**************************************************************************/
+UINT  _fxe_file_extended_allocate(FX_FILE *file_ptr, ULONG64 size)
+{
+
+UINT status;
+
+
+    /* Check for a null file pointer.  */
+    if (file_ptr == FX_NULL)
+    {
+        return(FX_PTR_ERROR);
+    }
+
+    /* Check for a valid caller.  */
+    FX_CALLER_CHECKING_CODE
+
+    /* Call actual file allocate service.  */
+    status =  _fx_file_extended_allocate(file_ptr, size);
+
+    /* Return status to the caller.  */
+    return(status);
+}
+

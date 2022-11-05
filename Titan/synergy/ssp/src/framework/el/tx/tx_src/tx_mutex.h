@@ -1,227 +1,162 @@
-#ifdef AMS_ENCRYPT_PACKAGE
------BEGIN ENCRYPTED FILE v0.6-----
-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
------END ENCRYPTED FILE-----
+/**************************************************************************/
+/*                                                                        */
+/*       Copyright (c) Microsoft Corporation. All rights reserved.        */
+/*                                                                        */
+/*       This software is licensed under the Microsoft Software License   */
+/*       Terms for Microsoft Azure RTOS. Full text of the license can be  */
+/*       found in the LICENSE file at https://aka.ms/AzureRTOS_EULA       */
+/*       and in the root directory of this software.                      */
+/*                                                                        */
+/**************************************************************************/
+
+
+/**************************************************************************/
+/**************************************************************************/
+/**                                                                       */
+/** ThreadX Component                                                     */
+/**                                                                       */
+/**   Mutex                                                               */
+/**                                                                       */
+/**************************************************************************/
+/**************************************************************************/
+
+
+/**************************************************************************/
+/*                                                                        */
+/*  COMPONENT DEFINITION                                   RELEASE        */
+/*                                                                        */
+/*    tx_mutex.h                                          PORTABLE C      */
+/*                                                           6.1          */
+/*  AUTHOR                                                                */
+/*                                                                        */
+/*    William E. Lamie, Microsoft Corporation                             */
+/*                                                                        */
+/*  DESCRIPTION                                                           */
+/*                                                                        */
+/*    This file defines the ThreadX mutex management component,           */
+/*    including all data types and external references.  It is assumed    */
+/*    that tx_api.h and tx_port.h have already been included.             */
+/*                                                                        */
+/*  RELEASE HISTORY                                                       */
+/*                                                                        */
+/*    DATE              NAME                      DESCRIPTION             */
+/*                                                                        */
+/*  05-19-2020     William E. Lamie         Initial Version 6.0           */
+/*  09-30-2020     Yuxin Zhou               Modified comment(s),          */
+/*                                            resulting in version 6.1    */
+/*                                                                        */
+/**************************************************************************/
+
+#ifndef TX_MUTEX_H
+#define TX_MUTEX_H
+
+
+/* Define mutex control specific data definitions.  */
+
+#define TX_MUTEX_ID                             ((ULONG) 0x4D555445)
+
+
+/* Determine if in-line component initialization is supported by the
+   caller.  */
+
+#ifdef TX_INVOKE_INLINE_INITIALIZATION
+
+/* Yes, in-line initialization is supported, remap the mutex initialization
+   function.  */
+
+#ifndef TX_MUTEX_ENABLE_PERFORMANCE_INFO
+#define _tx_mutex_initialize() \
+                    _tx_mutex_created_ptr =                             TX_NULL;      \
+                    _tx_mutex_created_count =                           TX_EMPTY
 #else
-#error "Secure builder required to compile this file"
+#define _tx_mutex_initialize() \
+                    _tx_mutex_created_ptr =                             TX_NULL;      \
+                    _tx_mutex_created_count =                           TX_EMPTY;     \
+                    _tx_mutex_performance_put_count =                   ((ULONG) 0);  \
+                    _tx_mutex_performance_get_count =                   ((ULONG) 0);  \
+                    _tx_mutex_performance_suspension_count =            ((ULONG) 0);  \
+                    _tx_mutex_performance_timeout_count =               ((ULONG) 0);  \
+                    _tx_mutex_performance_priority_inversion_count =    ((ULONG) 0);  \
+                    _tx_mutex_performance__priority_inheritance_count = ((ULONG) 0)
+#endif
+#define TX_MUTEX_INIT
+#else
+
+/* No in-line initialization is supported, use standard function call.  */
+VOID        _tx_mutex_initialize(VOID);
+#endif
+
+
+/* Define internal mutex management function prototypes.  */
+
+VOID        _tx_mutex_cleanup(TX_THREAD *thread_ptr, ULONG suspension_sequence);
+VOID        _tx_mutex_thread_release(TX_THREAD *thread_ptr);
+VOID        _tx_mutex_priority_change(TX_THREAD *thread_ptr, UINT new_priority);
+
+
+/* Mutex management component data declarations follow.  */
+
+/* Determine if the initialization function of this component is including
+   this file.  If so, make the data definitions really happen.  Otherwise,
+   make them extern so other functions in the component can access them.  */
+
+#ifdef TX_MUTEX_INIT
+#define MUTEX_DECLARE
+#else
+#define MUTEX_DECLARE extern
+#endif
+
+
+/* Define the head pointer of the created mutex list.  */
+
+MUTEX_DECLARE  TX_MUTEX *   _tx_mutex_created_ptr;
+
+
+/* Define the variable that holds the number of created mutexes. */
+
+MUTEX_DECLARE  ULONG        _tx_mutex_created_count;
+
+
+#ifdef TX_MUTEX_ENABLE_PERFORMANCE_INFO
+
+/* Define the total number of mutex puts.  */
+
+MUTEX_DECLARE  ULONG        _tx_mutex_performance_put_count;
+
+
+/* Define the total number of mutex gets.  */
+
+MUTEX_DECLARE  ULONG        _tx_mutex_performance_get_count;
+
+
+/* Define the total number of mutex suspensions.  */
+
+MUTEX_DECLARE  ULONG        _tx_mutex_performance_suspension_count;
+
+
+/* Define the total number of mutex timeouts.  */
+
+MUTEX_DECLARE  ULONG        _tx_mutex_performance_timeout_count;
+
+
+/* Define the total number of priority inversions.  */
+
+MUTEX_DECLARE  ULONG        _tx_mutex_performance_priority_inversion_count;
+
+
+/* Define the total number of priority inheritance conditions.  */
+
+MUTEX_DECLARE  ULONG        _tx_mutex_performance__priority_inheritance_count;
+
+
+#endif
+
+
+/* Define default post mutex delete macro to whitespace, if it hasn't been defined previously (typically in tx_port.h).  */
+
+#ifndef TX_MUTEX_DELETE_PORT_COMPLETION
+#define TX_MUTEX_DELETE_PORT_COMPLETION(m)
+#endif
+
+
 #endif

@@ -1,5 +1,5 @@
 /***********************************************************************************************************************
- * Copyright [2015-2017] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
+ * Copyright [2015-2021] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
  * 
  * This file is part of Renesas SynergyTM Software Package (SSP)
  *
@@ -47,6 +47,9 @@ Macro definitions
 /*LDRA_INSPECTED 77 S This macro does not work when surrounded by parentheses. */
 #define ADC_BASE_PTR  R_S16ADC_Type *
 #endif
+
+/** Value for disabling AVEE bit in ADADC */
+#define ADC_ADADC_DISABLE_AVEE (0x07U)
 
 /** Define pointer type for the TSN Control Register Base */
 #define TSN_BASE_PTR R_TSN_Control_Type *
@@ -326,7 +329,11 @@ __STATIC_INLINE void HW_ADC_Init(ADC_BASE_PTR const p_regs, adc_cfg_t const * co
     /** Configure is the result register should be cleared after reading for this unit */
     p_regs->ADCER_b.ACE = (ADC_CLEAR_AFTER_READ_ON == p_cfg->clearing) ? 1U : 0U;
     /** Configure the count for result addition or averaging*/
+#if defined R_S16ADC_BASE
+    p_regs->ADADC = (p_cfg->add_average_count & ADC_ADADC_DISABLE_AVEE);
+#else
     p_regs->ADADC = p_cfg->add_average_count;
+#endif
 }
 
 __STATIC_INLINE void HW_ADC_Deselect_data_inversion(ADC_BASE_PTR const p_regs)

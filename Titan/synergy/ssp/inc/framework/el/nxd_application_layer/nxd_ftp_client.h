@@ -1,23 +1,11 @@
-/**************************************************************************/ 
-/*                                                                        */ 
-/*            Copyright (c) 1996-2019 by Express Logic Inc.               */ 
-/*                                                                        */ 
-/*  This software is copyrighted by and is the sole property of Express   */ 
-/*  Logic, Inc.  All rights, title, ownership, or other interests         */ 
-/*  in the software remain the property of Express Logic, Inc.  This      */ 
-/*  software may only be used in accordance with the corresponding        */ 
-/*  license agreement.  Any unauthorized use, duplication, transmission,  */ 
-/*  distribution, or disclosure of this software is expressly forbidden.  */ 
+/**************************************************************************/
 /*                                                                        */
-/*  This Copyright notice may not be removed or modified without prior    */ 
-/*  written consent of Express Logic, Inc.                                */ 
-/*                                                                        */ 
-/*  Express Logic, Inc. reserves the right to modify this software        */ 
-/*  without notice.                                                       */ 
-/*                                                                        */ 
-/*  Express Logic, Inc.                     info@expresslogic.com         */
-/*  11423 West Bernardo Court               http://www.expresslogic.com   */
-/*  San Diego, CA  92127                                                  */
+/*       Copyright (c) Microsoft Corporation. All rights reserved.        */
+/*                                                                        */
+/*       This software is licensed under the Microsoft Software License   */
+/*       Terms for Microsoft Azure RTOS. Full text of the license can be  */
+/*       found in the LICENSE file at https://aka.ms/AzureRTOS_EULA       */
+/*       and in the root directory of this software.                      */
 /*                                                                        */
 /**************************************************************************/
 
@@ -38,11 +26,11 @@
 /*  APPLICATION INTERFACE DEFINITION                       RELEASE        */ 
 /*                                                                        */
 /*    nxd_ftp_client.h                                    PORTABLE C      */ 
-/*                                                           5.12         */
-/*  AUTHOR                                                                */ 
-/*                                                                        */ 
-/*    William E. Lamie, Express Logic, Inc.                               */ 
-/*                                                                        */ 
+/*                                                           6.1.9        */
+/*  AUTHOR                                                                */
+/*                                                                        */
+/*    Yuxin Zhou, Microsoft Corporation                                   */
+/*                                                                        */
 /*  DESCRIPTION                                                           */ 
 /*                                                                        */ 
 /*    This file defines the NetX Duo File Transfer Protocol (FTP over     */ 
@@ -52,35 +40,16 @@
 /*                                                                        */ 
 /*  RELEASE HISTORY                                                       */ 
 /*                                                                        */ 
-/*    DATE              NAME                      DESCRIPTION             */ 
-/*                                                                        */  
-/*  06-01-2010     Janet Christiansen       Initial Version 5.0           */ 
-/*  01-16-2012     Janet Christiansen       Modified comment(s) and       */
-/*                                            added internal packet       */
-/*                                            allocate function,          */
-/*                                            resulting in version 5.1    */
-/*  01-31-2013     Janet Christiansen       Modified comment(s)           */
-/*                                            added client data socket    */
-/*                                            port to increment data port */
-/*                                            binding on successive       */
-/*                                            connections,                */
-/*                                            resulting in version 5.2    */
-/*  01-12-2015     Janet Christiansen       Modified comment(s),          */
-/*                                            resulting in version 5.8    */ 
-/*  02-22-2016     Yuxin Zhou               Modified comment(s),          */
-/*                                            resulting in version 5.9    */
-/*  05-10-2016     Yuxin Zhou               Modified comment(s),          */
-/*                                            added support for passive   */
-/*                                            transfer mode,              */
-/*                                            resulting in version 5.10   */
-/*  07-15-2018     Yuxin Zhou               Modified comment(s),          */
-/*                                            resulting in version 5.11   */
-/*  08-15-2019     Yuxin Zhou               Modified comment(s), removed  */
-/*                                            FileX dependency, improved  */
-/*                                            string length verification, */
-/*                                            resulting in version 5.12   */
+/*    DATE              NAME                      DESCRIPTION             */
 /*                                                                        */
-/**************************************************************************/ 
+/*  05-19-2020     Yuxin Zhou               Initial Version 6.0           */
+/*  09-30-2020     Yuxin Zhou               Modified comment(s),          */
+/*                                            resulting in version 6.1    */
+/*  10-15-2021     Yuxin Zhou               Modified comment(s), included */
+/*                                            necessary header file,      */
+/*                                            resulting in version 6.1.9  */
+/*                                                                        */
+/**************************************************************************/
 
 #ifndef NXD_FTP_CLIENT_H
 #define NXD_FTP_CLIENT_H
@@ -94,6 +63,8 @@
 extern   "C" {
 
 #endif
+
+#include "nx_api.h"
 
 
 /* Define the FTP Client ID.  */
@@ -161,6 +132,12 @@ extern   "C" {
 #define NX_FTP_OPEN_FOR_WRITE               0x02        /* FTP file open for writing                           */ 
 
 
+/* Define transfer modes. Note: just support stream mode and block mode yet.  */
+
+#define NX_FTP_TRANSFER_MODE_STREAM         0           /* FTP stream transmission mode                        */
+#define NX_FTP_TRANSFER_MODE_BLOCK          1           /* FTP block transmission mode                         */
+#define NX_FTP_TRANSFER_MODE_COMPRESSED     2           /* FTP compressed transmission mode                    */
+
 
 /* Define return code constants.  */
 
@@ -182,6 +159,11 @@ extern   "C" {
 #define NX_FTP_INVALID_NUMBER               0xDF        /* Extraced an invalid number from server response     */
 #define NX_FTP_INVALID_ADDRESS              0x1D0       /* Invalid IP address parsed from FTP command          */
 #define NX_FTP_INVALID_COMMAND              0x1D1       /* Invalid FTP command (bad syntax, unknown command)   */
+#define NX_FTP_CLIENT_INVALID_SIZE          0x1D2       /* Invalid FTP file size                               */
+#define NX_FTP_CLIENT_FILE_SIZE_ALREADY_SET 0x1D3       /* The file size is already set                        */
+#define NX_FTP_CLIENT_NOT_BLOCK_MODE        0x1D4       /* Block mode is not enabled                           */
+#define NX_FTP_CLIENT_END_OF_BLOCK          0x1D5       /* FTP end of block                                    */
+
 
 /* Define FTP connection states.  */
 
@@ -222,6 +204,9 @@ extern   "C" {
 #define NX_FTP_CDUP                         17
 #define NX_FTP_INVALID                      18
 #define NX_FTP_EPRT                         19
+#define NX_FTP_PASV                         20
+#define NX_FTP_EPSV                         21
+#define NX_FTP_MODE                         22
 
 
 
@@ -239,6 +224,9 @@ typedef struct NX_FTP_CLIENT_STRUCT
     NX_TCP_SOCKET   nx_ftp_client_data_socket;                      /* Client FTP data transfer socket     */ 
     UINT            nx_ftp_client_data_port;                        /* Port the Client data socket binds   */
     UINT            nx_ftp_client_passive_transfer_enabled;         /* Client enabled for passive transfer */
+    UINT            nx_ftp_client_transfer_mode;                    /* Client transfer mode                */
+    ULONG           nx_ftp_client_block_total_size;                 /* Total size of data in block mode    */
+    ULONG           nx_ftp_client_block_remaining_size;             /* Remaining size of data in block mode*/
 } NX_FTP_CLIENT;
 
 
@@ -271,7 +259,9 @@ typedef struct NX_FTP_CLIENT_STRUCT
 #define nx_ftp_client_file_read                     _nx_ftp_client_file_read
 #define nx_ftp_client_file_rename                   _nx_ftp_client_file_rename
 #define nx_ftp_client_file_write                    _nx_ftp_client_file_write
+#define nx_ftp_client_file_size_set                 _nx_ftp_client_file_size_set
 #define nx_ftp_client_passive_mode_set              _nx_ftp_client_passive_mode_set
+#define nx_ftp_client_transfer_mode_set             _nx_ftp_client_transfer_mode_set
 
 #else
 
@@ -293,7 +283,9 @@ typedef struct NX_FTP_CLIENT_STRUCT
 #define nx_ftp_client_file_read                     _nxe_ftp_client_file_read
 #define nx_ftp_client_file_rename                   _nxe_ftp_client_file_rename
 #define nx_ftp_client_file_write                    _nxe_ftp_client_file_write
+#define nx_ftp_client_file_size_set                 _nxe_ftp_client_file_size_set
 #define nx_ftp_client_passive_mode_set              _nxe_ftp_client_passive_mode_set
+#define nx_ftp_client_transfer_mode_set             _nxe_ftp_client_transfer_mode_set
 
 #endif
 
@@ -315,7 +307,9 @@ UINT        nx_ftp_client_file_open(NX_FTP_CLIENT *ftp_client_ptr, CHAR *file_na
 UINT        nx_ftp_client_file_read(NX_FTP_CLIENT *ftp_client_ptr, NX_PACKET **packet_ptr, ULONG wait_option);
 UINT        nx_ftp_client_file_rename(NX_FTP_CLIENT *ftp_ptr, CHAR *filename, CHAR *new_filename, ULONG wait_option);
 UINT        nx_ftp_client_file_write(NX_FTP_CLIENT *ftp_client_ptr, NX_PACKET *packet_ptr, ULONG wait_option);
-UINT        nx_ftp_client_passive_mode_set(NX_FTP_CLIENT *ftp_client_ptr, UINT passive_mode_enabled);  
+UINT        nx_ftp_client_file_size_set(NX_FTP_CLIENT *ftp_client_ptr, ULONG file_size);
+UINT        nx_ftp_client_passive_mode_set(NX_FTP_CLIENT *ftp_client_ptr, UINT passive_mode_enabled);
+UINT        nx_ftp_client_transfer_mode_set(NX_FTP_CLIENT *ftp_client_ptr, UINT transfer_mode);
 
 #else
 
@@ -327,7 +321,6 @@ UINT        _nxde_ftp_client_connect(NX_FTP_CLIENT *ftp_client_ptr, NXD_ADDRESS 
 UINT        _nxd_ftp_client_connect(NX_FTP_CLIENT *ftp_client_ptr, NXD_ADDRESS *server_ipduo, CHAR *username, CHAR *password, ULONG wait_option);
 UINT        _nxe_ftp_client_create(NX_FTP_CLIENT *ftp_client_ptr, CHAR *ftp_client_name, NX_IP *ip_ptr, ULONG window_size, NX_PACKET_POOL *pool_ptr);
 UINT        _nx_ftp_client_create(NX_FTP_CLIENT *ftp_client_ptr, CHAR *ftp_client_name, NX_IP *ip_ptr, ULONG window_size, NX_PACKET_POOL *pool_ptr);
-VOID        _nx_ftp_client_data_disconnect(NX_TCP_SOCKET *data_socket_ptr);
 UINT        _nxe_ftp_client_delete(NX_FTP_CLIENT *ftp_client_ptr);
 UINT        _nx_ftp_client_delete(NX_FTP_CLIENT *ftp_client_ptr);
 UINT        _nxe_ftp_client_directory_create(NX_FTP_CLIENT *ftp_client_ptr, CHAR *directory_name, ULONG wait_option);
@@ -354,16 +347,24 @@ UINT        _nxe_ftp_client_file_rename(NX_FTP_CLIENT *ftp_client_ptr, CHAR *fil
 UINT        _nx_ftp_client_file_rename(NX_FTP_CLIENT *ftp_ptr, CHAR *filename, CHAR *new_filename, ULONG wait_option);
 UINT        _nxe_ftp_client_file_write(NX_FTP_CLIENT *ftp_client_ptr, NX_PACKET *packet_ptr, ULONG wait_option);
 UINT        _nx_ftp_client_file_write(NX_FTP_CLIENT *ftp_client_ptr, NX_PACKET *packet_ptr, ULONG wait_option);
+UINT        _nxe_ftp_client_file_size_set(NX_FTP_CLIENT *ftp_client_ptr, ULONG file_size);
+UINT        _nx_ftp_client_file_size_set(NX_FTP_CLIENT *ftp_client_ptr, ULONG file_size);
 UINT        _nxe_ftp_client_passive_mode_set(NX_FTP_CLIENT *ftp_client_ptr, UINT passive_mode_enabled);
 UINT        _nx_ftp_client_passive_mode_set(NX_FTP_CLIENT *ftp_client_ptr, UINT passive_mode_enabled);
+UINT        _nxe_ftp_client_transfer_mode_set(NX_FTP_CLIENT *ftp_client_ptr, UINT transfer_mode);
+UINT        _nx_ftp_client_transfer_mode_set(NX_FTP_CLIENT *ftp_client_ptr, UINT transfer_mode);
 
 #endif   /* NX_FTP_SOURCE_CODE */
 
-/* Internal functions. */  
+/* Internal functions. */
+VOID        _nx_ftp_client_data_disconnect(NX_TCP_SOCKET *data_socket_ptr);
 UINT        _nx_ftp_client_packet_allocate(NX_FTP_CLIENT *ftp_client_ptr, NX_PACKET **packet_ptr, ULONG wait_option);
-UINT        _nx_ftp_client_directory_listing_passive_get(NX_FTP_CLIENT *ftp_client_ptr, CHAR *directory_path, NX_PACKET **packet_ptr, ULONG wait_option);
-UINT        _nx_ftp_client_file_passive_open(NX_FTP_CLIENT *ftp_client_ptr, CHAR *file_name, UINT open_type, ULONG wait_option);
+UINT        _nx_ftp_client_active_transfer_setup(NX_FTP_CLIENT *ftp_client_ptr, ULONG wait_option);
 UINT        _nx_ftp_client_passive_transfer_setup(NX_FTP_CLIENT *ftp_client_ptr, ULONG wait_option);
+VOID        _nx_ftp_client_data_socket_cleanup(NX_FTP_CLIENT *ftp_client_ptr, ULONG wait_option);
+UINT        _nx_ftp_client_block_mode_send(NX_FTP_CLIENT *ftp_client_ptr, ULONG wait_option);
+UINT        _nx_ftp_client_block_header_send(NX_FTP_CLIENT *ftp_client_ptr, ULONG block_size);
+UINT        _nx_ftp_client_block_header_retrieve(NX_FTP_CLIENT *ftp_client_ptr, NX_PACKET *packet_ptr);
 UINT        _nx_ftp_client_connect_internal(NX_FTP_CLIENT *ftp_client_ptr, NXD_ADDRESS *server_ip, CHAR *username, CHAR *password, ULONG wait_option);
 UINT        _nx_ftp_utility_convert_IPv6_to_ascii(NX_TCP_SOCKET *tcp_socket_ptr, CHAR *buffer, UINT buffer_length, UINT *size);
 UINT        _nx_ftp_utility_convert_number_ascii(ULONG number, CHAR *numstring);

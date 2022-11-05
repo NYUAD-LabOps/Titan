@@ -1,5 +1,5 @@
 /***********************************************************************************************************************
- * Copyright [2015-2017] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
+ * Copyright [2015-2021] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
  * 
  * This file is part of Renesas SynergyTM Software Package (SSP)
  *
@@ -40,22 +40,22 @@
  * Macro definitions
  **********************************************************************************************************************/
 /** SSP pack major version. */
-#define SSP_VERSION_MAJOR                   (1U)
+#define SSP_VERSION_MAJOR                   (2U)
 
 /** SSP pack minor version. */
-#define SSP_VERSION_MINOR                   (7U)
+#define SSP_VERSION_MINOR                   (3U)
 
 /** SSP pack patch version. */
-#define SSP_VERSION_PATCH                   (8U)
+#define SSP_VERSION_PATCH                   (0U)
 
 /** SSP pack version build number (currently unused). */
 #define SSP_VERSION_BUILD                   (0U)
 
 /** Public SSP version name. */
-#define SSP_VERSION_STRING                  ("1.7.8")
+#define SSP_VERSION_STRING                  ("2.3.0")
 
 /** Unique SSP version ID. */
-#define SSP_VERSION_BUILD_STRING            ("Built with Renesas Synergy (TM) Software Package version 1.7.8+build.2106be1a1cb4")
+#define SSP_VERSION_BUILD_STRING            ("Built with Renesas Synergy (TM) Software Package version 2.3.0+build.395d618c9a5828db5f415d3768dd5276b9f89474")
 
 /**********************************************************************************************************************
  * Typedef definitions

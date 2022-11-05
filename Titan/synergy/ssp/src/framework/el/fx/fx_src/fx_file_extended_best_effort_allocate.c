@@ -1,540 +1,918 @@
-#ifdef AMS_ENCRYPT_PACKAGE
------BEGIN ENCRYPTED FILE v0.6-----
-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
-0FgkPxJdWqeDgATL9SeQmA==
------END ENCRYPTED FILE-----
-#else
-#error "Secure builder required to compile this file"
+/**************************************************************************/
+/*                                                                        */
+/*       Copyright (c) Microsoft Corporation. All rights reserved.        */
+/*                                                                        */
+/*       This software is licensed under the Microsoft Software License   */
+/*       Terms for Microsoft Azure RTOS. Full text of the license can be  */
+/*       found in the LICENSE file at https://aka.ms/AzureRTOS_EULA       */
+/*       and in the root directory of this software.                      */
+/*                                                                        */
+/**************************************************************************/
+
+
+/**************************************************************************/
+/**************************************************************************/
+/**                                                                       */
+/** FileX Component                                                       */
+/**                                                                       */
+/**   File                                                                */
+/**                                                                       */
+/**************************************************************************/
+/**************************************************************************/
+
+#define FX_SOURCE_CODE
+
+
+/* Include necessary system files.  */
+
+#include "fx_api.h"
+#include "fx_system.h"
+#include "fx_file.h"
+#include "fx_utility.h"
+#include "fx_directory.h"
+#ifdef FX_ENABLE_FAULT_TOLERANT
+#include "fx_fault_tolerant.h"
+#endif /* FX_ENABLE_FAULT_TOLERANT */
+
+
+/**************************************************************************/
+/*                                                                        */
+/*  FUNCTION                                               RELEASE        */
+/*                                                                        */
+/*    _fx_file_extended_best_effort_allocate              PORTABLE C      */
+/*                                                           6.1          */
+/*  AUTHOR                                                                */
+/*                                                                        */
+/*    William E. Lamie, Microsoft Corporation                             */
+/*                                                                        */
+/*  DESCRIPTION                                                           */
+/*                                                                        */
+/*    This function attempts to allocate the number of consecutive        */
+/*    clusters required to satisfy the user's request.  If there are not  */
+/*    enough clusters, the largest set of clusters are allocated and      */
+/*    linked to the file.  If there are no free clusters, an error        */
+/*    code is returned to the caller.                                     */
+/*                                                                        */
+/*  INPUT                                                                 */
+/*                                                                        */
+/*    file_ptr                              File control block pointer    */
+/*    size                                  Number of bytes to allocate   */
+/*    actual_size_allocated                 Number of bytes allocated     */
+/*                                                                        */
+/*  OUTPUT                                                                */
+/*                                                                        */
+/*    return status                                                       */
+/*                                                                        */
+/*  CALLS                                                                 */
+/*                                                                        */
+/*    _fx_directory_entry_write             Update directory entry        */
+/*    _fx_utility_exFAT_bitmap_flush        Flush exFAT allocation bitmap */
+/*    _fx_utility_exFAT_bitmap_free_cluster_find                          */
+/*                                            Find exFAT free cluster     */
+/*    _fx_utility_exFAT_cluster_state_get   Get cluster state             */
+/*    _fx_utility_exFAT_cluster_state_set   Set cluster state             */
+/*    _fx_utility_FAT_entry_read            Read a FAT entry              */
+/*    _fx_utility_FAT_entry_write           Write a FAT entry             */
+/*    _fx_utility_FAT_flush                 Flush written FAT entries     */
+/*    _fx_utility_logical_sector_flush      Flush the written log sector  */
+/*    _fx_fault_tolerant_transaction_start  Start fault tolerant          */
+/*                                            transaction                 */
+/*    _fx_fault_tolerant_transaction_end    End fault tolerant transaction*/
+/*    _fx_fault_tolerant_recover            Recover FAT chain             */
+/*    _fx_fault_tolerant_reset_log_file     Reset the log file            */
+/*    _fx_fault_tolerant_set_FAT_chain      Set data of FAT chain         */
+/*                                                                        */
+/*  CALLED BY                                                             */
+/*                                                                        */
+/*    Application Code                                                    */
+/*                                                                        */
+/*  RELEASE HISTORY                                                       */
+/*                                                                        */
+/*    DATE              NAME                      DESCRIPTION             */
+/*                                                                        */
+/*  05-19-2020     William E. Lamie         Initial Version 6.0           */
+/*  09-30-2020     William E. Lamie         Modified comment(s),          */
+/*                                            resulting in version 6.1    */
+/*                                                                        */
+/**************************************************************************/
+UINT  _fx_file_extended_best_effort_allocate(FX_FILE *file_ptr, ULONG64 size, ULONG64 *actual_size_allocated)
+{
+
+UINT                   status;
+ULONG                  i;
+UINT                   found;
+ULONG                  bytes_per_cluster;
+ULONG                  FAT_index, start_FAT_index;
+ULONG                  FAT_value;
+ULONG                  clusters, maximum_clusters;
+FX_MEDIA              *media_ptr;
+
+#ifdef FX_ENABLE_EXFAT
+UCHAR                  cluster_state;
+#endif /* FX_ENABLE_EXFAT */
+
+#ifdef TX_ENABLE_EVENT_TRACE
+TX_TRACE_BUFFER_ENTRY *trace_event;
+ULONG                  trace_timestamp;
 #endif
+
+
+    /* First, determine if the file is still open.  */
+    if (file_ptr -> fx_file_id != FX_FILE_ID)
+    {
+
+        /* Return the file not open error status.  */
+        return(FX_NOT_OPEN);
+    }
+
+#ifndef FX_MEDIA_STATISTICS_DISABLE
+    /* Setup pointer to media structure.  */
+    media_ptr =  file_ptr -> fx_file_media_ptr;
+
+    /* Increment the number of times this service has been called.  */
+    media_ptr -> fx_media_file_best_effort_allocates++;
+#endif
+
+    /* Make sure this file is open for writing.  */
+    if (file_ptr -> fx_file_open_mode != FX_OPEN_FOR_WRITE)
+    {
+
+        /* Return the access error exception - a write was attempted from
+           a file opened for reading!  */
+        return(FX_ACCESS_ERROR);
+    }
+
+    /* Determine if the requested allocation is for zero bytes.  */
+    if (size == 0)
+    {
+
+        /* Return a size allocated of zero.  */
+        *actual_size_allocated =  0;
+
+        /* Return a successful completion - nothing needs to be done.  */
+        return(FX_SUCCESS);
+    }
+
+    /* Setup pointer to associated media control block.  */
+    media_ptr =  file_ptr -> fx_file_media_ptr;
+
+    /* If trace is enabled, insert this event into the trace buffer.  */
+    FX_TRACE_IN_LINE_INSERT(FX_TRACE_FILE_BEST_EFFORT_ALLOCATE, file_ptr, size, 0, 0, FX_TRACE_FILE_EVENTS, &trace_event, &trace_timestamp)
+
+    /* Protect against other threads accessing the media.  */
+    FX_PROTECT
+
+#ifdef FX_ENABLE_FAULT_TOLERANT
+    /* Start transaction. */
+    _fx_fault_tolerant_transaction_start(media_ptr);
+#endif /* FX_ENABLE_FAULT_TOLERANT */
+
+    /* Check for write protect at the media level (set by driver).  */
+    if (media_ptr -> fx_media_driver_write_protect)
+    {
+
+#ifdef FX_ENABLE_FAULT_TOLERANT
+        FX_FAULT_TOLERANT_TRANSACTION_FAIL(media_ptr);
+#endif /* FX_ENABLE_FAULT_TOLERANT */
+
+        /* Release media protection.  */
+        FX_UNPROTECT
+
+        /* Return write protect error.  */
+        return(FX_WRITE_PROTECT);
+    }
+
+    /* Calculate the number of bytes per cluster.  */
+    bytes_per_cluster =  ((ULONG)media_ptr -> fx_media_bytes_per_sector) *
+        ((ULONG)media_ptr -> fx_media_sectors_per_cluster);
+
+    /* Check for invalid value.  */
+    if (bytes_per_cluster == 0)
+    {
+
+#ifdef FX_ENABLE_FAULT_TOLERANT
+        FX_FAULT_TOLERANT_TRANSACTION_FAIL(media_ptr);
+#endif /* FX_ENABLE_FAULT_TOLERANT */
+
+        /* Release media protection.  */
+        FX_UNPROTECT
+
+        /* Invalid media, return error.  */
+        return(FX_MEDIA_INVALID);
+    }
+
+    /* Calculate the number of consecutive clusters needed to satisfy this
+       request.  */
+    clusters =  (ULONG)(((size + bytes_per_cluster - 1) / bytes_per_cluster));
+    
+    /* Determine if cluster count is 0.  */
+    if (clusters == 0)
+    {
+
+#ifdef FX_ENABLE_FAULT_TOLERANT
+        FX_FAULT_TOLERANT_TRANSACTION_FAIL(media_ptr);
+#endif /* FX_ENABLE_FAULT_TOLERANT */
+
+        /* Release media protection.  */
+        FX_UNPROTECT
+
+        /* Size overflow when rounding to the next cluster, return an error status.  */
+        return(FX_NO_MORE_SPACE);
+    }
+
+    /* Determine if there are no available clusters on the media.  */
+    if (!media_ptr -> fx_media_available_clusters)
+    {
+
+#ifdef FX_ENABLE_FAULT_TOLERANT
+        FX_FAULT_TOLERANT_TRANSACTION_FAIL(media_ptr);
+#endif /* FX_ENABLE_FAULT_TOLERANT */
+
+        /* Release media protection.  */
+        FX_UNPROTECT
+
+        /* Return a size allocated of zero, since no clusters were available.  */
+        *actual_size_allocated =  0;
+
+        /* Not enough clusters, return an error status.  */
+        return(FX_NO_MORE_SPACE);
+    }
+
+    /* Determine if the requested file allocation would exceed the physical limit of the file.  */
+    if (((file_ptr -> fx_file_current_available_size + (((ULONG64) clusters) * ((ULONG64) bytes_per_cluster))) < file_ptr -> fx_file_current_available_size) ||
+        ((file_ptr -> fx_file_current_available_size + (((ULONG64) clusters) * ((ULONG64) bytes_per_cluster))) > 0xFFFFFFFFULL))
+    {
+
+#ifdef FX_ENABLE_FAULT_TOLERANT
+        FX_FAULT_TOLERANT_TRANSACTION_FAIL(media_ptr);
+#endif /* FX_ENABLE_FAULT_TOLERANT */
+
+        /* Release media protection.  */
+        FX_UNPROTECT
+
+        /* Return the no more space error, since the new file size would be larger than
+           the 32-bit field to represent it in the file's directory entry.  */
+        return(FX_NO_MORE_SPACE);
+    }
+
+    /* Now we need to find the consecutive clusters.  */
+    found =             FX_FALSE;
+#ifdef FX_ENABLE_EXFAT
+    if ((file_ptr -> fx_file_dir_entry.fx_dir_entry_dont_use_fat & 1) &&
+        (file_ptr -> fx_file_last_physical_cluster > FX_FAT_ENTRY_START) &&
+        (file_ptr -> fx_file_last_physical_cluster < media_ptr -> fx_media_total_clusters - clusters + FX_FAT_ENTRY_START))
+    {
+        found = FX_TRUE;
+
+        /* Try to keep clusters consecutive.  */
+        for (FAT_index = file_ptr -> fx_file_last_physical_cluster + 1;
+             FAT_index < clusters + file_ptr -> fx_file_last_physical_cluster + 1;
+             FAT_index++)
+        {
+
+            /* Get cluster state.  */
+            status = _fx_utility_exFAT_cluster_state_get(media_ptr, FAT_index, &cluster_state);
+
+            /* Check for a successful status.  */
+            if (status != FX_SUCCESS)
+            {
+
+#ifdef FX_ENABLE_FAULT_TOLERANT
+                FX_FAULT_TOLERANT_TRANSACTION_FAIL(media_ptr);
+#endif /* FX_ENABLE_FAULT_TOLERANT */
+
+                /* Release media protection.  */
+                FX_UNPROTECT
+
+                /* Return the error status.  */
+                return(status);
+            }
+
+            /* Determine if the entry is free.  */
+            if (cluster_state == FX_EXFAT_BITMAP_CLUSTER_OCCUPIED)
+            {
+                found = FX_FALSE;
+                break;
+            }
+        }
+        FAT_index = file_ptr -> fx_file_last_physical_cluster + 1;
+    }
+
+    if (!found)
+    {
+#endif /* FX_ENABLE_EXFAT */
+        FAT_index =         FX_FAT_ENTRY_START;
+        maximum_clusters =  0;
+        start_FAT_index =   FAT_index;
+
+        while (FAT_index < (media_ptr -> fx_media_total_clusters + FX_FAT_ENTRY_START))
+        {
+
+            /* Determine if enough consecutive FAT entries are available.  */
+            i =  0;
+
+#ifdef FX_ENABLE_EXFAT
+            if (media_ptr -> fx_media_FAT_type == FX_exFAT)
+            {
+                do
+                {
+
+                    /* Get cluster state.  */
+                    status = _fx_utility_exFAT_cluster_state_get(media_ptr, (FAT_index + i), &cluster_state);
+
+                    /* Check for a successful status.  */
+                    if (status != FX_SUCCESS)
+                    {
+
+#ifdef FX_ENABLE_FAULT_TOLERANT
+                        FX_FAULT_TOLERANT_TRANSACTION_FAIL(media_ptr);
+#endif /* FX_ENABLE_FAULT_TOLERANT */
+
+                        /* Release media protection.  */
+                        FX_UNPROTECT
+
+                        /* Return the error status.  */
+                        return(status);
+                    }
+
+                    /* Determine if the entry is free.  */
+                    if (cluster_state == FX_EXFAT_BITMAP_CLUSTER_OCCUPIED)
+                    {
+                        break;
+                    }
+
+                    /* Otherwise, increment the consecutive FAT indices.  */
+                    i++;
+                } while ((i < clusters) && ((FAT_index + i) < media_ptr -> fx_media_total_clusters + FX_FAT_ENTRY_START));
+            }
+            else
+            {
+#endif /* FX_ENABLE_EXFAT */
+
+                do
+                {
+
+                    /* Read a FAT entry.  */
+                    status =  _fx_utility_FAT_entry_read(media_ptr, (FAT_index + i), &FAT_value);
+
+                    /* Check for a successful status.  */
+                    if (status != FX_SUCCESS)
+                    {
+
+#ifdef FX_ENABLE_FAULT_TOLERANT
+                        FX_FAULT_TOLERANT_TRANSACTION_FAIL(media_ptr);
+#endif /* FX_ENABLE_FAULT_TOLERANT */
+
+                        /* Release media protection.  */
+                        FX_UNPROTECT
+
+                        /* Return the error status.  */
+                        return(status);
+                    }
+
+                    /* Determine if the entry is free.  */
+                    if (FAT_value != FX_FREE_CLUSTER)
+                    {
+                        break;
+                    }
+
+                    /* Otherwise, increment the consecutive FAT indices.  */
+                    i++;
+                } while ((i < clusters) && ((FAT_index + i) < media_ptr -> fx_media_total_clusters + FX_FAT_ENTRY_START));
+#ifdef FX_ENABLE_EXFAT
+            }
+#endif /* FX_ENABLE_EXFAT */
+
+            /* Determine if a new maximum number of clusters has been found.  */
+            if (i > maximum_clusters)
+            {
+
+                /* Yes, remember the maximum number of clusters and the starting
+                   cluster.  */
+                maximum_clusters =      i;
+                start_FAT_index =       FAT_index;
+            }
+
+            /* Determine if we found enough FAT entries.  */
+            if (i >= clusters)
+            {
+
+                /* Yes, we have found enough FAT entries - set the found
+                   flag and get out of this loop.  */
+                found =  FX_TRUE;
+                break;
+            }
+            else
+            {
+#ifdef FX_ENABLE_EXFAT
+                if (media_ptr -> fx_media_FAT_type == FX_exFAT)
+                {
+
+                    /* Find free cluster from exFAT media.  */
+                    status = _fx_utility_exFAT_bitmap_free_cluster_find(media_ptr,
+                                                                        FAT_index + i + 1,
+                                                                        &FAT_value);
+                    if (status != FX_SUCCESS)
+                    {
+
+#ifdef FX_ENABLE_FAULT_TOLERANT
+                        FX_FAULT_TOLERANT_TRANSACTION_FAIL(media_ptr);
+#endif /* FX_ENABLE_FAULT_TOLERANT */
+
+                        /* Release media protection.  */
+                        FX_UNPROTECT
+
+                        /* Return the error status.  */
+                        return(status);
+                    }
+
+                    if (FAT_value < FAT_index + i + 1)
+                    {
+
+                        /* If we wrapped.  */
+                        FAT_index = media_ptr -> fx_media_total_clusters  + FX_FAT_ENTRY_START;
+                    }
+                    else
+                    {
+                        FAT_index = FAT_value;
+                    }
+                }
+                else
+                {
+#endif /* FX_ENABLE_EXFAT */
+
+                    /* Position to the next possibly free FAT entry.  */
+                    FAT_index =  FAT_index + i + 1;
+#ifdef FX_ENABLE_EXFAT
+                }
+#endif /* FX_ENABLE_EXFAT */
+            }
+        }
+
+        /* Determine if the total request could not be satisfied, but a partial allocation
+           could be satisfied.  */
+        if (maximum_clusters)
+        {
+
+            /* Yes, there was at least one cluster.  Prepare to return this
+               to the caller.  */
+            FAT_index =  start_FAT_index;
+            clusters =   maximum_clusters;
+            found =      FX_TRUE;
+        }
+#ifdef FX_ENABLE_EXFAT
+    }
+#endif
+
+    /* Determine if we found enough consecutive clusters to satisfy the
+       request.  */
+    if (found)
+    {
+
+#ifdef FX_ENABLE_FAULT_TOLERANT
+        if (media_ptr -> fx_media_fault_tolerant_enabled)
+        {
+
+            /* Record the FAT chain being applied to the file system. This information aids
+               recovery effort if fault happens. */
+            media_ptr -> fx_media_fault_tolerant_state |= FX_FAULT_TOLERANT_STATE_SET_FAT_CHAIN;
+            _fx_fault_tolerant_set_FAT_chain(media_ptr, FX_FALSE, file_ptr -> fx_file_last_physical_cluster,
+                                             FAT_index, media_ptr -> fx_media_fat_last, media_ptr -> fx_media_fat_last);
+        }
+#endif /* FX_ENABLE_FAULT_TOLERANT */
+
+#ifdef FX_ENABLE_EXFAT
+        if (file_ptr -> fx_file_dir_entry.fx_dir_entry_dont_use_fat & 1)
+        {
+            if ((file_ptr -> fx_file_total_clusters) &&
+                (FAT_index != file_ptr -> fx_file_last_physical_cluster + 1))
+            {
+
+                /* Clusters are not consecutive.  */
+                file_ptr -> fx_file_dir_entry.fx_dir_entry_dont_use_fat &= (CHAR)0xfe; /* Set 0bit to 0.  */
+
+                /* Rebuild FAT.  */
+                FAT_value = file_ptr -> fx_file_dir_entry.fx_dir_entry_cluster +
+                            file_ptr -> fx_file_total_clusters - 1; /* Last cluster */
+
+                for (i = file_ptr -> fx_file_dir_entry.fx_dir_entry_cluster; i < FAT_value; ++i)
+                {
+                    status = _fx_utility_FAT_entry_write(media_ptr, i, i + 1);
+                    if (status != FX_SUCCESS)
+                    {
+
+#ifdef FX_ENABLE_FAULT_TOLERANT
+                        FX_FAULT_TOLERANT_TRANSACTION_FAIL(media_ptr);
+#endif /* FX_ENABLE_FAULT_TOLERANT */
+
+                        /* Release media protection.  */
+                        FX_UNPROTECT
+
+                        /* Return the bad status.  */
+                        return(status);
+                    }
+                }
+
+                /* Close chain.  */
+                status = _fx_utility_FAT_entry_write(media_ptr, FAT_value, media_ptr -> fx_media_fat_last);
+                if (status != FX_SUCCESS)
+                {
+
+#ifdef FX_ENABLE_FAULT_TOLERANT
+                    FX_FAULT_TOLERANT_TRANSACTION_FAIL(media_ptr);
+#endif /* FX_ENABLE_FAULT_TOLERANT */
+
+                    /* Release media protection.  */
+                    FX_UNPROTECT
+
+                    /* Return the bad status.  */
+                    return(status);
+                }
+
+#ifdef FX_ENABLE_FAULT_TOLERANT
+                if (media_ptr -> fx_media_fault_tolerant_enabled)
+                {
+
+                    /* Clear the Fault Tolerant Set FAT Chain flag. */
+                    media_ptr -> fx_media_fault_tolerant_state &= (UCHAR)(~FX_FAULT_TOLERANT_STATE_SET_FAT_CHAIN & 0xff);
+                }
+#endif /* FX_ENABLE_FAULT_TOLERANT */
+
+                /* Update stream.  */
+                status = _fx_directory_exFAT_entry_write(
+                        media_ptr, &(file_ptr -> fx_file_dir_entry), UPDATE_STREAM);
+
+                if (status != FX_SUCCESS)
+                {
+
+#ifdef FX_ENABLE_FAULT_TOLERANT
+                    FX_FAULT_TOLERANT_TRANSACTION_FAIL(media_ptr);
+#endif /* FX_ENABLE_FAULT_TOLERANT */
+
+                    /* Release media protection.  */
+                    FX_UNPROTECT
+
+                    /* Return the bad status.  */
+                    return(status);
+                }
+
+#ifdef FX_ENABLE_FAULT_TOLERANT
+                if (media_ptr -> fx_media_fault_tolerant_enabled)
+                {
+
+                    /* Set undo phase. */
+                    media_ptr -> fx_media_fault_tolerant_state |= FX_FAULT_TOLERANT_STATE_SET_FAT_CHAIN;
+                }
+#endif /* FX_ENABLE_FAULT_TOLERANT */
+            }
+        }
+#endif /* FX_ENABLE_EXFAT */
+
+        /* Update the link pointers in the new clusters.  */
+        for (i = 0; i < (clusters - 1); i++)
+        {
+#ifdef FX_ENABLE_EXFAT
+            if (!(file_ptr -> fx_file_dir_entry.fx_dir_entry_dont_use_fat & 1)
+#ifdef FX_ENABLE_FAULT_TOLERANT
+                || (media_ptr -> fx_media_fault_tolerant_enabled == FX_TRUE)
+#endif /* FX_ENABLE_FAULT_TOLERANT */
+               )
+            {
+#endif /* FX_ENABLE_EXFAT */
+
+                /* Update the cluster links.  Since the allocation is
+                   sequential, we just have to link each FAT entry to the
+                   next one.  */
+                status =  _fx_utility_FAT_entry_write(media_ptr, FAT_index + i, FAT_index + i + 1);
+
+                /* Check for a bad status.  */
+                if (status != FX_SUCCESS)
+                {
+
+#ifdef FX_ENABLE_FAULT_TOLERANT
+                    FX_FAULT_TOLERANT_TRANSACTION_FAIL(media_ptr);
+#endif /* FX_ENABLE_FAULT_TOLERANT */
+
+                    /* Release media protection.  */
+                    FX_UNPROTECT
+
+                    /* Return the error status.  */
+                    return(status);
+                }
+#ifdef FX_ENABLE_EXFAT
+            }
+
+            if (media_ptr -> fx_media_FAT_type == FX_exFAT)
+            {
+
+                /* Mark the cluster as used.  */
+                status = _fx_utility_exFAT_cluster_state_set(media_ptr, FAT_index + i, FX_EXFAT_BITMAP_CLUSTER_OCCUPIED);
+
+                /* Check for a bad status.  */
+                if (status != FX_SUCCESS)
+                {
+
+#ifdef FX_ENABLE_FAULT_TOLERANT
+                    FX_FAULT_TOLERANT_TRANSACTION_FAIL(media_ptr);
+#endif /* FX_ENABLE_FAULT_TOLERANT */
+
+                    /* Release media protection.  */
+                    FX_UNPROTECT
+
+                    /* Return the error status.  */
+                    return(status);
+                }
+            }
+#endif /* FX_ENABLE_EXFAT */
+        }
+
+#ifdef FX_ENABLE_EXFAT
+        if (!(file_ptr -> fx_file_dir_entry.fx_dir_entry_dont_use_fat & 1))
+        {
+#endif /* FX_ENABLE_EXFAT */
+
+            /* Now place an EOF in the last cluster entry.  */
+            status =  _fx_utility_FAT_entry_write(media_ptr, FAT_index + clusters - 1, media_ptr -> fx_media_fat_last);
+
+            /* Check for a bad status.  */
+            if (status != FX_SUCCESS)
+            {
+
+#ifdef FX_ENABLE_FAULT_TOLERANT
+                FX_FAULT_TOLERANT_TRANSACTION_FAIL(media_ptr);
+#endif /* FX_ENABLE_FAULT_TOLERANT */
+
+                /* Release media protection.  */
+                FX_UNPROTECT
+
+                /* Return the error status.  */
+                return(status);
+            }
+#ifdef FX_ENABLE_EXFAT
+        }
+
+        if (media_ptr -> fx_media_FAT_type == FX_exFAT)
+        {
+
+            /* Mark the cluster as used.  */
+            status = _fx_utility_exFAT_cluster_state_set(media_ptr, FAT_index + clusters - 1, FX_EXFAT_BITMAP_CLUSTER_OCCUPIED);
+
+            /* Check for a bad status.  */
+            if (status != FX_SUCCESS)
+            {
+
+#ifdef FX_ENABLE_FAULT_TOLERANT
+                FX_FAULT_TOLERANT_TRANSACTION_FAIL(media_ptr);
+#endif /* FX_ENABLE_FAULT_TOLERANT */
+
+                /* Release media protection.  */
+                FX_UNPROTECT
+
+                /* Return the error status.  */
+                return(status);
+            }
+        }
+#endif /* FX_ENABLE_EXFAT */
+
+#ifdef FX_FAULT_TOLERANT
+
+        /* Flush the cached individual FAT entries */
+        _fx_utility_FAT_flush(media_ptr);
+#ifdef FX_ENABLE_EXFAT
+        if (media_ptr -> fx_media_FAT_type == FX_exFAT)
+        {
+            _fx_utility_exFAT_bitmap_flush(media_ptr);
+        }
+#endif /* FX_ENABLE_EXFAT */
+#endif
+
+        /* Actually link up the new clusters to the file.  */
+
+        /* Determine if there are already clusters allocated for this file.  */
+        if (file_ptr -> fx_file_total_clusters)
+        {
+
+#ifdef FX_ENABLE_EXFAT
+            if (!(file_ptr -> fx_file_dir_entry.fx_dir_entry_dont_use_fat & 1))
+            {
+#endif /* FX_ENABLE_EXFAT */
+
+                /* Linkup the last cluster.  */
+                status =  _fx_utility_FAT_entry_write(media_ptr,
+                                                      file_ptr -> fx_file_last_physical_cluster, FAT_index);
+
+                /* Check for a bad status.  */
+                if (status != FX_SUCCESS)
+                {
+
+#ifdef FX_ENABLE_FAULT_TOLERANT
+                    FX_FAULT_TOLERANT_TRANSACTION_FAIL(media_ptr);
+#endif /* FX_ENABLE_FAULT_TOLERANT */
+
+                    /* Release media protection.  */
+                    FX_UNPROTECT
+
+                    /* Return the error status.  */
+                    return(status);
+                }
+#ifdef FX_ENABLE_EXFAT
+            }
+#endif /* FX_ENABLE_EXFAT */
+
+            /* Determine if we are adding a sector after a write filled the previously
+               allocated cluster exactly.  */
+            if ((file_ptr -> fx_file_current_relative_sector >=
+                 (media_ptr -> fx_media_sectors_per_cluster - 1)) &&            
+                (file_ptr -> fx_file_current_logical_offset >=
+                    media_ptr -> fx_media_bytes_per_sector))
+            {
+
+                /* Yes, we need to adjust all of the pertinent file parameters for
+                   access into this newly allocated cluster.  */
+                file_ptr -> fx_file_current_physical_cluster =  FAT_index;
+                file_ptr -> fx_file_current_relative_cluster++;
+                file_ptr -> fx_file_current_relative_sector =   0;
+                file_ptr -> fx_file_current_logical_sector =    ((ULONG)media_ptr -> fx_media_data_sector_start) +
+                    (((ULONG64)(FAT_index - FX_FAT_ENTRY_START)) *
+                     ((ULONG)media_ptr -> fx_media_sectors_per_cluster));
+                file_ptr -> fx_file_current_logical_offset =    0;
+            }
+        }
+        else
+        {
+
+            /* These new clusters are also the first!  Setup the initial
+               file parameters.  */
+            file_ptr -> fx_file_first_physical_cluster =    FAT_index;
+            file_ptr -> fx_file_current_physical_cluster =  file_ptr -> fx_file_first_physical_cluster;
+            file_ptr -> fx_file_current_relative_cluster =  0;
+            file_ptr -> fx_file_current_logical_sector =    ((ULONG)media_ptr -> fx_media_data_sector_start) +
+                (((ULONG64)(file_ptr -> fx_file_first_physical_cluster - FX_FAT_ENTRY_START)) *
+                 ((ULONG)media_ptr -> fx_media_sectors_per_cluster));
+            file_ptr -> fx_file_current_logical_offset =    0;
+            file_ptr -> fx_file_current_file_offset =       0;
+
+            /* Setup the consecutive clusters at the beginning of the file.  */
+            file_ptr -> fx_file_consecutive_cluster =       clusters;
+
+            /* Update the first cluster in the directory entry.  */
+            file_ptr -> fx_file_dir_entry.fx_dir_entry_cluster =  FAT_index;
+
+#ifdef FX_ENABLE_FAULT_TOLERANT
+            if (media_ptr -> fx_media_fault_tolerant_enabled)
+            {
+
+                /* Clear undo phase. */
+                media_ptr -> fx_media_fault_tolerant_state &= (UCHAR)(~FX_FAULT_TOLERANT_STATE_SET_FAT_CHAIN & 0xff);
+            }
+#endif /* FX_ENABLE_FAULT_TOLERANT */
+        }
+
+        /* Remember the last physical cluster.  */
+        file_ptr -> fx_file_last_physical_cluster =     FAT_index + clusters - 1;
+
+        /* Update the available size.  */
+#ifdef FX_ENABLE_EXFAT
+        if (file_ptr -> fx_file_current_available_size > (file_ptr -> fx_file_current_available_size + (bytes_per_cluster * clusters)))
+        {
+            /* 64-bit wrap around condition is present.  Just set the available file size to all ones, which is
+               the maximum file size.  */
+            file_ptr -> fx_file_current_available_size =  0xFFFFFFFFFFFFFFFFULL;
+        }
+
+        /* Check for wrap-around when updating the available size.  */
+        if ((media_ptr -> fx_media_FAT_type != FX_exFAT) &&
+            (file_ptr -> fx_file_current_available_size + (bytes_per_cluster * clusters) > 0xFFFFFFFFUL))
+        {
+
+            /* 32-bit wrap around condition is present.  Just set the available file size to all ones, which is
+               the maximum file size.  */
+            file_ptr -> fx_file_current_available_size =  0xFFFFFFFFUL;
+        }
+        else
+        {
+#endif /* FX_ENABLE_EXFAT */
+
+            /* Normal condition, update the available size.  */
+            file_ptr -> fx_file_current_available_size =
+                file_ptr -> fx_file_current_available_size + bytes_per_cluster * clusters;
+#ifdef FX_ENABLE_EXFAT
+        }
+
+        if (file_ptr -> fx_file_dir_entry.fx_dir_entry_dont_use_fat & 1)
+        {
+            file_ptr -> fx_file_consecutive_cluster += clusters;
+        }
+#endif /* FX_ENABLE_EXFAT */
+
+        /* Increment the total clusters for this file.  */
+        file_ptr -> fx_file_total_clusters =
+            file_ptr -> fx_file_total_clusters + clusters;
+
+        /* Decrease the available clusters on the media.  */
+        media_ptr -> fx_media_available_clusters =
+            media_ptr -> fx_media_available_clusters - clusters;
+
+        /* Return the actual size allocated.  */
+        *actual_size_allocated =  ((ULONG64)clusters) * bytes_per_cluster;
+
+#if defined(FX_UPDATE_FILE_SIZE_ON_ALLOCATE) || defined(FX_ENABLE_FAULT_TOLERANT)
+
+        /* Set the file size the current size plus what what was added.  */
+        if (size < *actual_size_allocated)
+        {
+            file_ptr -> fx_file_current_file_size +=  size;
+        }
+        else
+        {
+            file_ptr -> fx_file_current_file_size +=  *actual_size_allocated;
+        }
+
+        /* Copy the new file size into the directory entry.  */
+        file_ptr -> fx_file_dir_entry.fx_dir_entry_file_size =  file_ptr -> fx_file_current_file_size;
+#endif
+
+        /* Update the trace event with the bytes allocated.  */
+        FX_TRACE_EVENT_UPDATE(trace_event, trace_timestamp, FX_TRACE_FILE_BEST_EFFORT_ALLOCATE, 0, 0, *actual_size_allocated, 0);
+
+        /* Write the directory entry to the media.  */
+#ifdef FX_ENABLE_EXFAT
+        if (media_ptr -> fx_media_FAT_type == FX_exFAT)
+        {
+            status = _fx_directory_exFAT_entry_write(
+                    media_ptr, &(file_ptr -> fx_file_dir_entry), UPDATE_STREAM);
+        }
+        else
+        {
+#endif /* FX_ENABLE_EXFAT */
+            status = _fx_directory_entry_write(media_ptr, &(file_ptr -> fx_file_dir_entry));
+#ifdef FX_ENABLE_EXFAT
+        }
+#endif /* FX_ENABLE_EXFAT */
+
+        /* Check for a good status.  */
+        if (status != FX_SUCCESS)
+        {
+
+#ifdef FX_ENABLE_FAULT_TOLERANT
+            FX_FAULT_TOLERANT_TRANSACTION_FAIL(media_ptr);
+#endif /* FX_ENABLE_FAULT_TOLERANT */
+
+            /* Release media protection.  */
+            FX_UNPROTECT
+
+            /* Return the error status.  */
+            return(status);
+        }
+    }
+    else
+    {
+
+#ifdef FX_ENABLE_FAULT_TOLERANT
+        FX_FAULT_TOLERANT_TRANSACTION_FAIL(media_ptr);
+#endif /* FX_ENABLE_FAULT_TOLERANT */
+
+        /* Release media protection.  */
+        FX_UNPROTECT
+
+        /* Return a size allocated of zero, since no clusters were available.  */
+        *actual_size_allocated =  0;
+
+        /* Not enough contiguous space on the media.  Return error status.  */
+        return(FX_NO_MORE_SPACE);
+    }
+
+#ifdef FX_FAULT_TOLERANT
+
+    /* Flush the cached individual FAT entries */
+    _fx_utility_FAT_flush(media_ptr);
+#endif
+
+    /* Flush the internal logical sector cache.  */
+    status =  _fx_utility_logical_sector_flush(media_ptr, ((ULONG64) 1), (ULONG64) (media_ptr -> fx_media_sectors_per_FAT), FX_FALSE);
+
+#ifdef FX_ENABLE_FAULT_TOLERANT
+    /* Check for a bad status.  */
+    if (status != FX_SUCCESS)
+    {
+
+        FX_FAULT_TOLERANT_TRANSACTION_FAIL(media_ptr);
+
+        /* Release media protection.  */
+        FX_UNPROTECT
+
+        /* Return the bad status.  */
+        return(status);
+    }
+
+    /* End transaction. */
+    status = _fx_fault_tolerant_transaction_end(media_ptr);
+#endif /* FX_ENABLE_FAULT_TOLERANT */
+
+    /* Release media protection.  */
+    FX_UNPROTECT
+
+    /* Return status to the caller.  */
+    return(status);
+}
+

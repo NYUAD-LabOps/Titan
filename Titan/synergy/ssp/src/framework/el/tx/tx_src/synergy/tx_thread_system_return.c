@@ -1,108 +1,99 @@
-#ifdef AMS_ENCRYPT_PACKAGE
------BEGIN ENCRYPTED FILE v0.6-----
-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
------END ENCRYPTED FILE-----
-#else
-#error "Secure builder required to compile this file"
-#endif
+/*LDRA_INSPECTED 119 S */
+/**************************************************************************/
+/*                                                                        */
+/*       Copyright (c) Microsoft Corporation. All rights reserved.        */
+/*                                                                        */
+/*       This software is licensed under the Microsoft Software License   */
+/*       Terms for Microsoft Azure RTOS. Full text of the license can be  */
+/*       found in the LICENSE file at https://aka.ms/AzureRTOS_EULA       */
+/*       and in the root directory of this software.                      */
+/*                                                                        */
+/**************************************************************************/
+
+#ifdef TX_DISABLE_INLINE
+
+/**************************************************************************/
+/**************************************************************************/
+/**                                                                       */
+/** ThreadX Component                                                     */
+/**                                                                       */
+/**   Thread                                                              */
+/**                                                                       */
+/**************************************************************************/
+/**************************************************************************/
+
+#define TX_SOURCE_CODE
+
+
+/* Include necessary system files.  */
+
+/*LDRA_NOANALYSIS These include files are maintained by Express Logic. */
+#include "tx_api.h"
+#include "../tx_thread.h"
+#include "../tx_timer.h"
+#include "tx_cmsis.h"
+/*LDRA_ANALYSIS */
+
+/***********************************************************************//**
+ * @addtogroup TX_SYNERGY_PORT
+ * @{
+ **************************************************************************/
+
+/***********************************************************************//**
+ *
+ *  FUNCTION                                               RELEASE
+ *
+ *    _tx_thread_system_return                             Synergy
+ *
+ *  DESCRIPTION
+ *
+ *    This function is target processor specific.  It is used to transfer
+ *    control from a thread back to the ThreadX system.  Only a
+ *    minimal context is saved since the compiler assumes temp registers
+ *    are going to get slicked by a function call anyway.
+ *
+ *  INPUT
+ *
+ *    None
+ *
+ *  OUTPUT
+ *
+ *    None
+ *
+ *  CALLS
+ *
+ *    None
+ *
+ *  CALLED BY
+ *
+ *    ThreadX components
+ *
+ **************************************************************************/
+/*LDRA_INSPECTED 219 S API is defined by Express Logic, must start with
+ * underscore. */
+VOID   _tx_thread_system_return(VOID)
+{
+    /** Set PENDSVBIT in ICSR */
+    /* CMSIS code is mixing unsigned long and unsigned int types
+     * here.  Unsigned long and unsigned int are the same width for
+     * Cortex M compilers, so this is safe.  We are not modifying
+     * CMSIS code, so allow an exception here. */
+    /*LDRA_INSPECTED 96 S *//*LDRA_INSPECTED 93 S */
+    /*LDRA_INSPECTED 330 S *//*LDRA_INSPECTED 330 S */
+    SCB->ICSR = (uint32_t) SCB_ICSR_PENDSVSET_Msk;
+
+    /** If a thread is returning, briefly enable and restore interrupts. */
+    if (__get_IPSR() == 0)
+    {
+        UINT int_posture;
+        int_posture = __get_PRIMASK();
+        __enable_irq();
+        __set_PRIMASK(int_posture);
+    }
+}
+
+#endif /* TX_DISABLE_INLINE */
+
+/***********************************************************************//**
+ * @} (end addtogroup TX_SYNERGY_PORT)
+ **************************************************************************/

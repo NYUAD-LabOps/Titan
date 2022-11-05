@@ -43,6 +43,9 @@ void NULL(sdmmc_callback_args_t *p_args);
 extern sf_block_media_instance_t g_sf_block_media_sdmmc0;
 extern sf_el_fx_t g_sf_el_fx0_cfg;
 #ifndef NULL
+void NULL(sf_el_fx_callback_args_t *p_args);
+#endif
+#ifndef NULL
 void NULL(nx_mac_address_t *p_mac_config);
 #endif
 #ifndef NULL

@@ -13,7 +13,7 @@
 #endif /* FILL_NXD_IPV6_ADDRESS */
 #endif
 #if (12) != BSP_IRQ_DISABLED
-#if !defined(SSP_SUPPRESS_ISR_g_transfer5) && !defined(SSP_SUPPRESS_ISR_DMACELC_EVENT_ADC0_COMPARE_MATCH)
+#if !defined(SSP_SUPPRESS_ISR_g_transfer5) && !defined(SSP_SUPPRESS_ISR_DMACELC_EVENT_SDHIMMC1_DMA_REQ)
 SSP_VECTOR_DEFINE_CHAN(dmac_int_isr, DMAC, INT, 4);
 #endif
 #endif
@@ -33,9 +33,13 @@ transfer_info_t g_transfer5_info =
 const transfer_on_dmac_cfg_t g_transfer5_extend =
 { .channel = 4, .offset_byte = 0, };
 const transfer_cfg_t g_transfer5_cfg =
-{ .p_info = &g_transfer5_info, .activation_source = ELC_EVENT_ADC0_COMPARE_MATCH, .auto_enable = false, .p_callback =
-          NULL,
-  .p_context = &g_transfer5, .irq_ipl = (12), .p_extend = &g_transfer5_extend, };
+{ .p_info = &g_transfer5_info,
+  .activation_source = ELC_EVENT_SDHIMMC1_DMA_REQ,
+  .auto_enable = false,
+  .p_callback = NULL,
+  .p_context = &g_transfer5,
+  .irq_ipl = (12),
+  .p_extend = &g_transfer5_extend, };
 /* Instance structure to use this module. */
 const transfer_instance_t g_transfer5 =
 { .p_ctrl = &g_transfer5_ctrl, .p_cfg = &g_transfer5_cfg, .p_api = &g_transfer_on_dmac };
@@ -81,8 +85,34 @@ static sf_block_media_cfg_t g_sf_block_media_sdmmc0_cfg =
 
 sf_block_media_instance_t g_sf_block_media_sdmmc0 =
 { .p_ctrl = &g_sf_block_media_sdmmc0_ctrl, .p_cfg = &g_sf_block_media_sdmmc0_cfg, .p_api = &g_sf_block_media_on_sdmmc };
+#define g_sf_el_fx0_total_partition       0U
+
+#if (g_sf_el_fx0_total_partition > 1U)
+sf_el_fx_media_partition_data_info_t g_sf_el_fx0_partition_data_info[g_sf_el_fx0_total_partition];
+#endif
+
+sf_el_fx_instance_ctrl_t g_sf_el_fx0_ctrl;
+
+/** SF_EL_FX interface configuration */
+const sf_el_fx_config_t g_sf_el_fx0_config =
+{
+#if (g_sf_el_fx0_total_partition > 1U) 
+  .p_partition_data = (sf_el_fx_media_partition_data_info_t *)g_sf_el_fx0_partition_data_info,
+#else 
+  .p_partition_data = NULL,
+#endif 
+  .p_lower_lvl_block_media = &g_sf_block_media_sdmmc0,
+  .p_context = &g_sf_el_fx0_cfg, .p_extend = NULL, .total_partitions = g_sf_el_fx0_total_partition,
+#if (g_sf_el_fx0_total_partition > 1U) 
+  .p_callback = NULL,
+#else 
+  .p_callback = NULL,
+#endif 
+        };
+
+/* Instance structure to use this module. */
 sf_el_fx_t g_sf_el_fx0_cfg =
-{ .p_lower_lvl_block_media = &g_sf_block_media_sdmmc0 };
+{ .p_ctrl = &g_sf_el_fx0_ctrl, .p_config = &g_sf_el_fx0_config, };
 NX_REC nx_record1;
 static NX_CALLBACK_REC g_sf_el_nx_callbacks =
 { .nx_ether_unknown_packet_receive_callback = NULL, .nx_ether_mac_address_change_callback = NULL, };
@@ -369,8 +399,8 @@ g_fx_media0_err_callback_WEAK_ATTRIBUTE;
 #define SF_EL_FX_FORMAT_MEDIA_ENABLE_g_fx_media0 (0)
 #define SF_EL_FX_FORMAT_FULL_MEDIA_g_fx_media0 (1)
 #define SF_EL_FX_AUTO_INIT_g_fx_media0 (0)
-ssp_err_t SF_EL_FX_Get_MEDIA_Info(sf_block_media_instance_t *p_block_media, uint32_t *sector_size,
-        uint32_t *sector_count);
+ssp_err_t SF_EL_FX_Get_MEDIA_Info(sf_el_fx_ctrl_t * const p_api_ctrl, sf_el_fx_config_t const * const p_config,
+        uint32_t *sector_size, uint32_t *sector_count);
 FX_MEDIA g_fx_media0;
 uint8_t g_media_memory_g_fx_media0[512];
 /*******************************************************************************************************************//**
@@ -399,7 +429,8 @@ ssp_err_t fx_media_init0_format(void)
     uint32_t sector_count = 3751936;
 
 #if SF_EL_FX_FORMAT_FULL_MEDIA_g_fx_media0
-    ssp_err_t error = SF_EL_FX_Get_MEDIA_Info (g_sf_el_fx0_cfg.p_lower_lvl_block_media, &sector_size, &sector_count);
+    ssp_err_t error = SF_EL_FX_Get_MEDIA_Info (g_sf_el_fx0_cfg.p_ctrl, g_sf_el_fx0_cfg.p_config, &sector_size,
+                                               &sector_count);
 
     if ((error != SSP_SUCCESS) || (sector_count <= 0))
     {
@@ -415,6 +446,21 @@ ssp_err_t fx_media_init0_format(void)
     }
 
     /* Format media.  */
+#ifdef FX_ENABLE_EXFAT
+    fx_ret_val = fx_media_exFAT_format(&g_fx_media0, // Pointer to FileX media control block.
+            SF_EL_FX_BlockDriver,// Driver entry
+            &g_sf_el_fx0_cfg,// Pointer to Block Media Driver
+            g_media_memory_g_fx_media0,// Media buffer pointer
+            sizeof(g_media_memory_g_fx_media0),// Media buffer size
+            (CHAR *)"Volume 1",// Volume Name
+            1,// Number of FATs
+            0,// Hidden sectors
+            sector_count,// Total sectors - Hidden Sectors
+            sector_size,// Sector size
+            1,// Sectors per cluster
+            12345,// Volume Serial Number
+            128);// Boundary unit
+#else
     fx_ret_val = fx_media_format (&g_fx_media0, // Pointer to FileX media control block.
             SF_EL_FX_BlockDriver, // Driver entry
             &g_sf_el_fx0_cfg, // Pointer to Block Media Driver
@@ -429,7 +475,7 @@ ssp_err_t fx_media_init0_format(void)
             1, // Sectors per cluster
             1, // Heads
             1); // Sectors per track
-
+#endif
     if (FX_SUCCESS != fx_ret_val)
     {
         return SSP_ERR_MEDIA_FORMAT_FAILED;
@@ -478,15 +524,20 @@ const ioport_instance_t g_ioport =
 { .p_api = &g_ioport_on_ioport, .p_cfg = NULL };
 const cgc_instance_t g_cgc =
 { .p_api = &g_cgc_on_cgc, .p_cfg = NULL };
-ssp_err_t SF_EL_FX_Get_MEDIA_Info(sf_block_media_instance_t *p_block_media, uint32_t *sector_size,
-        uint32_t *sector_count)
+ssp_err_t SF_EL_FX_Get_MEDIA_Info(sf_el_fx_ctrl_t * const p_api_ctrl, sf_el_fx_config_t const * const p_config,
+        uint32_t *sector_size, uint32_t *sector_count)
 {
+    sf_el_fx_instance_ctrl_t *p_ctrl = (sf_el_fx_instance_ctrl_t *) p_api_ctrl;
+    sf_block_media_instance_t *p_block_media = (sf_block_media_instance_t *) p_config->p_lower_lvl_block_media;
     ssp_err_t ret_val = SSP_SUCCESS;
 
-    ret_val = p_block_media->p_api->open (p_block_media->p_ctrl, p_block_media->p_cfg);
-    if (ret_val != SSP_SUCCESS)
+    if (SF_EL_FX_PARTITION_GLOBAL_OPEN != p_ctrl->media_info.global_open.status)
     {
-        return ret_val;
+        ret_val = p_block_media->p_api->open (p_block_media->p_ctrl, p_block_media->p_cfg);
+        if (ret_val != SSP_SUCCESS)
+        {
+            return ret_val;
+        }
     }
 
     /* Get actual sector size from media. */
@@ -503,8 +554,12 @@ ssp_err_t SF_EL_FX_Get_MEDIA_Info(sf_block_media_instance_t *p_block_media, uint
         return ret_val;
     }
 
-    /* Close driver.  */
-    ret_val = p_block_media->p_api->close (p_block_media->p_ctrl);
+    if (SF_EL_FX_PARTITION_GLOBAL_OPEN != p_ctrl->media_info.global_open.status)
+    {
+        /* Close driver.  */
+        ret_val = p_block_media->p_api->close (p_block_media->p_ctrl);
+    }
+
     return ret_val;
 }
 void g_common_init(void)

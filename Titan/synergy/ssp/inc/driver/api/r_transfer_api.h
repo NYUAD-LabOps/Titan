@@ -1,5 +1,5 @@
 /***********************************************************************************************************************
- * Copyright [2015-2017] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
+ * Copyright [2015-2021] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
  * 
  * This file is part of Renesas SynergyTM Software Package (SSP)
  *
@@ -61,8 +61,8 @@ SSP_HEADER
 /**********************************************************************************************************************
  * Macro definitions
  **********************************************************************************************************************/
-#define TRANSFER_API_VERSION_MAJOR (1U)
-#define TRANSFER_API_VERSION_MINOR (3U)
+#define TRANSFER_API_VERSION_MAJOR (2U)
+#define TRANSFER_API_VERSION_MINOR (0U)
 
 /**********************************************************************************************************************
  * Typedef definitions
@@ -400,6 +400,19 @@ typedef struct st_transfer_api
                 uint16_t const                length,
                 transfer_size_t               size,
                 uint16_t const                num_transfers);
+
+    /** Clears the DMA activation request with a DMA dummy transfer as per flowchart in the hardware manual.
+     *  Implements transfer_api_t::Stop_ActivationRequest.
+     *  @note This function to be used only in scenario when a DMA activation request source might occur in the next request
+     *  after a DMA transfer completes. If this happens, the DMA transfer starts and the DMA activation
+     *  request is held in DMAC.
+     *  @par Implemented as
+     * - R_DMAC_Stop_ActivationRequest()
+     * - R_DTC_Stop_ActivationRequest()
+     *
+     * @param[in]     p_ctrl   Control block set in transfer_api_t::open call for this transfer.
+     */
+    ssp_err_t (* Stop_ActivationRequest)(transfer_ctrl_t  * const p_ctrl);
 } transfer_api_t;
 
 /** This structure encompasses everything that is needed to use an instance of this interface. */

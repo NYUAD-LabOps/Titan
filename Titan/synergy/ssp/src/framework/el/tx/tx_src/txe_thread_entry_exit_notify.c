@@ -1,186 +1,106 @@
-#ifdef AMS_ENCRYPT_PACKAGE
------BEGIN ENCRYPTED FILE v0.6-----
-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
------END ENCRYPTED FILE-----
-#else
-#error "Secure builder required to compile this file"
-#endif
+/**************************************************************************/
+/*                                                                        */
+/*       Copyright (c) Microsoft Corporation. All rights reserved.        */
+/*                                                                        */
+/*       This software is licensed under the Microsoft Software License   */
+/*       Terms for Microsoft Azure RTOS. Full text of the license can be  */
+/*       found in the LICENSE file at https://aka.ms/AzureRTOS_EULA       */
+/*       and in the root directory of this software.                      */
+/*                                                                        */
+/**************************************************************************/
+
+
+/**************************************************************************/
+/**************************************************************************/
+/**                                                                       */
+/** ThreadX Component                                                     */
+/**                                                                       */
+/**   Thread                                                              */
+/**                                                                       */
+/**************************************************************************/
+/**************************************************************************/
+
+#define TX_SOURCE_CODE
+
+
+/* Include necessary system files.  */
+
+#include "tx_api.h"
+#include "tx_thread.h"
+
+
+/**************************************************************************/
+/*                                                                        */
+/*  FUNCTION                                               RELEASE        */
+/*                                                                        */
+/*    _txe_thread_entry_exit_notify                       PORTABLE C      */
+/*                                                           6.1          */
+/*  AUTHOR                                                                */
+/*                                                                        */
+/*    William E. Lamie, Microsoft Corporation                             */
+/*                                                                        */
+/*  DESCRIPTION                                                           */
+/*                                                                        */
+/*    This function checks for errors in the thread entry/exit notify     */
+/*    callback function call.                                             */
+/*                                                                        */
+/*  INPUT                                                                 */
+/*                                                                        */
+/*    thread_ptr                            Pointer to thread             */
+/*    thread_entry_exit_notify              Pointer to notify callback    */
+/*                                            function, TX_NULL to disable*/
+/*                                                                        */
+/*  OUTPUT                                                                */
+/*                                                                        */
+/*    status                                Service return status         */
+/*                                                                        */
+/*  CALLS                                                                 */
+/*                                                                        */
+/*    _tx_thread_entry_exit_notify          Actual entry/exit notify      */
+/*                                            function                    */
+/*                                                                        */
+/*  CALLED BY                                                             */
+/*                                                                        */
+/*    Application Code                                                    */
+/*                                                                        */
+/*  RELEASE HISTORY                                                       */
+/*                                                                        */
+/*    DATE              NAME                      DESCRIPTION             */
+/*                                                                        */
+/*  05-19-2020     William E. Lamie         Initial Version 6.0           */
+/*  09-30-2020     Yuxin Zhou               Modified comment(s),          */
+/*                                            resulting in version 6.1    */
+/*                                                                        */
+/**************************************************************************/
+UINT  _txe_thread_entry_exit_notify(TX_THREAD *thread_ptr, VOID (*thread_entry_exit_notify)(TX_THREAD *notify_thread_ptr, UINT type))
+{
+
+UINT    status;
+
+
+    /* Check for an invalid thread pointer.  */
+    if (thread_ptr == TX_NULL)
+    {
+
+        /* Thread pointer is invalid, return appropriate error code.  */
+        status =  TX_THREAD_ERROR;
+    }
+
+    /* Now check for invalid thread ID.  */
+    else if (thread_ptr -> tx_thread_id != TX_THREAD_ID)
+    {
+
+        /* Thread pointer is invalid, return appropriate error code.  */
+        status =  TX_THREAD_ERROR;
+    }
+    else
+    {
+
+        /* Call actual thread entry/exit notify function.  */
+        status =  _tx_thread_entry_exit_notify(thread_ptr, thread_entry_exit_notify);
+    }
+
+    /* Return completion status.  */
+    return(status);
+}
+

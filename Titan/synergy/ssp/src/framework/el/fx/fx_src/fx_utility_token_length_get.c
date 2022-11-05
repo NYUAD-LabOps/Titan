@@ -1,62 +1,95 @@
-#ifdef AMS_ENCRYPT_PACKAGE
------BEGIN ENCRYPTED FILE v0.6-----
-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
------END ENCRYPTED FILE-----
-#else
-#error "Secure builder required to compile this file"
+/**************************************************************************/
+/*                                                                        */
+/*       Copyright (c) Microsoft Corporation. All rights reserved.        */
+/*                                                                        */
+/*       This software is licensed under the Microsoft Software License   */
+/*       Terms for Microsoft Azure RTOS. Full text of the license can be  */
+/*       found in the LICENSE file at https://aka.ms/AzureRTOS_EULA       */
+/*       and in the root directory of this software.                      */
+/*                                                                        */
+/**************************************************************************/
+
+
+/**************************************************************************/
+/**************************************************************************/
+/**                                                                       */
+/** FileX Component                                                       */
+/**                                                                       */
+/**   Utility                                                             */
+/**                                                                       */
+/**************************************************************************/
+/**************************************************************************/
+
+#define FX_SOURCE_CODE
+
+
+/* Include necessary system files.  */
+
+#include "fx_api.h"
+#ifdef FX_ENABLE_EXFAT
+#include "fx_utility.h"
+
+
+/**************************************************************************/
+/*                                                                        */
+/*  FUNCTION                                               RELEASE        */
+/*                                                                        */
+/*    _fx_utility_token_length_get                        PORTABLE C      */
+/*                                                           6.1          */
+/*  AUTHOR                                                                */
+/*                                                                        */
+/*    William E. Lamie, Microsoft Corporation                             */
+/*                                                                        */
+/*  DESCRIPTION                                                           */
+/*                                                                        */
+/*    This function returns the length of the next part of the file       */
+/*    name.                                                               */
+/*                                                                        */
+/*  INPUT                                                                 */
+/*                                                                        */
+/*    path                                  Base (current) path           */
+/*                                                                        */
+/*  OUTPUT                                                                */
+/*                                                                        */
+/*    length                                Length of the string          */
+/*                                                                        */
+/*  CALLS                                                                 */
+/*                                                                        */
+/*    None                                                                */
+/*                                                                        */
+/*  CALLED BY                                                             */
+/*                                                                        */
+/*    _fx_utility_absolute_path_get         Get absolute path             */
+/*                                                                        */
+/*  RELEASE HISTORY                                                       */
+/*                                                                        */
+/*    DATE              NAME                      DESCRIPTION             */
+/*                                                                        */
+/*  05-19-2020     William E. Lamie         Initial Version 6.0           */
+/*  09-30-2020     William E. Lamie         Modified comment(s),          */
+/*                                            resulting in version 6.1    */
+/*                                                                        */
+/**************************************************************************/
+UINT  _fx_utility_token_length_get(CHAR *path)
+{
+
+UINT length;
+
+
+    /* Initialize the length to 0.  */
+    length =  0;
+
+    /* Walk to the next sub-directory break.  */
+    while (path[length] && (path[length] != '\\') && (path[length] != '/') && (length < FX_MAXIMUM_PATH))
+    {
+
+        /* Increment length (index).  */
+        length++;
+    }
+
+    /* Return length.  */
+    return(length);
+}
+
 #endif
+

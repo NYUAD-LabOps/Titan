@@ -4,6 +4,9 @@
 #if (!1)
 #define FX_DISABLE_ERROR_CHECKING
 #endif
+#if (0)
+#define FX_ENABLE_EXFAT
+#endif
 #if (+0)
 #define FX_MAX_LONG_NAME_LEN ()
 #endif
@@ -22,6 +25,9 @@
 #if (+0)
 #define FX_UPDATE_RATE_IN_SECONDS ()
 #define FX_UPDATE_RATE_IN_TICKS (FX_UPDATE_RATE_IN_SECONDS * TX_TIMER_TICKS_PER_SECOND)
+#endif
+#if (+0)
+#define FX_EXFAT_MAX_CACHE_SIZE ()
 #endif
 #if (0)
 #define FX_NO_TIMER
@@ -61,6 +67,33 @@
 #endif
 #if (0)
 #define FX_ENABLE_FAULT_TOLERANT
+#endif
+#if (0)
+#define FX_STANDALONE_ENABLE
+#endif
+#if (0)
+#define FX_DISABLE_CACHE
+#endif
+#if (0)
+#define FX_DISABLE_FILE_CLOSE
+#endif
+#if (0)
+#define FX_DISABLE_FAST_OPEN
+#endif
+#if (0)
+#define FX_DISABLE_FORCE_MEMORY_OPERATION
+#endif
+#if (0)
+#define FX_DISABLE_BUILD_OPTIONS
+#endif
+#if (0)
+#define FX_DISABLE_ONE_LINE_FUNCTION
+#endif
+#if (0)
+#define FX_DIABLE_FAT_ENTRY_REFRESH
+#endif
+#if (0)
+#define FX_DISABLE_CONSECUTIVE_DETECT
 #endif
 #if (+0)
 #define FX_FAULT_TOLERANT_BOOT_INDEX ()

@@ -1,341 +1,353 @@
-#ifdef AMS_ENCRYPT_PACKAGE
------BEGIN ENCRYPTED FILE v0.6-----
-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
-Hw941eqpVqC99ct1CyUf1Q==
------END ENCRYPTED FILE-----
-#else
-#error "Secure builder required to compile this file"
+/**************************************************************************/
+/*                                                                        */
+/*       Copyright (c) Microsoft Corporation. All rights reserved.        */
+/*                                                                        */
+/*       This software is licensed under the Microsoft Software License   */
+/*       Terms for Microsoft Azure RTOS. Full text of the license can be  */
+/*       found in the LICENSE file at https://aka.ms/AzureRTOS_EULA       */
+/*       and in the root directory of this software.                      */
+/*                                                                        */
+/**************************************************************************/
+
+
+/**************************************************************************/
+/**************************************************************************/
+/**                                                                       */
+/** FileX Component                                                       */
+/**                                                                       */
+/**   Unicode                                                             */
+/**                                                                       */
+/**************************************************************************/
+/**************************************************************************/
+
+#define FX_SOURCE_CODE
+
+
+/* Include necessary system files.  */
+
+#include "fx_api.h"
+#include "fx_unicode.h"
+#include "fx_directory.h"
+#include "fx_utility.h"
+#ifdef FX_ENABLE_FAULT_TOLERANT
+#include "fx_fault_tolerant.h"
+#endif /* FX_ENABLE_FAULT_TOLERANT */
+
+
+/**************************************************************************/
+/*                                                                        */
+/*  FUNCTION                                               RELEASE        */
+/*                                                                        */
+/*    _fx_unicode_directory_rename                        PORTABLE C      */
+/*                                                           6.1          */
+/*  AUTHOR                                                                */
+/*                                                                        */
+/*    William E. Lamie, Microsoft Corporation                             */
+/*                                                                        */
+/*  DESCRIPTION                                                           */
+/*                                                                        */
+/*    This function creates the specified unicode directory.              */
+/*    This function first attempts to find the specified directory.       */
+/*    If found, the unicode rename request is valid and the directory     */
+/*    will be changed to the new unicode name. Otherwise, if the directory*/
+/*    is not found, the appropriate error code is returned to the caller. */
+/*                                                                        */
+/*  INPUT                                                                 */
+/*                                                                        */
+/*    media_ptr                             Pointer to media              */
+/*    old_unicode_name                      Pointer to old unicode name   */
+/*    old_unicode_length                    Old unicode name length       */
+/*    new_unicode_name                      Pointer to new unicode name   */
+/*    new_unicode_length                    Old unicode name length       */
+/*    new_short_name                        Pointer to new short name     */
+/*                                                                        */
+/*  OUTPUT                                                                */
+/*                                                                        */
+/*    Completion Status                                                   */
+/*                                                                        */
+/*  CALLS                                                                 */
+/*                                                                        */
+/*    _fx_unicode_short_name_get            Get the directory short name  */
+/*    _fx_unicode_directory_search          Search for unicode name       */
+/*    _fx_unicode_directory_entry_change    Change unicode file name      */
+/*    _fx_directory_rename                  Rename the directory          */
+/*    _fx_directory_search                  Search directory              */
+/*                                                                        */
+/*  CALLED BY                                                             */
+/*                                                                        */
+/*    Application Code                                                    */
+/*                                                                        */
+/*  RELEASE HISTORY                                                       */
+/*                                                                        */
+/*    DATE              NAME                      DESCRIPTION             */
+/*                                                                        */
+/*  05-19-2020     William E. Lamie         Initial Version 6.0           */
+/*  09-30-2020     William E. Lamie         Modified comment(s),          */
+/*                                            resulting in version 6.1    */
+/*                                                                        */
+/**************************************************************************/
+UINT  _fx_unicode_directory_rename(FX_MEDIA *media_ptr, UCHAR *old_unicode_name, ULONG old_unicode_length,
+                                   UCHAR *new_unicode_name, ULONG new_unicode_length, CHAR *new_short_name)
+{
+
+FX_DIR_ENTRY dir_entry;
+UINT         i, status;
+ULONG        temp_length;
+CHAR         old_dir_short_name[13];
+CHAR         new_dir_short_name[13];
+UCHAR        alpha, beta;
+
+
+    /* Clear the return short name.  */
+    new_short_name[0] =  FX_NULL;
+
+    /* Set shortname to null.  */
+    old_dir_short_name[0] =  FX_NULL;
+    new_dir_short_name[0] =  FX_NULL;
+
+    /* Check the media to make sure it is open.  */
+    if (media_ptr -> fx_media_id != FX_MEDIA_ID)
+    {
+
+        /* Return the media not opened error.  */
+        return(FX_MEDIA_NOT_OPEN);
+    }
+
+#ifdef FX_ENABLE_EXFAT
+    /* Check if media format is exFAT.  */
+    if (media_ptr -> fx_media_FAT_type == FX_exFAT)
+    {
+
+        /* Return the not implemented error.  */
+        return(FX_NOT_IMPLEMENTED);
+    }
 #endif
+
+    /* Get the old short name.  */
+    status = _fx_unicode_short_name_get(media_ptr, old_unicode_name, old_unicode_length, &old_dir_short_name[0]);
+
+    /* Determine if the search was successful.  */
+    if (status != FX_SUCCESS)
+    {
+
+        /* Return the error code.  */
+        return(status);
+    }
+
+    /* Protect media.  */
+    FX_PROTECT
+
+    /* Setup temporary length.  */
+    temp_length =  new_unicode_length;
+
+    /* Setup pointer to media name buffer.  */
+    dir_entry.fx_dir_entry_name =  media_ptr -> fx_media_name_buffer + FX_MAX_LONG_NAME_LEN;
+
+    /* Clear the short name string.  */
+    dir_entry.fx_dir_entry_short_name[0] =  FX_NULL;
+
+    /* Determine if the new directory name is already present.  */
+    status =  _fx_unicode_directory_search(media_ptr, &dir_entry, (UCHAR *)new_dir_short_name, sizeof(new_dir_short_name), new_unicode_name, &temp_length, 0);
+
+    /* Determine if the search was successful.  */
+    if (status == FX_SUCCESS)
+    {
+
+        /* Determine if the name length are equal.  */
+        if (old_unicode_length == new_unicode_length)
+        {
+
+            /* Determine if the new name simply has a UNICODE case change. If so, simply let the processing
+               continue.  */
+            i =  0;
+            do
+            {
+
+                /* Pickup an old name and new name character and convert to upper case if necessary.  */
+                alpha =  old_unicode_name[i * 2];
+                if ((alpha >= 'a') && (alpha <= 'z') && (old_unicode_name[i * 2 + 1] == 0))
+                {
+
+                    /* Lower case, convert to upper case!  */
+                    alpha =  (UCHAR)((INT)alpha - 0x20);
+                }
+                beta =   new_unicode_name[i * 2];
+                if ((beta >= 'a') && (beta <= 'z') && (new_unicode_name[i * 2 + 1] == 0))
+                {
+
+                    /* Lower case, convert to upper case!  */
+                    beta =  (UCHAR)((INT)beta - 0x20);
+                }
+
+                /* Now compare the characters.  */
+                if (alpha != beta)
+                {
+
+                    /* Get out of this loop!  */
+                    break;
+                }
+
+                /* Pickup the high bytes. */
+                alpha = old_unicode_name[i * 2 + 1];
+                beta =   new_unicode_name[i * 2 + 1];
+
+                /* Now compare the byte.  */
+                if ((alpha != beta))
+                {
+
+                    /* Get out of this loop!  */
+                    break;
+                }
+
+                /* Move to next character.  */
+                i++;
+            } while (i < old_unicode_length);
+        }
+        else
+        {
+            alpha = 0;
+            beta = 1;
+        }
+
+        /* Now determine if the names match.  */
+        if (alpha != beta)
+        {
+
+            /* Yes, the directory name already exists in the target location.  */
+
+            /* Release media protection.  */
+            FX_UNPROTECT
+
+            /* Return the error code.  */
+            return(FX_ALREADY_CREATED);
+         }
+    }
+
+#ifdef FX_ENABLE_FAULT_TOLERANT
+    /* Start transaction. */
+    _fx_fault_tolerant_transaction_start(media_ptr);
+#endif /* FX_ENABLE_FAULT_TOLERANT */
+
+    /* Okay, at this point we need to create a new long directory name that has enough space for the
+       eventual unicode directory name.  */
+
+    /* Copy the characters from the unicode directory name and make sure they are
+       within the ASCII range.  */
+    _fx_unicode_temp_long_file_name[0] =  'z';
+    for (i = 1; i < new_unicode_length; i++)
+    {
+
+        /* Build temporary long file name.  */
+        _fx_unicode_temp_long_file_name[i] =  (UCHAR)((UINT)'0' + (i % 9));
+    }
+    _fx_unicode_temp_long_file_name[i] =  FX_NULL;
+
+    /* Loop to try different temp long file names... if necessary.  */
+    do
+    {
+
+        /* Rename the directory name.  */
+        status =  _fx_directory_rename(media_ptr, old_dir_short_name, (CHAR *)_fx_unicode_temp_long_file_name);
+
+        /* Determine if there was an error.  */
+        if (status == FX_ALREADY_CREATED)
+        {
+
+            /* Adjust the name slightly and try again!  */
+            _fx_unicode_temp_long_file_name[0]--;
+
+            /* Determine if it is outside the lower case boundary.  */
+            if (_fx_unicode_temp_long_file_name[0] < 0x61)
+            {
+                break;
+            }
+        }
+    } while (status == FX_ALREADY_CREATED);
+
+    /* Determine if there was an error.  */
+    if (status)
+    {
+
+#ifdef FX_ENABLE_FAULT_TOLERANT
+        FX_FAULT_TOLERANT_TRANSACTION_FAIL(media_ptr);
+#endif /* FX_ENABLE_FAULT_TOLERANT */
+
+        /* Release media protection.  */
+        FX_UNPROTECT
+
+        /* Return error.  */
+        return(status);
+    }
+
+    /* Setup pointer to media name buffer.  */
+    dir_entry.fx_dir_entry_name =  media_ptr -> fx_media_name_buffer + FX_MAX_LONG_NAME_LEN;
+
+    /* Clear the short name string.  */
+    dir_entry.fx_dir_entry_short_name[0] =  FX_NULL;
+
+    /* Search the system for the supplied file name.  */
+    status =  _fx_directory_search(media_ptr, (CHAR *)_fx_unicode_temp_long_file_name, &dir_entry, FX_NULL, FX_NULL);
+
+    /* Determine if the search was successful.  */
+    if (status != FX_SUCCESS)
+    {
+
+#ifdef FX_ENABLE_FAULT_TOLERANT
+        FX_FAULT_TOLERANT_TRANSACTION_FAIL(media_ptr);
+#endif /* FX_ENABLE_FAULT_TOLERANT */
+
+        /* Release media protection.  */
+        FX_UNPROTECT
+
+        /* Return the error status.  */
+        return(status);
+    }
+
+    /* We can now change the temporary long file name with the destination unicode name.  */
+    status = _fx_unicode_directory_entry_change(media_ptr, &dir_entry, new_unicode_name, new_unicode_length);
+
+    /* Determine if the rename was successful.  */
+    if (status == FX_SUCCESS)
+    {
+
+        /* Yes, copy the short file name to the destination.  */
+        /* The new short name only have 8 characters, since we didn't include a dot in temp_long_file_name. */
+        for (i = 0; i < FX_DIR_NAME_SIZE; i++)
+        {
+
+            /* Copy a character.  */
+            new_short_name[i] =  dir_entry.fx_dir_entry_short_name[i];
+
+            /* Are we done?  */
+            if (new_short_name[i] == FX_NULL)
+            {
+                break;
+            }
+        }
+    }
+
+#ifdef FX_ENABLE_FAULT_TOLERANT
+    /* Check for a bad status.  */
+    if (status != FX_SUCCESS)
+    {
+
+        FX_FAULT_TOLERANT_TRANSACTION_FAIL(media_ptr);
+
+        /* Release media protection.  */
+        FX_UNPROTECT
+
+        /* Return the bad status.  */
+        return(status);
+    }
+
+    /* End transaction. */
+    status = _fx_fault_tolerant_transaction_end(media_ptr);
+#endif /* FX_ENABLE_FAULT_TOLERANT */
+
+    /* Release the protection.  */
+    FX_UNPROTECT
+
+    /* Return completion status.  */
+    return(status);
+}
+

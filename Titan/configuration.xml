@@ -7,8 +7,8 @@
     <option key="#TargetARCHITECTURE#" value="cortex-m4"/>
     <option key="#RTOS#" value="Express Logic ThreadX"/>
     <option key="#pinconfiguration#" value="S7G2-SK.pincfg"/>
-    <option key="#SSPVersion#" value="1.7.8"/>
-    <option key="#DefaultLinkerScript#" value="s7g2.ld"/>
+    <option key="#SSPVersion#" value="2.3.0"/>
+    <option key="#DefaultLinkerScript#" value="r7fs7g27h3a01cfc.ld"/>
     <option key="#ConfigurationFragments#" value="Renesas##BSP##Board##s7g2_sk##"/>
   </generalSettings>
   <synergyBspConfiguration>
@@ -44,6 +44,7 @@
       <property id="config.bsp.s7g2.ssp.OFS1.voltage_detection0_level" value="config.bsp.s7g2.ssp.OFS1.voltage_detection0_level.280"/>
       <property id="config.bsp.s7g2.ssp.OFS1.hoco_osc" value="config.bsp.s7g2.ssp.OFS1.hoco_osc.disabled"/>
       <property id="config.bsp.ssp.mcu.adc.max_freq_hz" value="60000000"/>
+      <property id="config.bsp.ssp.mcu.sci_spi.max_bitrate" value="30000000"/>
     </config>
     <config id="config.bsp.synergy">
       <property id="config.bsp.common.main" value="0x1000"/>
@@ -97,101 +98,101 @@
     <node id="board.clock.fclk.display" option="board.clock.fclk.display.value"/>
   </synergyClockConfiguration>
   <synergyComponentSelection>
-    <component apiversion="" class="BSP" condition="" group="Board" subgroup="s7g2_sk" variant="" vendor="Renesas" version="1.7.8">
-      <description>S7G2_SK Board Support Files</description>
-      <originalPack>Renesas.Synergy_board_s7g2_sk.1.7.8.pack</originalPack>
-    </component>
-    <component apiversion="" class="BSP" condition="" group="s7g2" subgroup="device" variant="R7FS7G27H3A01CFC" vendor="Renesas" version="1.7.8">
-      <description>Board support package for R7FS7G27H3A01CFC</description>
-      <originalPack>Renesas.Synergy_mcu_s7g2.1.7.8.pack</originalPack>
-    </component>
-    <component apiversion="" class="BSP" condition="" group="s7g2" subgroup="device" variant="" vendor="Renesas" version="1.7.8">
-      <description>Board support package for S7G2</description>
-      <originalPack>Renesas.Synergy_mcu_s7g2.1.7.8.pack</originalPack>
-    </component>
-    <component apiversion="" class="BSP" condition="" group="s7g2" subgroup="ssp" variant="" vendor="Renesas" version="1.7.8">
-      <description>Board support package for S7G2</description>
-      <originalPack>Renesas.Synergy_mcu_s7g2.1.7.8.pack</originalPack>
-    </component>
-    <component apiversion="" class="Common" condition="" group="all" subgroup="ssp_common" variant="" vendor="Renesas" version="1.7.8">
+    <component apiversion="" class="Common" condition="" group="all" subgroup="ssp_common" variant="" vendor="Renesas" version="2.3.0">
       <description>SSP Common Code</description>
-      <originalPack>Renesas.Synergy.1.7.8.pack</originalPack>
+      <originalPack>Renesas.Synergy.2.3.0.pack</originalPack>
     </component>
-    <component apiversion="" class="Framework Services" condition="" group="all" subgroup="sf_block_media_sdmmc" variant="" vendor="Renesas" version="1.7.8">
+    <component apiversion="" class="Framework Services" condition="" group="all" subgroup="sf_block_media_sdmmc" variant="" vendor="Renesas" version="2.3.0">
       <description>Block Media SD/MMC: Provides=[Block Media] , Requires=[SDMMC]</description>
-      <originalPack>Renesas.Synergy.1.7.8.pack</originalPack>
+      <originalPack>Renesas.Synergy.2.3.0.pack</originalPack>
     </component>
-    <component apiversion="" class="Framework Services" condition="" group="all" subgroup="sf_el_fx" variant="" vendor="Renesas" version="1.7.8">
+    <component apiversion="" class="Framework Services" condition="" group="all" subgroup="sf_el_fx" variant="" vendor="Renesas" version="2.3.0">
       <description>FileX I/O, Requires=[Block Media]</description>
-      <originalPack>Renesas.Synergy.1.7.8.pack</originalPack>
+      <originalPack>Renesas.Synergy.2.3.0.pack</originalPack>
     </component>
-    <component apiversion="" class="Framework Services" condition="" group="all" subgroup="sf_el_nx" variant="" vendor="Renesas" version="1.7.8">
+    <component apiversion="" class="Framework Services" condition="" group="all" subgroup="sf_el_nx" variant="" vendor="Renesas" version="2.3.0">
       <description>Express Logic NetX Synergy Port: Provides=[NetX Driver] , Requires=[NetX]</description>
-      <originalPack>Renesas.Synergy.1.7.8.pack</originalPack>
+      <originalPack>Renesas.Synergy.2.3.0.pack</originalPack>
     </component>
-    <component apiversion="" class="Framework Services" condition="" group="all" subgroup="sf_uart_comms" variant="" vendor="Renesas" version="1.7.8">
+    <component apiversion="" class="Framework Services" condition="" group="all" subgroup="sf_uart_comms" variant="" vendor="Renesas" version="2.3.0">
       <description>Framework UART Communications: Provides=[Framework UART] , Requires=[ThreadX ,Communications]</description>
-      <originalPack>Renesas.Synergy.1.7.8.pack</originalPack>
+      <originalPack>Renesas.Synergy.2.3.0.pack</originalPack>
     </component>
-    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_cgc" variant="" vendor="Renesas" version="1.7.8">
-      <description>Clock Generation Circuit: Provides=[CGC]</description>
-      <originalPack>Renesas.Synergy.1.7.8.pack</originalPack>
-    </component>
-    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_dmac" variant="" vendor="Renesas" version="1.7.8">
-      <description>Direct Memory Access Controller: Provides=[Transfer]</description>
-      <originalPack>Renesas.Synergy.1.7.8.pack</originalPack>
-    </component>
-    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_dtc" variant="" vendor="Renesas" version="1.7.8">
-      <description>Data Transfer Controller: Provides=[Transfer]</description>
-      <originalPack>Renesas.Synergy.1.7.8.pack</originalPack>
-    </component>
-    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_elc" variant="" vendor="Renesas" version="1.7.8">
-      <description>Event Link Controller: Provides=[ELC]</description>
-      <originalPack>Renesas.Synergy.1.7.8.pack</originalPack>
-    </component>
-    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_fmi" variant="" vendor="Renesas" version="1.7.8">
-      <description>Factory MCU Information Module: Provides=[FMI]</description>
-      <originalPack>Renesas.Synergy.1.7.8.pack</originalPack>
-    </component>
-    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_gpt" variant="" vendor="Renesas" version="1.7.8">
-      <description>General Purpose Timer: Provides=[Timer ,GPT]</description>
-      <originalPack>Renesas.Synergy.1.7.8.pack</originalPack>
-    </component>
-    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_ioport" variant="" vendor="Renesas" version="1.7.8">
-      <description>I/O Port: Provides=[IO Port]</description>
-      <originalPack>Renesas.Synergy.1.7.8.pack</originalPack>
-    </component>
-    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_sci_uart" variant="" vendor="Renesas" version="1.7.8">
-      <description>SCI UART: Provides=[UART] , Requires=[SCI Common]</description>
-      <originalPack>Renesas.Synergy.1.7.8.pack</originalPack>
-    </component>
-    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_sdmmc" variant="" vendor="Renesas" version="1.7.8">
-      <description>SD/MMC Media: Provides=[SDMMC]</description>
-      <originalPack>Renesas.Synergy.1.7.8.pack</originalPack>
-    </component>
-    <component apiversion="" class="Express Logic" condition="" group="all" subgroup="fx" variant="" vendor="Renesas" version="1.7.8">
-      <description>Express Logic FileX: Provides=[FileX] , Requires=[FileX I/O ,ThreadX]</description>
-      <originalPack>Renesas.Synergy.1.7.8.pack</originalPack>
-    </component>
-    <component apiversion="" class="Express Logic" condition="" group="all" subgroup="fx_src" variant="" vendor="Renesas" version="1.7.8">
-      <description>Express Logic FileX: Provides=[FileX] , Requires=[FileX I/O ,ThreadX]</description>
-      <originalPack>Renesas.Synergy.1.7.8.pack</originalPack>
-    </component>
-    <component apiversion="" class="Express Logic" condition="" group="all" subgroup="nxd" variant="" vendor="Renesas" version="1.7.8">
-      <description>Express Logic NetX Duo: Provides=[NetX Duo] , Requires=[ThreadX ,NetX Driver]</description>
-      <originalPack>Renesas.Synergy.1.7.8.pack</originalPack>
-    </component>
-    <component apiversion="" class="Express Logic" condition="" group="all" subgroup="tx" variant="" vendor="Renesas" version="1.7.8">
-      <description>Express Logic ThreadX: Provides=[ThreadX]</description>
-      <originalPack>Renesas.Synergy.1.7.8.pack</originalPack>
-    </component>
-    <component apiversion="" class="Express Logic" condition="" group="all" subgroup="tx_src" variant="" vendor="Renesas" version="1.7.8">
-      <description>Express Logic ThreadX: Provides=[ThreadX]</description>
-      <originalPack>Renesas.Synergy.1.7.8.pack</originalPack>
-    </component>
-    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_adc" variant="" vendor="Renesas" version="1.7.8">
+    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_adc" variant="" vendor="Renesas" version="2.3.0">
       <description>A/D Converter: Provides=[ADC]</description>
-      <originalPack>Renesas.Synergy.1.7.8.pack</originalPack>
+      <originalPack>Renesas.Synergy.2.3.0.pack</originalPack>
+    </component>
+    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_cgc" variant="" vendor="Renesas" version="2.3.0">
+      <description>Clock Generation Circuit: Provides=[CGC]</description>
+      <originalPack>Renesas.Synergy.2.3.0.pack</originalPack>
+    </component>
+    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_dmac" variant="" vendor="Renesas" version="2.3.0">
+      <description>Direct Memory Access Controller: Provides=[Transfer]</description>
+      <originalPack>Renesas.Synergy.2.3.0.pack</originalPack>
+    </component>
+    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_dtc" variant="" vendor="Renesas" version="2.3.0">
+      <description>Data Transfer Controller: Provides=[Transfer]</description>
+      <originalPack>Renesas.Synergy.2.3.0.pack</originalPack>
+    </component>
+    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_elc" variant="" vendor="Renesas" version="2.3.0">
+      <description>Event Link Controller: Provides=[ELC]</description>
+      <originalPack>Renesas.Synergy.2.3.0.pack</originalPack>
+    </component>
+    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_fmi" variant="" vendor="Renesas" version="2.3.0">
+      <description>Factory MCU Information Module: Provides=[FMI]</description>
+      <originalPack>Renesas.Synergy.2.3.0.pack</originalPack>
+    </component>
+    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_gpt" variant="" vendor="Renesas" version="2.3.0">
+      <description>General Purpose Timer: Provides=[Timer ,GPT]</description>
+      <originalPack>Renesas.Synergy.2.3.0.pack</originalPack>
+    </component>
+    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_ioport" variant="" vendor="Renesas" version="2.3.0">
+      <description>I/O Port: Provides=[IO Port]</description>
+      <originalPack>Renesas.Synergy.2.3.0.pack</originalPack>
+    </component>
+    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_sci_uart" variant="" vendor="Renesas" version="2.3.0">
+      <description>SCI UART: Provides=[UART] , Requires=[SCI Common]</description>
+      <originalPack>Renesas.Synergy.2.3.0.pack</originalPack>
+    </component>
+    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_sdmmc" variant="" vendor="Renesas" version="2.3.0">
+      <description>SD/MMC Media: Provides=[SDMMC]</description>
+      <originalPack>Renesas.Synergy.2.3.0.pack</originalPack>
+    </component>
+    <component apiversion="" class="Express Logic" condition="" group="all" subgroup="fx" variant="" vendor="Renesas" version="2.3.0">
+      <description>Express Logic FileX: Provides=[FileX] , Requires=[FileX I/O ,ThreadX]</description>
+      <originalPack>Renesas.Synergy.2.3.0.pack</originalPack>
+    </component>
+    <component apiversion="" class="Express Logic" condition="" group="all" subgroup="fx_src" variant="" vendor="Renesas" version="2.3.0">
+      <description>Express Logic FileX: Provides=[FileX] , Requires=[FileX I/O ,ThreadX]</description>
+      <originalPack>Renesas.Synergy.2.3.0.pack</originalPack>
+    </component>
+    <component apiversion="" class="Express Logic" condition="" group="all" subgroup="nxd" variant="" vendor="Renesas" version="2.3.0">
+      <description>Express Logic NetX Duo: Provides=[NetX Duo] , Requires=[ThreadX ,NetX Driver]</description>
+      <originalPack>Renesas.Synergy.2.3.0.pack</originalPack>
+    </component>
+    <component apiversion="" class="Express Logic" condition="" group="all" subgroup="tx" variant="" vendor="Renesas" version="2.3.0">
+      <description>Express Logic ThreadX: Provides=[ThreadX]</description>
+      <originalPack>Renesas.Synergy.2.3.0.pack</originalPack>
+    </component>
+    <component apiversion="" class="Express Logic" condition="" group="all" subgroup="tx_src" variant="" vendor="Renesas" version="2.3.0">
+      <description>Express Logic ThreadX: Provides=[ThreadX]</description>
+      <originalPack>Renesas.Synergy.2.3.0.pack</originalPack>
+    </component>
+    <component apiversion="" class="BSP" condition="" group="s7g2" subgroup="device" variant="R7FS7G27H3A01CFC" vendor="Renesas" version="2.3.0">
+      <description>Board support package for R7FS7G27H3A01CFC</description>
+      <originalPack>Renesas.Synergy_mcu_s7g2.2.3.0.pack</originalPack>
+    </component>
+    <component apiversion="" class="BSP" condition="" group="s7g2" subgroup="device" variant="" vendor="Renesas" version="2.3.0">
+      <description>Board support package for S7G2</description>
+      <originalPack>Renesas.Synergy_mcu_s7g2.2.3.0.pack</originalPack>
+    </component>
+    <component apiversion="" class="BSP" condition="" group="s7g2" subgroup="ssp" variant="" vendor="Renesas" version="2.3.0">
+      <description>Board support package for S7G2</description>
+      <originalPack>Renesas.Synergy_mcu_s7g2.2.3.0.pack</originalPack>
+    </component>
+    <component apiversion="" class="BSP" condition="" group="Board" subgroup="s7g2_sk" variant="" vendor="Renesas" version="2.3.0">
+      <description>S7G2_SK Board Support Files</description>
+      <originalPack>Renesas.Synergy_board_s7g2_sk.2.3.0.pack</originalPack>
     </component>
   </synergyComponentSelection>
   <synergyIcuConfiguration/>
@@ -339,12 +340,16 @@
       <property id="module.framework.fx.total_sectors" value="3751936"/>
       <property id="module.framework.fx.sector_size" value="512"/>
       <property id="module.framework.fx.cluster_size" value="1"/>
+      <property id="module.framework.fx.volume_serial_number" value="12345"/>
+      <property id="module.framework.fx.boundary_unit" value="128"/>
       <property id="module.framework.fx.media_size" value="512"/>
       <property id="module.framework.fx.init_function" value="fx_media_init0"/>
       <property id="module.framework.fx.init" value="module.framework.fx.init.disable"/>
     </module>
     <module id="module.framework.sf_el_fx.1488655135">
       <property id="module.framework.sf_el_fx.name" value="g_sf_el_fx0"/>
+      <property id="module.framework.sf_el_fx.partition_info_callback" value="NULL"/>
+      <property id="module.framework.sf_el_fx.total_partition" value="0"/>
     </module>
     <module id="module.framework.block_media_on_sdmmc.1903801870">
       <property id="module.framework.block_media.name" value="g_sf_block_media_sdmmc0"/>
@@ -644,12 +649,14 @@
     </config>
     <config id="config.el.fx_src">
       <property id="config.el.fx_src.error_checking" value="config.el.fx_src.error_checking.enabled"/>
+      <property id="config.el.fx_src.enable_exFAT" value="config.el.fx_src.enable_exFAT.disabled"/>
       <property id="config.el.fx_src.max_long_name_len" value=""/>
       <property id="config.el.fx_src.max_last_name_len" value=""/>
       <property id="config.el.fx_src.max_sector_cache" value=""/>
       <property id="config.el.fx_src.fat_map_size" value=""/>
       <property id="config.el.fx_src.max_fat_cache" value=""/>
       <property id="config.el.fx_src.update_rate_in_seconds" value=""/>
+      <property id="config.el.fx_src.max_exfat_cache_size" value=""/>
       <property id="config.el.fx_src.no_timer" value="config.el.fx_src.no_timer.disabled"/>
       <property id="config.el.fx_src.single_thread" value="config.el.fx_src.single_thread.disabled"/>
       <property id="config.el.fx_src.dont_update_open_files" value="config.el.fx_src.dont_update_open_files.disabled"/>
@@ -663,6 +670,15 @@
       <property id="config.el.fx_src.fault_tolerant" value="config.el.fx_src.fault_tolerant.disabled"/>
       <property id="config.el.fx_src.lba_64bit" value="config.el.fx_src.lba_64bit.disabled"/>
       <property id="config.el.fx_src.fault_tolerant_service" value="config.el.fx_src.fault_tolerant_service.disabled"/>
+      <property id="config.el.fx_src.standalone_enable" value="config.el.fx_src.standalone_enable.disabled"/>
+      <property id="config.el.fx_src.disable_cache" value="config.el.fx_src.disable_cache.disabled"/>
+      <property id="config.el.fx_src.disable_file_close" value="config.el.fx_src.disable_file_close.disabled"/>
+      <property id="config.el.fx_src.disable_fast_open" value="config.el.fx_src.disable_fast_open.disabled"/>
+      <property id="config.el.fx_src.disable_force_memory_operation" value="config.el.fx_src.disable_force_memory_operation.disabled"/>
+      <property id="config.el.fx_src.disable_build_option" value="config.el.fx_src.disable_build_option.disabled"/>
+      <property id="config.el.fx_src.disable_one_line_function" value="config.el.fx_src.disable_one_line_function.disabled"/>
+      <property id="config.el.fx_src.disable_fat_entry_refresh" value="config.el.fx_src.disable_fat_entry_refresh.disabled"/>
+      <property id="config.el.fx_src.disable_consecutive_detect" value="config.el.fx_src.disable_consecutive_detect.disabled"/>
       <property id="config.el.fx_src.fault_tolerant_boot_index" value=""/>
       <property id="config.el.fx_src.fault_tolerant_minimal_cluster" value=""/>
     </config>
@@ -738,6 +754,7 @@
       <property id="config.el.tx_src.timer_thread_stack_size" value=""/>
       <property id="config.el.tx_src.timer_thread_priority" value=""/>
       <property id="config.el.tx_src.trace_time_mask" value=""/>
+      <property id="config.el.tx_src.no.filex.pointer" value="config.el.tx_src.no.filex.pointer.disabled"/>
       <property id="config.el.tx_src.timer_process_in_isr" value="config.el.tx_src.timer_process_in_isr.enabled"/>
       <property id="config.el.tx_src.reactivate_inline" value="config.el.tx_src.reactivate_inline.disabled"/>
       <property id="config.el.tx_src.stack_filling" value="config.el.tx_src.stack_filling.enabled"/>

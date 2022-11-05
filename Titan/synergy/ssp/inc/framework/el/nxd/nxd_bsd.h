@@ -1,25 +1,13 @@
-/**************************************************************************/ 
-/*                                                                        */ 
-/*            Copyright (c) 1996-2019 by Express Logic Inc.               */ 
-/*                                                                        */ 
-/*  This software is copyrighted by and is the sole property of Express   */ 
-/*  Logic, Inc.  All rights, title, ownership, or other interests         */ 
-/*  in the software remain the property of Express Logic, Inc.  This      */ 
-/*  software may only be used in accordance with the corresponding        */ 
-/*  license agreement.  Any unauthorized use, duplication, transmission,  */ 
-/*  distribution, or disclosure of this software is expressly forbidden.  */ 
-/*                                                                        */ 
-/*  This Copyright notice may not be removed or modified without prior    */ 
-/*  written consent of Express Logic, Inc.                                */ 
-/*                                                                        */ 
-/*  Express Logic, Inc. reserves the right to modify this software        */ 
-/*  without notice.                                                       */ 
-/*                                                                        */ 
-/*  Express Logic, Inc.                                                   */ 
-/*  11423 West Bernardo Court               info@expresslogic.com         */ 
-/*  San Diego, CA  92127                    http://www.expresslogic.com   */ 
-/*                                                                        */ 
-/**************************************************************************/ 
+/**************************************************************************/
+/*                                                                        */
+/*       Copyright (c) Microsoft Corporation. All rights reserved.        */
+/*                                                                        */
+/*       This software is licensed under the Microsoft Software License   */
+/*       Terms for Microsoft Azure RTOS. Full text of the license can be  */
+/*       found in the LICENSE file at https://aka.ms/AzureRTOS_EULA       */
+/*       and in the root directory of this software.                      */
+/*                                                                        */
+/**************************************************************************/
 
 /**************************************************************************/
 /**************************************************************************/
@@ -37,11 +25,11 @@
 /*  BSD DEFINITIONS                                        RELEASE        */ 
 /*                                                                        */ 
 /*    nxd_bsd.h                                           PORTABLE C      */ 
-/*                                                           5.12         */
-/*  AUTHOR                                                                */ 
-/*                                                                        */ 
-/*    Express Logic, Inc.                                                 */ 
-/*                                                                        */ 
+/*                                                           6.1.9        */
+/*  AUTHOR                                                                */
+/*                                                                        */
+/*    Yuxin Zhou, Microsoft Corporation                                   */
+/*                                                                        */
 /*  DESCRIPTION                                                           */ 
 /*                                                                        */ 
 /*    This file defines the constants, structures, etc... needed to       */ 
@@ -50,81 +38,19 @@
 /*                                                                        */ 
 /*  RELEASE HISTORY                                                       */ 
 /*                                                                        */ 
-/*    DATE              NAME                      DESCRIPTION             */ 
-/*                                                                        */ 
-/*  06-01-2010     Yuxin Zhou               Initial Version 5.0           */ 
-/*  12-15-2011     Janet Christiansen       Modified comment(s),          */
-/*                                            modified definition of      */
-/*                                            FD_SETSIZE, FD macros,time_t*/
-/*                                            to eliminate redefinition   */
-/*                                            compiler errors on some     */
-/*                                            environments, added support */
-/*                                            for BSD extended services,  */
-/*                                            modified BSD status codes,  */
-/*                                            resulting in version 5.1    */
-/*  01-10-2012     Janet Christiansen       Modified comment(s), and      */
-/*                                            added support for new socket*/
-/*                                            options send and receive    */
-/*                                            timeouts, TCP receive window*/
-/*                                            size, and added new         */
-/*                                            internal functions for more */
-/*                                            efficient processing,       */
-/*                                            new configuration define    */
-/*                                            NX_EXTENDED_BSD_LINGER_AND_ */
-/*                                            TIMED_WAIT compile option,  */
-/*                                            corrected an error in the   */
-/*                                            NX_BSD_INHERIT_LISTENER_    */
-/*                                            _SOCKET_SETTINGS definition,*/
-/*                                            added the NX_BSD_PRINT_     */
-/*                                            ERRORS option, added support*/
-/*                                            for raw sockets,            */
-/*                                            resulting in version 5.2    */
-/*  01-31-2013     Janet Christiansen       Modified comment(s), and      */
-/*                                            added support for raw       */
-/*                                            sockets, multicast packets, */
-/*                                            mapping multiple UDP BSD    */
-/*                                            sockets per NetX Duo UDP    */
-/*                                            sockets, process in timer,  */
-/*                                            added configuration options */
-/*                                            for TCP BSD sockets,        */
-/*                                            resulting in version 5.3    */
-/*  01-12-2015     Yuxin Zhou               Modified comment(s), and      */ 
-/*                                            fixed FD_SETSIZE value,     */
-/*                                            optimized NX_BSD_SOCKET,    */
-/*                                            added PPPOE and DNS support,*/
-/*                                            added inet_pton, inet_ntop, */
-/*                                            getnameinfo, getaddrinfo and*/
-/*                                            freeaddrinfo services,      */
-/*                                            supported flags MSG_PEEK and*/
-/*                                            MSG_DONTWAIT added support  */
-/*                                            for disconnect timeout      */
-/*                                            option NX_BSD_TCP_SOCKET_   */
-/*                                            _DISCONNECT_TIMEOUT,        */
-/*                                            resulting in version 5.8    */
-/*  02-22-2016     Yuxin Zhou               Modified comment(s),          */
-/*                                            added support for unified   */
-/*                                            timer tick macros, defined  */
-/*                                            return code for environment */
-/*                                            error, modified the type    */
-/*                                            of time_t and suseconds_t   */
-/*                                            from ULONG to LONG,         */
-/*                                            resulting in version 5.9    */
-/*  05-10-2016     Yuxin Zhou               Modified comment(s),          */
-/*                                            included internal header    */
-/*                                            file in C file, resulting   */
-/*                                            in version 5.10             */
-/*  07-15-2018     Janet Christiansen       Modified comment(s),          */
-/*                                            removed NX_BSD_INHERIT_     */
-/*                                            LISTENER_SOCKET_SETTINGS and*/
-/*                                            NX_BSD_TIMED_WAIT_TIMEOUT   */
-/*                                            options, used time_t from   */
-/*                                            time.h, resuling in         */
-/*                                            in version 5.11             */ 
-/*  08-15-2019     Yuxin Zhou               Modified comment(s),          */
-/*                                            supported BSD raw socket,   */
-/*                                            added C++ extern wrapper,   */
-/*                                            resulting in version 5.12   */
-/*                                                                        */ 
+/*    DATE              NAME                      DESCRIPTION             */
+/*                                                                        */
+/*  05-19-2020     Yuxin Zhou               Initial Version 6.0           */
+/*  09-30-2020     Yuxin Zhou               Modified comment(s),          */
+/*                                            resulting in version 6.1    */
+/*  03-02-2021     Yuxin Zhou               Modified comment(s), and      */
+/*                                            fixed compiler warnings,    */
+/*                                            resulting in version 6.1.5  */
+/*  10-15-2021     Yuxin Zhou               Modified comment(s), and      */
+/*                                            defined IP protocols for    */
+/*                                            ICMP, IGMP and ICMPv6,      */
+/*                                            resulting in version 6.1.9  */
+/*                                                                        */
 /**************************************************************************/
 
 #ifndef NXD_BSD_H
@@ -140,7 +66,9 @@ extern   "C" {
 
 #endif
 
+#ifndef __CCRX__
 #include "time.h"
+#endif /* __CCRX__ */
 
 /* Bring in the necessary NetX include file.  */
 #include "nx_api.h"
@@ -269,8 +197,11 @@ extern   "C" {
 #define SOCK_STREAM                         1                       /* TCP Socket                                                          */
 #define SOCK_DGRAM                          2                       /* UDP Socket                                                          */
 #define SOCK_RAW                            3                       /* Raw socket                                                          */
+#define IPPROTO_ICMP                        1                       /* ICMP used with socket type SOCK_RAW                                 */
+#define IPPROTO_IGMP                        2                       /* IGMP used with socket type SOCK_RAW                                 */
 #define IPPROTO_TCP                         6                       /* TCP Socket                                                          */
 #define IPPROTO_UDP                         17                      /* TCP Socket                                                          */
+#define IPPROTO_ICMPV6                      58                      /* ICMPv6 used with socket type SOCK_RAW                               */
 #define IPPROTO_RAW                         255                     /* Raw Socket                                                          */
 
 /* Define supported flags for 'send' and 'recv'. */
@@ -577,13 +508,18 @@ extern   "C" {
 
 /* Define data types used in structure timeval.  */
 
-typedef LONG        suseconds_t;  
+#ifdef __CCRX__
+typedef LONG        time_t;
+#endif /* __CCRX__ */
+typedef LONG        suseconds_t;
 
+#ifndef __SES_ARM
 struct timeval
 {
     time_t          tv_sec;             /* Seconds      */
     suseconds_t     tv_usec;            /* Microseconds */
 };
+#endif /* __SES_ARM */
 
 struct sockaddr_storage 
 {

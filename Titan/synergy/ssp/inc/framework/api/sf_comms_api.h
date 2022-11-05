@@ -1,5 +1,5 @@
 /***********************************************************************************************************************
- * Copyright [2015-2017] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
+ * Copyright [2015-2021] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
  * 
  * This file is part of Renesas SynergyTM Software Package (SSP)
  *
@@ -33,8 +33,7 @@
  * Implemented by:
  *
  * - @ref SF_UART_COMMS   - UART implementation
- * - @ref SF_EL_UX_COMMS  - USBX CDC ACM device implementation
- * - @ref SF_EL_NX_COMMS  - NetX telnet server implementation
+ * - @ref SF_EL_UX_COMMS_V2  - USBX CDC ACM device implementation
  * - @ref SF_COMMS_TELNET - NetX telnet server with shared IP Instance implementation
  *
  * Related SSP architecture topics:
@@ -63,8 +62,8 @@ SSP_HEADER
  * Macro definitions
  **********************************************************************************************************************/
 /** Version of the API defined in this file */
-#define SF_COMMS_API_VERSION_MAJOR (1U)
-#define SF_COMMS_API_VERSION_MINOR (8U)
+#define SF_COMMS_API_VERSION_MAJOR (2U)
+#define SF_COMMS_API_VERSION_MINOR (0U)
 
 /**********************************************************************************************************************
  * Typedef definitions

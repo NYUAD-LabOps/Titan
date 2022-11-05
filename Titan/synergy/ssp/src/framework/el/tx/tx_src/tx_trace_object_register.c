@@ -1,364 +1,293 @@
-#ifdef AMS_ENCRYPT_PACKAGE
------BEGIN ENCRYPTED FILE v0.6-----
-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
------END ENCRYPTED FILE-----
+/**************************************************************************/
+/*                                                                        */
+/*       Copyright (c) Microsoft Corporation. All rights reserved.        */
+/*                                                                        */
+/*       This software is licensed under the Microsoft Software License   */
+/*       Terms for Microsoft Azure RTOS. Full text of the license can be  */
+/*       found in the LICENSE file at https://aka.ms/AzureRTOS_EULA       */
+/*       and in the root directory of this software.                      */
+/*                                                                        */
+/**************************************************************************/
+
+
+/**************************************************************************/
+/**************************************************************************/
+/**                                                                       */
+/** ThreadX Component                                                     */
+/**                                                                       */
+/**   Trace                                                               */
+/**                                                                       */
+/**************************************************************************/
+/**************************************************************************/
+
+#define TX_SOURCE_CODE
+
+
+/* Include necessary system files.  */
+
+#include "tx_api.h"
+#include "tx_trace.h"
+
+
+/**************************************************************************/
+/*                                                                        */
+/*  FUNCTION                                               RELEASE        */
+/*                                                                        */
+/*    _tx_trace_object_register                           PORTABLE C      */
+/*                                                           6.1          */
+/*  AUTHOR                                                                */
+/*                                                                        */
+/*    William E. Lamie, Microsoft Corporation                             */
+/*                                                                        */
+/*  DESCRIPTION                                                           */
+/*                                                                        */
+/*    This function registers a ThreadX system object in the trace        */
+/*    registry area. This provides a mapping between the object pointers  */
+/*    stored in each trace event to the actual ThreadX objects.           */
+/*                                                                        */
+/*  INPUT                                                                 */
+/*                                                                        */
+/*    object_type                           Type of system object         */
+/*    object_ptr                            Address of system object      */
+/*    object_name                           Name of system object         */
+/*    parameter_1                           Supplemental parameter 1      */
+/*    parameter_2                           Supplemental parameter 2      */
+/*                                                                        */
+/*  OUTPUT                                                                */
+/*                                                                        */
+/*    None                                                                */
+/*                                                                        */
+/*  CALLS                                                                 */
+/*                                                                        */
+/*    None                                                                */
+/*                                                                        */
+/*  CALLED BY                                                             */
+/*                                                                        */
+/*    Application Code                                                    */
+/*                                                                        */
+/*  RELEASE HISTORY                                                       */
+/*                                                                        */
+/*    DATE              NAME                      DESCRIPTION             */
+/*                                                                        */
+/*  05-19-2020     William E. Lamie         Initial Version 6.0           */
+/*  09-30-2020     Yuxin Zhou               Modified comment(s),          */
+/*                                            resulting in version 6.1    */
+/*                                                                        */
+/**************************************************************************/
+VOID  _tx_trace_object_register(UCHAR object_type, VOID *object_ptr, CHAR *object_name, ULONG parameter_1, ULONG parameter_2)
+{
+
+#ifdef TX_ENABLE_EVENT_TRACE
+
+UINT                            i, entries;
+UINT                            found, loop_break;
+TX_THREAD                       *thread_ptr;
+UCHAR                           *work_ptr;
+TX_TRACE_OBJECT_ENTRY           *entry_ptr;
+
+
+    /* Determine if the registry area is setup.  */
+    if (_tx_trace_registry_start_ptr != TX_NULL)
+    {
+
+        /* Trace buffer is enabled, proceed.  */
+
+        /* Pickup the total entries.  */
+        entries =  _tx_trace_total_registry_entries;
+
+        /* Determine if there are available entries in the registry.  */
+        if (_tx_trace_available_registry_entries != ((ULONG) 0))
+        {
+
+            /* There are more available entries, proceed.  */
+
+            /* Initialize found to the max entries... indicating no space was found.  */
+            found =       entries;
+            loop_break =  TX_FALSE;
+
+            /* Loop to find available entry.  */
+            i =  _tx_trace_registry_search_start;
+            do
+            {
+
+                /* Setup the registry entry pointer.  */
+                work_ptr =   TX_OBJECT_TO_UCHAR_POINTER_CONVERT(_tx_trace_registry_start_ptr);
+                work_ptr =   TX_UCHAR_POINTER_ADD(work_ptr, ((sizeof(TX_TRACE_OBJECT_ENTRY))*i));
+                entry_ptr =  TX_UCHAR_TO_OBJECT_POINTER_CONVERT(work_ptr);
+
+                /* Determine if this is the first pass building the registry. A NULL object value indicates this part
+                   of the registry has never been used.  */
+                if (entry_ptr -> tx_trace_object_entry_thread_pointer == (ULONG) 0)
+                {
+
+                    /* Set found to this index and break out of the loop.  */
+                    found =  i;
+                    loop_break =  TX_TRUE;
+                }
+
+                /* Determine if this entry matches the object pointer... we must reuse old entries left in the
+                   registry.  */
+                if (entry_ptr -> tx_trace_object_entry_thread_pointer == TX_POINTER_TO_ULONG_CONVERT(object_ptr))
+                {
+
+                    /* Set found to this index and break out of the loop.  */
+                    found =  i;
+                    loop_break =  TX_TRUE;
+                }
+
+                /* Determine if we should break out of the loop.  */
+                if (loop_break == TX_TRUE)
+                {
+
+                    /* Yes, break out of the loop.  */
+                    break;
+                }
+
+                /* Is this entry available?  */
+                if (entry_ptr -> tx_trace_object_entry_available == TX_TRUE)
+                {
+
+                    /* Yes, determine if we have not already found an empty slot.  */
+                    if (found == entries)
+                    {
+                        found =  i;
+                    }
+                    else
+                    {
+
+                        /* Setup a pointer to the found entry.  */
+                        work_ptr =   TX_OBJECT_TO_UCHAR_POINTER_CONVERT(_tx_trace_registry_start_ptr);
+                        work_ptr =   TX_UCHAR_POINTER_ADD(work_ptr, ((sizeof(TX_TRACE_OBJECT_ENTRY))*found));
+                        entry_ptr =  TX_UCHAR_TO_OBJECT_POINTER_CONVERT(work_ptr);
+
+                         if (entry_ptr -> tx_trace_object_entry_type != ((UCHAR) 0))
+                         {
+                            found =  i;
+                         }
+                    }
+                }
+
+                /* Move to the next entry.  */
+                i++;
+
+                /* Determine if we have wrapped the list.  */
+                if (i >= entries)
+                {
+
+                    /* Yes, wrap to the beginning of the list.  */
+                    i =  ((ULONG) 0);
+                }
+
+            } while (i != _tx_trace_registry_search_start);
+
+            /* Now determine if an empty or reuse entry has been found.  */
+            if (found < entries)
+            {
+
+                /* Decrement the number of available entries.  */
+                _tx_trace_available_registry_entries--;
+
+                /* Adjust the search index to the next entry.  */
+                if ((found + ((ULONG) 1)) < entries)
+                {
+
+                    /* Start searching from the next index.  */
+                    _tx_trace_registry_search_start =  found + ((ULONG) 1);
+                }
+                else
+                {
+
+                    /* Reset the search to the beginning of the list. */
+                    _tx_trace_registry_search_start =  ((ULONG) 0);
+                }
+
+                /* Yes, an entry has been found...  */
+
+                /* Build a pointer to the found entry.  */
+                work_ptr =   TX_OBJECT_TO_UCHAR_POINTER_CONVERT(_tx_trace_registry_start_ptr);
+                work_ptr =   TX_UCHAR_POINTER_ADD(work_ptr, ((sizeof(TX_TRACE_OBJECT_ENTRY))*found));
+                entry_ptr =  TX_UCHAR_TO_OBJECT_POINTER_CONVERT(work_ptr);
+
+                /* Populate the found entry!  */
+                entry_ptr -> tx_trace_object_entry_available =       ((UCHAR) TX_FALSE);
+                entry_ptr -> tx_trace_object_entry_type =            object_type;
+                entry_ptr -> tx_trace_object_entry_thread_pointer =  TX_POINTER_TO_ULONG_CONVERT(object_ptr);
+                entry_ptr -> tx_trace_object_entry_param_1 =         parameter_1;
+                entry_ptr -> tx_trace_object_entry_param_2 =         parameter_2;
+
+                /* Loop to copy the object name string...  */
+                for (i = ((ULONG) 0); i < (((ULONG) TX_TRACE_OBJECT_REGISTRY_NAME)-((ULONG) 1)); i++)
+                {
+
+                    /* Setup work pointer to the object name character.  */
+                    work_ptr =  TX_CHAR_TO_UCHAR_POINTER_CONVERT(object_name);
+                    work_ptr =  TX_UCHAR_POINTER_ADD(work_ptr, i);
+
+                    /* Copy a character of the name.  */
+                    entry_ptr -> tx_trace_object_entry_name[i] =  (UCHAR) *work_ptr;
+
+                    /* Determine if we are at the end.  */
+                    if (*work_ptr == ((UCHAR) 0))
+                    {
+                        break;
+                    }
+                }
+
+                /* Null terminate the object string.  */
+                entry_ptr -> tx_trace_object_entry_name[i] =  (UCHAR) 0;
+
+                /* Determine if a thread object type is present.  */
+                if (object_type == TX_TRACE_OBJECT_TYPE_THREAD)
+                {
+
+                    /* Yes, a thread object is present.  */
+
+                    /* Setup a pointer to the thread.  */
+                    thread_ptr =  TX_VOID_TO_THREAD_POINTER_CONVERT(object_ptr);
+
+                    /* Store the thread's priority in the reserved bits.  */
+                    entry_ptr -> tx_trace_object_entry_reserved1 =  ((UCHAR) 0x80) | ((UCHAR) (thread_ptr -> tx_thread_priority >> ((UCHAR) 8)));
+                    entry_ptr -> tx_trace_object_entry_reserved2 =  (UCHAR) (thread_ptr -> tx_thread_priority & ((UCHAR) 0xFF));
+                }
+                else
+                {
+
+                    /* For all other objects, set the reserved bytes to 0.  */
+                    entry_ptr -> tx_trace_object_entry_reserved1 =  ((UCHAR) 0);
+                    entry_ptr -> tx_trace_object_entry_reserved2 =  ((UCHAR) 0);
+                }
+            }
+        }
+    }
 #else
-#error "Secure builder required to compile this file"
+
+TX_INTERRUPT_SAVE_AREA
+
+
+    /* Access input arguments just for the sake of lint, MISRA, etc.  */
+    if (object_type != ((UCHAR) 0))
+    {
+
+        if (object_ptr != TX_NULL)
+        {
+
+            if (object_name != TX_NULL)
+            {
+
+                if (parameter_1 != ((ULONG) 0))
+                {
+
+                    if (parameter_2 != ((ULONG) 0))
+                    {
+
+                        /* NOP code.  */
+                        TX_DISABLE
+                        TX_RESTORE
+                    }
+                }
+            }
+        }
+    }
 #endif
+}
+

@@ -1,23 +1,11 @@
 /**************************************************************************/
 /*                                                                        */
-/*            Copyright (c) 1996-2019 by Express Logic Inc.               */
+/*       Copyright (c) Microsoft Corporation. All rights reserved.        */
 /*                                                                        */
-/*  This software is copyrighted by and is the sole property of Express   */
-/*  Logic, Inc.  All rights, title, ownership, or other interests         */
-/*  in the software remain the property of Express Logic, Inc.  This      */
-/*  software may only be used in accordance with the corresponding        */
-/*  license agreement.  Any unauthorized use, duplication, transmission,  */
-/*  distribution, or disclosure of this software is expressly forbidden.  */
-/*                                                                        */
-/*  This Copyright notice may not be removed or modified without prior    */
-/*  written consent of Express Logic, Inc.                                */
-/*                                                                        */
-/*  Express Logic, Inc. reserves the right to modify this software        */
-/*  without notice.                                                       */
-/*                                                                        */
-/*  Express Logic, Inc.                     info@expresslogic.com         */
-/*  11423 West Bernardo Court               http://www.expresslogic.com   */
-/*  San Diego, CA  92127                                                  */
+/*       This software is licensed under the Microsoft Software License   */
+/*       Terms for Microsoft Azure RTOS. Full text of the license can be  */
+/*       found in the LICENSE file at https://aka.ms/AzureRTOS_EULA       */
+/*       and in the root directory of this software.                      */
 /*                                                                        */
 /**************************************************************************/
 
@@ -38,10 +26,10 @@
 /*  APPLICATION INTERFACE DEFINITION                       RELEASE        */
 /*                                                                        */
 /*    nx_api.h                                            PORTABLE C      */
-/*                                                           5.12         */
+/*                                                           6.1.10       */
 /*  AUTHOR                                                                */
 /*                                                                        */
-/*    William E. Lamie, Express Logic, Inc.                               */
+/*    Yuxin Zhou, Microsoft Corporation                                   */
 /*                                                                        */
 /*  DESCRIPTION                                                           */
 /*                                                                        */
@@ -56,158 +44,45 @@
 /*                                                                        */
 /*    DATE              NAME                      DESCRIPTION             */
 /*                                                                        */
-/*  12-12-2005     William E. Lamie         Initial Version 5.0           */
-/*  08-09-2007     William E. Lamie         Modified comment(s), and      */
-/*                                            changed UL to ULONG cast,   */
-/*                                            resulting in version 5.1    */
-/*  12-30-2007     Yuxin Zhou               Modified comment(s), and      */
-/*                                            added support for IPv6,     */
-/*                                            resulting in version 5.2    */
-/*  07-25-2008     Janet Christiansen       Added support for IGMPv2      */
-/*  08-03-2009     Yuxin Zhou               Modified comment(s), added    */
-/*                                            new services, added function*/
-/*                                            prototypes, added TCP window*/
-/*                                            update callback, and added  */
-/*                                            logic for trace support,    */
-/*                                            resulting in version 5.3    */
-/*  11-23-2009     Yuxin Zhou               Added NX_IPSEC_MAX_HEADER_SIZE*/
-/*                                            that allows max IPsec header*/
-/*                                            header size when allocating */
-/*                                            packets, resulting in       */
-/*                                            version 5.4                 */
-/*                                            resulting in version 5.4    */
-/*  06-01-2010     Yuxin Zhou               Added IPv6 Path MTU discovery,*/
-/*                                            added support for TCP fast  */
-/*                                            retransmission feature,     */
-/*                                            modified struct field names */
-/*                                            missing struct name prefix, */
-/*                                            resulting in version 5.5    */
-/*  10-10-2011     Yuxin Zhou               Modified comment(s), modified */
-/*                                            an API to support multihome,*/
-/*                                            added IPsec support, added  */
-/*                                            new APIs for TCP window     */
-/*                                            scaling, per-socket keep-   */
-/*                                            alive, TCP state change     */
-/*                                            callback, resulting in      */
-/*                                            version 5.6                 */
-/*  01-31-2013     Yuxin Zhou               Modified comment(s), moved    */
-/*                                            IPsec error code into       */
-/*                                            nx_ipsec.h, removed tunnel  */
-/*                                            end points information from */
-/*                                            the address selector, added */
-/*                                            the IPv6 disable service,   */
-/*                                            added DAD status notify,    */
-/*                                            added APIs that allow IPv6  */
-/*                                            stateless address autoconfig*/
-/*                                            to be disabled at run time, */
-/*                                            added tos and ttl to nxd    */
-/*                                            raw packet send service,    */
-/*                                            added service to configure  */
-/*                                            IP raw receive queue size,  */
-/*                                            added a callback function   */
-/*                                            for handling an incoming TCP*/
-/*                                            SYN messages, before the    */
-/*                                            connection is accepted,     */
-/*                                            added multicast support,    */
-/*                                            separated ICMPv4 checksum   */
-/*                                            control from ICMPv6 checksum*/
-/*                                            added APIs to retrieve IPv4 */
-/*                                            and IPv6 router entries,    */
-/*                                            added index number into the */
-/*                                            IPv6 address structure and  */
-/*                                            the IP interface structure, */
-/*                                            remove function declaration */
-/*                                            nx_icmp_interface_ping6,    */
-/*                                            added support for queue     */
-/*                                            depth notify callback,      */
-/*                                            resulting in version 5.7    */
-/*  01-12-2015     Yuxin Zhou               Modified comment(s), and      */
-/*                                            added new APIs for ipv4     */
-/*                                            multicast, added definition */
-/*                                            of reassembly time,         */
-/*                                            added new service           */
-/*                                            nx_ip_gateway_address_clear,*/
-/*                                            removed duplicate           */
-/*                                            declaration,                */
-/*                                            optimized NX_PACKET_STRUCT, */
-/*                                            optimized NX_UDP_SOCKET     */
-/*                                            structure, added duo packet */
-/*                                            pool feature,               */
-/*                                            added interface detach API, */
-/*                                            added link status change    */
-/*                                            callback to NX_IP_STRUCT,   */
-/*                                            added API for setting device*/
-/*                                            link status change callback,*/
-/*                                            used a data structure to    */
-/*                                            encapsulate all IGMP-related*/
-/*                                            info, added API for leaving */
-/*                                            IGMP multicast group by     */
-/*                                            interface, then map the old */
-/*                                            API to new API,             */
-/*                                            supported forwarding, define*/
-/*                                            NX_RAND, fixed a bug when   */
-/*                                            conflict ARP packet is      */
-/*                                            received, added router      */
-/*                                            advertisement flag callback,*/
-/*                                            supported NAT feature,      */
-/*                                            resulting in version 5.8    */
-/*  02-22-2016     Yuxin Zhou               Modified comment(s), added    */
-/*                                            support for packet alignment*/
-/*                                            and packet debugging, added */
-/*                                            the is_static parameter to  */
-/*                                            _nx_arp_entry_allocate,     */
-/*                                            corrected the reassembly    */
-/*                                            time, added member data into*/
-/*                                            TCP structure, fixed zero   */
-/*                                            window probe packet, unified*/
-/*                                            ticks per second, corrected */
-/*                                            IP Identification field for */
-/*                                            retransmitted certain TCP   */
-/*                                            packet, added ASSERT macro, */
-/*                                            cleaned up internal logic,  */
-/*                                            supported NewReno algorithm,*/
-/*                                            added packet pool low       */
-/*                                            watermark check, set maximum*/
-/*                                            TCP receive queue length,   */
-/*                                            supported IP packet filter, */
-/*                                            renamed symbols, exposed    */
-/*                                            APIs when related compiler  */
-/*                                            option was not enabled,     */
-/*                                            fixed typo for API names of */
-/*                                            stateless address control,  */
-/*                                            fixed compiler warnings,    */
-/*                                            added a macro to disable    */
-/*                                            warning of parameter not    */
-/*                                            used, and added a parameter */
-/*                                            for NAT process handler,    */
-/*                                            resulting in version 5.9    */
-/*  05-10-2016     Yuxin Zhou               Modified comment(s), and      */
-/*                                            passed the PC-Lint check,   */
-/*                                            supported ARP probe on all  */
-/*                                            interfaces, added return    */
-/*                                            status code NX_CONTINUE,    */
-/*                                            fixed typo of deprecated    */
-/*                                            symbols, resulting in       */
-/*                                            version 5.10                */
-/*  07-15-2018     Yuxin Zhou               Modified comment(s), and      */
-/*                                            supported random port find, */
-/*                                            modified to be compatible   */
-/*                                            with ThreadX 5.8 or later,  */
-/*                                            merged IPv6 loopback address*/
-/*                                            with normal IPv6 address,   */
-/*                                            moved destination and ND    */
-/*                                            cache tables to IP          */
-/*                                            structure, added support for*/
-/*                                            disabling IPv4 feature,     */
-/*                                            optimized internal logic,   */
-/*                                            added Thread support,       */
-/*                                            fixed custom MSS value,     */
-/*                                            resulting in version 5.11   */
-/*  08-15-2019     Yuxin Zhou               Modified comment(s), supported*/
-/*                                            for 64-bit mode, fixed      */
-/*                                            system state check, improve */
-/*                                            string length verification, */
-/*                                            resulting in version 5.12   */
+/*  05-19-2020     Yuxin Zhou               Initial Version 6.0           */
+/*  09-30-2020     Yuxin Zhou               Modified comment(s), fixed    */
+/*                                            ThreadX version check,      */
+/*                                            updated product constants,  */
+/*                                            resulting in version 6.1    */
+/*  11-09-2020     Yuxin Zhou               Modified comment(s), and      */
+/*                                            updated product constants,  */
+/*                                            resulting in version 6.1.2  */
+/*  12-31-2020     Yuxin Zhou               Modified comment(s), added    */
+/*                                            PTP timestamp capability,   */
+/*                                            added function to convert   */
+/*                                            string to unsigned integer, */
+/*                                            updated product constants,  */
+/*                                            resulting in version 6.1.3  */
+/*  02-02-2021     Yuxin Zhou               Modified comment(s), and      */
+/*                                            updated product constants,  */
+/*                                            resulting in version 6.1.4  */
+/*  03-02-2021     Yuxin Zhou               Modified comment(s), and      */
+/*                                            updated product constants,  */
+/*                                            resulting in version 6.1.5  */
+/*  04-02-2021     Yuxin Zhou               Modified comment(s), and      */
+/*                                            added functions for base64, */
+/*                                            resulting in version 6.1.6  */
+/*  06-02-2021     Yuxin Zhou               Modified comment(s), and      */
+/*                                            updated product constants,  */
+/*                                            resulting in version 6.1.7  */
+/*  08-02-2021     Yuxin Zhou               Modified comment(s), and      */
+/*                                            supported TCP/IP offload,   */
+/*                                            added new ip filter,        */
+/*                                            added function to convert   */
+/*                                            unsigned integer to string, */
+/*                                            resulting in version 6.1.8  */
+/*  10-15-2021     Yuxin Zhou               Modified comment(s), and      */
+/*                                            added support for getting   */
+/*                                            interface type,             */
+/*                                            resulting in version 6.1.9  */
+/*  01-31-2022     Yuxin Zhou               Modified comment(s), and      */
+/*                                            updated product constants,  */
+/*                                            resulting in version 6.1.10 */
 /*                                                                        */
 /**************************************************************************/
 
@@ -253,8 +128,14 @@ extern   "C" {
 
 #include "tx_trace.h"
 
+#ifdef NX_ENABLE_TCPIP_OFFLOAD
+#ifndef NX_ENABLE_INTERFACE_CAPABILITY
+#error "NX_ENABLE_INTERFACE_CAPABILITY must be defined to enable TCP/IP offload"
+#endif /* NX_ENABLE_INTERFACE_CAPABILITY */
+#endif /* NX_ENABLE_TCPIP_OFFLOAD */
+
 /* Define symbols for compatibility before and after ThreadX 5.8. */
-#if (THREADX_MAJOR_VERSION >= 5) && (THREADX_MINOR_VERSION >= 8)
+#if (((THREADX_MAJOR_VERSION << 8) | THREADX_MINOR_VERSION) >= 0x0508)
 #define NX_CLEANUP_PARAMETER , ULONG suspension_sequence
 #define NX_CLEANUP_ARGUMENT  , 0
 #define NX_CLEANUP_EXTENSION NX_PARAMETER_NOT_USED(suspension_sequence);
@@ -262,7 +143,7 @@ extern   "C" {
 #define NX_CLEANUP_PARAMETER
 #define NX_CLEANUP_ARGUMENT
 #define NX_CLEANUP_EXTENSION
-#endif /* (THREADX_MAJOR_VERSION >= 5) && (THREADX_MINOR_VERSION >= 8) */
+#endif /* (((THREADX_MAJOR_VERSION << 8) | THREADX_MINOR_VERSION) >= 0x0508) */
 
 /* Define the get system state macro. By default, it simply maps to the variable _tx_thread_system_state.  */
 #ifndef TX_THREAD_GET_SYSTEM_STATE
@@ -612,11 +493,13 @@ VOID _nx_trace_event_update(TX_TRACE_BUFFER_ENTRY *event, ULONG timestamp, ULONG
 
 
 /* Define basic constants for the NetX TCP/IP Stack.  */
-#define EL_PRODUCT_NETXDUO
-#define NETXDUO_MAJOR_VERSION                    5
-#define NETXDUO_MINOR_VERSION                    12
+#define AZURE_RTOS_NETXDUO
+#define NETXDUO_MAJOR_VERSION                    6
+#define NETXDUO_MINOR_VERSION                    1
+#define NETXDUO_PATCH_VERSION                    10
 
-/* Define the following symbosl for backward compatibility */
+/* Define the following symbols for backward compatibility */
+#define EL_PRODUCT_NETXDUO
 #define __PRODUCT_NETXDUO__
 #define __NETXDUO_MAJOR_VERSION__                NETXDUO_MAJOR_VERSION
 #define __NETXDUO_MINOR_VERSION__                NETXDUO_MINOR_VERSION
@@ -1407,6 +1290,7 @@ typedef struct NX_IPV6_DEFAULT_ROUTER_ENTRY_STRUCT
 #define NX_PACKET_OFFSET_ERROR                     0x53
 #define NX_OPTION_HEADER_ERROR                     0x54
 #define NX_CONTINUE                                0x55
+#define NX_TCPIP_OFFLOAD_ERROR                     0x56
 
 /* Define Link Driver constants.  */
 
@@ -1438,8 +1322,22 @@ typedef struct NX_IPV6_DEFAULT_ROUTER_ENTRY_STRUCT
 #define NX_LINK_RX_ENABLE                          25
 #define NX_LINK_RX_DISABLE                         26
 #define NX_LINK_6LOWPAN_COMMAND                    27 /* 6LowPAN driver command, the sub command see nx_6lowpan.h.  */
+#define NX_LINK_GET_INTERFACE_TYPE                 28
 
 #define NX_LINK_USER_COMMAND                       50 /* Values after this value are reserved for application.  */
+
+
+/* Define operations for TCP/IP offload callback functions.  */
+#define NX_TCPIP_OFFLOAD_TCP_CLIENT_SOCKET_CONNECT  0
+#define NX_TCPIP_OFFLOAD_TCP_SERVER_SOCKET_LISTEN   1
+#define NX_TCPIP_OFFLOAD_TCP_SERVER_SOCKET_ACCEPT   2
+#define NX_TCPIP_OFFLOAD_TCP_SERVER_SOCKET_UNLISTEN 3
+#define NX_TCPIP_OFFLOAD_TCP_SOCKET_DISCONNECT      4
+#define NX_TCPIP_OFFLOAD_TCP_SOCKET_SEND            5
+#define NX_TCPIP_OFFLOAD_UDP_SOCKET_BIND            6
+#define NX_TCPIP_OFFLOAD_UDP_SOCKET_UNBIND          7
+#define NX_TCPIP_OFFLOAD_UDP_SOCKET_SEND            8
+
 
 /* Define Link Driver Capability Flags.  */
 #ifdef NX_ENABLE_INTERFACE_CAPABILITY
@@ -1455,6 +1353,20 @@ typedef struct NX_IPV6_DEFAULT_ROUTER_ENTRY_STRUCT
 #define NX_INTERFACE_CAPABILITY_ICMPV6_TX_CHECKSUM 0x00000200
 #define NX_INTERFACE_CAPABILITY_IGMP_TX_CHECKSUM   0x00000400
 #define NX_INTERFACE_CAPABILITY_IGMP_RX_CHECKSUM   0x00000800
+#define NX_INTERFACE_CAPABILITY_PTP_TIMESTAMP      0x00001000
+#define NX_INTERFACE_CAPABILITY_TCPIP_OFFLOAD      0x00002000
+#define NX_INTERFACE_CAPABILITY_CHECKSUM_ALL       (NX_INTERFACE_CAPABILITY_IPV4_TX_CHECKSUM | \
+                                                    NX_INTERFACE_CAPABILITY_IPV4_RX_CHECKSUM | \
+                                                    NX_INTERFACE_CAPABILITY_TCP_TX_CHECKSUM | \
+                                                    NX_INTERFACE_CAPABILITY_TCP_RX_CHECKSUM | \
+                                                    NX_INTERFACE_CAPABILITY_UDP_TX_CHECKSUM | \
+                                                    NX_INTERFACE_CAPABILITY_UDP_RX_CHECKSUM | \
+                                                    NX_INTERFACE_CAPABILITY_ICMPV4_TX_CHECKSUM | \
+                                                    NX_INTERFACE_CAPABILITY_ICMPV4_RX_CHECKSUM | \
+                                                    NX_INTERFACE_CAPABILITY_ICMPV6_RX_CHECKSUM | \
+                                                    NX_INTERFACE_CAPABILITY_ICMPV6_TX_CHECKSUM | \
+                                                    NX_INTERFACE_CAPABILITY_IGMP_TX_CHECKSUM | \
+                                                    NX_INTERFACE_CAPABILITY_IGMP_RX_CHECKSUM)     
 #endif /* NX_ENABLE_INTERFACE_CAPABILITY */
 
 #define NX_IP_VERSION_V4                           0x4
@@ -1474,12 +1386,20 @@ typedef struct NX_IPV6_DEFAULT_ROUTER_ENTRY_STRUCT
 #define NX_IP_PACKET_OUT                           1
 #endif /* NX_ENABLE_IP_PACKET_FILTER */
 
+/* Define the interface type.  */
+#define NX_INTERFACE_TYPE_UNKNOWN                  0
+#define NX_INTERFACE_TYPE_OTHER                    1
+#define NX_INTERFACE_TYPE_ETHERNET                 2
+#define NX_INTERFACE_TYPE_WIFI                     3
+#define NX_INTERFACE_TYPE_CELLULAR                 4
+#define NX_INTERFACE_TYPE_BLUETOOTH                5
+#define NX_INTERFACE_TYPE_LORAWAN                  6
+#define NX_INTERFACE_TYPE_MAX                      7
 
 #ifdef NX_ENABLE_THREAD
 /* Define the packet type for Thread MLE.  */
 #define NX_PACKET_TYPE_THREAD_MLE                  0x01
 #endif /* NX_ENABLE_THREAD  */
-
 
 /* Define IPv4/v6 Address structure */
 typedef struct NXD_ADDRESS_STRUCT
@@ -1805,6 +1725,14 @@ typedef struct NX_ARP_STRUCT
 #endif /* NX_DISABLE_IPV4 */
 
 
+/* Determine if the UDP control block has an extension defined. If not, 
+   define the extension to whitespace.  */
+
+#ifndef NX_UDP_SOCKET_MODULE_EXTENSION
+#define NX_UDP_SOCKET_MODULE_EXTENSION
+#endif
+
+
 /* Define the basic UDP socket structure.  This structure is used to manage all information
    necessary to manage UDP transmission and reception.  */
 
@@ -1891,7 +1819,25 @@ typedef struct NX_UDP_SOCKET_STRUCT
     /* This pointer is reserved for application specific use.  */
     /*lint -esym(768,NX_UDP_SOCKET_STRUCT::nx_udp_socket_reserved_ptr) suppress member not referenced. It is reserved for future use. */
     void        *nx_udp_socket_reserved_ptr;
+
+#ifdef NX_ENABLE_TCPIP_OFFLOAD
+    /* Store a pointer to TCP/IP offload context.  */
+    VOID        *nx_udp_socket_tcpip_offload_context;
+#endif /* NX_ENABLE_TCPIP_OFFLOAD */
+
+    /* Define the port extension in the UDP socket control block. This 
+       is typically defined to whitespace in nx_port.h.  */
+    NX_UDP_SOCKET_MODULE_EXTENSION
+    
 } NX_UDP_SOCKET;
+
+
+/* Determine if the TCP control block has an extension defined. If not, 
+   define the extension to whitespace.  */
+
+#ifndef NX_TCP_SOCKET_MODULE_EXTENSION
+#define NX_TCP_SOCKET_MODULE_EXTENSION
+#endif
 
 
 /* Define the basic TCP socket structure.  This structure is used to manage all information
@@ -2153,6 +2099,16 @@ typedef struct NX_TCP_SOCKET_STRUCT
     UINT  nx_tcp_socket_egress_sa_data_offset;
 
 #endif /* NX_IPSEC_ENABLE */
+
+#ifdef NX_ENABLE_TCPIP_OFFLOAD
+    /* Store a pointer to TCP/IP offload context.  */
+    VOID *nx_tcp_socket_tcpip_offload_context;
+#endif /* NX_ENABLE_TCPIP_OFFLOAD */
+
+    /* Define the port extension in the TCP socket control block. This 
+       is typically defined to whitespace in nx_port.h.  */
+    NX_TCP_SOCKET_MODULE_EXTENSION
+    
 } NX_TCP_SOCKET;
 
 
@@ -2353,6 +2309,15 @@ typedef struct NX_INTERFACE_STRUCT
        ARP packet that matches that of nx_interface_ip_probe_address.  */
     VOID        (*nx_interface_ip_conflict_notify_handler)(struct NX_IP_STRUCT *, UINT, ULONG, ULONG, ULONG);
 #endif /* !NX_DISABLE_IPV4  */
+
+#ifdef NX_ENABLE_TCPIP_OFFLOAD
+    /* Define the TCP/IP offload handler. */
+    UINT        (*nx_interface_tcpip_offload_handler)(struct NX_IP_STRUCT *ip_ptr,
+                                                      struct NX_INTERFACE_STRUCT *interface_ptr,
+                                                      VOID *socket_ptr, UINT operation, NX_PACKET *packet_ptr,
+                                                      NXD_ADDRESS *local_ip, NXD_ADDRESS *remote_ip,
+                                                      UINT local_port, UINT *remote_port, UINT wait_option);
+#endif /* NX_ENABLE_TCPIP_OFFLOAD */
 } NX_INTERFACE;
 
 /* Define the static IPv4 routing table entry structure. */
@@ -2410,6 +2375,15 @@ typedef struct NX_IPV6_MULTICAST_STRUCT
 } NX_IPV6_MULTICAST_ENTRY;
 
 #endif /* NX_ENABLE_IPV6_MULTICAST  */
+
+
+/* Determine if the IP control block has an extension defined. If not, 
+   define the extension to whitespace.  */
+
+#ifndef NX_IP_MODULE_EXTENSION
+#define NX_IP_MODULE_EXTENSION
+#endif
+
 
 /* Define the Internet Protocol (IP) structure.  Any number of IP instances
    may be used by the application.  */
@@ -2673,7 +2647,7 @@ typedef struct NX_IP_STRUCT
 
 #ifdef FEATURE_NX_IPV6
 #ifdef NX_ENABLE_IPV6_ADDRESS_CHANGE_NOTIFY
-    VOID        (*nx_ipv6_address_change_notify)(struct NX_IP_STRUCT *, UINT, UINT, UINT, ULONG*);
+    VOID        (*nx_ipv6_address_change_notify)(struct NX_IP_STRUCT *ip_ptr, UINT status, UINT interface_index, UINT addres_index, ULONG *ip_address);
 #endif /* NX_ENABLE_IPV6_ADDRESS_CHANGE_NOTIFY */
 #endif /* FEATURE_NX_IPV6 */
 
@@ -3013,7 +2987,16 @@ typedef struct NX_IP_STRUCT
 #ifdef NX_ENABLE_IP_PACKET_FILTER
     /* Define the IP packet filter routine.  */
     UINT        (*nx_ip_packet_filter)(VOID *, UINT);
+
+    /* Define the IP packet filter extended routine.  */
+    /* Note: Developers are encouraged to use nx_ip_packet_filter_extended since nx_ip_packet_filter will be deprecated.*/
+    UINT        (*nx_ip_packet_filter_extended)(struct NX_IP_STRUCT *ip_ptr, NX_PACKET *packet_ptr, UINT direction);
 #endif /* NX_ENABLE_IP_PACKET_FILTER */
+
+    /* Define the port extension in the IP control block. This 
+       is typically defined to whitespace in nx_port.h.  */
+    NX_IP_MODULE_EXTENSION
+    
 } NX_IP;
 
 
@@ -3559,7 +3542,7 @@ UINT nx_ip_static_route_delete(NX_IP *ip_ptr, ULONG network_address, ULONG net_m
 UINT nx_ipv4_multicast_interface_join(NX_IP *ip_ptr, ULONG group_address, UINT interface_index);
 UINT nx_ipv4_multicast_interface_leave(NX_IP *ip_ptr, ULONG group_address, UINT interface_index);
 UINT nxd_ipv6_address_change_notify(NX_IP *ip_ptr,
-                                    VOID (*ip_address_change_notify)(NX_IP *, UINT, UINT, UINT, ULONG *));
+                                    VOID (*ip_address_change_notify)(NX_IP *ip_ptr, UINT status, UINT interface_index, UINT address_index, ULONG *ip_address));
 UINT nxd_ipv6_address_delete(NX_IP *ip_ptr, UINT address_index);
 UINT nxd_ipv6_address_get(NX_IP *ip_ptr, UINT address_index, NXD_ADDRESS *ip_address,
                           ULONG *prefix_length, UINT *interface_index);
@@ -3841,6 +3824,18 @@ VOID _nx_ip_packet_receive(NX_IP *ip_ptr, NX_PACKET *packet_ptr);
    processing in the driver's receive ISR.  */
 VOID _nx_ip_driver_link_status_event(NX_IP *ip_ptr, UINT interface_index);
 
+#ifdef NX_ENABLE_TCPIP_OFFLOAD
+/* Define the direct TCP packet receive processing.  This is used with TCP/IP offload feature.  */
+VOID _nx_tcp_socket_driver_packet_receive(NX_TCP_SOCKET *socket_ptr, NX_PACKET *packet_ptr);
+
+/* Define the direct TCP established processing.  This is used with TCP/IP offload feature.  */
+UINT _nx_tcp_socket_driver_establish(NX_TCP_SOCKET *socket_ptr, NX_INTERFACE *interface_ptr, UINT remote_port);
+
+/* Define the direct UDP packet receive processing.  This is used with TCP/IP offload feature.  */
+VOID _nx_udp_socket_driver_packet_receive(NX_UDP_SOCKET *socket_ptr, NX_PACKET *packet_ptr,
+                                          NXD_ADDRESS *local_ip, NXD_ADDRESS *remote_ip, UINT remote_port);
+#endif /* NX_ENABLE_TCPIP_OFFLOAD */
+
 #endif
 
 #ifdef FEATURE_NX_IPV6
@@ -3917,6 +3912,10 @@ VOID _nx_ip_driver_link_status_event(NX_IP *ip_ptr, UINT interface_index);
 
 /* Utility functions.  */
 UINT _nx_utility_string_length_check(CHAR *input_string, UINT *string_length, UINT max_string_length);
+UINT _nx_utility_string_to_uint(CHAR *input_string, UINT string_length, UINT *number);
+UINT _nx_utility_uint_to_string(UINT number, UINT base, CHAR *string_buffer, UINT string_buffer_size);
+UINT _nx_utility_base64_encode(UCHAR *name, UINT name_size, UCHAR *base64name, UINT base64name_size, UINT *bytes_copied);
+UINT _nx_utility_base64_decode(UCHAR *base64name, UINT base64name_size, UCHAR *name, UINT name_size, UINT *bytes_copied);
 
 /* Determine if a C++ compiler is being used.  If so, complete the standard
    C conditional started above.  */

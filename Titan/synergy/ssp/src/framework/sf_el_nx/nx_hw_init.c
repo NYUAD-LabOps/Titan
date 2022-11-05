@@ -1,28 +1,17 @@
+/*LDRA_INSPECTED 119 S */
 /**************************************************************************/
 /*                                                                        */
-/*            Copyright (c) 1996-2015 by Express Logic Inc.               */
+/*       Copyright (c) Microsoft Corporation. All rights reserved.        */
 /*                                                                        */
-/*  This software is copyrighted by and is the sole property of Express   */
-/*  Logic, Inc.  All rights, title, ownership, or other interests         */
-/*  in the software remain the property of Express Logic, Inc.  This      */
-/*  software may only be used in accordance with the corresponding        */
-/*  license agreement.  Any unauthorized use, duplication, transmission,  */
-/*  distribution, or disclosure of this software is expressly forbidden.  */
-/*                                                                        */
-/*  This Copyright notice may not be removed or modified without prior    */
-/*  written consent of Express Logic, Inc.                                */
-/*                                                                        */
-/*  Express Logic, Inc. reserves the right to modify this software        */
-/*  without notice.                                                       */
-/*                                                                        */
-/*  Express Logic, Inc.                     info@expresslogic.com         */
-/*  11423 West Bernardo Court               www.expresslogic.com          */
-/*  San Diego, CA  92127                                                  */
+/*       This software is licensed under the Microsoft Software License   */
+/*       Terms for Microsoft Azure RTOS. Full text of the license can be  */
+/*       found in the LICENSE file at https://aka.ms/AzureRTOS_EULA       */
+/*       and in the root directory of this software.                      */
 /*                                                                        */
 /**************************************************************************/
 
 /***********************************************************************************************************************
- * Copyright [2017] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
+ * Copyright [2017-2021] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
  *
  * This file is part of Renesas SynergyTM Software Package (SSP)
  *

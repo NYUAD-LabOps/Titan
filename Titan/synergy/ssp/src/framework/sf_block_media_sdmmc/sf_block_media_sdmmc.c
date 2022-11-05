@@ -1,473 +1,450 @@
-#ifdef AMS_ENCRYPT_PACKAGE
------BEGIN ENCRYPTED FILE v0.6-----
-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
-4KXWgh/rayjhbnBURtK+cw==
------END ENCRYPTED FILE-----
-#else
-#error "Secure builder required to compile this file"
+/***********************************************************************************************************************
+ * Copyright [2015-2021] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
+ * 
+ * This file is part of Renesas SynergyTM Software Package (SSP)
+ *
+ * The contents of this file (the "contents") are proprietary and confidential to Renesas Electronics Corporation
+ * and/or its licensors ("Renesas") and subject to statutory and contractual protections.
+ *
+ * This file is subject to a Renesas SSP license agreement. Unless otherwise agreed in an SSP license agreement with
+ * Renesas: 1) you may not use, copy, modify, distribute, display, or perform the contents; 2) you may not use any name
+ * or mark of Renesas for advertising or publicity purposes or in connection with your use of the contents; 3) RENESAS
+ * MAKES NO WARRANTY OR REPRESENTATIONS ABOUT THE SUITABILITY OF THE CONTENTS FOR ANY PURPOSE; THE CONTENTS ARE PROVIDED
+ * "AS IS" WITHOUT ANY EXPRESS OR IMPLIED WARRANTY, INCLUDING THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+ * PARTICULAR PURPOSE, AND NON-INFRINGEMENT; AND 4) RENESAS SHALL NOT BE LIABLE FOR ANY DIRECT, INDIRECT, SPECIAL, OR
+ * CONSEQUENTIAL DAMAGES, INCLUDING DAMAGES RESULTING FROM LOSS OF USE, DATA, OR PROJECTS, WHETHER IN AN ACTION OF
+ * CONTRACT OR TORT, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THE CONTENTS. Third-party contents
+ * included in this file may be subject to different terms.
+ **********************************************************************************************************************/
+
+/**********************************************************************************************************************
+ * File Name    : sf_block_media_sdmmc.c
+ * Description  : Block Media driver interface SDMMC driver for SDHI/SDMMC device.
+ **********************************************************************************************************************/
+
+/*******************************************************************************************************************//**
+ * @file sf_block_media_sdmmc.c
+ **********************************************************************************************************************/
+
+/***********************************************************************************************************************
+ * Includes
+ **********************************************************************************************************************/
+
+#include <string.h>
+#include "sf_block_media_sdmmc.h"
+#include "sf_block_media_sdmmc_cfg.h"
+#include "sf_block_media_sdmmc_private_api.h"
+#include "r_sdmmc.h"
+
+/***********************************************************************************************************************
+ * Macro definitions
+ **********************************************************************************************************************/
+#define SF_BLOCK_MEDIA_SDMMC_TRANSFER_TIMEOUT (10000)
+
+/** Macro for error logger. */
+#ifndef SF_BLOCK_MEDIA_SDMMC_ERROR_RETURN
+/*LDRA_INSPECTED 77 S This macro does not work when surrounded by parentheses. */
+#define SF_BLOCK_MEDIA_SDMMC_ERROR_RETURN(a, err) SSP_ERROR_RETURN((a), (err), &g_module_name[0], &g_block_media_sdmmc_version)
 #endif
+
+/** "BMSO" in ASCII, used to identify block media SDMMC handle*/
+#define SF_BLOCK_MEDIA_SDMMC_OPEN (0x424D534FU)
+/***********************************************************************************************************************
+ * Typedef definitions
+ **********************************************************************************************************************/
+
+/***********************************************************************************************************************
+ * Exported global variables (to be accessed by other files)
+ **********************************************************************************************************************/
+
+/***********************************************************************************************************************
+ * Private function prototypes
+ **********************************************************************************************************************/
+static void sf_block_media_sdmmc_callback (sdmmc_callback_args_t * pcb_arg);
+
+/***********************************************************************************************************************
+ * Global Variables
+ **********************************************************************************************************************/
+
+/** Block Media SDMMC function pointers   */
+/*LDRA_INSPECTED 27 D This structure must be accessible in user code. It cannot be static. */
+const sf_block_media_api_t g_sf_block_media_on_sdmmc =
+{
+    .open       = SF_Block_Media_SDMMC_Open,
+    .read       = SF_Block_Media_SDMMC_Read,
+    .write      = SF_Block_Media_SDMMC_Write,
+    .ioctl      = SF_Block_Media_SDMMC_Control,
+    .close      = SF_Block_Media_SDMMC_Close,
+    .versionGet = SF_Block_Media_SDMMC_VersionGet
+};
+
+/** Name of module used by error logger macro */
+#if BSP_CFG_ERROR_LOG != 0
+static const char g_module_name[] = "sf_block_media_sdmmc";
+#endif
+
+#if defined(__GNUC__)
+/* This structure is affected by warnings from a GCC compiler bug. This pragma suppresses the warnings in this
+ * structure only.*/
+/*LDRA_INSPECTED 69 S */
+#pragma GCC diagnostic ignored "-Wmissing-field-initializers"
+#endif
+/** Version data structure used by error logger macro. */
+static const ssp_version_t g_block_media_sdmmc_version =
+{
+    .api_version_minor  = BLOCK_MEDIA_API_VERSION_MINOR,
+    .api_version_major  = BLOCK_MEDIA_API_VERSION_MAJOR,
+    .code_version_major = BLOCK_MEDIA_SDMMC_CODE_VERSION_MAJOR,
+    .code_version_minor = BLOCK_MEDIA_SDMMC_CODE_VERSION_MINOR
+};
+#if defined(__GNUC__)
+/* Restore warning settings for 'missing-field-initializers' to as specified on command line. */
+/*LDRA_INSPECTED 69 S */
+#pragma GCC diagnostic pop
+#endif
+
+/*******************************************************************************************************************//**
+ * @addtogroup SF_BLOCK_MEDIA_SDMMC
+ *
+ * @{
+ **********************************************************************************************************************/
+
+/***********************************************************************************************************************
+ * Functions
+ **********************************************************************************************************************/
+
+/*******************************************************************************************************************//**
+ * @brief  Open device for read/write and control.
+ *
+ * Open an SD or MMC device port for read/write and control. This function initializes
+ * the SDMMC driver and hardware the first time it is called out of reset.
+ *
+ * @retval SSP_SUCCESS              Port is available and is now open for read, write, and control access.
+ * @retval SSP_ERR_ASSERTION        p_ctrl, p_cfg, p_block_media_cfg or p_sdmmc is NULL.
+ * @retval SSP_ERR_INTERNAL         OS service call fails.
+ * @retval SSP_ERR_IN_USE           The channel specified has already been opened. No configurations were changed. Call
+ *                                  the associated Close function or use associated Control commands to reconfigure the
+ *                                  channel.
+ * @return                          See @ref Common_Error_Codes or lower level drivers for other possible return codes.
+ *                                  This function calls:
+ *                                  * sdmmc_api_t::open
+ * @note This function is reentrant for different channels. It is not reentrant for the same channel.
+ *
+ **********************************************************************************************************************/
+ssp_err_t SF_Block_Media_SDMMC_Open (sf_block_media_ctrl_t * const p_api_ctrl, sf_block_media_cfg_t const * const p_cfg)
+{
+    sf_block_media_sdmmc_instance_ctrl_t * p_ctrl = (sf_block_media_sdmmc_instance_ctrl_t *) p_api_ctrl;
+
+    ssp_err_t                             ret_val;
+    sf_block_media_on_sdmmc_cfg_t const * p_block_media_cfg;
+    sdmmc_instance_t                    * p_sdmmc;
+    sdmmc_cfg_t                           tmp_lower_lvl_cfg;
+    UINT                                  tx_err = TX_SUCCESS;
+
+    p_block_media_cfg = p_cfg->p_extend;
+    p_sdmmc           = (sdmmc_instance_t *) p_block_media_cfg->p_lower_lvl_sdmmc;
+
+#if (BLOCK_MEDIA_SDMMC_CFG_PARAM_CHECKING_ENABLE)
+    SSP_ASSERT(NULL != p_ctrl);
+    SSP_ASSERT(NULL != p_cfg);
+    SSP_ASSERT(NULL != p_block_media_cfg);
+    SSP_ASSERT(NULL != p_sdmmc);
+#endif
+
+    SF_BLOCK_MEDIA_SDMMC_ERROR_RETURN(SF_BLOCK_MEDIA_SDMMC_OPEN != p_ctrl->open, SSP_ERR_IN_USE);
+
+    /* Temporary copy config parameters during open processing */
+    memcpy(&tmp_lower_lvl_cfg, p_sdmmc->p_cfg, sizeof(sdmmc_cfg_t));
+    tmp_lower_lvl_cfg.p_callback = sf_block_media_sdmmc_callback;               /* set SSP framework level callback
+                                                                                 *function */
+
+    /* Save context for use in ISRs */
+    tmp_lower_lvl_cfg.p_context = (void *) p_ctrl;
+
+    ret_val                     = p_sdmmc->p_api->open(p_sdmmc->p_ctrl, &tmp_lower_lvl_cfg);
+    if (ret_val == SSP_SUCCESS)
+    {
+        p_ctrl->p_lower_lvl_sdmmc = p_sdmmc;
+
+        /**  Create SDMMC event flag and put it into context */
+        tx_err = tx_event_flags_create(&p_ctrl->eventflag, (CHAR *) "SDMMC Transfer");
+        if (tx_err == TX_SUCCESS)
+        {
+            /**  Mark the stream as open by initializing "BMSO" in its ASCII equivalent. */
+            p_ctrl->open = SF_BLOCK_MEDIA_SDMMC_OPEN;
+        }
+        else
+        {
+            /** Cleanup before logging the error */
+            /* The return codes are not checked because valid parameters are passed here and the Close API does not
+             * return an error except for parameter checking */
+            p_sdmmc->p_api->close(p_sdmmc->p_ctrl);
+            SSP_ERROR_LOG(SSP_ERR_INTERNAL, &g_module_name[0], &g_block_media_sdmmc_version);
+            return SSP_ERR_INTERNAL;
+        }
+    }
+
+    return ret_val;
+}
+
+/*******************************************************************************************************************//**
+ * @brief  Read data from SD/MMC.
+ *
+ * Read data from an SD or MMC device port.
+ *
+ * @retval  SSP_SUCCESS                  Data read successfully.
+ * @retval  SSP_ERR_ASSERTION            p_ctrl, p_sdmmc or p_dest is NULL.
+ * @retval  SSP_ERR_NOT_OPEN             The channel is not opened.
+ * @retval  SSP_ERR_INTERNAL             OS service call fails.
+ * @retval  SSP_ERR_READ_FAILED          Data read failed.
+ * @return                               See @ref Common_Error_Codes or lower level drivers for other possible return codes.
+ *                                       This function calls:
+ *                                       * sdmmc_api_t::read
+ * @note This function is reentrant for different channels. It is not reentrant for the same channel.
+ *
+ **********************************************************************************************************************/
+
+ssp_err_t SF_Block_Media_SDMMC_Read (sf_block_media_ctrl_t * const p_api_ctrl,
+                                     uint8_t * const               p_dest,
+                                     uint32_t  const               start_block,
+                                     uint32_t  const               block_count)
+{
+    sf_block_media_sdmmc_instance_ctrl_t * p_ctrl = (sf_block_media_sdmmc_instance_ctrl_t *) p_api_ctrl;
+
+    ssp_err_t                              ret_val;
+    sdmmc_instance_t                     * p_sdmmc;
+    ULONG                                  actual_flags = 0U;
+    UINT                                   status = TX_SUCCESS;
+
+    p_sdmmc       = (sdmmc_instance_t *) p_ctrl->p_lower_lvl_sdmmc;
+
+#if (BLOCK_MEDIA_SDMMC_CFG_PARAM_CHECKING_ENABLE)
+    SSP_ASSERT(NULL != p_ctrl);
+    SSP_ASSERT(NULL != p_sdmmc);
+    SSP_ASSERT(NULL != p_dest);
+#endif
+
+    SF_BLOCK_MEDIA_SDMMC_ERROR_RETURN(SF_BLOCK_MEDIA_SDMMC_OPEN == p_ctrl->open, SSP_ERR_NOT_OPEN);
+
+    ret_val = p_sdmmc->p_api->read(p_sdmmc->p_ctrl, p_dest, start_block, block_count);
+
+    if (ret_val != SSP_SUCCESS)
+    {
+        return ret_val;
+    }
+    else
+    {
+        /** Wait until read operation is completed. Event is signaled in event flag object. */
+        status = tx_event_flags_get(&p_ctrl->eventflag, SDMMC_EVENT_TRANSFER_COMPLETE, TX_OR_CLEAR,
+                                    &actual_flags, SF_BLOCK_MEDIA_SDMMC_TRANSFER_TIMEOUT);
+
+        if (TX_SUCCESS != status)
+        {
+            ret_val = SSP_ERR_INTERNAL;
+        }
+        else if (SDMMC_EVENT_TRANSFER_COMPLETE == actual_flags)
+        {
+            ret_val = SSP_SUCCESS;
+        }
+        else
+        {
+                ret_val = SSP_ERR_READ_FAILED;
+        }
+    }
+        return ret_val;
+}
+
+/*******************************************************************************************************************//**
+ * @brief  Write data to SDMMC channel.
+ *
+ * @retval  SSP_SUCCESS                  Card write finished successfully.
+ * @retval  SSP_ERR_ASSERTION            p_ctrl, p_sdmmc or p_src is NULL.
+ * @retval  SSP_ERR_NOT_OPEN             The channel is not opened.
+ * @retval  SSP_ERR_INTERNAL             OS service call fails.
+ * @retval  SSP_ERR_WRITE_FAILED         Data write failed.
+ * @return                               See @ref Common_Error_Codes or lower level drivers for other possible return codes.
+ *                                       This function calls:
+ *                                       * sdmmc_api_t::write
+ * @note This function is reentrant for different channels.
+ *
+ **********************************************************************************************************************/
+
+ssp_err_t SF_Block_Media_SDMMC_Write (sf_block_media_ctrl_t * const p_api_ctrl,
+                                      uint8_t  const * const        p_src,
+                                      uint32_t const                start_block,
+                                      uint32_t const                block_count)
+{
+    sf_block_media_sdmmc_instance_ctrl_t * p_ctrl = (sf_block_media_sdmmc_instance_ctrl_t *) p_api_ctrl;
+
+    ssp_err_t                              ret_val;
+    sdmmc_instance_t                     * p_sdmmc;
+    ULONG                                  actual_flags = 0U;
+    UINT                                   status = TX_SUCCESS;
+
+    p_sdmmc       = (sdmmc_instance_t *) p_ctrl->p_lower_lvl_sdmmc;
+
+#if (BLOCK_MEDIA_SDMMC_CFG_PARAM_CHECKING_ENABLE)
+    SSP_ASSERT(NULL != p_ctrl);
+    SSP_ASSERT(NULL != p_sdmmc);
+    SSP_ASSERT(NULL != p_src);
+#endif
+
+    SF_BLOCK_MEDIA_SDMMC_ERROR_RETURN(SF_BLOCK_MEDIA_SDMMC_OPEN == p_ctrl->open, SSP_ERR_NOT_OPEN);
+
+    ret_val = p_sdmmc->p_api->write(p_sdmmc->p_ctrl,  p_src, start_block, block_count);
+    if (ret_val != SSP_SUCCESS)
+    {
+        return ret_val;
+    }
+    else
+    {
+        /** Wait until write operation is completed. Event is signaled in event flag object. */
+        status = tx_event_flags_get(&p_ctrl->eventflag, SDMMC_EVENT_TRANSFER_COMPLETE, TX_OR_CLEAR,
+                                    &actual_flags, SF_BLOCK_MEDIA_SDMMC_TRANSFER_TIMEOUT);
+
+        if (TX_SUCCESS != status)
+        {
+            ret_val = SSP_ERR_INTERNAL;
+        }
+        else if (SDMMC_EVENT_TRANSFER_COMPLETE == actual_flags)
+        {
+            ret_val = SSP_SUCCESS;
+        }
+        else
+        {
+                ret_val = SSP_ERR_WRITE_FAILED;
+        }
+    }
+        return ret_val;
+
+}
+
+/*******************************************************************************************************************//**
+ * @brief  Send control commands to and receive status of SD/MMC port.
+ *
+ * Send control commands to the SD/MMC port and receive the status of the SD/MMC port.
+ *
+ * @retval SSP_SUCCESS              Command executed successfully.
+ * @retval SSP_ERR_ASSERTION        p_ctrl or p_sdmmc or p_data is Null.
+ * @retval SSP_ERR_NOT_OPEN         The channel is not opened.
+ * @return                          See @ref Common_Error_Codes or lower level drivers for other possible return codes.
+ *                                  This function calls:
+ *                                  * sdmmc_api_t::control
+ * @note This function is reentrant for different channels. It is not reentrant for the same channel.
+ *
+ **********************************************************************************************************************/
+ssp_err_t SF_Block_Media_SDMMC_Control (sf_block_media_ctrl_t * const p_api_ctrl,
+                                        ssp_command_t const           command,
+                                        void                        * p_data)
+{
+    sf_block_media_sdmmc_instance_ctrl_t * p_ctrl = (sf_block_media_sdmmc_instance_ctrl_t *) p_api_ctrl;
+
+    sdmmc_instance_t                     * p_sdmmc;
+    ssp_err_t                              ret_val;
+
+    p_sdmmc       = (sdmmc_instance_t *) p_ctrl->p_lower_lvl_sdmmc;
+
+#if (BLOCK_MEDIA_SDMMC_CFG_PARAM_CHECKING_ENABLE)
+    SSP_ASSERT(NULL != p_ctrl);
+    SSP_ASSERT(NULL != p_sdmmc);
+    SSP_ASSERT(NULL != p_data);
+#endif
+
+    SF_BLOCK_MEDIA_SDMMC_ERROR_RETURN(SF_BLOCK_MEDIA_SDMMC_OPEN == p_ctrl->open, SSP_ERR_NOT_OPEN);
+
+    ret_val = p_sdmmc->p_api->control(p_sdmmc->p_ctrl, command, p_data);
+
+    return ret_val;
+}
+
+/*******************************************************************************************************************//**
+ * @brief      Close open device port.
+ *
+ * Close an open SD/MMC device port.
+ *
+ * @retval     SSP_SUCCESS              Successful close.
+ * @retval     SSP_ERR_ASSERTION        p_ctrl or p_sdmmc is NULL.
+ * @retval     SSP_ERR_NOT_OPEN         The channel is not opened.
+ * @note This function is reentrant for different channels. It is not reentrant for the same channel.
+ *
+ **********************************************************************************************************************/
+
+ssp_err_t SF_Block_Media_SDMMC_Close (sf_block_media_ctrl_t * const p_api_ctrl)
+{
+    sf_block_media_sdmmc_instance_ctrl_t * p_ctrl = (sf_block_media_sdmmc_instance_ctrl_t *) p_api_ctrl;
+
+    sdmmc_instance_t               * p_sdmmc;
+
+    p_sdmmc            = (sdmmc_instance_t *) p_ctrl->p_lower_lvl_sdmmc;
+
+#if    (BLOCK_MEDIA_SDMMC_CFG_PARAM_CHECKING_ENABLE)
+    SSP_ASSERT(NULL != p_ctrl);
+    SSP_ASSERT(NULL != p_sdmmc);
+#endif
+
+    SF_BLOCK_MEDIA_SDMMC_ERROR_RETURN(SF_BLOCK_MEDIA_SDMMC_OPEN == p_ctrl->open, SSP_ERR_NOT_OPEN);
+
+    /* The return codes are not checked here because Close API should not return an error except for
+     * parameter checking */
+    p_sdmmc->p_api->close(p_sdmmc->p_ctrl);
+
+    /* The return codes are not checked here because event flag delete call cannot fail when called
+     * with created RTOS objects. This object was successfully created in open function. */
+    tx_event_flags_delete(&p_ctrl->eventflag);
+
+    /** Mark control block as unused so it can be reconfigured. */
+    p_ctrl->open = 0U;
+
+    return SSP_SUCCESS;
+}
+
+/*******************************************************************************************************************//**
+ * @brief  Get version of Block Media SD/MMC driver.
+ *
+ * Return the version of the firmware and API.
+ *
+ * @retval SSP_ERR_ASSERTION        p_version is Pointer.
+ * @retval SSP_SUCCESS              version read successfully.
+ * @note This function is reentrant.
+ *
+ **********************************************************************************************************************/
+
+ssp_err_t  SF_Block_Media_SDMMC_VersionGet (ssp_version_t * const p_version)
+{
+#if    (BLOCK_MEDIA_SDMMC_CFG_PARAM_CHECKING_ENABLE)
+    /* Check pointer for NULL values */
+    SSP_ASSERT(NULL != p_version);
+#endif
+
+    p_version->version_id = g_block_media_sdmmc_version.version_id;
+    return SSP_SUCCESS;
+}
+
+/***********************************************************************************************************************
+ * Private Functions
+ **********************************************************************************************************************/
+
+/******************************************************************************************************************//**
+ * SDMMC SSP framework level callback
+ * @param[in]  pcb_arg Pointer to callback parameters
+ * @retval void
+ **********************************************************************************************************************/
+static void sf_block_media_sdmmc_callback (sdmmc_callback_args_t * pcb_arg)
+{
+    sf_block_media_sdmmc_instance_ctrl_t * p_ctrl       = (sf_block_media_sdmmc_instance_ctrl_t *) pcb_arg->p_context;
+    TX_EVENT_FLAGS_GROUP           * p_flag             = &p_ctrl->eventflag;
+
+    if ((SDMMC_EVENT_TRANSFER_COMPLETE == pcb_arg->event) || (SDMMC_EVENT_TRANSFER_ERROR == pcb_arg->event))
+    {
+        /** Transfer complete event occurs wake up the suspended thread.  */
+        p_flag = &p_ctrl->eventflag;   /* Points location for event flag for transfer. */
+
+        /* The return code is not checked here because event flag set is called with valid input arguments */
+        tx_event_flags_set(p_flag, (ULONG)pcb_arg->event, TX_OR);
+    }
+
+}  /* End of function sf_block_media_sdmmc_callback() */
+
+/*******************************************************************************************************************//**
+ * @} (end addtogroup BLOCK_MEDIA_SDMMC)
+ **********************************************************************************************************************/

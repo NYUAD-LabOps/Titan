@@ -1,5 +1,5 @@
 /***********************************************************************************************************************
- * Copyright [2015-2017] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
+ * Copyright [2015-2021] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
  * 
  * This file is part of Renesas SynergyTM Software Package (SSP)
  *
@@ -57,9 +57,9 @@ Macro definitions
 #define BSP_IRQ_DISABLED            (0xFFU)
 
 /* Version of this module's code and API. */
-#define BSP_CODE_VERSION_MAJOR      (1U)
-#define BSP_CODE_VERSION_MINOR      (16U)
-#define BSP_API_VERSION_MAJOR       (1U)
+#define BSP_CODE_VERSION_MAJOR      (2U)
+#define BSP_CODE_VERSION_MINOR      (0U)
+#define BSP_API_VERSION_MAJOR       (2U)
 #define BSP_API_VERSION_MINOR       (0U)
 
 #if 1 == BSP_CFG_RTOS

@@ -1,217 +1,175 @@
-#ifdef AMS_ENCRYPT_PACKAGE
------BEGIN ENCRYPTED FILE v0.6-----
-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
-urYc1qozq/BMV6Z7vlWYxQ==
------END ENCRYPTED FILE-----
+/**************************************************************************/
+/*                                                                        */
+/*       Copyright (c) Microsoft Corporation. All rights reserved.        */
+/*                                                                        */
+/*       This software is licensed under the Microsoft Software License   */
+/*       Terms for Microsoft Azure RTOS. Full text of the license can be  */
+/*       found in the LICENSE file at https://aka.ms/AzureRTOS_EULA       */
+/*       and in the root directory of this software.                      */
+/*                                                                        */
+/**************************************************************************/
+
+
+/**************************************************************************/
+/**************************************************************************/
+/**                                                                       */
+/** FileX Component                                                       */
+/**                                                                       */
+/**   System                                                              */
+/**                                                                       */
+/**************************************************************************/
+/**************************************************************************/
+
+
+/**************************************************************************/
+/*                                                                        */
+/*  COMPONENT DEFINITION                                   RELEASE        */
+/*                                                                        */
+/*    fx_system.h                                         PORTABLE C      */
+/*                                                           6.1          */
+/*  AUTHOR                                                                */
+/*                                                                        */
+/*    William E. Lamie, Microsoft Corporation                             */
+/*                                                                        */
+/*  DESCRIPTION                                                           */
+/*                                                                        */
+/*    This file defines the FileX system constants and global data        */
+/*    definitions, including external references.  It is assumed that     */
+/*    fx_api.h (and fx_port.h) have already been included.                */
+/*                                                                        */
+/*  RELEASE HISTORY                                                       */
+/*                                                                        */
+/*    DATE              NAME                      DESCRIPTION             */
+/*                                                                        */
+/*  05-19-2020     William E. Lamie         Initial Version 6.0           */
+/*  09-30-2020     William E. Lamie         Modified comment(s),          */
+/*                                            resulting in version 6.1    */
+/*                                                                        */
+/**************************************************************************/
+
+#ifndef FX_SYSTEM_H
+#define FX_SYSTEM_H
+
+
+/* Define System component constants.  */
+
+#define FX_TIMER_ID                 ((ULONG) 0x46585359)
+
+
+/* Define the external System component function prototypes.  */
+
+VOID _fx_system_initialize(VOID);
+UINT _fx_system_date_set(UINT year, UINT month, UINT day);
+UINT _fx_system_time_set(UINT hour, UINT minute, UINT second);
+UINT _fx_system_date_get(UINT *year, UINT *month, UINT *day);
+UINT _fx_system_time_get(UINT *hour, UINT *minute, UINT *second);
+VOID _fx_system_timer_entry(ULONG id);
+
+UINT _fxe_system_date_set(UINT year, UINT month, UINT day);
+UINT _fxe_system_time_set(UINT hour, UINT minute, UINT second);
+UINT _fxe_system_date_get(UINT *year, UINT *month, UINT *day);
+UINT _fxe_system_time_get(UINT *hour, UINT *minute, UINT *second);
+
+
+/* System Component data declarations follow.  */
+
+/* Determine if the initialization function of this component is including
+   this file.  If so, make the data definitions really happen.  Otherwise,
+   make them extern so other functions in the component can access them.  */
+
+#ifdef FX_SYSTEM_INIT
+#define SYSTEM_DECLARE
 #else
-#error "Secure builder required to compile this file"
+#define SYSTEM_DECLARE extern
 #endif
+
+
+/* Define the head pointer of the opened media list.  */
+
+SYSTEM_DECLARE  FX_MEDIA  *_fx_system_media_opened_ptr;
+
+
+/* Define the variable that holds the number of open media. */
+
+SYSTEM_DECLARE  ULONG  _fx_system_media_opened_count;
+
+
+/* Define the system date variable.  */
+
+SYSTEM_DECLARE  UINT  _fx_system_date;
+
+
+/* Define the system time variable.  */
+
+SYSTEM_DECLARE  UINT  _fx_system_time;
+
+
+/* Define the variable that holds the maximum size of the sector cache.  */
+
+SYSTEM_DECLARE  ULONG  _fx_system_media_max_sector_cache;
+
+
+/* Define the variable that holds the maximum size of the FAT cache.  */
+
+SYSTEM_DECLARE  ULONG  _fx_system_media_max_fat_cache;
+
+
+/* Define the global FileX build options variables. These variables contain a bit
+   map representing how the FileX library was built. The following are the bit
+   field definitions:
+
+    _fx_system_build_options_1:
+
+                    Bit(s)                   Meaning
+
+                    31-24               FX_MAX_LONG_NAME_LEN
+                    23-16               FX_MAX_LAST_NAME_LEN
+                    15-11               Reserved
+                    10                  FX_NO_TIMER defined
+                    9                   FX_SINGLE_THREAD defined
+                    8                   FX_DONT_UPDATE_OPEN_FILES defined
+                    7                   FX_MEDIA_DISABLE_SEARCH_CACHE defined
+                    6                   FX_MEDIA_STATISTICS_DISABLE defined
+                    5                   Reserved
+                    4                   FX_SINGLE_OPEN_LEGACY defined
+                    3                   FX_RENAME_PATH_INHERIT defined
+                    2                   FX_NO_LOCAL_PATH defined
+                    1                   FX_FAULT_TOLERANT_DATA defined
+                    0                   FX_FAULT_TOLERANT defined
+
+    _fx_system_build_options_2:
+
+                    Bit(s)                   Meaning
+
+                    31-16               FX_MAX_SECTOR_CACHE
+                    15-8                FX_FAT_MAP_SIZE
+                    7-0                 FX_MAX_FAT_CACHE
+
+    _fx_system_build_options_3:
+
+                    Bit(s)                   Meaning
+
+                    31-24               Reserved
+                    23-16               FX_UPDATE_RATE_IN_SECONDS
+                    15-0                FX_UPDATE_RATE_IN_TICKS
+
+   Note that values greater than the value that can be represented in the build options
+   bit field are represented as all ones in the bit field. For example, if FX_MAX_LONG_NAME_LEN
+   is 256, the value in the bits 31-24 of _fx_system_build_options_1 is 0xFF, which is 255
+   decimal.  */
+
+SYSTEM_DECLARE  ULONG _fx_system_build_options_1;
+SYSTEM_DECLARE  ULONG _fx_system_build_options_2;
+SYSTEM_DECLARE  ULONG _fx_system_build_options_3;
+
+
+/* Define system timer control block.  If accurate date/time stamps on
+   files is not needed, the define FX_NO_TIMER should be used when
+   compiling fx_system_initialize.c to eliminate the FileX timer.  */
+
+#ifndef FX_NO_TIMER
+SYSTEM_DECLARE  TX_TIMER _fx_system_timer;
+#endif
+
+#endif
+

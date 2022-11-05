@@ -1,23 +1,11 @@
-/**************************************************************************/ 
-/*                                                                        */ 
-/*            Copyright (c) 1996-2019 by Express Logic Inc.               */ 
-/*                                                                        */ 
-/*  This software is copyrighted by and is the sole property of Express   */ 
-/*  Logic, Inc.  All rights, title, ownership, or other interests         */ 
-/*  in the software remain the property of Express Logic, Inc.  This      */ 
-/*  software may only be used in accordance with the corresponding        */ 
-/*  license agreement.  Any unauthorized use, duplication, transmission,  */ 
-/*  distribution, or disclosure of this software is expressly forbidden.  */ 
+/**************************************************************************/
 /*                                                                        */
-/*  This Copyright notice may not be removed or modified without prior    */ 
-/*  written consent of Express Logic, Inc.                                */ 
-/*                                                                        */ 
-/*  Express Logic, Inc. reserves the right to modify this software        */ 
-/*  without notice.                                                       */ 
-/*                                                                        */ 
-/*  Express Logic, Inc.                     info@expresslogic.com         */
-/*  11423 West Bernardo Court               http://www.expresslogic.com   */
-/*  San Diego, CA  92127                                                  */
+/*       Copyright (c) Microsoft Corporation. All rights reserved.        */
+/*                                                                        */
+/*       This software is licensed under the Microsoft Software License   */
+/*       Terms for Microsoft Azure RTOS. Full text of the license can be  */
+/*       found in the LICENSE file at https://aka.ms/AzureRTOS_EULA       */
+/*       and in the root directory of this software.                      */
 /*                                                                        */
 /**************************************************************************/
 
@@ -38,11 +26,11 @@
 /*  APPLICATION INTERFACE DEFINITION                       RELEASE        */ 
 /*                                                                        */  
 /*    nxd_dhcp_client.h                                   PORTABLE C      */ 
-/*                                                           5.12         */
-/*  AUTHOR                                                                */ 
-/*                                                                        */ 
-/*    William E. Lamie, Express Logic, Inc.                               */ 
-/*                                                                        */ 
+/*                                                           6.1.10       */
+/*  AUTHOR                                                                */
+/*                                                                        */
+/*    Yuxin Zhou, Microsoft Corporation                                   */
+/*                                                                        */
 /*  DESCRIPTION                                                           */ 
 /*                                                                        */ 
 /*    This file defines the NetX Dynamic Host Configuration Protocol      */ 
@@ -52,88 +40,18 @@
 /*                                                                        */ 
 /*  RELEASE HISTORY                                                       */ 
 /*                                                                        */ 
-/*    DATE              NAME                      DESCRIPTION             */ 
-/*                                                                        */   
-/*  03-01-2006     William E. Lamie         Initial Version 5.0           */ 
-/*  04-01-2010     Janet Christiansen       Modified comment(s), changed  */ 
-/*                                            NX_BOOTP_OFFSET_END to      */ 
-/*                                            conform to RFC, changed     */ 
-/*                                            calculations of ticks per   */ 
-/*                                            second, added multiple      */ 
-/*                                            constants, and added        */ 
-/*                                            support for multihomed IP   */ 
-/*                                            instances, resulting in     */ 
-/*                                            version 5.1                 */
-/*  10-10-2011     Janet Christiansen       Modified comment(s), and      */
-/*                                            added new internal services,*/ 
-/*                                            new API, and new DHCP client*/
-/*                                            configuration options,      */
-/*                                            and corrected the minimum   */
-/*                                            NX_DHCP_PACKET_PAYLOAD,     */
-/*                                            added support for BOOTP     */
-/*                                            BOOTP protocol,             */
-/*                                            added option to test DHCP   */
-/*                                            address with ARP probe,     */
-/*                                            resulting in version 5.2    */
-/*  01-12-2012     janet Christiansen       Modified comment(s), and      */
-/*                                            corrected an error in the   */
-/*                                            NX_PACKET_ALLOCATE_TIMEOUT  */
-/*                                            definition, added support   */
-/*                                            new feature, NX_DHCP_CLIENT_*/
-/*                                            USER_CREATE_PACKET_POOL,    */
-/*                                            new API nx_dhcp_server_     */
-/*                                            server IP address           */
-/*                                            resulting in version 5.3    */
-/*  01-31-2013     janet Christiansen       Modified comment(s), and      */
-/*                                            removed _nx_system_ticks    */
-/*                                            _per_second conversion in   */
-/*                                            NX_PACKET_ALLOCATE_TIMEOUT, */
-/*                                            created nx_dhcp_decline,    */
-/*                                            created NX_DHCP_CLIENT_     */
-/*                                            CLEAR_QUEUE to clear packets*/ 
-/*                                            from DHCP queue,added fields*/
-/*                                            to DHCP Client to  store    */
-/*                                            network data extracted,     */
-/*                                            added an internal flag for  */
-/*                                            the Skip Discovery option,  */
-/*                                            resulting in version 5.4    */
-/*  01-12-2015     Janet Christiansen       Modified comment(s), and      */
-/*                                            added a seconds elapsed     */
-/*                                            field, corrected the DHCP   */
-/*                                            message size buffer         */
-/*                                            NX_DHCP_BUFFER_SIZE to 548  */
-/*                                            to comply with RFC 2131,    */  
-/*                                            added broadcast flag option,*/
-/*                                            removed MULTI HOME macro    */
-/*                                            definition, added variables */  
-/*                                            to store DNS and NTP server */
-/*                                            address, resulting in       */ 
-/*                                            version 5.8                 */ 
-/*  02-22-2016     Yuxin Zhou               Modified comment(s), and      */
-/*                                            unified ticks per second,   */ 
-/*                                            added support for sending   */  
-/*                                            maximum DHCP messsage size  */  
-/*                                            option, added symbol names  */
-/*                                            for sending ARP probe and   */
-/*                                            restarting configuration,   */
-/*                                            resulting in version 5.9    */ 
-/*  05-10-2016     Yuxin Zhou               Modified comment(s), and      */
-/*                                            fixed compiler warnings,    */
-/*                                            modified the logic for      */
-/*                                            processing DHCP options,    */
-/*                                            added support for DHCP on   */
-/*                                            multiple interfaces,        */
-/*                                            resulting in version 5.10   */
-/*  07-15-2018     Janet Christiansen       Modified comment(s), and      */
-/*                                            added a status for invalid  */
-/*                                            characters in the host name,*/
-/*                                            supported for adding user   */
-/*                                            supplied options, updated   */
-/*                                            the default value of        */
-/*                                            NX_DHCP_CLIENT_MAX_RECORDS, */
-/*                                            resulting in version 5.11   */
-/*  08-15-2019     Yuxin Zhou               Modified comment(s),          */
-/*                                            resulting in version 5.12   */
+/*    DATE              NAME                      DESCRIPTION             */
+/*                                                                        */
+/*  05-19-2020     Yuxin Zhou               Initial Version 6.0           */
+/*  09-30-2020     Yuxin Zhou               Modified comment(s),          */
+/*                                            resulting in version 6.1    */
+/*  08-02-2021     Yuxin Zhou               Modified comment(s), supported*/
+/*                                            adding additional request   */
+/*                                            option in parameter request,*/
+/*                                            resulting in version 6.1.8  */
+/*  01-31-2022     Yuxin Zhou               Modified comment(s), supported*/
+/*                                            multiple client instances,  */
+/*                                            resulting in version 6.1.10 */
 /*                                                                        */
 /**************************************************************************/
 
@@ -216,6 +134,13 @@ extern   "C" {
 #ifndef NX_DHCP_TIME_INTERVAL
 #define NX_DHCP_TIME_INTERVAL          (1 * NX_IP_PERIODIC_RATE)
 #endif
+
+
+/* Define the max number of user request parameter.
+   Subnet mask, gateway and dns server options are added in _nx_dhcp_request_parameters arrary by default.  */
+#ifndef NX_DHCP_CLIENT_MAX_USER_REQUEST_PARAMETER
+#define NX_DHCP_CLIENT_MAX_USER_REQUEST_PARAMETER 4
+#endif /* NX_DHCP_CLIENT_MAX_USER_REQUEST_PARAMETER */
 
 
 /* Define the size of DHCP options buffer.  */
@@ -555,6 +480,10 @@ typedef struct NX_DHCP_STRUCT
     NX_DHCP_INTERFACE_RECORD 
                     nx_dhcp_interface_record[NX_DHCP_CLIENT_MAX_RECORDS];  
                                                 /* Record of DHCP Client state on specific interface        */
+    UCHAR           nx_dhcp_user_request_parameter[NX_DHCP_CLIENT_MAX_USER_REQUEST_PARAMETER];  
+                                                /* User request parameter                                   */
+    UINT            nx_dhcp_user_request_parameter_size;  
+                                                /* User request parameter size                              */
 
 #ifdef NX_DHCP_CLIENT_SEND_MAX_DHCP_MESSAGE_OPTION
     ULONG           nx_dhcp_max_dhcp_message_size;
@@ -583,6 +512,9 @@ typedef struct NX_DHCP_STRUCT
 
     /* Define the callback function for adding specific DHCP user option.  */
     UINT (*nx_dhcp_user_option_add)(struct NX_DHCP_STRUCT *dhcp_ptr, UINT iface_index, UINT message_type, UCHAR *user_option_ptr, UINT *user_option_length);
+
+    /* Define the link between other DHCP structures created by the application.  */
+    struct NX_DHCP_STRUCT *nx_dhcp_created_next;
 
     /* This pointer is reserved for application specific use.  */
     void            *nx_dhcp_reserved_ptr;
@@ -614,6 +546,7 @@ typedef struct NX_DHCP_STRUCT
 #define nx_dhcp_stop                                    _nx_dhcp_stop
 #define nx_dhcp_server_address_get                      _nx_dhcp_server_address_get
 #define nx_dhcp_state_change_notify                     _nx_dhcp_state_change_notify
+#define nx_dhcp_user_option_request                     _nx_dhcp_user_option_request
 #define nx_dhcp_user_option_retrieve                    _nx_dhcp_user_option_retrieve
 #define nx_dhcp_user_option_convert                     _nx_dhcp_user_option_convert
 #define nx_dhcp_user_option_add_callback_set            _nx_dhcp_user_option_add_callback_set
@@ -661,6 +594,7 @@ typedef struct NX_DHCP_STRUCT
 #define nx_dhcp_stop                                    _nxe_dhcp_stop
 #define nx_dhcp_server_address_get                      _nxe_dhcp_server_address_get
 #define nx_dhcp_state_change_notify                     _nxe_dhcp_state_change_notify
+#define nx_dhcp_user_option_request                     _nxe_dhcp_user_option_request
 #define nx_dhcp_user_option_retrieve                    _nxe_dhcp_user_option_retrieve
 #define nx_dhcp_user_option_convert                     _nxe_dhcp_user_option_convert
 #define nx_dhcp_user_option_add_callback_set            _nxe_dhcp_user_option_add_callback_set
@@ -708,6 +642,7 @@ UINT        nx_dhcp_start(NX_DHCP *dhcp_ptr);
 UINT        nx_dhcp_stop(NX_DHCP *dhcp_ptr);
 UINT        nx_dhcp_server_address_get(NX_DHCP *dhcp_ptr, ULONG *server_address);
 UINT        nx_dhcp_state_change_notify(NX_DHCP *dhcp_ptr, VOID (*dhcp_state_change_notify)(NX_DHCP *dhcp_ptr, UCHAR new_state));
+UINT        nx_dhcp_user_option_request(NX_DHCP *dhcp_ptr, UINT option_code);
 UINT        nx_dhcp_user_option_retrieve(NX_DHCP *dhcp_ptr, UINT request_option, UCHAR *destination_ptr, UINT *destination_size);
 ULONG       nx_dhcp_user_option_convert(UCHAR *source_ptr);
 UINT        nx_dhcp_user_option_add_callback_set(NX_DHCP *dhcp_ptr, UINT (*dhcp_user_option_add)(NX_DHCP *dhcp_ptr, UINT iface_index, UINT message_type, UCHAR *user_option_ptr, UINT *user_option_length));
@@ -715,7 +650,7 @@ UINT        nx_dhcp_reinitialize(NX_DHCP *dhcp_ptr);
 UINT        nx_dhcp_send_request(NX_DHCP *dhcp_ptr, UINT dhcp_message_type);
 UINT        nx_dhcp_set_interface_index(NX_DHCP *dhcp_ptr, UINT interface_index); 
 UINT        nx_dhcp_clear_broadcast_flag(NX_DHCP *dhcp_ptr, UINT clear_flag);
-UINT        nx_dhcp_interface_clear_broadcast_flag(NX_DHCP *dhcp_ptr, UINT clear_flag, UINT iface_index);
+UINT        nx_dhcp_interface_clear_broadcast_flag(NX_DHCP *dhcp_ptr, UINT iface_index, UINT clear_flag);
 UINT        nx_dhcp_interface_enable(NX_DHCP *dhcp_ptr, UINT iface_index);
 UINT        nx_dhcp_interface_disable(NX_DHCP *dhcp_ptr, UINT iface_index);
 UINT        nx_dhcp_interface_decline(NX_DHCP *dhcp_ptr, UINT iface_index);
@@ -767,6 +702,8 @@ UINT        _nxe_dhcp_server_address_get(NX_DHCP *dhcp_ptr, ULONG *server_addres
 UINT        _nx_dhcp_server_address_get(NX_DHCP *dhcp_ptr, ULONG *server_address);
 UINT        _nxe_dhcp_state_change_notify(NX_DHCP *dhcp_ptr,  VOID (*dhcp_state_change_notify)(NX_DHCP *dhcp_ptr, UCHAR new_state));
 UINT        _nx_dhcp_state_change_notify(NX_DHCP *dhcp_ptr, VOID (*dhcp_state_change_notify)(NX_DHCP *dhcp_ptr, UCHAR new_state));
+UINT        _nxe_dhcp_user_option_request(NX_DHCP *dhcp_ptr, UINT option_code);
+UINT        _nx_dhcp_user_option_request(NX_DHCP *dhcp_ptr, UINT option_code);
 UINT        _nxe_dhcp_user_option_retrieve(NX_DHCP *dhcp_ptr, UINT request_option, UCHAR *destination_ptr, UINT *destination_size);
 UINT        _nx_dhcp_user_option_retrieve(NX_DHCP *dhcp_ptr, UINT request_option, UCHAR *destination_ptr, UINT *destination_size); 
 ULONG       _nxe_dhcp_user_option_convert(UCHAR *source_ptr);
@@ -781,8 +718,8 @@ UINT        _nxe_dhcp_clear_broadcast_flag(NX_DHCP *dhcp_ptr, UINT clear_flag);
 UINT        _nx_dhcp_clear_broadcast_flag(NX_DHCP *dhcp_ptr, UINT clear_flag);  
 UINT        _nxe_dhcp_user_option_add_callback_set(NX_DHCP *dhcp_ptr, UINT (*dhcp_user_option_add)(NX_DHCP *dhcp_ptr, UINT iface_index, UINT message_type, UCHAR *user_option_ptr, UINT *user_option_length));
 UINT        _nx_dhcp_user_option_add_callback_set(NX_DHCP *dhcp_ptr, UINT (*dhcp_user_option_add)(NX_DHCP *dhcp_ptr, UINT iface_index, UINT message_type, UCHAR *user_option_ptr, UINT *user_option_length));
-UINT        _nxe_dhcp_interface_clear_broadcast_flag(NX_DHCP *dhcp_ptr, UINT clear_flag, UINT iface_index);
-UINT        _nx_dhcp_interface_clear_broadcast_flag(NX_DHCP *dhcp_ptr, UINT clear_flag, UINT iface_index);
+UINT        _nxe_dhcp_interface_clear_broadcast_flag(NX_DHCP *dhcp_ptr, UINT iface_index, UINT clear_flag);
+UINT        _nx_dhcp_interface_clear_broadcast_flag(NX_DHCP *dhcp_ptr, UINT iface_index, UINT clear_flag);
 UINT        _nxe_dhcp_interface_enable(NX_DHCP *dhcp_ptr, UINT iface_index);
 UINT        _nx_dhcp_interface_enable(NX_DHCP *dhcp_ptr, UINT iface_index);
 UINT        _nxe_dhcp_interface_disable(NX_DHCP *dhcp_ptr, UINT iface_index);

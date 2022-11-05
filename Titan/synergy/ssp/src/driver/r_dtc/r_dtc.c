@@ -1,5 +1,5 @@
 /***********************************************************************************************************************
- * Copyright [2015-2017] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
+ * Copyright [2015-2021] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
  * 
  * This file is part of Renesas SynergyTM Software Package (SSP)
  *
@@ -140,16 +140,17 @@ static const ssp_version_t g_dtc_version =
 /*LDRA_INSPECTED 27 D This structure must be accessible in user code. It cannot be static. */
 const transfer_api_t g_transfer_on_dtc =
 {
-    .open       = R_DTC_Open,
-    .reset      = R_DTC_Reset,
-    .infoGet    = R_DTC_InfoGet,
-    .start      = R_DTC_Start,
-    .stop       = R_DTC_Stop,
-    .enable     = R_DTC_Enable,
-    .disable    = R_DTC_Disable,
-    .close      = R_DTC_Close,
-    .versionGet = R_DTC_VersionGet,
-    .blockReset = R_DTC_BlockReset
+    .open                   = R_DTC_Open,
+    .reset                  = R_DTC_Reset,
+    .infoGet                = R_DTC_InfoGet,
+    .start                  = R_DTC_Start,
+    .stop                   = R_DTC_Stop,
+    .enable                 = R_DTC_Enable,
+    .disable                = R_DTC_Disable,
+    .close                  = R_DTC_Close,
+    .versionGet             = R_DTC_VersionGet,
+    .blockReset             = R_DTC_BlockReset,
+    .Stop_ActivationRequest = R_DTC_Stop_ActivationRequest
 };
 
 /*******************************************************************************************************************//**
@@ -615,6 +616,19 @@ ssp_err_t R_DTC_BlockReset (transfer_ctrl_t         * const   p_api_ctrl,
     return SSP_SUCCESS;
 } /* End of function R_DTC_Reset */
 
+/*******************************************************************************************************************//**
+ * @brief  Placeholder for unsupported DummyTransfer function. Implements transfer_api_t::Stop_ActivationRequest.
+ *
+ * @retval SSP_ERR_UNSUPPORTED    R_DTC_Stop_ActivationRequest function is not implemented, Its just a placeholder .
+ **********************************************************************************************************************/
+ssp_err_t  R_DTC_Stop_ActivationRequest(transfer_ctrl_t * const p_api_ctrl)
+{
+    /* This function isn't supported.  It is defined only to implement a required function of transfer_api_t. */
+    /** Mark the input parameter as unused since this function isn't supported. */
+    SSP_PARAMETER_NOT_USED(p_api_ctrl);
+
+    return SSP_ERR_UNSUPPORTED;
+} /* End of function R_DTC_Stop_ActivationRequest */
 /*******************************************************************************************************************//**
  * @} (end addtogroup DTC)
  **********************************************************************************************************************/

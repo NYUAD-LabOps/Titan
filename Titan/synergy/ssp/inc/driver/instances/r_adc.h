@@ -1,5 +1,5 @@
 /***********************************************************************************************************************
- * Copyright [2015-2017] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
+ * Copyright [2015-2021] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
  * 
  * This file is part of Renesas SynergyTM Software Package (SSP)
  *
@@ -54,8 +54,8 @@ SSP_HEADER
 Macro definitions
 ***********************************************************************************************************************/
 /** Version of code that implements the API defined in this file */
-#define ADC_CODE_VERSION_MAJOR  (1U)
-#define ADC_CODE_VERSION_MINOR  (11U)
+#define ADC_CODE_VERSION_MAJOR  (2U)
+#define ADC_CODE_VERSION_MINOR  (0U)
 
 /** Typical values that can be used to modify the sample states.
  * The minimum sample state count value is either 6 or 7 depending on the clock ratios.

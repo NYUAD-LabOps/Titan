@@ -1,160 +1,97 @@
-#ifdef AMS_ENCRYPT_PACKAGE
------BEGIN ENCRYPTED FILE v0.6-----
-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
------END ENCRYPTED FILE-----
-#else
-#error "Secure builder required to compile this file"
-#endif
+/**************************************************************************/
+/*                                                                        */
+/*       Copyright (c) Microsoft Corporation. All rights reserved.        */
+/*                                                                        */
+/*       This software is licensed under the Microsoft Software License   */
+/*       Terms for Microsoft Azure RTOS. Full text of the license can be  */
+/*       found in the LICENSE file at https://aka.ms/AzureRTOS_EULA       */
+/*       and in the root directory of this software.                      */
+/*                                                                        */
+/**************************************************************************/
+
+
+/**************************************************************************/
+/**************************************************************************/
+/**                                                                       */ 
+/** FileX Component                                                       */ 
+/**                                                                       */
+/**   Media                                                               */
+/**                                                                       */
+/**************************************************************************/
+/**************************************************************************/
+
+#define FX_SOURCE_CODE
+
+
+/* Include necessary system files.  */
+
+#include "fx_api.h"
+#include "fx_media.h"
+
+
+/* Define external reference to OEM name string.  */
+
+extern UCHAR   _fx_media_format_oem_name[8];
+UINT  fx_media_format_oem_name_set(UCHAR new_oem_name[8]);
+
+/**************************************************************************/ 
+/*                                                                        */ 
+/*  FUNCTION                                               RELEASE        */ 
+/*                                                                        */ 
+/*    _fx_media_format_oem_name_set                       PORTABLE C      */ 
+/*                                                           6.1.5        */
+/*  AUTHOR                                                                */
+/*                                                                        */
+/*    William E. Lamie, Microsoft Corporation                             */
+/*                                                                        */
+/*  DESCRIPTION                                                           */
+/*                                                                        */ 
+/*    This function modifies the default OEM name for all formatting. The */ 
+/*    new OEM name must be 8 characters long - blank padded if necessary. */ 
+/*                                                                        */ 
+/*                                                                        */ 
+/*  INPUT                                                                 */ 
+/*                                                                        */ 
+/*    new_oem_name                          Pointer to new OEM name       */ 
+/*                                                                        */ 
+/*  OUTPUT                                                                */ 
+/*                                                                        */ 
+/*    Completion Status                                                   */ 
+/*                                                                        */ 
+/*  CALLS                                                                 */ 
+/*                                                                        */ 
+/*    None                                                                */ 
+/*                                                                        */ 
+/*  CALLED BY                                                             */ 
+/*                                                                        */ 
+/*    Application Code                                                    */ 
+/*                                                                        */ 
+/*  RELEASE HISTORY                                                       */ 
+/*                                                                        */ 
+/*    DATE              NAME                      DESCRIPTION             */
+/*                                                                        */
+/*  05-19-2020     William E. Lamie         Initial Version 6.0           */
+/*  09-30-2020     William E. Lamie         Modified comment(s),          */
+/*                                            resulting in version 6.1    */
+/*  03-02-2021     William E. Lamie         Modified comment(s),          */
+/*                                            resulting in version 6.1.5  */
+/*                                                                        */
+/**************************************************************************/
+UINT  fx_media_format_oem_name_set(UCHAR new_oem_name[8])
+{
+
+UINT    i;
+
+
+    /* Simply copy the new OEM name into the default location.  */
+    for (i = 0; i < 8; i++)
+    {
+
+        /* Copy one character of the new OEM name.  */
+        _fx_media_format_oem_name[i] =  new_oem_name[i];
+    }
+
+    /* Return success.  */
+    return(FX_SUCCESS);
+}
+

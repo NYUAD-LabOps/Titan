@@ -1,63 +1,254 @@
-#ifdef AMS_ENCRYPT_PACKAGE
------BEGIN ENCRYPTED FILE v0.6-----
-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
-sofm0Z3aDtt96R8cqeHYQg==
------END ENCRYPTED FILE-----
-#else
-#error "Secure builder required to compile this file"
-#endif
+/**************************************************************************/
+/*                                                                        */
+/*       Copyright (c) Microsoft Corporation. All rights reserved.        */
+/*                                                                        */
+/*       This software is licensed under the Microsoft Software License   */
+/*       Terms for Microsoft Azure RTOS. Full text of the license can be  */
+/*       found in the LICENSE file at https://aka.ms/AzureRTOS_EULA       */
+/*       and in the root directory of this software.                      */
+/*                                                                        */
+/**************************************************************************/
+
+
+/**************************************************************************/
+/**************************************************************************/
+/**                                                                       */
+/** FileX Component                                                       */
+/**                                                                       */
+/**   Utility                                                             */
+/**                                                                       */
+/**************************************************************************/
+/**************************************************************************/
+
+#define FX_SOURCE_CODE
+
+
+/* Include necessary system files.  */
+
+#include "fx_api.h"
+#include "fx_utility.h"
+
+
+#ifdef FX_ENABLE_EXFAT
+/**************************************************************************/
+/*                                                                        */
+/*  FUNCTION                                               RELEASE        */
+/*                                                                        */
+/*    _fx_utility_absolute_path_get                       PORTABLE C      */
+/*                                                           6.1          */
+/*  AUTHOR                                                                */
+/*                                                                        */
+/*    William E. Lamie, Microsoft Corporation                             */
+/*                                                                        */
+/*  DESCRIPTION                                                           */
+/*                                                                        */
+/*    This function converts concatenating of base and new path to        */
+/*    absolute path.                                                      */
+/*                                                                        */
+/*  INPUT                                                                 */
+/*                                                                        */
+/*    base_path                             Base (current) path           */
+/*    new_path                              New path                      */
+/*    absolute_path                         Absolute Path                 */
+/*                                                                        */
+/*  OUTPUT                                                                */
+/*                                                                        */
+/*    absolute_path                         Resulting absolute path       */
+/*    return status                                                       */
+/*                                                                        */
+/*  CALLS                                                                 */
+/*                                                                        */
+/*    _fx_utility_token_length_get          Get the next token length     */
+/*    _fx_utility_string_length_get         Get string length             */
+/*                                                                        */
+/*  CALLED BY                                                             */
+/*                                                                        */
+/*    _fx_directory_default_set                                           */
+/*                                                                        */
+/*  RELEASE HISTORY                                                       */
+/*                                                                        */
+/*    DATE              NAME                      DESCRIPTION             */
+/*                                                                        */
+/*  05-19-2020     William E. Lamie         Initial Version 6.0           */
+/*  09-30-2020     William E. Lamie         Modified comment(s),          */
+/*                                            resulting in version 6.1    */
+/*                                                                        */
+/**************************************************************************/
+UINT  _fx_utility_absolute_path_get(CHAR *base_path, CHAR *new_path, CHAR *absolute_path)
+{
+
+UINT length;
+UINT absolute_position;
+UINT i;
+
+
+    /* Check if we got null pointers.  */
+    if (!base_path || !new_path || !absolute_path)
+    {
+
+        /* Return error.  */
+        return(FX_INVALID_PATH);
+    }
+
+    /* Is the new path starts from root?  */
+    if ((new_path[0] == '\\') || (new_path[0] == '/'))
+    {
+
+        /* Yes, set the absolute path to root.  */
+        absolute_path[0] = '\\';
+        absolute_path[1] = 0;
+        new_path++;
+    }
+    else
+    {
+
+        /* Initialize the absolute path with the base path.  */
+        i =  0;
+        while ((base_path[i]) && (i < FX_MAXIMUM_PATH))
+        {
+
+            /* Copy a character.  */
+            absolute_path[i] =  base_path[i];
+
+            /* Move to next character.  */
+            i++;
+        }
+
+        /* Is the absolute path still NULL?  */
+        if ((absolute_path[0] == 0) || (i == 0))
+        {
+
+            /* Yes, set the absolute path to root.  */
+            absolute_path[0] = '\\';
+            absolute_path[1] = 0;
+        }
+    }
+
+    /* Loop to add new path to the absolute path.  */
+    while ((length = _fx_utility_token_length_get(new_path)) > 0)
+    {
+
+        /* Check if the path is too long.  */
+        if ((new_path[length] != 0) && (new_path[length] != '\\') && (new_path[length] != '/'))
+        {
+            /* The path is too long, return error.  */
+            return(FX_INVALID_PATH);
+        }
+
+        /* Check if we have a current directory mark.  */
+        if ((length == 1) && (new_path[0] == '.'))
+        {
+
+            /* The same directory, just skip it.  */
+        }
+        /* Do we have a parent directory mark?  */
+        else if ((length == 2) && (new_path[0] == '.') && (new_path[1] == '.'))
+        {
+
+            /* Yes, we need to move the absolute path to the parent directory.  */
+            /* Check absolute path length.  */
+            absolute_position = _fx_utility_string_length_get(absolute_path, FX_MAXIMUM_PATH);
+            if ((absolute_position < 2) || (absolute_path[absolute_position] != 0))
+            {
+
+                /* No parent directory left in the absolute path, or invalid path length, return error.  */
+                return(FX_INVALID_PATH);
+            }
+
+            /* Move to the last character of the absolute path.  */
+            absolute_position--;
+
+            /* Check if we have a directory separator.  */
+            if ((absolute_path[absolute_position] == '\\') || (absolute_path[absolute_position] == '/'))
+            {
+
+                /* Remove the separator.  */
+                absolute_path[absolute_position] = 0;
+                absolute_position--;
+            }
+
+            /* Loop to clear the character backward until a seprator or string exhaust.  */
+            while ((absolute_path[absolute_position] != '\\') && (absolute_path[absolute_position] != '/') && (absolute_position > 0))
+            {
+
+                /* Remove one character.  */
+                absolute_path[absolute_position] = 0;
+                absolute_position--;
+            }
+
+            /* Do we have somthing left in the path?  */
+            if (absolute_position > 1)
+            {
+
+                /* Yes, remove the last separator.  */
+                absolute_path[absolute_position] = 0;
+            }
+        }
+        else
+        {
+
+            /* Normal directory, add it.  */
+            absolute_position = _fx_utility_string_length_get(absolute_path, FX_MAXIMUM_PATH);
+
+            /* Check if the path is too long.  */
+            if (absolute_path[absolute_position] != 0)
+            {
+
+                /* The path is too long, return error.  */
+                return(FX_INVALID_PATH);
+            }
+
+            /* Check if we have something in the path.  */
+            if (absolute_position)
+            {
+
+                /* Do we have a separator in the last character?  */
+                if ((absolute_path[absolute_position - 1] != '\\') && (absolute_path[absolute_position - 1] != '/'))
+                {
+
+                    /* No, add a directory separator to the path string.  */
+                    absolute_path[absolute_position] = '\\';
+                    absolute_position++;
+                }
+            }
+
+            /* Loop to copy the new path to the absolute path.  */
+            i = 0;
+            while ((absolute_position < FX_MAXIMUM_PATH) && (i < length))
+            {
+
+                /* Copy one character.  */
+                absolute_path[absolute_position++] = new_path[i++];
+            }
+
+            /* Check if we have not exceed the maximum length.  */
+            if (absolute_position < FX_MAXIMUM_PATH)
+            {
+
+                /* Terminate the string.  */
+                absolute_path[absolute_position] = 0;
+            }
+            else
+            {
+
+                /* The path is too long, return error.  */
+                return(FX_INVALID_PATH);
+            }
+        }
+
+        /* Move to the next component.  */
+        new_path += length;
+
+        /* Is the next component starts with a separator?  */
+        if ((new_path[0] == '\\') || (new_path[0] == '/'))
+        {
+
+            /* Yes, skip it.  */
+            new_path++;
+        }
+    }
+
+    return(FX_SUCCESS);
+}
+#endif /* FX_ENABLE_EXFAT */
+

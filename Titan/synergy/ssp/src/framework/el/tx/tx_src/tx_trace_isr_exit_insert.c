@@ -1,185 +1,110 @@
-#ifdef AMS_ENCRYPT_PACKAGE
------BEGIN ENCRYPTED FILE v0.6-----
-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
------END ENCRYPTED FILE-----
-#else
-#error "Secure builder required to compile this file"
+/**************************************************************************/
+/*                                                                        */
+/*       Copyright (c) Microsoft Corporation. All rights reserved.        */
+/*                                                                        */
+/*       This software is licensed under the Microsoft Software License   */
+/*       Terms for Microsoft Azure RTOS. Full text of the license can be  */
+/*       found in the LICENSE file at https://aka.ms/AzureRTOS_EULA       */
+/*       and in the root directory of this software.                      */
+/*                                                                        */
+/**************************************************************************/
+
+
+/**************************************************************************/
+/**************************************************************************/
+/**                                                                       */
+/** ThreadX Component                                                     */
+/**                                                                       */
+/**   Trace                                                               */
+/**                                                                       */
+/**************************************************************************/
+/**************************************************************************/
+
+#define TX_SOURCE_CODE
+
+
+/* Include necessary system files.  */
+
+#include "tx_api.h"
+#ifdef TX_ENABLE_EVENT_TRACE
+#include "tx_thread.h"
 #endif
+#include "tx_trace.h"
+
+
+/**************************************************************************/
+/*                                                                        */
+/*  FUNCTION                                               RELEASE        */
+/*                                                                        */
+/*    _tx_trace_isr_exit_insert                           PORTABLE C      */
+/*                                                           6.1          */
+/*  AUTHOR                                                                */
+/*                                                                        */
+/*    William E. Lamie, Microsoft Corporation                             */
+/*                                                                        */
+/*  DESCRIPTION                                                           */
+/*                                                                        */
+/*    This function provides inserts an ISR exit event into the trace     */
+/*    buffer.                                                             */
+/*                                                                        */
+/*  INPUT                                                                 */
+/*                                                                        */
+/*    isr_id                                User defined ISR ID           */
+/*                                                                        */
+/*  OUTPUT                                                                */
+/*                                                                        */
+/*    None                                                                */
+/*                                                                        */
+/*  CALLS                                                                 */
+/*                                                                        */
+/*    None                                                                */
+/*                                                                        */
+/*  CALLED BY                                                             */
+/*                                                                        */
+/*    Application Code                                                    */
+/*                                                                        */
+/*  RELEASE HISTORY                                                       */
+/*                                                                        */
+/*    DATE              NAME                      DESCRIPTION             */
+/*                                                                        */
+/*  05-19-2020     William E. Lamie         Initial Version 6.0           */
+/*  09-30-2020     Yuxin Zhou               Modified comment(s),          */
+/*                                            resulting in version 6.1    */
+/*                                                                        */
+/**************************************************************************/
+VOID  _tx_trace_isr_exit_insert(ULONG isr_id)
+{
+
+TX_INTERRUPT_SAVE_AREA
+
+
+#ifdef TX_ENABLE_EVENT_TRACE
+
+UINT            stack_address;
+ULONG           system_state;
+UINT            preempt_disable;
+
+
+    /* Disable interrupts.  */
+    TX_DISABLE
+
+    /* Insert this event into the trace buffer.  */
+    system_state =  TX_THREAD_GET_SYSTEM_STATE();
+    preempt_disable =  _tx_thread_preempt_disable;
+    TX_TRACE_IN_LINE_INSERT(TX_TRACE_ISR_EXIT, &stack_address, isr_id, system_state, preempt_disable, TX_TRACE_INTERNAL_EVENTS)
+
+    /* Restore interrupts.  */
+    TX_RESTORE
+#else
+
+    /* Access input arguments just for the sake of lint, MISRA, etc.  */
+    if (isr_id != ((ULONG) 0))
+    {
+
+        /* NOP code.  */
+        TX_DISABLE
+        TX_RESTORE
+    }
+#endif
+}
+

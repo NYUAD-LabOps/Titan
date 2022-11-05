@@ -1,394 +1,345 @@
-#ifdef AMS_ENCRYPT_PACKAGE
------BEGIN ENCRYPTED FILE v0.6-----
-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
------END ENCRYPTED FILE-----
-#else
-#error "Secure builder required to compile this file"
-#endif
+/**************************************************************************/
+/*                                                                        */
+/*       Copyright (c) Microsoft Corporation. All rights reserved.        */
+/*                                                                        */
+/*       This software is licensed under the Microsoft Software License   */
+/*       Terms for Microsoft Azure RTOS. Full text of the license can be  */
+/*       found in the LICENSE file at https://aka.ms/AzureRTOS_EULA       */
+/*       and in the root directory of this software.                      */
+/*                                                                        */
+/**************************************************************************/
+
+
+/**************************************************************************/
+/**************************************************************************/
+/**                                                                       */ 
+/** FileX Component                                                       */ 
+/**                                                                       */
+/**   Application Utility                                                 */
+/**                                                                       */
+/**************************************************************************/
+/**************************************************************************/
+
+#define FX_SOURCE_CODE
+
+
+/* Include necessary system files.  */
+
+#include "fx_api.h"
+#include "fx_utility.h"
+
+
+/* Define internal data structures.  */
+
+typedef struct FX_MEDIA_PARTITION_STRUCT
+{
+    ULONG fx_media_part_start;    
+    ULONG fx_media_part_size;
+} FX_MEDIA_PARTITION;
+
+
+/* Define function prototypes for the partition table parsing application
+   utility.  */
+
+UINT    _fx_partition_offset_calculate(void  *partition_sector, UINT partition,
+                                     ULONG *partition_start, ULONG *partition_size);
+UINT    _fx_utility_partition_get(FX_MEDIA_PARTITION *partition_table, 
+                                UINT *count, ULONG sector, UCHAR *sector_buffer);
+
+
+/**************************************************************************/ 
+/*                                                                        */ 
+/*  FUNCTION                                               RELEASE        */ 
+/*                                                                        */ 
+/*    _fx_partition_offset_calculate                      PORTABLE C      */ 
+/*                                                           6.1.6        */
+/*  AUTHOR                                                                */
+/*                                                                        */
+/*    William E. Lamie, Microsoft Corporation                             */
+/*                                                                        */
+/*  DESCRIPTION                                                           */
+/*                                                                        */ 
+/*    This function calculates the sector offset to the specified         */ 
+/*    partition.  The buffer containing the partition table is also       */ 
+/*    supplied to this function.  If the buffer supplied is a boot        */ 
+/*    record (which could be the case in non-partition systems), this     */ 
+/*    function returns an offset of zero, the total sectors, and a        */ 
+/*    successful status indicating that the buffer supplied is the boot   */ 
+/*    record.  Otherwise, if a partition is found, this function returns  */ 
+/*    the sector offset to its boot record along with a successful        */ 
+/*    status. If the specified partition is not found or the buffer is    */ 
+/*    not a partition table or boot record, this function returns an      */ 
+/*    error.                                                              */ 
+/*                                                                        */ 
+/*    Note: Empty partitions have a FX_SUCCESS return code, however their */ 
+/*          starting sector is FX_NULL and the size returned is 0.        */ 
+/*                                                                        */ 
+/*  INPUT                                                                 */ 
+/*                                                                        */ 
+/*    partition_sector                      Pointer to buffer containing  */ 
+/*                                            either the partition table  */ 
+/*                                            or the boot sector          */ 
+/*    partition                             Desired partition             */ 
+/*    partition_start                       Return partition start        */ 
+/*    partition_size                        Return partition size         */ 
+/*                                                                        */ 
+/*  OUTPUT                                                                */ 
+/*                                                                        */ 
+/*    return status                                                       */ 
+/*                                                                        */ 
+/*  CALLS                                                                 */ 
+/*                                                                        */ 
+/*     _fx_utility_partition_get            Actual partition parsing      */ 
+/*                                            routine                     */ 
+/*                                                                        */ 
+/*  CALLED BY                                                             */ 
+/*                                                                        */ 
+/*    Application Driver                                                  */ 
+/*                                                                        */ 
+/*  RELEASE HISTORY                                                       */ 
+/*                                                                        */ 
+/*    DATE              NAME                      DESCRIPTION             */
+/*                                                                        */
+/*  05-19-2020     William E. Lamie         Initial Version 6.0           */
+/*  09-30-2020     William E. Lamie         Modified comment(s),          */
+/*                                            resulting in version 6.1    */
+/*  04-02-2021     William E. Lamie         Modified comment(s),          */
+/*                                            ignored signature check for */
+/*                                            no partition situation,     */
+/*                                            resulting in version 6.1.6  */
+/*                                                                        */
+/**************************************************************************/
+UINT  _fx_partition_offset_calculate(void  *partition_sector, UINT partition,
+                                     ULONG *partition_start, ULONG *partition_size)
+{
+    
+FX_MEDIA_PARTITION  partition_table[4];
+UINT                count;
+ULONG64             total_sectors;
+UCHAR               *partition_sector_ptr;
+
+
+    /* Setup working pointer and initialize count.  */
+    partition_sector_ptr =  partition_sector;
+    count =  0;
+
+    /* Check for a real boot sector instead of a partition table.  */
+    if ((partition_sector_ptr[0] == 0xe9) || ((partition_sector_ptr[0] == 0xeb) && (partition_sector_ptr[2] == 0x90)))    
+    {
+    
+        /* Yes, a real boot sector could be present.  */  
+
+        /* See if there are good values for sectors per FAT.  */
+        if (partition_sector_ptr[0x16] || partition_sector_ptr[0x17] || partition_sector_ptr[0x24] || partition_sector_ptr[0x25] || partition_sector_ptr[0x26] || partition_sector_ptr[0x27])
+        {
+
+            /* There are values for sectors per FAT.  */
+
+            /* Determine if there is a total sector count.  */
+            total_sectors =  0;
+
+            if (partition_sector_ptr[0x13] || partition_sector_ptr[0x14])
+            {
+
+                /* Calculate the total sectors, FAT12/16.  */
+                total_sectors =  (((ULONG) partition_sector_ptr[0x14]) << 8) | ((ULONG) partition_sector_ptr[0x13]);
+            }
+            else if (partition_sector_ptr[0x20] || partition_sector_ptr[0x21] || partition_sector_ptr[0x22] || partition_sector_ptr[0x23])
+            {
+
+                /* Calculate the total sectors, FAT32.  */
+                total_sectors =  (((ULONG) partition_sector_ptr[0x23]) << 24) | 
+                                 (((ULONG) partition_sector_ptr[0x22]) << 16) |
+                                 (((ULONG) partition_sector_ptr[0x21]) << 8)  |
+                                 ((ULONG) partition_sector_ptr[0x20]);
+            }       
+
+            /* Determine if there is a total sector count.  */
+            if (total_sectors)
+            {
+
+                if (partition_start != FX_NULL)
+                {
+                    /* Return an offset of 0, size of boot record, and a successful status.  */
+                    *partition_start =  0;
+                }
+
+                /* Determine if the total sectors is required.  */
+                if (partition_size != FX_NULL)
+                {
+
+                    /* Return the total sectors.  */
+                    *partition_size =  (ULONG)(total_sectors & 0xFFFFFFFF);
+                }
+
+                /* Return success!  */
+                return(FX_SUCCESS);
+            }
+        }
+#ifdef FX_ENABLE_EXFAT
+        /* See if there are good values for sectors per exFAT.  */
+        else if (partition_sector_ptr[0x0b] == 0 && partition_sector_ptr[0x0c] == 0)
+        {
+            /* There are values for sectors per exFAT.  */
+
+            /* Calculate the total sectors.  */
+            total_sectors = _fx_utility_64_unsigned_read(&partition_sector_ptr[FX_EF_VOLUME_LENGTH]);
+
+            /* Determine if there is a total sector count.  */
+            if (total_sectors)
+            {
+
+                if (partition_start != FX_NULL)
+                {
+                    /* Return an offset of 0, size of boot record, and a successful status.  */
+                    *partition_start =  0;
+                }
+
+                /* Determine if the total sectors is required.  */
+                if (partition_size != FX_NULL)
+                {
+
+                    if (total_sectors > 0xFFFFFFFF)
+                    {
+
+                        /* Overflow. Just return not found. */
+                        return(FX_NOT_FOUND);
+                    }
+
+                    /* Return the total sectors.  */
+                    *partition_size =  (ULONG)(total_sectors & 0xFFFFFFFF);
+                }
+
+                /* Return success!  */
+                return(FX_SUCCESS);
+            }
+        }
+#endif /* FX_ENABLE_EXFAT */
+    }
+
+    /* Check signature to make sure the buffer is valid.  */
+    if ((partition_sector_ptr[510] != 0x55) || (partition_sector_ptr[511] != 0xAA))
+    {
+
+        /* Invalid, return an error.  */
+        return(FX_NOT_FOUND);
+    }
+    
+    /* Not bootable, look for specific partition.  */
+    _fx_utility_partition_get(partition_table, &count, 0, partition_sector_ptr);
+
+    /* Determine if return value is valid.  */
+    if (partition >= count)
+    {
+
+        /* No, return an error.  */
+        return(FX_NOT_FOUND);
+    }
+
+    /* Return the partition starting sector, if non-NULL.  */
+    if (partition_start != FX_NULL)
+    {
+        *partition_start =  partition_table[partition].fx_media_part_start;
+    }
+
+    /* Return the partition size, if non-NULL.  */
+    if (partition_size != FX_NULL)
+    {
+        *partition_size =  partition_table[partition].fx_media_part_size;
+    }
+
+    /* Return successful completion.  */
+    return(FX_SUCCESS);
+}
+
+
+/**************************************************************************/ 
+/*                                                                        */ 
+/*  FUNCTION                                               RELEASE        */ 
+/*                                                                        */ 
+/*    _fx_utility_partition_get                           PORTABLE C      */ 
+/*                                                           6.1.6        */
+/*  AUTHOR                                                                */
+/*                                                                        */
+/*    William E. Lamie, Microsoft Corporation                             */
+/*                                                                        */
+/*  DESCRIPTION                                                           */
+/*                                                                        */ 
+/*    This function parses the partition sector and completes the         */ 
+/*    supplied partition entry structure.                                 */ 
+/*                                                                        */ 
+/*  INPUT                                                                 */ 
+/*                                                                        */ 
+/*    partition_table                       Pointer to partition table    */ 
+/*    count                                 Number of partitions found    */ 
+/*    sector                                Base sector                   */ 
+/*    sector_buffer                         Buffer containing partition   */ 
+/*                                            table                       */ 
+/*                                                                        */ 
+/*  OUTPUT                                                                */ 
+/*                                                                        */ 
+/*    return status                                                       */ 
+/*                                                                        */ 
+/*  CALLS                                                                 */ 
+/*                                                                        */ 
+/*    None                                                                */ 
+/*                                                                        */ 
+/*  CALLED BY                                                             */ 
+/*                                                                        */ 
+/*    _fx_partition_offset_calculate        Calculate partition offset    */ 
+/*                                                                        */ 
+/*  RELEASE HISTORY                                                       */ 
+/*                                                                        */ 
+/*    DATE              NAME                      DESCRIPTION             */
+/*                                                                        */
+/*  05-19-2020     William E. Lamie         Initial Version 6.0           */
+/*  09-30-2020     William E. Lamie         Modified comment(s),          */
+/*                                            resulting in version 6.1    */
+/*  04-02-2021     William E. Lamie         Modified comment(s),          */
+/*                                            resulting in version 6.1.6  */
+/*                                                                        */
+/**************************************************************************/
+UINT  _fx_utility_partition_get(FX_MEDIA_PARTITION *partition_table, 
+                                UINT *count, ULONG sector, UCHAR *sector_buffer)
+{
+
+UINT    i;
+ULONG   base_sector, value;
+
+    /* This parameter has not been supported yet. */
+    FX_PARAMETER_NOT_USED(sector); 
+
+    /* Initialize base sector.  */
+    base_sector =  0;
+
+    for(i = 446; i <= 494; i+=16)
+    {
+        if (sector_buffer[i + 4] == 0) /* no partition entry here */
+        {
+
+            partition_table[*count].fx_media_part_start = 0;
+            partition_table[*count].fx_media_part_size  = 0;
+        }
+        else
+        {
+
+            value =  (ULONG) sector_buffer[i + 8]; /* little endian start value */
+            value =  (((ULONG) sector_buffer[i + 9]) << 8) | value;
+            value =  (((ULONG) sector_buffer[i + 10]) << 16) | value;
+            value =  (((ULONG) sector_buffer[i + 11]) << 24) | value;
+            partition_table[*count].fx_media_part_start = value + base_sector;
+
+            value =  (ULONG) sector_buffer[i + 12]; /* little endian size value */
+            value =  (((ULONG) sector_buffer[i + 13]) << 8) | value;
+            value =  (((ULONG) sector_buffer[i + 14]) << 16) | value;
+            value =  (((ULONG) sector_buffer[i + 15]) << 24) | value;
+            partition_table[*count].fx_media_part_size = value;
+        }
+
+        (*count)++;
+    }
+
+    /* Return success.  */
+    return(FX_SUCCESS);
+}
+

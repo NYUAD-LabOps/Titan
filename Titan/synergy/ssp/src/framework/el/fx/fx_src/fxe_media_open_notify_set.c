@@ -1,152 +1,96 @@
-#ifdef AMS_ENCRYPT_PACKAGE
------BEGIN ENCRYPTED FILE v0.6-----
-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
-2bglOFLCOuiXYkFnJ880fA==
------END ENCRYPTED FILE-----
-#else
-#error "Secure builder required to compile this file"
-#endif
+/**************************************************************************/
+/*                                                                        */
+/*       Copyright (c) Microsoft Corporation. All rights reserved.        */
+/*                                                                        */
+/*       This software is licensed under the Microsoft Software License   */
+/*       Terms for Microsoft Azure RTOS. Full text of the license can be  */
+/*       found in the LICENSE file at https://aka.ms/AzureRTOS_EULA       */
+/*       and in the root directory of this software.                      */
+/*                                                                        */
+/**************************************************************************/
+
+
+/**************************************************************************/
+/**************************************************************************/
+/**                                                                       */
+/** FileX Component                                                       */
+/**                                                                       */
+/**   Media                                                               */
+/**                                                                       */
+/**************************************************************************/
+/**************************************************************************/
+
+#define FX_SOURCE_CODE
+
+
+/* Include necessary system files.  */
+
+#include "fx_api.h"
+#include "fx_media.h"
+
+
+FX_CALLER_CHECKING_EXTERNS
+
+
+/**************************************************************************/
+/*                                                                        */
+/*  FUNCTION                                               RELEASE        */
+/*                                                                        */
+/*    _fxe_media_open_notify_set                          PORTABLE C      */
+/*                                                           6.1          */
+/*  AUTHOR                                                                */
+/*                                                                        */
+/*    William E. Lamie, Microsoft Corporation                             */
+/*                                                                        */
+/*  DESCRIPTION                                                           */
+/*                                                                        */
+/*    This function checks for errors in the media open notify set.       */
+/*                                                                        */
+/*  INPUT                                                                 */
+/*                                                                        */
+/*    media_ptr                             Media control block pointer   */
+/*    media_open_notify                     Notify function called when   */
+/*                                            media is open               */
+/*                                                                        */
+/*  OUTPUT                                                                */
+/*                                                                        */
+/*    FX_PTR_ERROR                          media_ptr is NULL             */
+/*    status                                Actual completion status      */
+/*                                                                        */
+/*  CALLS                                                                 */
+/*                                                                        */
+/*    _fx_media_open_notify                 Actual media open notify set  */
+/*                                                                        */
+/*  CALLED BY                                                             */
+/*                                                                        */
+/*    Application Code                                                    */
+/*                                                                        */
+/*  RELEASE HISTORY                                                       */
+/*                                                                        */
+/*    DATE              NAME                      DESCRIPTION             */
+/*                                                                        */
+/*  05-19-2020     William E. Lamie         Initial Version 6.0           */
+/*  09-30-2020     William E. Lamie         Modified comment(s),          */
+/*                                            resulting in version 6.1    */
+/*                                                                        */
+/**************************************************************************/
+UINT  _fxe_media_open_notify_set(FX_MEDIA *media_ptr, VOID (*media_open_notify)(FX_MEDIA *media))
+{
+UINT status;
+
+    /* Check for invalid input pointers.  */
+    if (media_ptr == FX_NULL)
+    {
+        return(FX_PTR_ERROR);
+    }
+
+    /* Check for a valid caller.  */
+    FX_CALLER_CHECKING_CODE
+
+    /* Call actual media open notify set service.  */
+    status =  _fx_media_open_notify_set(media_ptr, media_open_notify);
+
+    /* Return status.  */
+    return(status);
+}
+

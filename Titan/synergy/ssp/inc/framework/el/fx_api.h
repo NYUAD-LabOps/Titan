@@ -1,23 +1,11 @@
 /**************************************************************************/
 /*                                                                        */
-/*            Copyright (c) 1996-2019 by Express Logic Inc.               */
+/*       Copyright (c) Microsoft Corporation. All rights reserved.        */
 /*                                                                        */
-/*  This software is copyrighted by and is the sole property of Express   */
-/*  Logic, Inc.  All rights, title, ownership, or other interests         */
-/*  in the software remain the property of Express Logic, Inc.  This      */
-/*  software may only be used in accordance with the corresponding        */
-/*  license agreement.  Any unauthorized use, duplication, transmission,  */
-/*  distribution, or disclosure of this software is expressly forbidden.  */
-/*                                                                        */
-/*  This Copyright notice may not be removed or modified without prior    */
-/*  written consent of Express Logic, Inc.                                */
-/*                                                                        */
-/*  Express Logic, Inc. reserves the right to modify this software        */
-/*  without notice.                                                       */
-/*                                                                        */
-/*  Express Logic, Inc.                     info@expresslogic.com         */
-/*  11423 West Bernardo Court               http://www.expresslogic.com   */
-/*  San Diego, CA  92127                                                  */
+/*       This software is licensed under the Microsoft Software License   */
+/*       Terms for Microsoft Azure RTOS. Full text of the license can be  */
+/*       found in the LICENSE file at https://aka.ms/AzureRTOS_EULA       */
+/*       and in the root directory of this software.                      */
 /*                                                                        */
 /**************************************************************************/
 
@@ -38,10 +26,10 @@
 /*  APPLICATION INTERFACE DEFINITION                       RELEASE        */
 /*                                                                        */
 /*    fx_api.h                                            PORTABLE C      */
-/*                                                           5.7          */
+/*                                                           6.1.10       */
 /*  AUTHOR                                                                */
 /*                                                                        */
-/*    William E. Lamie, Express Logic, Inc.                               */
+/*    William E. Lamie, Microsoft Corporation                             */
 /*                                                                        */
 /*  DESCRIPTION                                                           */
 /*                                                                        */
@@ -54,52 +42,35 @@
 /*                                                                        */
 /*    DATE              NAME                      DESCRIPTION             */
 /*                                                                        */
-/*  12-12-2005     William E. Lamie         Initial Version 5.0           */
-/*  07-18-2007     William E. Lamie         Modified comment(s), changed  */
-/*                                            the default file and path   */
-/*                                            length to 256, added burst  */
-/*                                            cache disable flags to the  */
-/*                                            media and file structures,  */
-/*                                            added boot signature offset */
-/*                                            for FAT32, added volume ID  */
-/*                                            offset for FAT32, changed   */
-/*                                            size of rename buffer, and  */
-/*                                            changed UL to ULONG cast,   */
-/*                                            resulting in version 5.1    */
-/*  03-01-2009     William E. Lamie         Modified comment(s), added    */
-/*                                            logic for trace support,    */
-/*                                            added macros to override    */
-/*                                            interrupt protection in     */
-/*                                            port files to simply use    */
-/*                                            ThreadX interrupt macros,   */
-/*                                            resulting in version 5.2    */
-/*  11-01-2015     William E. Lamie         Modified comment(s), added    */
-/*                                            major/minor release defines,*/
-/*                                            added support for exFAT,    */
-/*                                            added fault tolerant        */
-/*                                            support, changed the initial*/
-/*                                            date, and added new APIs,   */
-/*                                            resulting in version 5.3    */
-/*  04-15-2016     William E. Lamie         Modified comment(s),          */
-/*                                            defined the update rate of  */
-/*                                            system timer,               */
-/*                                            resulting in version 5.4    */
-/*  04-03-2017     William E. Lamie         Modified comment(s), added    */
-/*                                            conditional around maximum  */
-/*                                            path define, and added      */
-/*                                            default defines for         */
-/*                                            port-specific macros, added */
-/*                                            a macro to disable warning  */
-/*                                            of parameter not used,      */
-/*                                            resulting in version 5.5    */
-/*  12-01-2018     William E. Lamie         Modified comment(s), fixed    */
-/*                                            read overflow, removed      */
-/*                                            cluster limitation for fault*/
-/*                                            tolerant feature,           */
-/*                                            resulting in version 5.6    */
-/*  08-15-2019     William E. Lamie         Modified comment(s), added    */
-/*                                            new APIs for safety,        */
-/*                                            resulting in version 5.7    */
+/*  05-19-2020     William E. Lamie         Initial Version 6.0           */
+/*  09-30-2020     William E. Lamie         Modified comment(s), and      */
+/*                                            updated product constants,  */
+/*                                            and added conditionals to   */
+/*                                            disable few declarations    */
+/*                                            for code size reduction,    */
+/*                                            resulting in version 6.1    */
+/*  11-09-2020     William E. Lamie         Modified comment(s),          */
+/*                                            resulting in version 6.1.2  */
+/*  12-31-2020     William E. Lamie         Modified comment(s), and      */
+/*                                            updated product constants,  */
+/*                                            resulting in version 6.1.3  */
+/*  03-02-2021     William E. Lamie         Modified comment(s), and      */
+/*                                            added standalone support,   */
+/*                                            resulting in version 6.1.5  */
+/*  04-02-2021     William E. Lamie         Modified comment(s), and      */
+/*                                            updated product constants,  */
+/*                                            resulting in version 6.1.6  */
+/*  06-02-2021     William E. Lamie         Modified comment(s), and      */
+/*                                            updated product constants,  */
+/*                                            resulting in version 6.1.7  */
+/*  08-02-2021     William E. Lamie         Modified comment(s), and      */
+/*                                            updated product constants,  */
+/*                                            resulting in version 6.1.8  */
+/*  01-31-2022     Bhupendra Naphade        Modified comment(s), and      */
+/*                                            removed fixed sector        */
+/*                                            size in exFAT, fixed        */
+/*                                            errors without cache,       */
+/*                                            resulting in version 6.1.10 */
 /*                                                                        */
 /**************************************************************************/
 
@@ -137,13 +108,46 @@ extern   "C" {
 
 #include "fx_port.h"
 
+/* Define compiler library include files */
+ 
+#ifdef FX_STANDALONE_ENABLE
+#include   "string.h"
+#endif
 
 /* Define the major/minor version information that can be used by the application
    and the FileX source as well.  */
 
+#define AZURE_RTOS_FILEX
+#define FILEX_MAJOR_VERSION     6
+#define FILEX_MINOR_VERSION     1
+#define FILEX_PATCH_VERSION     10
+
+/* Define the following symbols for backward compatibility */
 #define EL_PRODUCT_FILEX
-#define FILEX_MAJOR_VERSION     5
-#define FILEX_MINOR_VERSION     7
+
+#ifdef FX_STANDALONE_ENABLE
+
+/* FileX will be used without Azure RTOS ThreadX */
+
+#ifndef FX_SINGLE_THREAD
+#define FX_SINGLE_THREAD
+#endif /* !FX_SINGLE_THREAD */
+
+
+/* FileX will be used with local path logic disabled */
+
+#ifndef FX_NO_LOCAL_PATH
+#define FX_NO_LOCAL_PATH
+#endif /* !FX_NO_LOCAL_PATH */
+
+
+/* FileX is built without update to the time parameters. */
+
+#ifndef FX_NO_TIMER
+#define FX_NO_TIMER
+#endif /* !FX_NO_TIMER */
+
+#endif
 
 
 /* Override the interrupt protection provided in FileX port files to simply use ThreadX protection,
@@ -153,9 +157,9 @@ extern   "C" {
 #undef  FX_INT_SAVE_AREA
 #undef  FX_DISABLE_INTS
 #undef  FX_RESTORE_INTS
-#define FX_INT_SAVE_AREA          TX_INTERRUPT_SAVE_AREA
-#define FX_DISABLE_INTS           TX_DISABLE
-#define FX_RESTORE_INTS           TX_RESTORE
+#define FX_INT_SAVE_AREA    TX_INTERRUPT_SAVE_AREA
+#define FX_DISABLE_INTS     TX_DISABLE
+#define FX_RESTORE_INTS     TX_RESTORE
 #endif
 
 
@@ -186,9 +190,30 @@ extern   "C" {
 #endif
 
 
+/* Determine if cache is disabled. If so, disable direct read sector cache.  */
+#ifdef FX_DISABLE_CACHE
+#ifndef FX_DISABLE_DIRECT_DATA_READ_CACHE_FILL
+#define FX_DISABLE_DIRECT_DATA_READ_CACHE_FILL
+#endif
+#endif
+
+
+/* Determine if local paths are enabled and if the local path setup code has not been defined.
+   If so, define the default local path setup code for files that reference the local path.  */
+
+#ifndef FX_NO_LOCAL_PATH
+#ifndef FX_LOCAL_PATH_SETUP
+#ifndef FX_SINGLE_THREAD
+#define FX_LOCAL_PATH_SETUP     extern TX_THREAD *_tx_thread_current_ptr;
+#else
+#define FX_NO_LOCAL_PATH
+#endif
+#endif
+#endif
+
 /* Determine if tracing is enabled.  */
 
-#ifdef TX_ENABLE_EVENT_TRACE
+#if defined(TX_ENABLE_EVENT_TRACE) && !defined(FX_STANDALONE_ENABLE)
 
 
 /* Trace is enabled. Remap calls so that interrupts can be disabled around the actual event logging.  */
@@ -337,8 +362,6 @@ VOID _fx_trace_event_update(TX_TRACE_BUFFER_ENTRY *event, ULONG timestamp, ULONG
 #define FX_FILE_ID                             ((ULONG)0x46494C45)
 #define FX_FILE_CLOSED_ID                      ((ULONG)0x46494C43)
 #define FX_FILE_ABORTED_ID                     ((ULONG)0x46494C41)
-
-#define FX_BOOT_SECTOR_SIZE                    512
 
 
 /* The maximum path includes the entire path and the file name.  */
@@ -639,6 +662,104 @@ VOID _fx_trace_event_update(TX_TRACE_BUFFER_ENTRY *event, ULONG timestamp, ULONG
 #endif
 
 
+#ifdef FX_ENABLE_EXFAT
+
+
+/* Define exFAT specific constants.  */
+
+#define FX_EF_MUST_BE_ZERO                     11       /* Must be Zero Area                  053 bytes */
+#define FX_EF_PARTITION_OFFSET                 64       /* Partition Offset                   008 bytes */
+#define FX_EF_VOLUME_LENGTH                    72       /* Number of sectors on the Partition 008 bytes */
+#define FX_EF_FAT_OFFSET                       80       /* Number of sectors before exFAT     004 bytes */
+#define FX_EF_FAT_LENGTH                       84       /* Each FAT length in Sectors         004 bytes */
+#define FX_EF_CLUSTER_HEAP_OFFSET              88       /* Number of Sectors Before Cluster   004 bytes
+                                                           Heap */
+#define FX_EF_CLUSTER_COUNT                    92       /* Number of Clusters in the Cluster  004 bytes
+                                                           Heap */
+#define FX_EF_FIRST_CLUSTER_OF_ROOT_DIR        96       /* Cluster index of the First         004 bytes
+                                                           Cluster of the ROOT Directory                */
+#define FX_EF_VOLUME_SERIAL_NUMBER             100      /* Volume Serial Number               004 bytes */
+#define FX_EF_FILE_SYSTEM_REVISION             104      /* File System  Revision              002 bytes */
+#define FX_EF_VOLUME_FLAGS                     106      /* Status of exFAT structures         002 bytes */
+#define FX_EF_BYTE_PER_SECTOR_SHIFT            108      /* log2(N),where N is the Number of   001 byte
+                                                           Bytes per Sector */
+#define FX_EF_SECTOR_PER_CLUSTER_SHIFT         109      /* log2(N),where N is the Number of   001 byte
+                                                           Sectors per Cluster */
+#define FX_EF_NUMBER_OF_FATS                   110      /* Number of FATs                     001 byte */
+#define FX_EF_DRIVE_SELECT                     111      /* Extended INT13h driver number      001 byte */
+#define FX_EF_PERCENT_IN_USE                   112      /* Percentage of Allocated Clusters   001 byte */
+#define FX_EF_RESERVED                         113      /* Reserved                           007 bytes */
+#define FX_EF_BOOT_CODE                        120      /* Boot code area                     390 bytes */
+
+#define FX_RESERVED_1_exFAT                    0xFFFFFFF8
+#define FX_RESERVED_2_exFAT                    0xFFFFFFFE
+#define FX_BAD_CLUSTER_exFAT                   0xFFFFFFF7
+#define FX_LAST_CLUSTER_exFAT                  0xFFFFFFFF
+
+#ifndef FX_MAX_EX_FAT_NAME_LEN
+#define FX_MAX_EX_FAT_NAME_LEN                 255      /* Only allowed value is 255 */
+#endif
+
+#ifndef BITS_PER_BYTE
+#define BITS_PER_BYTE                          8
+#endif
+#define BITS_PER_BYTE_SHIFT                    3
+
+
+#define FX_EXFAT_MAX_DIRECTORY_SIZE            (256 * 1024 * 1024)  /* 256 MB */
+#define FX_EXFAT_SIZE_OF_FAT_ELEMENT_SHIFT     2
+
+#define FX_EXFAT_BIT_MAP_NUM_OF_CACHED_SECTORS 1
+
+#define FX_EXFAT_BITMAP_CLUSTER_FREE           0
+#define FX_EXFAT_BITMAP_CLUSTER_OCCUPIED       1
+
+#ifndef FX_EXFAT_MAX_CACHE_SIZE
+#define FX_EXFAT_MAX_CACHE_SIZE                512
+#endif
+#define FX_EXFAT_BITMAP_CACHE_SIZE             FX_EXFAT_MAX_CACHE_SIZE
+
+/* exFAT System Area Layout */
+
+#define FX_EXFAT_FAT_MAIN_SYSTEM_AREA_SIZE     12
+
+#define FX_EXFAT_FAT_MAIN_BOOT_SECTOR_OFFSET   0
+#define FX_EXFAT_FAT_BACKUP_BOOT_SECTOR_OFFSET FX_EXFAT_FAT_MAIN_SYSTEM_AREA_SIZE
+
+#define FX_EXFAT_FAT_EXT_BOOT_SECTOR_OFFSET    1
+#define FX_EXFAT_FAT_OEM_PARAM_OFFSET          9
+#define FX_EXFAT_FAT_CHECK_SUM_OFFSET          11
+
+#define FX_EXFAT_FAT_NUM_OF_SYSTEM_AREAS       2
+
+
+/* Define exFAT format parameters.  */
+
+#define  EXFAT_MIN_NUM_OF_RESERVED_SECTORS     1
+#define  EXFAT_BOOT_REGION_SIZE                24
+#define  EXFAT_FAT_BITS                        32
+#define  EXFAT_FAT_FILE_SYS_REVISION           0x100
+#define  EXFAT_FAT_VOLUME_FLAG                 0x000
+#define  EXFAT_FAT_NUM_OF_FATS                 0x001
+#define  EXFAT_FAT_DRIVE_SELECT                0x080
+#define  EXFAT_FAT_VOLUME_NAME_FIELD_SIZE      11
+#define  EXFAT_BIT_MAP_FIRST_TABLE             0
+#define  EXFAT_LAST_CLUSTER_MASK               0xFFFFFFFF
+#define  EXFAT_DEFAULT_BOUNDARY_UNIT           128
+#define  EXFAT_NUM_OF_DIR_ENTRIES              2
+
+
+#define DIVIDE_TO_CEILING(a, b)                (((a) + (b) - 1) / (b))
+#define ALIGN_UP(a, b)                         (DIVIDE_TO_CEILING(a, b) * (b))
+
+#define FX_FAT12                               0x01
+#define FX_FAT16                               0x04
+#define FX_BIGDOS                              0x06
+#define FX_exFAT                               0x07
+#define FX_FAT32                               0x0B
+#define FX_NO_FAT                              0xFF
+
+#endif /* FX_ENABLE_EXFAT */
 
 
 /* Define the control block definitions for all system objects.  */
@@ -685,6 +806,13 @@ typedef struct FX_DIR_ENTRY_STRUCT
     ULONG   fx_dir_entry_last_search_byte_offset;                           /* Last offset in logical sector searched            */
     ULONG64 fx_dir_entry_next_log_sector;
 
+#ifdef FX_ENABLE_EXFAT
+    /* for exFAT */
+    CHAR    fx_dir_entry_dont_use_fat;                                      /* 0 bit - for current, 1st bit - for parent         */
+    UCHAR   fx_dir_entry_type;
+    ULONG64 fx_dir_entry_available_file_size;
+    ULONG   fx_dir_entry_secondary_count;
+#endif /* FX_ENABLE_EXFAT */
 } FX_DIR_ENTRY;
 
 typedef FX_DIR_ENTRY  *FX_DIR_ENTRY_PTR;
@@ -742,6 +870,14 @@ typedef struct FX_CACHED_SECTOR_STRUCT
 } FX_CACHED_SECTOR;
 
 
+/* Determine if the media control block has an extension defined. If not, 
+   define the extension to whitespace.  */
+
+#ifndef FX_MEDIA_MODULE_EXTENSION
+#define FX_MEDIA_MODULE_EXTENSION
+#endif
+
+
 /* Define the media control block.  All information about each open
    media device are maintained in by the FX_MEDIA data type.  */
 
@@ -757,6 +893,10 @@ typedef struct FX_MEDIA_STRUCT
     /* Remember the memory buffer area.  */
     UCHAR               *fx_media_memory_buffer;
     ULONG               fx_media_memory_size;
+
+#ifdef FX_DISABLE_CACHE
+    ULONG64             fx_media_memory_buffer_sector;
+#else
 
     /* Define the flag that indicates whether the logical cache utilizes
        a hash function or is a linear search. If set, the logical cache
@@ -784,6 +924,7 @@ typedef struct FX_MEDIA_STRUCT
     /* Define the outstanding dirty sector counter. This is used to optimize
        the searching of sectors to flush to the media.  */
     ULONG               fx_media_sector_cache_dirty_count;
+#endif /* FX_DISABLE_CACHE */
 
     /* Define the basic information about the associated media.  */
     UINT                fx_media_bytes_per_sector;
@@ -793,6 +934,38 @@ typedef struct FX_MEDIA_STRUCT
     ULONG64             fx_media_total_sectors;
     ULONG               fx_media_total_clusters;
 
+#ifdef FX_ENABLE_EXFAT
+    /* Define exFAT media information.  */
+    ULONG               fx_media_exfat_volume_serial_number;
+    UINT                fx_media_exfat_file_system_revision;
+    UINT                fx_media_exfat_volume_flag;
+    USHORT              fx_media_exfat_drive_select;
+    USHORT              fx_media_exfat_percent_in_use;
+    UINT                fx_media_exfat_bytes_per_sector_shift;
+    UINT                fx_media_exfat_sector_per_clusters_shift;
+
+    /* exFAT: Bitmap cache */
+    /* Pointer to Bitmap cache */
+    UCHAR               fx_media_exfat_bitmap_cache[FX_EXFAT_BITMAP_CACHE_SIZE];
+
+    /* Define beginning sector of Bitmap table.  */
+    ULONG               fx_media_exfat_bitmap_start_sector;
+
+    /* Define the cache size in sectors. Used for flash operation.  */
+    ULONG               fx_media_exfat_bitmap_cache_size_in_sectors;
+
+    /* Define the number of first cached cluster.  */
+    ULONG               fx_media_exfat_bitmap_cache_start_cluster;
+
+    /* Define the number of last cached cluster.  */
+    ULONG               fx_media_exfat_bitmap_cache_end_cluster;
+
+    /* Define how many clusters mapped in one sector.  */
+    UINT                fx_media_exfat_bitmap_clusters_per_sector_shift;
+
+    /* Define is Bitmap table was changed or not.  */
+    UINT                fx_media_exfat_bitmap_cache_dirty;
+#endif /* FX_ENABLE_EXFAT */
 
     UINT                fx_media_reserved_sectors;
     UINT                fx_media_root_sector_start;
@@ -960,7 +1133,7 @@ typedef struct FX_MEDIA_STRUCT
     UCHAR               fx_media_fat_secondary_update_map[FX_FAT_MAP_SIZE];
 
     /* Define a variable for the application's use.  */
-    ULONG               fx_media_reserved_for_user;
+    ALIGN_TYPE          fx_media_reserved_for_user;
 
     /* Define an area to allocate long file names so that local storage on
        calling thread's stack is not used for long file names.  This helps
@@ -974,6 +1147,7 @@ typedef struct FX_MEDIA_STRUCT
     CHAR                fx_media_rename_buffer[FX_MAXIMUM_PATH];
 #endif
 
+#ifndef FX_DISABLE_CACHE
     /* Define the sector cache control structures for this media.  */
     struct FX_CACHED_SECTOR_STRUCT
                         fx_media_sector_cache[FX_MAX_SECTOR_CACHE];
@@ -981,6 +1155,7 @@ typedef struct FX_MEDIA_STRUCT
     /* Define the sector cache hash mask so that the hash algorithm can be used with
        any power of 2 number of cache sectors.  */
     ULONG               fx_media_sector_cache_hash_mask;
+#endif /* FX_DISABLE_CACHE */
 
     /* Define a variable to disable burst cache. This is used by the underlying
        driver.  */
@@ -1032,9 +1207,22 @@ typedef struct FX_MEDIA_STRUCT
 
     /* Media geometry structure */
     UCHAR               fx_media_FAT_type;
+
+    /* Define the module port extension in the media control block. This 
+       is typically defined to whitespace in fx_port.h.  */
+    FX_MEDIA_MODULE_EXTENSION
+
 } FX_MEDIA;
 
 typedef FX_MEDIA *      FX_MEDIA_PTR;
+
+
+/* Determine if the file control block has an extension defined. If not, 
+   define the extension to whitespace.  */
+
+#ifndef FX_FILE_MODULE_EXTENSION
+#define FX_FILE_MODULE_EXTENSION
+#endif
 
 
 /* Define the FileX file control block.  All information about open
@@ -1091,6 +1279,10 @@ typedef struct FX_FILE_STRUCT
     /* Define a notify function called when file is written to. */
     VOID               (*fx_file_write_notify)(struct FX_FILE_STRUCT *);
 
+    /* Define the module port extension in the file control block. This 
+       is typically defined to whitespace in fx_port.h.  */
+    FX_FILE_MODULE_EXTENSION
+
 } FX_FILE;
 
 typedef FX_FILE  *FX_FILE_PTR;
@@ -1103,6 +1295,13 @@ typedef FX_FILE  *FX_FILE_PTR;
 
 #ifndef FX_SOURCE_CODE
 
+#ifdef FX_DISABLE_ONE_LINE_FUNCTION
+#define fx_file_seek(f, b)                    fx_file_extended_seek(f, (ULONG64)b)
+#define fx_file_allocate(f, s)                fx_file_extended_allocate(f, (ULONG64)s);
+#define fx_file_truncate(f, s)                fx_file_extended_truncate(f, (ULONG64)s);
+#define fx_file_relative_seek(f, b, sf)       fx_file_extended_relative_seek(f, (ULONG64)b, sf);
+#define fx_file_truncate_release(f, s)        fx_file_extended_truncate_release(f, (ULONG64)s);
+#endif /* FX_DISABLE_ONE_LINE_FUNCTION */
 
 /* Determine if error checking is desired.  If so, map API functions
    to the appropriate error checking front-ends.  Otherwise, map API
@@ -1117,6 +1316,7 @@ typedef FX_FILE  *FX_FILE_PTR;
 #define fx_directory_attributes_set           _fx_directory_attributes_set
 #define fx_directory_create                   _fx_directory_create
 #define fx_directory_default_get              _fx_directory_default_get
+#define fx_directory_default_get_copy         _fx_directory_default_get_copy
 #define fx_directory_default_set              _fx_directory_default_set
 #define fx_directory_delete                   _fx_directory_delete
 #define fx_directory_first_entry_find         _fx_directory_first_entry_find
@@ -1124,6 +1324,7 @@ typedef FX_FILE  *FX_FILE_PTR;
 #define fx_directory_information_get          _fx_directory_information_get
 #define fx_directory_local_path_clear         _fx_directory_local_path_clear
 #define fx_directory_local_path_get           _fx_directory_local_path_get
+#define fx_directory_local_path_get_copy      _fx_directory_local_path_get_copy
 #define fx_directory_local_path_restore       _fx_directory_local_path_restore
 #define fx_directory_local_path_set           _fx_directory_local_path_set
 #define fx_directory_long_name_get            _fx_directory_long_name_get
@@ -1135,7 +1336,9 @@ typedef FX_FILE  *FX_FILE_PTR;
 #define fx_directory_short_name_get           _fx_directory_short_name_get
 #define fx_directory_short_name_get_extended  _fx_directory_short_name_get_extended
 
+#ifndef FX_DISABLE_ONE_LINE_FUNCTION
 #define fx_file_allocate                      _fx_file_allocate
+#endif /* FX_DISABLE_ONE_LINE_FUNCTION */
 #define fx_file_attributes_read               _fx_file_attributes_read
 #define fx_file_attributes_set                _fx_file_attributes_set
 #define fx_file_best_effort_allocate          _fx_file_best_effort_allocate
@@ -1145,11 +1348,15 @@ typedef FX_FILE  *FX_FILE_PTR;
 #define fx_file_delete                        _fx_file_delete
 #define fx_file_open                          _fx_file_open
 #define fx_file_read                          _fx_file_read
+#ifndef FX_DISABLE_ONE_LINE_FUNCTION
 #define fx_file_relative_seek                 _fx_file_relative_seek
+#endif /* FX_DISABLE_ONE_LINE_FUNCTION */
 #define fx_file_rename                        _fx_file_rename
+#ifndef FX_DISABLE_ONE_LINE_FUNCTION
 #define fx_file_seek                          _fx_file_seek
 #define fx_file_truncate                      _fx_file_truncate
 #define fx_file_truncate_release              _fx_file_truncate_release
+#endif /* FX_DISABLE_ONE_LINE_FUNCTION */
 #define fx_file_write                         _fx_file_write
 #define fx_file_write_notify_set              _fx_file_write_notify_set
 #define fx_file_extended_allocate             _fx_file_extended_allocate
@@ -1165,6 +1372,9 @@ typedef FX_FILE  *FX_FILE_PTR;
 #define fx_media_close                        _fx_media_close
 #define fx_media_flush                        _fx_media_flush
 #define fx_media_format                       _fx_media_format
+#ifdef FX_ENABLE_EXFAT
+#define fx_media_exFAT_format                 _fx_media_exFAT_format
+#endif /* FX_ENABLE_EXFAT */
 #define fx_media_open                         _fx_media_open
 #define fx_media_read                         _fx_media_read
 #define fx_media_space_available              _fx_media_space_available
@@ -1205,6 +1415,7 @@ typedef FX_FILE  *FX_FILE_PTR;
 #define fx_directory_attributes_set           _fxe_directory_attributes_set
 #define fx_directory_create                   _fxe_directory_create
 #define fx_directory_default_get              _fxe_directory_default_get
+#define fx_directory_default_get_copy         _fxe_directory_default_get_copy
 #define fx_directory_default_set              _fxe_directory_default_set
 #define fx_directory_delete                   _fxe_directory_delete
 #define fx_directory_first_entry_find         _fxe_directory_first_entry_find
@@ -1212,6 +1423,7 @@ typedef FX_FILE  *FX_FILE_PTR;
 #define fx_directory_information_get          _fxe_directory_information_get
 #define fx_directory_local_path_clear         _fxe_directory_local_path_clear
 #define fx_directory_local_path_get           _fxe_directory_local_path_get
+#define fx_directory_local_path_get_copy      _fxe_directory_local_path_get_copy
 #define fx_directory_local_path_restore       _fxe_directory_local_path_restore
 #define fx_directory_local_path_set(m, l, n)  _fxe_directory_local_path_set(m, l, n, sizeof(FX_LOCAL_PATH))
 #define fx_directory_long_name_get            _fxe_directory_long_name_get
@@ -1223,7 +1435,9 @@ typedef FX_FILE  *FX_FILE_PTR;
 #define fx_directory_short_name_get           _fxe_directory_short_name_get
 #define fx_directory_short_name_get_extended  _fxe_directory_short_name_get_extended
 
+#ifndef FX_DISABLE_ONE_LINE_FUNCTION
 #define fx_file_allocate                      _fxe_file_allocate
+#endif  /* FX_DISABLE_ONE_LINE_FUNCTION */
 #define fx_file_attributes_read               _fxe_file_attributes_read
 #define fx_file_attributes_set                _fxe_file_attributes_set
 #define fx_file_best_effort_allocate          _fxe_file_best_effort_allocate
@@ -1233,11 +1447,15 @@ typedef FX_FILE  *FX_FILE_PTR;
 #define fx_file_delete                        _fxe_file_delete
 #define fx_file_open(m, f, n, t)              _fxe_file_open(m, f, n, t, sizeof(FX_FILE))
 #define fx_file_read                          _fxe_file_read
+#ifndef FX_DISABLE_ONE_LINE_FUNCTION
 #define fx_file_relative_seek                 _fxe_file_relative_seek
+#endif /* FX_DISABLE_ONE_LINE_FUNCTION */
 #define fx_file_rename                        _fxe_file_rename
+#ifndef FX_DISABLE_ONE_LINE_FUNCTION
 #define fx_file_seek                          _fxe_file_seek
 #define fx_file_truncate                      _fxe_file_truncate
 #define fx_file_truncate_release              _fxe_file_truncate_release
+#endif /* FX_DISABLE_ONE_LINE_FUNCTION */
 #define fx_file_write                         _fxe_file_write
 #define fx_file_write_notify_set              _fxe_file_write_notify_set
 #define fx_file_extended_allocate             _fxe_file_extended_allocate
@@ -1253,6 +1471,9 @@ typedef FX_FILE  *FX_FILE_PTR;
 #define fx_media_close                        _fxe_media_close
 #define fx_media_flush                        _fxe_media_flush
 #define fx_media_format                       _fxe_media_format
+#ifdef FX_ENABLE_EXFAT
+#define fx_media_exFAT_format                 _fxe_media_exFAT_format
+#endif /* FX_ENABLE_EXFAT */
 #define fx_media_open(m, n, d, i, p, s)       _fxe_media_open(m, n, d, i, p, s, sizeof(FX_MEDIA))
 #define fx_media_read                         _fxe_media_read
 #define fx_media_space_available              _fxe_media_space_available
@@ -1293,6 +1514,7 @@ UINT fx_directory_attributes_read(FX_MEDIA *media_ptr, CHAR *directory_name, UIN
 UINT fx_directory_attributes_set(FX_MEDIA *media_ptr, CHAR *directory_name, UINT attributes);
 UINT fx_directory_create(FX_MEDIA *media_ptr, CHAR *directory_name);
 UINT fx_directory_default_get(FX_MEDIA *media_ptr, CHAR **return_path_name);
+UINT fx_directory_default_get_copy(FX_MEDIA *media_ptr, CHAR *return_path_name_buffer, UINT return_path_name_buffer_size);
 UINT fx_directory_default_set(FX_MEDIA *media_ptr, CHAR *new_path_name);
 UINT fx_directory_delete(FX_MEDIA *media_ptr, CHAR *directory_name);
 UINT fx_directory_first_entry_find(FX_MEDIA *media_ptr, CHAR *directory_name);
@@ -1302,6 +1524,7 @@ UINT fx_directory_information_get(FX_MEDIA *media_ptr, CHAR *directory_name, UIN
                                   UINT *year, UINT *month, UINT *day, UINT *hour, UINT *minute, UINT *second);
 UINT fx_directory_local_path_clear(FX_MEDIA *media_ptr);
 UINT fx_directory_local_path_get(FX_MEDIA *media_ptr, CHAR **return_path_name);
+UINT fx_directory_local_path_get_copy(FX_MEDIA *media_ptr, CHAR *return_path_name_buffer, UINT return_path_name_buffer_size);
 UINT fx_directory_local_path_restore(FX_MEDIA *media_ptr, FX_LOCAL_PATH *local_path_ptr);
 #ifdef FX_DISABLE_ERROR_CHECKING
 UINT _fx_directory_local_path_set(FX_MEDIA *media_ptr, FX_LOCAL_PATH *local_path_ptr, CHAR *new_path_name);
@@ -1318,7 +1541,9 @@ UINT fx_directory_rename(FX_MEDIA *media_ptr, CHAR *old_directory_name, CHAR *ne
 UINT fx_directory_short_name_get(FX_MEDIA *media_ptr, CHAR *long_file_name, CHAR *short_file_name);
 UINT fx_directory_short_name_get_extended(FX_MEDIA* media_ptr, CHAR* long_file_name, CHAR* short_file_name, UINT short_file_name_length);
 
+#ifndef FX_DISABLE_ONE_LINE_FUNCTION
 UINT fx_file_allocate(FX_FILE *file_ptr, ULONG size);
+#endif /* FX_DISABLE_ONE_LINE_FUNCTION*/
 UINT fx_file_attributes_read(FX_MEDIA *media_ptr, CHAR *file_name, UINT *attributes_ptr);
 UINT fx_file_attributes_set(FX_MEDIA *media_ptr, CHAR *file_name, UINT attributes);
 UINT fx_file_best_effort_allocate(FX_FILE *file_ptr, ULONG size, ULONG *actual_size_allocated);
@@ -1335,11 +1560,15 @@ UINT _fxe_file_open(FX_MEDIA *media_ptr, FX_FILE *file_ptr, CHAR *file_name,
                     UINT open_type, UINT file_control_block_size);
 #endif
 UINT fx_file_read(FX_FILE *file_ptr, VOID *buffer_ptr, ULONG request_size, ULONG *actual_size);
+#ifndef FX_DISABLE_ONE_LINE_FUNCTION
 UINT fx_file_relative_seek(FX_FILE *file_ptr, ULONG byte_offset, UINT seek_from);
+#endif /* FX_DISABLE_ONE_LINE_FUNCTION */
 UINT fx_file_rename(FX_MEDIA *media_ptr, CHAR *old_file_name, CHAR *new_file_name);
+#ifndef FX_DISABLE_ONE_LINE_FUNCTION
 UINT fx_file_seek(FX_FILE *file_ptr, ULONG byte_offset);
 UINT fx_file_truncate(FX_FILE *file_ptr, ULONG size);
 UINT fx_file_truncate_release(FX_FILE *file_ptr, ULONG size);
+#endif /* FX_DISABLE_ONE_LINE_FUNCTION */
 UINT fx_file_write(FX_FILE *file_ptr, VOID *buffer_ptr, ULONG size);
 UINT fx_file_write_notify_set(FX_FILE *file_ptr, VOID (*file_write_notify)(FX_FILE *));
 UINT fx_file_extended_allocate(FX_FILE *file_ptr, ULONG64 size);
@@ -1358,6 +1587,11 @@ UINT fx_media_format(FX_MEDIA *media_ptr, VOID (*driver)(FX_MEDIA *media), VOID 
                      CHAR *volume_name, UINT number_of_fats, UINT directory_entries, UINT hidden_sectors,
                      ULONG total_sectors, UINT bytes_per_sector, UINT sectors_per_cluster,
                      UINT heads, UINT sectors_per_track);
+#ifdef FX_ENABLE_EXFAT
+UINT fx_media_exFAT_format(FX_MEDIA *media_ptr, VOID (*driver)(FX_MEDIA *media), VOID *driver_info_ptr, UCHAR *memory_ptr, UINT memory_size,
+                           CHAR *volume_name, UINT number_of_fats, ULONG64 hidden_sectors, ULONG64 total_sectors,
+                           UINT bytes_per_sector, UINT sectors_per_cluster, UINT volume_serial_number, UINT boundary_unit);
+#endif /* FX_ENABLE_EXFAT */
 #ifdef FX_DISABLE_ERROR_CHECKING
 UINT _fx_media_open(FX_MEDIA *media_ptr, CHAR *media_name,
                     VOID (*media_driver)(FX_MEDIA *), VOID *driver_info_ptr,

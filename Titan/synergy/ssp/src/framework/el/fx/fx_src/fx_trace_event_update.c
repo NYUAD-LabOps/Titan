@@ -1,188 +1,134 @@
-#ifdef AMS_ENCRYPT_PACKAGE
------BEGIN ENCRYPTED FILE v0.6-----
-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
-QoakWGHX22lg5xOFtVp/qw==
------END ENCRYPTED FILE-----
-#else
-#error "Secure builder required to compile this file"
+/**************************************************************************/
+/*                                                                        */
+/*       Copyright (c) Microsoft Corporation. All rights reserved.        */
+/*                                                                        */
+/*       This software is licensed under the Microsoft Software License   */
+/*       Terms for Microsoft Azure RTOS. Full text of the license can be  */
+/*       found in the LICENSE file at https://aka.ms/AzureRTOS_EULA       */
+/*       and in the root directory of this software.                      */
+/*                                                                        */
+/**************************************************************************/
+
+
+/**************************************************************************/
+/**************************************************************************/
+/**                                                                       */
+/** FileX Component                                                       */
+/**                                                                       */
+/**   Trace                                                               */
+/**                                                                       */
+/**************************************************************************/
+/**************************************************************************/
+
+#ifndef FX_SOURCE_CODE
+#define FX_SOURCE_CODE
 #endif
+
+#include "fx_api.h"
+
+#ifdef TX_ENABLE_EVENT_TRACE
+
+
+/* Include necessary system files.  */
+
+
+
+/**************************************************************************/
+/*                                                                        */
+/*  FUNCTION                                               RELEASE        */
+/*                                                                        */
+/*    _fx_trace_event_update                              PORTABLE C      */
+/*                                                           6.1          */
+/*  AUTHOR                                                                */
+/*                                                                        */
+/*    William E. Lamie, Microsoft Corporation                             */
+/*                                                                        */
+/*  DESCRIPTION                                                           */
+/*                                                                        */
+/*    This function inserts a FileX event into the current trace buffer.  */
+/*                                                                        */
+/*  INPUT                                                                 */
+/*                                                                        */
+/*    event                                 Event pointer                 */
+/*    timestamp                             Timestamp of the event        */
+/*    event_id                              User Event ID                 */
+/*    info_field_1                          First information field       */
+/*    info_field_2                          First information field       */
+/*    info_field_3                          First information field       */
+/*    info_field_4                          First information field       */
+/*                                                                        */
+/*  OUTPUT                                                                */
+/*                                                                        */
+/*    None                                                                */
+/*                                                                        */
+/*  CALLS                                                                 */
+/*                                                                        */
+/*    None                                                                */
+/*                                                                        */
+/*  CALLED BY                                                             */
+/*                                                                        */
+/*    Internal FileX Functions                                            */
+/*                                                                        */
+/*  RELEASE HISTORY                                                       */
+/*                                                                        */
+/*    DATE              NAME                      DESCRIPTION             */
+/*                                                                        */
+/*  05-19-2020     William E. Lamie         Initial Version 6.0           */
+/*  09-30-2020     William E. Lamie         Modified comment(s),          */
+/*                                            resulting in version 6.1    */
+/*                                                                        */
+/**************************************************************************/
+VOID  _fx_trace_event_update(TX_TRACE_BUFFER_ENTRY *event, ULONG timestamp, ULONG event_id, ULONG info_field_1, ULONG info_field_2, ULONG info_field_3, ULONG info_field_4)
+{
+
+TX_INTERRUPT_SAVE_AREA
+
+
+    /* Disable interrupts.  */
+    TX_DISABLE
+
+    /* Determine if the event exists and is still the event originally inserted into the trace.  */
+    if ((event) && (event -> tx_trace_buffer_entry_event_id == event_id) && (event -> tx_trace_buffer_entry_time_stamp == timestamp))
+    {
+
+        /* Yes, update this trace entry based on the info input parameters.  */
+
+        /* Check for info field 1 update.  */
+        if (info_field_1)
+        {
+
+            /* Yes, update info field 1.  */
+            event -> tx_trace_buffer_entry_information_field_1 =  info_field_1;
+        }
+
+        /* Check for info field 2 update.  */
+        if (info_field_2)
+        {
+
+            /* Yes, update info field 2.  */
+            event -> tx_trace_buffer_entry_information_field_2 =  info_field_2;
+        }
+
+        /* Check for info field 3 update.  */
+        if (info_field_3)
+        {
+
+            /* Yes, update info field 3.  */
+            event -> tx_trace_buffer_entry_information_field_3 =  info_field_3;
+        }
+
+        /* Check for info field 4 update.  */
+        if (info_field_4)
+        {
+
+            /* Yes, update info field 4.  */
+            event -> tx_trace_buffer_entry_information_field_4 =  info_field_4;
+        }
+    }
+    /* Restore interrupts.  */
+    TX_RESTORE
+}
+
+
+#endif /* TX_ENABLE_EVENT_TRACE */
+

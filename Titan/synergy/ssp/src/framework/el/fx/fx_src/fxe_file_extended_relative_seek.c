@@ -1,167 +1,110 @@
-#ifdef AMS_ENCRYPT_PACKAGE
------BEGIN ENCRYPTED FILE v0.6-----
-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
------END ENCRYPTED FILE-----
-#else
-#error "Secure builder required to compile this file"
-#endif
+/**************************************************************************/
+/*                                                                        */
+/*       Copyright (c) Microsoft Corporation. All rights reserved.        */
+/*                                                                        */
+/*       This software is licensed under the Microsoft Software License   */
+/*       Terms for Microsoft Azure RTOS. Full text of the license can be  */
+/*       found in the LICENSE file at https://aka.ms/AzureRTOS_EULA       */
+/*       and in the root directory of this software.                      */
+/*                                                                        */
+/**************************************************************************/
+
+
+/**************************************************************************/
+/**************************************************************************/
+/**                                                                       */
+/** FileX Component                                                       */
+/**                                                                       */
+/**   File                                                                */
+/**                                                                       */
+/**************************************************************************/
+/**************************************************************************/
+
+#define FX_SOURCE_CODE
+
+
+/* Include necessary system files.  */
+
+#include "fx_api.h"
+#include "fx_file.h"
+
+FX_CALLER_CHECKING_EXTERNS
+
+
+/**************************************************************************/
+/*                                                                        */
+/*  FUNCTION                                               RELEASE        */
+/*                                                                        */
+/*    _fxe_file_extended_relative_seek                    PORTABLE C      */
+/*                                                           6.1          */
+/*  AUTHOR                                                                */
+/*                                                                        */
+/*    William E. Lamie, Microsoft Corporation                             */
+/*                                                                        */
+/*  DESCRIPTION                                                           */
+/*                                                                        */
+/*    This function checks for errors in the file relative seek call.     */
+/*                                                                        */
+/*  INPUT                                                                 */
+/*                                                                        */
+/*    file_ptr                              File control block pointer    */
+/*    byte_offset                           Byte offset of the seek       */
+/*    seek_from                             Direction for relative seek,  */
+/*                                          legal values are:             */
+/*                                                                        */
+/*                                              FX_SEEK_BEGIN             */
+/*                                              FX_SEEK_END               */
+/*                                              FX_SEEK_FORWARD           */
+/*                                              FX_SEEK_BACK              */
+/*                                                                        */
+/*  OUTPUT                                                                */
+/*                                                                        */
+/*    return status                                                       */
+/*                                                                        */
+/*  CALLS                                                                 */
+/*                                                                        */
+/*    _fx_file_extended_relative_seek       Actual relative file seek     */
+/*                                            service                     */
+/*                                                                        */
+/*  CALLED BY                                                             */
+/*                                                                        */
+/*    Application Code                                                    */
+/*                                                                        */
+/*  RELEASE HISTORY                                                       */
+/*                                                                        */
+/*    DATE              NAME                      DESCRIPTION             */
+/*                                                                        */
+/*  05-19-2020     William E. Lamie         Initial Version 6.0           */
+/*  09-30-2020     William E. Lamie         Modified comment(s),          */
+/*                                            resulting in version 6.1    */
+/*                                                                        */
+/**************************************************************************/
+UINT  _fxe_file_extended_relative_seek(FX_FILE *file_ptr, ULONG64 byte_offset, UINT seek_from)
+{
+
+UINT status;
+
+
+    /* Check for a null file pointer.  */
+    if (file_ptr == FX_NULL)
+    {
+        return(FX_PTR_ERROR);
+    }
+
+    /* Check for valid seek from option.  */
+    if ((seek_from != FX_SEEK_BEGIN) && (seek_from != FX_SEEK_END) &&
+        (seek_from != FX_SEEK_FORWARD) && (seek_from != FX_SEEK_BACK))
+    {
+        return(FX_INVALID_OPTION);
+    }
+
+    /* Check for a valid caller.  */
+    FX_CALLER_CHECKING_CODE
+
+    /* Call actual file relative seek service.  */
+    status =  _fx_file_extended_relative_seek(file_ptr, byte_offset, seek_from);
+
+    /* Seek is complete, return status.  */
+    return(status);
+}
+

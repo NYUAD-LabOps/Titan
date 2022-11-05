@@ -1,5 +1,5 @@
 /***********************************************************************************************************************
- * Copyright [2015-2017] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
+ * Copyright [2015-2021] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
  * 
  * This file is part of Renesas SynergyTM Software Package (SSP)
  *
@@ -126,16 +126,17 @@ static const ssp_version_t g_dmac_version =
 /*LDRA_INSPECTED 27 D This structure must be accessible in user code. It cannot be static. */
 const transfer_api_t g_transfer_on_dmac =
 {
-    .open       = R_DMAC_Open,
-    .reset      = R_DMAC_Reset,
-    .infoGet    = R_DMAC_InfoGet,
-    .start      = R_DMAC_Start,
-    .stop       = R_DMAC_Stop,
-    .enable     = R_DMAC_Enable,
-    .disable    = R_DMAC_Disable,
-    .close      = R_DMAC_Close,
-    .versionGet = R_DMAC_VersionGet,
-    .blockReset = R_DMAC_BlockReset
+    .open                    = R_DMAC_Open,
+    .reset                   = R_DMAC_Reset,
+    .infoGet                 = R_DMAC_InfoGet,
+    .start                   = R_DMAC_Start,
+    .stop                    = R_DMAC_Stop,
+    .enable                  = R_DMAC_Enable,
+    .disable                 = R_DMAC_Disable,
+    .close                   = R_DMAC_Close,
+    .versionGet              = R_DMAC_VersionGet,
+    .blockReset              = R_DMAC_BlockReset,
+    .Stop_ActivationRequest  = R_DMAC_Stop_ActivationRequest
 };
 
 /** Stores pointer to DMA base address. */
@@ -604,7 +605,51 @@ ssp_err_t R_DMAC_BlockReset (transfer_ctrl_t              * const p_api_ctrl,
     return SSP_SUCCESS;
 } /* End of function R_DMAC_BlockReset */
 
+/*******************************************************************************************************************//**
+ * @brief       Clears the DMA activation request with a DMA dummy transfer as per flowchart in the hardware manual.
+ *              Implements transfer_api_t::Stop_ActivationRequest.
+ *              This function to be used only in scenario when a DMA activation request source might occur in the next request
+ *              after a DMA transfer completes. If this happens, the DMA transfer starts and the DMA activation
+ *              request is held in DMAC.
+ *
+ * @retval SSP_SUCCESS           Successful transfer.
+ * @retval SSP_ERR_ASSERTION     An input parameter is invalid.
+ * @retval SSP_ERR_NOT_OPEN      Handle is not initialized.  Call R_DMAC_Open to initialize the control block.
+ **********************************************************************************************************************/
+ssp_err_t R_DMAC_Stop_ActivationRequest(transfer_ctrl_t * const p_api_ctrl)
+{
+    dmac_instance_ctrl_t  * p_ctrl = (dmac_instance_ctrl_t *) p_api_ctrl;
+#if DMAC_CFG_PARAM_CHECKING_ENABLE
+    SSP_ASSERT(NULL != p_ctrl);
+    DMAC_ERROR_RETURN(DMAC_ID == p_ctrl->id, SSP_ERR_NOT_OPEN);
+    SSP_ASSERT(NULL != p_ctrl->p_reg);
+#endif
+    R_DMAC0_Type * p_dmac_regs = (R_DMAC0_Type *) p_ctrl->p_reg;
 
+    /** Clear the DMA activation request with a DMA dummy transfer as per flowchart in the hardware manual. */
+    /** Disable DMAC transfer. */
+    HW_DMAC_TransferEnableDisable(p_dmac_regs, DMAC_TRANSFER_DISABLE);
+    /** Disable the IRQ pin as a DMACm request source */
+    NVIC_DisableIRQ(p_ctrl->irq);
+    /** Set the DMAC transfer size */
+    HW_DMAC_TransferSizeSet (p_dmac_regs, TRANSFER_SIZE_4_BYTE);
+    /** Set source and destination address to 4000_5500 as per hardware manual.  */
+    HW_DMAC_SrcStartAddrSet (p_dmac_regs, DUMMY_ADDRESS);
+    HW_DMAC_DestStartAddrSet (p_dmac_regs, DUMMY_ADDRESS);
+    /** Set number of transfer operations */
+    HW_DMAC_TransferNumberSet(p_dmac_regs, TRANSFER_SIZE_2_BYTE);
+    HW_DMAC_TransferReloadSet(p_dmac_regs, TRANSFER_SIZE_1_BYTE);
+    /** Disable DMAC transfer. */
+    HW_DMAC_TransferEnableDisable(p_dmac_regs, DMAC_TRANSFER_ENABLE);
+    /** Wait for the DMAC transfer end*/
+    while(HW_DMAC_StatusGet(p_dmac_regs))
+    {
+
+    }
+    NVIC_EnableIRQ(p_ctrl->irq);
+
+    return SSP_SUCCESS;
+}/* End of function R_DMAC_Stop_ActivationRequest */
 /*******************************************************************************************************************//**
  * @} (end addtogroup DMAC)
  **********************************************************************************************************************/

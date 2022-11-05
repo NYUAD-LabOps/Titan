@@ -1,5 +1,5 @@
 /***********************************************************************************************************************
- * Copyright [2015-2017] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
+ * Copyright [2015-2021] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
  * 
  * This file is part of Renesas SynergyTM Software Package (SSP)
  *
@@ -55,8 +55,8 @@ SSP_HEADER
 /**********************************************************************************************************************
  * Macro definitions
  **********************************************************************************************************************/
-#define IOPORT_API_VERSION_MAJOR (1U)
-#define IOPORT_API_VERSION_MINOR (3U)
+#define IOPORT_API_VERSION_MAJOR (2U)
+#define IOPORT_API_VERSION_MINOR (0U)
 
 /* Private definition to set enumeration values. */
 #define IOPORT_PRV_PFS_PSEL_OFFSET     (24)

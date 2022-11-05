@@ -1,23 +1,11 @@
 /**************************************************************************/
 /*                                                                        */
-/*            Copyright (c) 1996-2019 by Express Logic Inc.               */
+/*       Copyright (c) Microsoft Corporation. All rights reserved.        */
 /*                                                                        */
-/*  This software is copyrighted by and is the sole property of Express   */
-/*  Logic, Inc.  All rights, title, ownership, or other interests         */
-/*  in the software remain the property of Express Logic, Inc.  This      */
-/*  software may only be used in accordance with the corresponding        */
-/*  license agreement.  Any unauthorized use, duplication, transmission,  */
-/*  distribution, or disclosure of this software is expressly forbidden.  */
-/*                                                                        */
-/*  This Copyright notice may not be removed or modified without prior    */
-/*  written consent of Express Logic, Inc.                                */
-/*                                                                        */
-/*  Express Logic, Inc. reserves the right to modify this software        */
-/*  without notice.                                                       */
-/*                                                                        */
-/*  Express Logic, Inc.                     info@expresslogic.com         */
-/*  11423 West Bernardo Court               http://www.expresslogic.com   */
-/*  San Diego, CA  92127                                                  */
+/*       This software is licensed under the Microsoft Software License   */
+/*       Terms for Microsoft Azure RTOS. Full text of the license can be  */
+/*       found in the LICENSE file at https://aka.ms/AzureRTOS_EULA       */
+/*       and in the root directory of this software.                      */
 /*                                                                        */
 /**************************************************************************/
 
@@ -38,10 +26,10 @@
 /*  COMPONENT DEFINITION                                   RELEASE        */
 /*                                                                        */
 /*    nx_ipv6.h                                           PORTABLE C      */
-/*                                                           5.12         */
+/*                                                           6.1.9        */
 /*  AUTHOR                                                                */
 /*                                                                        */
-/*    Yuxin Zhou,  Express Logic, Inc.                                    */
+/*    Yuxin Zhou, Microsoft Corporation                                   */
 /*                                                                        */
 /*  DESCRIPTION                                                           */
 /*                                                                        */
@@ -56,55 +44,19 @@
 /*                                                                        */
 /*    DATE              NAME                      DESCRIPTION             */
 /*                                                                        */
-/*  12-30-2007     Yuxin Zhou               Initial Version 5.2           */
-/*  08-03-2009     Yuxin Zhou               Modified comment(s),          */
-/*                                            resulting in version 5.3    */
-/*  11-23-2009     Yuxin Zhou               Fixed compiler warnings,      */
-/*                                            resulting in version 5.4    */
-/*  06-01-2010     Yuxin Zhou               Modified comment(s),          */
-/*                                            changed address types to    */
-/*                                            bit map instead of UINT,    */
-/*                                            modified struct field names */
-/*                                            missing struct name prefix, */
-/*                                            resulting in version 5.5    */
-/*  10-10-2011     Yuxin Zhou               Modified comment(s), added    */
-/*                                            and modified API prototypes,*/
-/*                                            resulting in version 5.6    */
-/*  01-31-2013     Yuxin Zhou               Modified comment(s), added    */
-/*                                            the IPv6 disable service,   */
-/*                                            ipv6 address change_notify  */
-/*                                            service, added API to allow */
-/*                                            IPv6 stateless address      */
-/*                                            autoconfig to be disabled,  */
-/*                                            added APIs to retrieve IPv6 */
-/*                                            default router entries,     */
-/*                                            resulting in version 5.7    */
-/*  01-12-2015     Yuxin Zhou               Modified comment(s), and      */
-/*                                            optimized NX_PACKET_STRUCT, */
-/*                                            resulting in version 5.8    */
-/*  02-22-2016     Yuxin Zhou               Modified comment(s), and      */
-/*                                            cleaned up function         */
-/*                                            declarations, exposed       */
-/*                                            external functions,         */
-/*                                            resulting in version 5.9    */
-/*  05-10-2016     Yuxin Zhou               Modified comment(s), and      */
-/*                                            cleaned up lint warnings,   */
-/*                                            removed unused code,        */
-/*                                            resulting in version 5.10   */
-/*  07-15-2018     Yuxin Zhou               Modified comment(s),          */
-/*                                            supported specified source  */
-/*                                            interface for IPv6, checked */
-/*                                            interface for router lookup,*/
-/*                                            resulting in version 5.11   */
-/*  08-15-2019     Yuxin Zhou               Modified comment(s),          */
-/*                                            resulting in version 5.12   */
+/*  05-19-2020     Yuxin Zhou               Initial Version 6.0           */
+/*  09-30-2020     Yuxin Zhou               Modified comment(s),          */
+/*                                            resulting in version 6.1    */
+/*  10-15-2021     Yuxin Zhou               Modified comment(s), included */
+/*                                            necessary header file,      */
+/*                                            resulting in version 6.1.9  */
 /*                                                                        */
 /**************************************************************************/
 
 #ifndef NX_IPV6_H
 #define NX_IPV6_H
 
-#include "tx_api.h"
+#include "nx_api.h"
 #ifdef FEATURE_NX_IPV6
 
 /* Define basic IP Header constant.  */
@@ -339,7 +291,7 @@ UINT _nxd_ipv6_disable(NX_IP *ip_ptr);
 UINT _nxd_ipv6_address_get(NX_IP *ip_ptr, UINT address_index, NXD_ADDRESS *ip_address, ULONG *prefix_length, UINT *interface_index);
 UINT _nxd_ipv6_address_set(NX_IP *ip_ptr, UINT interface_index, NXD_ADDRESS *ip_address, ULONG prefix_length, UINT *address_index);
 UINT _nxd_ipv6_address_delete(NX_IP *ip_ptr, UINT address_index);
-UINT _nxd_ipv6_address_change_notify(NX_IP *ip_ptr, VOID (*ipv6_address_change_notfiy)(NX_IP *, UINT, UINT, UINT, ULONG *));
+UINT _nxd_ipv6_address_change_notify(NX_IP *ip_ptr, VOID (*ipv6_address_change_notfiy)(NX_IP *ip_ptr, UINT status, UINT interface_index, UINT address_index, ULONG *ip_address));
 UINT _nxd_ipv6_default_router_add(NX_IP *ip_ptr, NXD_ADDRESS *router_addr, ULONG router_lifetime, UINT interface_index);
 UINT _nxd_ipv6_default_router_delete(NX_IP *ip_ptr, NXD_ADDRESS *router_address);
 UINT _nxd_ipv6_default_router_get(NX_IP *ip_ptr, UINT interface_index, NXD_ADDRESS *router_addr, ULONG *router_lifetime, ULONG *prefix_length);
@@ -358,7 +310,7 @@ UINT _nxde_ipv6_stateless_address_autoconfig_enable(NX_IP *ip_ptr, UINT interfac
 UINT _nxde_ipv6_address_get(NX_IP *ip_ptr, UINT address_index, NXD_ADDRESS *ip_address, ULONG *prefix_length, UINT *interface_index);
 UINT _nxde_ipv6_address_set(NX_IP *ip_ptr, UINT interface_index, NXD_ADDRESS *ip_address, ULONG prefix_length, UINT *address_index);
 UINT _nxde_ipv6_address_delete(NX_IP *ip_ptr, UINT address_index);
-UINT _nxde_ipv6_address_change_notify(NX_IP *ip_ptr, VOID (*ipv6_address_change_notfiy)(NX_IP *, UINT, UINT, UINT, ULONG *));
+UINT _nxde_ipv6_address_change_notify(NX_IP *ip_ptr, VOID (*ipv6_address_change_notfiy)(NX_IP *ip_ptr, UINT status, UINT interface_index, UINT address_index, ULONG *ip_address));
 UINT _nxde_ipv6_default_router_add(NX_IP *ip_ptr, NXD_ADDRESS *router_addr, ULONG router_lifetime, UINT interface_index);
 UINT _nxde_ipv6_default_router_delete(NX_IP *ip_ptr, NXD_ADDRESS *router_address);
 UINT _nxde_ipv6_default_router_get(NX_IP *ip_ptr, UINT interface_index, NXD_ADDRESS *router_addr, ULONG *router_lifetime, ULONG *prefix_length);

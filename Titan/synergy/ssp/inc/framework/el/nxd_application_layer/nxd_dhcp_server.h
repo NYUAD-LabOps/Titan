@@ -1,23 +1,11 @@
-/**************************************************************************/ 
-/*                                                                        */ 
-/*            Copyright (c) 1996-2019 by Express Logic Inc.               */ 
-/*                                                                        */ 
-/*  This software is copyrighted by and is the sole property of Express   */ 
-/*  Logic, Inc.  All rights, title, ownership, or other interests         */ 
-/*  in the software remain the property of Express Logic, Inc.  This      */ 
-/*  software may only be used in accordance with the corresponding        */ 
-/*  license agreement.  Any unauthorized use, duplication, transmission,  */ 
-/*  distribution, or disclosure of this software is expressly forbidden.  */ 
+/**************************************************************************/
 /*                                                                        */
-/*  This Copyright notice may not be removed or modified without prior    */ 
-/*  written consent of Express Logic, Inc.                                */ 
-/*                                                                        */ 
-/*  Express Logic, Inc. reserves the right to modify this software        */ 
-/*  without notice.                                                       */ 
-/*                                                                        */ 
-/*  Express Logic, Inc.                     info@expresslogic.com         */
-/*  11423 West Bernardo Court               http://www.expresslogic.com   */
-/*  San Diego, CA  92127                                                  */
+/*       Copyright (c) Microsoft Corporation. All rights reserved.        */
+/*                                                                        */
+/*       This software is licensed under the Microsoft Software License   */
+/*       Terms for Microsoft Azure RTOS. Full text of the license can be  */
+/*       found in the LICENSE file at https://aka.ms/AzureRTOS_EULA       */
+/*       and in the root directory of this software.                      */
 /*                                                                        */
 /**************************************************************************/
 
@@ -35,14 +23,14 @@
 
 /**************************************************************************/ 
 /*                                                                        */ 
-/*  APPLICATION INTERFACE DEFINITION                       RELEASE        */ 
+/*  APPLICATION INTERFACE DEFINITION                       RELEASE        */  
 /*                                                                        */   
 /*    nxd_dhcp_server.h                                   PORTABLE C      */ 
-/*                                                           5.12         */
-/*  AUTHOR                                                                */ 
-/*                                                                        */ 
-/*    William E. Lamie, Express Logic, Inc.                               */ 
-/*                                                                        */ 
+/*                                                           6.1.9        */
+/*  AUTHOR                                                                */
+/*                                                                        */
+/*    Yuxin Zhou, Microsoft Corporation                                   */
+/*                                                                        */
 /*  DESCRIPTION                                                           */ 
 /*                                                                        */ 
 /*    This file defines the NetX Dynamic Host Configuration Protocol      */ 
@@ -52,58 +40,18 @@
 /*                                                                        */ 
 /*  RELEASE HISTORY                                                       */ 
 /*                                                                        */ 
-/*    DATE              NAME                      DESCRIPTION             */ 
-/*                                                                        */  
-/*  01-28-2010     Janet Christiansen       Initial Version 5.0           */ 
-/*  04-01-2010     Janet Christiansen       Modified comment(s),          */ 
-/*                                            resulting in version 5.1    */ 
-/*  10-10-2011     Janet Christiansen       Modified comment(s),          */ 
-/*                                            added NX_BOOT_BUFFER_SIZE   */
-/*                                            with corrected size of      */
-/*                                            required DHCP data, used for*/
-/*                                            defining NX_DHCP_MINIMUM_ - */
-/*                                            PACKET_PAYLOAD parameter,   */
-/*                                            and NX_DHCP_OFFSET_END,     */
-/*                                            is defined by new option    */
-/*                                            NX_DHCP_BUFFER_SIZE,        */
-/*                                            resulting in version 5.2    */ 
-/*  01-12-2012     Janet Christiansen       Modified comment(s),          */ 
-/*                                            renamed internal functions  */
-/*                                            definitions to avoid        */
-/*                                            with the NetX Duo DHCPv6    */
-/*                                            Client,                     */
-/*                                            resulting in version 5.3    */ 
-/*  01-31-2013     Janet Christiansen       Modified comment(s), and      */
-/*                                            replaced array of DHCP name */
-/*                                            pointers with CHAR array,   */ 
-/*                                            resulting in version 5.4    */
-/*  01-12-2015     Janet Christiansen       Modified comment(s),          */
-/*                                            added a new error status for*/
-/*                                            malformed DHCP packet,      */  
-/*                                            defined DHCP header size,   */
-/*                                            no option bytes,            */
-/*                                            removed MULTI HOME macro    */
-/*                                            definition, removed useless */   
-/*                                            function declaration,       */
-/*                                            resulting in version 5.8    */ 
-/*  02-22-2016     Yuxin Zhou               Modified comment(s), and      */  
-/*                                            unified ticks per second,   */
-/*                                            adjusted the default value  */  
-/*                                            of configuration options,   */ 
-/*                                            optimized the structure,    */
-/*                                            resulting in version 5.9    */
-/*  05-10-2016     Yuxin Zhou               Modified comment(s),          */
-/*                                            added flag events to process*/
-/*                                            packet receive event, fast  */
-/*                                            periodic event, and slow    */
-/*                                            slow periodic event,        */
-/*                                            resulting in version 5.10   */
-/*  07-15-2018     Janet Christiansen       Modified comment(s), and      */
-/*                                            removed unused symbol NX_   */
-/*                                            DHCP_CLIENT_IDENTIFIER_MAX, */
-/*                                            resulting in version 5.11   */
-/*  08-15-2019     Yuxin Zhou               Modified comment(s),          */
-/*                                            resulting in version 5.12   */
+/*    DATE              NAME                      DESCRIPTION             */
+/*                                                                        */
+/*  05-19-2020     Yuxin Zhou               Initial Version 6.0           */
+/*  09-30-2020     Yuxin Zhou               Modified comment(s), and      */
+/*                                            modified the type of        */
+/*                                            nx_dhcp_user_options,       */
+/*                                            improved buffer length      */
+/*                                            verification,               */
+/*                                            resulting in version 6.1    */
+/*  10-15-2021     Yuxin Zhou               Modified comment(s), included */
+/*                                            necessary header file,      */
+/*                                            resulting in version 6.1.9  */
 /*                                                                        */
 /**************************************************************************/
 
@@ -120,6 +68,7 @@ extern   "C" {
 
 #endif
 
+#include "nx_api.h"
 
 /* Define the DHCP Server ID that is used to mark the DHCP Server structure as created.  */
 
@@ -505,7 +454,7 @@ typedef struct NX_DHCP_CLIENT_STRUCT
     UINT            nx_dhcp_client_hwtype;       /* Client interface hardware type e.g. Ethernet. */
     ULONG           nx_dhcp_broadcast_flag_set;  /* Parse broadcast flags from DHCP messages. */
     UINT            nx_dhcp_client_option_count; /* Number of user options in client request */ 
-    UINT            nx_dhcp_user_options[NX_DHCP_CLIENT_OPTIONS_MAX];   
+    UCHAR           nx_dhcp_user_options[NX_DHCP_CLIENT_OPTIONS_MAX];   
     ULONG           nx_dhcp_session_timeout;     /* Time out on waiting for client's next response */
     UINT            nx_dhcp_response_type_to_client; 
                                                  /* DHCP code for response to send back to client. */
@@ -547,9 +496,8 @@ typedef struct NX_DHCP_INTERFACE_TABLE_STRUCT
 
 typedef struct NX_DHCP_SERVER_STRUCT 
 {
-    ULONG           nx_dhcp_id;                     /* DHCP thread ID    */
-    CHAR            nx_dhcp_name[NX_DHCP_SERVER_HOSTNAME_MAX];
-                                                    /* DHCP server name buffer */ 
+    ULONG           nx_dhcp_id;                     /* DHCP thread ID */
+    CHAR           *nx_dhcp_name;                   /* DHCP server name */
     NX_PACKET_POOL *nx_dhcp_packet_pool_ptr;        /* Pointer to DHCP server packet pool */
     TX_TIMER        nx_dhcp_slow_periodic_timer;    /* Timer for watching IP lease time outs. */
     TX_TIMER        nx_dhcp_fast_periodic_timer;    /* Timer for watching session time outs. */

@@ -1,5 +1,5 @@
 /***********************************************************************************************************************
- * Copyright [2015-2017] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
+ * Copyright [2015-2021] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
  * 
  * This file is part of Renesas SynergyTM Software Package (SSP)
  *
@@ -1199,12 +1199,16 @@ static ssp_err_t r_adc_check_addition_supported(adc_cfg_t const * const p_cfg)
         return SSP_SUCCESS;
     }
     
+    /** If addition is supported in the MCU, then Average 8 or Average 16 cannot be selected */
+
     if(adc_feature.addition_supported) 
     {
-        if(ADC_ADD_AVERAGE_SIXTEEN == p_cfg->add_average_count)
+        if((ADC_ADD_AVERAGE_SIXTEEN == p_cfg->add_average_count)
+                || (ADC_ADD_AVERAGE_EIGHT == p_cfg->add_average_count))
         {
             return SSP_ERR_INVALID_ARGUMENT;
         }
+
     }
     else
     {

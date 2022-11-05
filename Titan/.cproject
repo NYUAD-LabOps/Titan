@@ -82,6 +82,7 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/synergy_cfg/ssp_cfg/framework}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/synergy/ssp/inc/framework/api}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/synergy/ssp/inc/framework/instances}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/synergy/ssp/src/framework/el/fx/fx_src/filex_exFAT}&quot;"/>
 								</option>
 								<inputType id="ilg.gnuarmeclipse.managedbuild.cross.tool.assembler.input.393541184" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.assembler.input"/>
 							</tool>
@@ -113,6 +114,7 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/synergy_cfg/ssp_cfg/framework}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/synergy/ssp/inc/framework/api}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/synergy/ssp/inc/framework/instances}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/synergy/ssp/src/framework/el/fx/fx_src/filex_exFAT}&quot;"/>
 								</option>
 								<inputType id="ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler.input.1007211614" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler.input"/>
 							</tool>
@@ -254,15 +256,21 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/synergy/ssp/src/framework/el/ux_device_class_cdc_acm/cm4_gcc}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/synergy/ssp/src/framework/el/ux_host_class_storage/cm4_gcc}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/synergy/ssp/src/framework/el/nxd/cm4_gcc}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/synergy/ssp/src/bsp/cmsis/NN_Lib/cm4_gcc}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/synergy/ssp/src/driver/r_fmi/libs}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/synergy/ssp/src/bsp/mcu/s7g2}&quot;"/>
 								</option>
 								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="ilg.gnuarmeclipse.managedbuild.cross.option.c.linker.libs.1980803988" name="Libraries (-l)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.c.linker.libs" useByScannerDiscovery="false" valueType="libs">
 									<listOptionValue builtIn="false" value="DSP_Lib"/>
 									<listOptionValue builtIn="false" value="fx"/>
 									<listOptionValue builtIn="false" value="tx"/>
 									<listOptionValue builtIn="false" value="nxd"/>
+									<listOptionValue builtIn="false" value="NN_Lib"/>
+									<listOptionValue builtIn="false" value="fmi_cm4_s7g2_gcc"/>
+									<listOptionValue builtIn="false" value="fmi_R7FS7G27H3A01CFC_gcc"/>
 								</option>
 								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="ilg.gnuarmeclipse.managedbuild.cross.option.c.linker.scriptfile.896557794" name="Script files (-T)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.c.linker.scriptfile" useByScannerDiscovery="false" valueType="stringList">
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/script}/s7g2.ld&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/script}/r7fs7g27h3a01cfc.ld&quot;"/>
 								</option>
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.c.linker.useprintffloat.804227975" name="Use float with nano printf (-u _printf_float)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.c.linker.useprintffloat" useByScannerDiscovery="false" value="true" valueType="boolean"/>
 								<inputType id="ilg.gnuarmeclipse.managedbuild.cross.tool.c.linker.input.764481529" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.c.linker.input">
@@ -276,7 +284,7 @@
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.linker.other.22761533" name="Other linker flags" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.linker.other" value="--specs=rdimon.specs" valueType="string"/>
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.linker.usenewlibnano.44118952" name="Use newlib-nano (--specs=nano.specs)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.linker.usenewlibnano" value="true" valueType="boolean"/>
 								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.linker.scriptfile.1683319700" name="Script files (-T)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.linker.scriptfile" useByScannerDiscovery="false" valueType="stringList">
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/script}/s7g2.ld&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/script}/r7fs7g27h3a01cfc.ld&quot;"/>
 								</option>
 							</tool>
 							<tool id="ilg.gnuarmeclipse.managedbuild.cross.tool.archiver.1611457923" name="GNU ARM Cross Archiver" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.archiver"/>
@@ -385,6 +393,7 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/synergy_cfg/ssp_cfg/framework}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/synergy/ssp/inc/framework/api}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/synergy/ssp/inc/framework/instances}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/synergy/ssp/src/framework/el/fx/fx_src/filex_exFAT}&quot;"/>
 								</option>
 								<inputType id="ilg.gnuarmeclipse.managedbuild.cross.tool.assembler.input.301032383" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.assembler.input"/>
 							</tool>
@@ -415,6 +424,7 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/synergy_cfg/ssp_cfg/framework}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/synergy/ssp/inc/framework/api}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/synergy/ssp/inc/framework/instances}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/synergy/ssp/src/framework/el/fx/fx_src/filex_exFAT}&quot;"/>
 								</option>
 								<inputType id="ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler.input.116639349" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler.input"/>
 							</tool>
@@ -433,15 +443,21 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/synergy/ssp/src/framework/el/ux_device_class_cdc_acm/cm4_gcc}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/synergy/ssp/src/framework/el/ux_host_class_storage/cm4_gcc}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/synergy/ssp/src/framework/el/nxd/cm4_gcc}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/synergy/ssp/src/bsp/cmsis/NN_Lib/cm4_gcc}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/synergy/ssp/src/driver/r_fmi/libs}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/synergy/ssp/src/bsp/mcu/s7g2}&quot;"/>
 								</option>
 								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="ilg.gnuarmeclipse.managedbuild.cross.option.c.linker.libs.234250800" name="Libraries (-l)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.c.linker.libs" useByScannerDiscovery="false" valueType="libs">
 									<listOptionValue builtIn="false" value="DSP_Lib"/>
 									<listOptionValue builtIn="false" value="fx"/>
 									<listOptionValue builtIn="false" value="tx"/>
 									<listOptionValue builtIn="false" value="nxd"/>
+									<listOptionValue builtIn="false" value="NN_Lib"/>
+									<listOptionValue builtIn="false" value="fmi_cm4_s7g2_gcc"/>
+									<listOptionValue builtIn="false" value="fmi_R7FS7G27H3A01CFC_gcc"/>
 								</option>
 								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="ilg.gnuarmeclipse.managedbuild.cross.option.c.linker.scriptfile.1987154166" name="Script files (-T)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.c.linker.scriptfile" useByScannerDiscovery="false" valueType="stringList">
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/script}/s7g2.ld&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/script}/r7fs7g27h3a01cfc.ld&quot;"/>
 								</option>
 								<inputType id="ilg.gnuarmeclipse.managedbuild.cross.tool.c.linker.input.1349505252" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.c.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
@@ -454,7 +470,7 @@
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.linker.other.636191163" name="Other linker flags" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.linker.other" value="--specs=rdimon.specs" valueType="string"/>
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.linker.usenewlibnano.1399498502" name="Use newlib-nano (--specs=nano.specs)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.linker.usenewlibnano" value="true" valueType="boolean"/>
 								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.linker.scriptfile.9126021" name="Script files (-T)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.linker.scriptfile" useByScannerDiscovery="false" valueType="stringList">
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/script}/s7g2.ld&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/script}/r7fs7g27h3a01cfc.ld&quot;"/>
 								</option>
 							</tool>
 							<tool id="ilg.gnuarmeclipse.managedbuild.cross.tool.archiver.1872927079" name="GNU ARM Cross Archiver" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.archiver"/>

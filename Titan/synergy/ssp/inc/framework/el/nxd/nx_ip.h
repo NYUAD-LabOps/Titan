@@ -1,23 +1,11 @@
 /**************************************************************************/
 /*                                                                        */
-/*            Copyright (c) 1996-2019 by Express Logic Inc.               */
+/*       Copyright (c) Microsoft Corporation. All rights reserved.        */
 /*                                                                        */
-/*  This software is copyrighted by and is the sole property of Express   */
-/*  Logic, Inc.  All rights, title, ownership, or other interests         */
-/*  in the software remain the property of Express Logic, Inc.  This      */
-/*  software may only be used in accordance with the corresponding        */
-/*  license agreement.  Any unauthorized use, duplication, transmission,  */
-/*  distribution, or disclosure of this software is expressly forbidden.  */
-/*                                                                        */
-/*  This Copyright notice may not be removed or modified without prior    */
-/*  written consent of Express Logic, Inc.                                */
-/*                                                                        */
-/*  Express Logic, Inc. reserves the right to modify this software        */
-/*  without notice.                                                       */
-/*                                                                        */
-/*  Express Logic, Inc.                     info@expresslogic.com         */
-/*  11423 West Bernardo Court               http://www.expresslogic.com   */
-/*  San Diego, CA  92127                                                  */
+/*       This software is licensed under the Microsoft Software License   */
+/*       Terms for Microsoft Azure RTOS. Full text of the license can be  */
+/*       found in the LICENSE file at https://aka.ms/AzureRTOS_EULA       */
+/*       and in the root directory of this software.                      */
 /*                                                                        */
 /**************************************************************************/
 
@@ -38,10 +26,10 @@
 /*  COMPONENT DEFINITION                                   RELEASE        */
 /*                                                                        */
 /*    nx_ip.h                                             PORTABLE C      */
-/*                                                           5.12         */
+/*                                                           6.1.9        */
 /*  AUTHOR                                                                */
 /*                                                                        */
-/*    William E. Lamie, Express Logic, Inc.                               */
+/*    Yuxin Zhou, Microsoft Corporation                                   */
 /*                                                                        */
 /*  DESCRIPTION                                                           */
 /*                                                                        */
@@ -53,65 +41,19 @@
 /*                                                                        */
 /*    DATE              NAME                      DESCRIPTION             */
 /*                                                                        */
-/*  12-12-2005     William E. Lamie         Initial Version 5.0           */
-/*  08-09-2007     William E. Lamie         Modified comment(s), and      */
-/*                                            changed UL to ULONG cast,   */
-/*                                            resulting in version 5.1    */
-/*  12-30-2007     Yuxin Zhou               Modified comment(s), and      */
-/*                                            added support for IPv6,     */
-/*                                            resulting in version 5.2    */
-/*  08-03-2009     William E. Lamie         Modified comment(s),          */
-/*                                            resulting in version 5.3    */
-/*  11-23-2009     Yuxin Zhou               Modified comment(s),          */
-/*                                            resulting in version 5.4    */
-/*  06-01-2010     Yuxin Zhou               Removed internal debug logic, */
-/*                                            resulting in version 5.5    */
-/*  10-10-2011     Yuxin Zhou               Modified comment(s), modified */
-/*                                            API prototypes to support   */
-/*                                            multihome operations,       */
-/*                                            resulting in version 5.6    */
-/*  01-31-2013     Yuxin Zhou               Modified comment(s), added    */
-/*                                            a filter so applications    */
-/*                                            are able to selectively     */
-/*                                            receive raw socket,         */
-/*                                            added tos and ttl to nxd    */
-/*                                            raw packet send service,    */
-/*                                            added service to configure  */
-/*                                            IP raw receive queue size,  */
-/*                                            added service to retrieve   */
-/*                                            IPv4 default gateway entry, */
-/*                                            resulting in version 5.7    */
-/*  01-12-2015     Janet Christiansen       Modified comment(s), and      */
-/*                                            added new service           */
-/*                                            nx_ip_gateway_address_clear,*/
-/*                                            added function to compute   */
-/*                                            checksum for fragments,     */
-/*                                            optimized NX_PACKET_STRUCT, */
-/*                                            added IP event flag for link*/
-/*                                            status change, added ipv4   */
-/*                                            multicast service functions,*/
-/*                                            added API for link status   */
-/*                                            change callback setting,    */
-/*                                            resulting in version 5.8    */
-/*  02-22-2016     Yuxin Zhou               Modified comment(s), and      */
-/*                                            cleaned up function,        */
-/*                                            resulting in version 5.9    */
-/*  05-10-2016     Yuxin Zhou               Modified comment(s), and      */
-/*                                            cleaned up internal logic,  */
-/*                                            fixed IPv6 router type,     */
-/*                                            resulting in version 5.10   */
-/*  07-15-2018     Yuxin Zhou               Modified comment(s), and      */
-/*                                            modified to be compatible   */
-/*                                            with ThreadX 5.8 or later,  */
-/*                                            supported disabling IPv4,   */
-/*                                            resulting in version 5.11   */
-/*  08-15-2019     Yuxin Zhou               Modified comment(s),          */
-/*                                            resulting in version 5.12   */
+/*  05-19-2020     Yuxin Zhou               Initial Version 6.0           */
+/*  09-30-2020     Yuxin Zhou               Modified comment(s),          */
+/*                                            resulting in version 6.1    */
+/*  10-15-2021     Yuxin Zhou               Modified comment(s), included */
+/*                                            necessary header file,      */
+/*                                            resulting in version 6.1.9  */
 /*                                                                        */
 /**************************************************************************/
 
 #ifndef NX_IP_H
 #define NX_IP_H
+
+#include "nx_api.h"
 
 
 /* Define IP constants.  */

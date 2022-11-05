@@ -22,6 +22,9 @@
 #if (+0)
 #define TX_TRACE_TIME_MASK ()
 #endif
+#if (0)
+#define TX_NO_FILEX_POINTER
+#endif
 #if (!1)
 #undef TX_TIMER_PROCESS_IN_ISR
 #endif
@@ -101,12 +104,10 @@
 #define TX_THREAD_EXTENSION_0                   
 #define TX_THREAD_EXTENSION_1                   
 #ifdef  TX_ENABLE_IAR_LIBRARY_SUPPORT
-#define TX_THREAD_EXTENSION_2                   ULONG       tx_thread_vfp_stack_frame;  \
-                                                VOID        *tx_thread_iar_tls_pointer; \
+#define TX_THREAD_EXTENSION_2                   VOID        *tx_thread_iar_tls_pointer; \
                                                 
 #else
-#define TX_THREAD_EXTENSION_2                   ULONG       tx_thread_vfp_stack_frame;  \
-                                                
+#define TX_THREAD_EXTENSION_2                   
 #endif
 #define TX_THREAD_EXTENSION_3                   int bsd_errno;
 

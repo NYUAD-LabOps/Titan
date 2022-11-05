@@ -1,5 +1,5 @@
 /***********************************************************************************************************************
- * Copyright [2015-2017] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
+ * Copyright [2015-2021] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
  * 
  * This file is part of Renesas SynergyTM Software Package (SSP)
  *
@@ -675,6 +675,13 @@ ssp_err_t R_SCI_UartBaudSet (uart_ctrl_t * const p_api_ctrl,
     HW_SCI_UartReceiverEnable(p_sci_reg);
 #endif
 
+    /** If the channel has no FIFO, enable transmitter.*/
+    if (0U == p_ctrl->fifo_depth )
+    {
+        #if(SCI_UART_CFG_TX_ENABLE)
+        HW_SCI_TransmitterEnable(p_ctrl->p_reg);
+        #endif
+    }
     return err;
 }  /* End of function R_SCI_UartBaudSet() */
 
@@ -1767,7 +1774,8 @@ static ssp_err_t r_sci_uart_abort_rx(sci_uart_instance_ctrl_t * p_ctrl)
         p_ctrl->rx_dst_bytes = 0U;
 
     }
-    if (0U != p_ctrl->fifo_depth)
+    /** If the channel has FIFO and data number in receive FIFO is not zero then reset the FIFO */
+    if((0U != p_ctrl->fifo_depth) && (HW_SCI_FIFO_ReadCount(p_ctrl->p_reg) != 0))
     {
         HW_SCI_ReceiveFifoReset(p_ctrl->p_reg);
     }

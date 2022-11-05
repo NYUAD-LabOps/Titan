@@ -1,5 +1,5 @@
 /***********************************************************************************************************************
- * Copyright [2015-2017] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
+ * Copyright [2015-2021] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
  * 
  * This file is part of Renesas SynergyTM Software Package (SSP)
  *
@@ -84,6 +84,7 @@ static const bsp_feature_cgc_t g_cgc_feature =
     .has_fclk               = 1U,
     .has_bclk               = 1U,
     .has_sdadc_clock        = 0U,
+    .set_bck_with_pckb      = 0U,           ///< This MCU does not have to set bck bits with pckb bits
     .middle_speed_max_freq_hz = 0U,         ///< This MCU does not have Middle Speed Mode
     .low_speed_max_freq_hz    = 1000000U,   ///< This MCU does have Low Speed Mode, up to 1MHz
     .low_voltage_max_freq_hz  = 0U,         ///< This MCU does not have Low Voltage Mode
@@ -190,4 +191,11 @@ void R_BSP_FeatureLPMV2Get(bsp_feature_lpmv2_t * p_lpmv2_feature)
 {
    p_lpmv2_feature->has_dssby = 1U;
 }
+
+void R_BSP_FeatureRIICGet(bsp_feature_riic_t * p_riic_feature)
+{
+    p_riic_feature->riic_std_fast_rise_time = 140U;  ///< Initialize the input rise time for standard and fast mode
+    p_riic_feature->riic_fastplus_rise_time = 70U; ///< Initialize the input rise time for fastplus mode
+}
+
 #endif

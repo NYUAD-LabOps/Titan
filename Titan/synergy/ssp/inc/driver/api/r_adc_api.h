@@ -1,5 +1,5 @@
 /***********************************************************************************************************************
- * Copyright [2015-2017] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
+ * Copyright [2015-2021] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
  * 
  * This file is part of Renesas SynergyTM Software Package (SSP)
  *
@@ -63,8 +63,8 @@ SSP_HEADER
  * Macro definitions
  **********************************************************************************************************************/
 /** Version Number of API.  */
-#define ADC_API_VERSION_MAJOR   (1U)
-#define ADC_API_VERSION_MINOR   (12U)
+#define ADC_API_VERSION_MAJOR   (2U)
+#define ADC_API_VERSION_MINOR   (0U)
 
 /*****************************************************************************
 Typedef definitions
@@ -135,7 +135,8 @@ typedef enum e_adc_add
     ADC_ADD_SIXTEEN         = 0x05,///< Add sixteen samples
     ADC_ADD_AVERAGE_TWO     = 0x81,///< Average two samples
     ADC_ADD_AVERAGE_FOUR    = 0x83,///< Average four samples
-    ADC_ADD_AVERAGE_SIXTEEN = 0x85,///< Add sixteen samples
+    ADC_ADD_AVERAGE_EIGHT   = 0X84,///< Average eight samples    
+    ADC_ADD_AVERAGE_SIXTEEN = 0x85,///< Average sixteen samples
 } adc_add_t;
 
 /** ADC clear after read definitions */

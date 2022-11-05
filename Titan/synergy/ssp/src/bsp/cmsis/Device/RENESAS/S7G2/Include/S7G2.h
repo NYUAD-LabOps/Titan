@@ -13611,8 +13611,16 @@ typedef struct {                                    /*!< R_EPTPC0 Structure     
                                                          local MAC address.                                                    */
     } SYMACRL_b;                                    /*!< BitSize                                                               */
   };
-  __I  uint8_t  RESERVED1[4];   // Padding changed from uint32_t
   
+  union {
+    __IO uint32_t  SYLLCCTLR;                        /*!< SYNFP LLC-CTL Value Registers                                        */
+
+    struct {
+      __IO uint32_t  SYLLCCTLR    : 8;               /*!< These bits hold the setting for the control field in the LLC
+                                                          sublayer when generating IEEE802.3 frames.                           */
+    } SYLLCCTLR_b;                                   /*!< BitSize                                                              */
+  };
+
   union {
     __IO uint32_t  SYIPADDRR;                       /*!< SYNFP Local IP Address Register                                       */
     
@@ -13743,7 +13751,7 @@ typedef struct {                                    /*!< R_EPTPC0 Structure     
     __IO uint32_t  SYPNUMR;                         /*!< SYNFP Local Port Number Register                                      */
     
     struct {
-      __IO uint32_t  SYPNUMR    : 16;               /*!< Local Port Number SettingThese bits hold the setting for the
+      __IO uint32_t  PNUM       : 16;               /*!< Local Port Number SettingThese bits hold the setting for the
                                                          port number of the local port.                                        */
     } SYPNUMR_b;                                    /*!< BitSize                                                               */
   };

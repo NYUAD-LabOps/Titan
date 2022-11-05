@@ -1,5 +1,5 @@
 /***********************************************************************************************************************
- * Copyright [2015-2017] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
+ * Copyright [2015-2021] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
  * 
  * This file is part of Renesas SynergyTM Software Package (SSP)
  *
@@ -53,14 +53,17 @@ SSP_HEADER
 /***********************************************************************************************************************
  * Macro definitions
  **********************************************************************************************************************/
-#define DMAC_CODE_VERSION_MAJOR (1U)
-#define DMAC_CODE_VERSION_MINOR (9U)
+#define DMAC_CODE_VERSION_MAJOR (2U)
+#define DMAC_CODE_VERSION_MINOR (0U)
 
 /** Length limited to 1024 transfers for repeat and block mode */
 #define DMAC_REPEAT_BLOCK_MAX_LENGTH (0x400)
 
 /** Length limited to 65535 transfers for normal mode */
 #define DMAC_NORMAL_MAX_LENGTH (0xFFFF)
+
+/** Reserved memory area for dummy write transfer as per Hardware user manual */
+#define DUMMY_ADDRESS ((void *) 0x40005500)
 
 /***********************************************************************************************************************
  * Typedef definitions

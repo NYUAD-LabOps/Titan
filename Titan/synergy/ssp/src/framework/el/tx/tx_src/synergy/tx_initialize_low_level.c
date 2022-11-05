@@ -1,131 +1,131 @@
-#ifdef AMS_ENCRYPT_PACKAGE
------BEGIN ENCRYPTED FILE v0.6-----
-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
-LM7K59TV3wFmkpcnO+IcofklS3pJ+x9P4frOb7GJrfvJsTuTuszuR+9u0lYVlfY2
-ak42fmyBEf8A1lzcRMPHMQcZHj0BCdK1yD6EK3XNDkbwy26oYA7sFHoIEnuTw+8F
-Fk6CXeGg24/JqVawTmYFZbFxwTeT8XOjqaE5+8sdXoUKxRCU2/z6ru9Uy/ZWkDGP
-k0rZfI9DTSO07gLAZGyCxs7SHBB6Df1RR8HmaV9xUBKSZ2mS91ZHBwkwehcVdxkU
-VZRXO7u9FfhjvdCyPEhfc/ScKxd3RqyVN2PJJrjzJoRWyrUogCoAMLISq8Ze/8Lt
-LigvhTe6McWET568Ku5XxMlkF/vfvJVQv48nkRvMONUSoC0fceBJXleffRLg+dy4
-DmXCCfpZrjOkKAWw8CFoDqW2IAo1Xw+4SBErZ8aYjNosog6uuRj90l7Ua1uw4yqu
-19vSIvgEkjBpNDBt0Eu90UEahaYv0jO2jLTDI4a0w6hWSI9DCxZCnORWwUGpLo1Y
-oq/lb3MHcUMog+MVSMH+u1xv7WRmVlslG+JYGIyEXzW5JUsmK8H4ZWViWYTepJOz
-abWNMM+9jfYNxFnd1rjd/apDc2fHymSCb2qsTJNAgt/9LPk6jQQoTqwmn8aMjQ8K
-uhT/x8hyxwXzAgeNJCoGoXt+Wc2vCFuXRnZm1fcdt7KcKashUvfgXryTCfrAr6s7
-tHsjANl53Pz4EJPJy0wS937lZiuF0IwHg8oJ2wU2XRg9c9HKCVkD6IhNOZ8fQEKm
-kKQ5uIqFJZncnQ9Q9w+BU8Y3l9ASHc0Am+HNVpqxgxJS+QyxjPW7IJOaoc94i4rJ
-0xU3e0aLS7+QdDQFntHmScvd3OuJnonGFXYb+1+SxzCmnLkGAqaLBPzwrKqHyNuw
-1lbqXzsO1MNezfljNX1o0P2c1XDGivN2ITfRB+9QjLMyDedjHJqU2YvVpkmQ6NIS
-iVwKTm0rP2Ev0wub3Igv85s6oTsGY7EBzXHdO6R4wW88YTrTbdbdwEJkCVUmzgoD
-eWb+4nNf7dzX8a43DaUsHber9p6Kxck5JCyi6v+IhNiXVm9gg4DqP//alZuJez3G
-jxoF6RJomp0IibcjBsOL2Eq6BKdl7b1i6SQ69zgH6udsAKgoezzIfnaCl+Ktp1Y8
-mWJr1R+aC92DlCV8yie3VCZkc6zOqcbqd13wqNcRZ7Fox+pF4z6W6TLAf8kT/yYW
-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
------END ENCRYPTED FILE-----
-#else
-#error "Secure builder required to compile this file"
+/*LDRA_INSPECTED 119 S */
+/**************************************************************************/
+/*                                                                        */
+/*       Copyright (c) Microsoft Corporation. All rights reserved.        */
+/*                                                                        */
+/*       This software is licensed under the Microsoft Software License   */
+/*       Terms for Microsoft Azure RTOS. Full text of the license can be  */
+/*       found in the LICENSE file at https://aka.ms/AzureRTOS_EULA       */
+/*       and in the root directory of this software.                      */
+/*                                                                        */
+/**************************************************************************/
+
+
+/**************************************************************************/
+/**************************************************************************/
+/**                                                                       */
+/** ThreadX Component                                                     */
+/**                                                                       */
+/**   Initialize                                                          */
+/**                                                                       */
+/**************************************************************************/
+/**************************************************************************/
+
+#define TX_SOURCE_CODE
+
+
+/* Include necessary system files.  */
+
+/*LDRA_NOANALYSIS These include files are maintained by Express Logic. */
+#include "tx_api.h"
+#include "tx_initialize.h"
+#include "../tx_thread.h"
+#include "../tx_timer.h"
+#include "tx_cmsis.h"
+/*LDRA_ANALYSIS */
+
+#ifdef __ARM_ARCH_7EM__ // CM4 for GCC
+#define TX_PORT_ARM_CM4
 #endif
+#ifdef __IAR_SYSTEMS_ICC__ //IAR
+#if __CORE__ == __ARM7EM__ // CM4 for IAR
+#define TX_PORT_ARM_CM4
+#endif
+#endif
+
+/***********************************************************************//**
+ * @defgroup TX_SYNERGY_PORT ThreadX Synergy Port
+ * @{
+ **************************************************************************/
+
+/***********************************************************************//**
+ *
+ *  FUNCTION                                               RELEASE
+ *
+ *    _tx_initialize_low_level                             Synergy
+ *
+ *  DESCRIPTION
+ *
+ *    This function is responsible for any low-level processor
+ *    initialization, including definition of the ThreadX periodic
+ *    timer interrupt vector, saving the system stack pointer, and
+ *    finding the first available RAM memory address for
+ *    tx_application_define.
+ *
+ *  INPUT
+ *
+ *    None
+ *
+ *  OUTPUT
+ *
+ *    None
+ *
+ *  CALLS
+ *
+ *    None
+ *
+ *  CALLED BY
+ *
+ *    _tx_initialize_kernel_enter           ThreadX entry function
+ *
+ **************************************************************************/
+/*LDRA_INSPECTED 219 S API is defined by Express Logic, must start with
+ * underscore. */
+VOID   _tx_initialize_low_level(VOID)
+{
+    /** Ensure that interrupts are disabled.  */
+    __disable_irq();
+
+    /** Set base of available memory to end of non-initialized RAM area.  */
+    _tx_initialize_unused_memory = TX_UCHAR_POINTER_ADD(TX_FREE_MEMORY_START, 4);
+
+    /** Set system stack pointer from vector value.  */
+    /* The vector table is not uninitialized.  It is initialized in a file that is not in the 
+     * scope of this set. */
+    /*LDRA_INSPECTED 69 D */
+    _tx_thread_system_stack_ptr = TX_VECTOR_TABLE[0];
+
+#ifdef TX_PORT_ARM_CM4
+    /* Enable the cycle count register.  */
+    DWT->CTRL |= (uint32_t) DWT_CTRL_CYCCNTENA_Msk;
+#endif
+
+#ifndef TX_NO_TIMER
+    /** Configure SysTick based on user configuration (100 Hz by default).  */
+    SysTick_Config(SystemCoreClock / TX_TIMER_TICKS_PER_SECOND);
+#endif
+
+    /** Configure the handler priorities. */
+    NVIC_SetPriority(SVCall_IRQn, 0xFF); // Note: SVC must be lowest priority, which is 0xFF
+    NVIC_SetPriority(PendSV_IRQn, 0xFF); // Note: PnSV must be lowest priority, which is 0xFF
+#ifndef TX_NO_TIMER
+#ifndef TX_PORT_CFG_SYSTICK_IPL
+    NVIC_SetPriority(SysTick_IRQn, 0x40);
+#else
+    NVIC_SetPriority(SysTick_IRQn, TX_PORT_CFG_SYSTICK_IPL); // Set User configured Priority for Systick Interrupt
+#endif
+#endif
+
+#ifdef TX_VFP_ENABLE
+    /** Reset lazy stacking if the MCU has an FPU. */
+    __asm(
+        "MRS     R12, CONTROL     \n"
+        "BIC     R12, R12, #4     \n"      /* Clear FPCA. */
+        "MSR     CONTROL, R12     \n"
+        "                         \n");
+#endif
+}
+
+/***********************************************************************//**
+ * @} (end defgroup TX_SYNERGY_PORT)
+ **************************************************************************/

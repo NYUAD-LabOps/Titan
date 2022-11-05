@@ -1,182 +1,129 @@
-#ifdef AMS_ENCRYPT_PACKAGE
------BEGIN ENCRYPTED FILE v0.6-----
-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
------END ENCRYPTED FILE-----
-#else
-#error "Secure builder required to compile this file"
+/**************************************************************************/
+/*                                                                        */
+/*       Copyright (c) Microsoft Corporation. All rights reserved.        */
+/*                                                                        */
+/*       This software is licensed under the Microsoft Software License   */
+/*       Terms for Microsoft Azure RTOS. Full text of the license can be  */
+/*       found in the LICENSE file at https://aka.ms/AzureRTOS_EULA       */
+/*       and in the root directory of this software.                      */
+/*                                                                        */
+/**************************************************************************/
+
+
+/**************************************************************************/
+/**************************************************************************/
+/**                                                                       */
+/** FileX Component                                                       */
+/**                                                                       */
+/**   Directory                                                           */
+/**                                                                       */
+/**************************************************************************/
+/**************************************************************************/
+
+#define FX_SOURCE_CODE
+
+
+/* Include necessary system files.  */
+
+#include "fx_api.h"
+#include "fx_system.h"
+#include "fx_file.h"
+#include "fx_utility.h"
+#include "fx_directory.h"
+
+#ifndef FX_NO_LOCAL_PATH
+FX_LOCAL_PATH_SETUP
 #endif
+
+/**************************************************************************/
+/*                                                                        */
+/*  FUNCTION                                               RELEASE        */
+/*                                                                        */
+/*    _fx_directory_local_path_get                        PORTABLE C      */
+/*                                                           6.1.5        */
+/*  AUTHOR                                                                */
+/*                                                                        */
+/*    William E. Lamie, Microsoft Corporation                             */
+/*                                                                        */
+/*  DESCRIPTION                                                           */
+/*                                                                        */
+/*    This function returns a pointer to the local default directory      */
+/*    for this thread.                                                    */
+/*                                                                        */
+/*  INPUT                                                                 */
+/*                                                                        */
+/*    media_ptr                             Media control block pointer   */
+/*    return_path_name                      Return local path name        */
+/*                                                                        */
+/*  OUTPUT                                                                */
+/*                                                                        */
+/*    return status                                                       */
+/*                                                                        */
+/*  CALLS                                                                 */
+/*                                                                        */
+/*    None                                                                */
+/*                                                                        */
+/*  CALLED BY                                                             */
+/*                                                                        */
+/*    Application Code                                                    */
+/*                                                                        */
+/*  RELEASE HISTORY                                                       */
+/*                                                                        */
+/*    DATE              NAME                      DESCRIPTION             */
+/*                                                                        */
+/*  05-19-2020     William E. Lamie         Initial Version 6.0           */
+/*  09-30-2020     William E. Lamie         Modified comment(s),          */
+/*                                            resulting in version 6.1    */
+/*  03-02-2021     William E. Lamie         Modified comment(s),          */
+/*                                            resulting in version 6.1.5  */
+/*                                                                        */
+/**************************************************************************/
+UINT  _fx_directory_local_path_get(FX_MEDIA *media_ptr, CHAR **return_path_name)
+{
+
+
+#ifndef FX_MEDIA_STATISTICS_DISABLE
+
+    /* Increment the number of times this service has been called.  */
+    media_ptr -> fx_media_directory_local_path_gets++;
+#endif
+
+    /* Check the media to make sure it is open.  */
+    if (media_ptr -> fx_media_id != FX_MEDIA_ID)
+    {
+
+        /* Return the media not opened error.  */
+        return(FX_MEDIA_NOT_OPEN);
+    }
+
+#ifdef FX_NO_LOCAL_PATH
+
+    FX_PARAMETER_NOT_USED(return_path_name);
+
+    /* Error, return to caller.  */
+    return(FX_NOT_IMPLEMENTED);
+#else
+
+    /* Determine if there is a local path.  */
+    if (_tx_thread_current_ptr -> tx_thread_filex_ptr)
+    {
+
+        /* Return a pointer to the current local directory path string.  */
+        *return_path_name =  ((FX_LOCAL_PATH *)_tx_thread_current_ptr -> tx_thread_filex_ptr) -> fx_path_string;
+    }
+    else
+    {
+
+        /* Just set the return value to FX_NULL to indicate there is no
+           local path setup.  */
+        *return_path_name =  FX_NULL;
+    }
+
+    /* If trace is enabled, insert this event into the trace buffer.  */
+    FX_TRACE_IN_LINE_INSERT(FX_TRACE_DIRECTORY_LOCAL_PATH_GET, media_ptr, return_path_name, 0, 0, FX_TRACE_DIRECTORY_EVENTS, 0, 0)
+
+    /* Local default directory has been returned, return status.  */
+    return(FX_SUCCESS);
+#endif
+}
+

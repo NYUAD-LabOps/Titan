@@ -1,167 +1,106 @@
-#ifdef AMS_ENCRYPT_PACKAGE
------BEGIN ENCRYPTED FILE v0.6-----
-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
-0UVBf9gvcdrVQvl7Z1RMhw==
------END ENCRYPTED FILE-----
-#else
-#error "Secure builder required to compile this file"
-#endif
+/**************************************************************************/
+/*                                                                        */
+/*       Copyright (c) Microsoft Corporation. All rights reserved.        */
+/*                                                                        */
+/*       This software is licensed under the Microsoft Software License   */
+/*       Terms for Microsoft Azure RTOS. Full text of the license can be  */
+/*       found in the LICENSE file at https://aka.ms/AzureRTOS_EULA       */
+/*       and in the root directory of this software.                      */
+/*                                                                        */
+/**************************************************************************/
+
+
+/**************************************************************************/
+/**************************************************************************/
+/**                                                                       */
+/** FileX Component                                                       */
+/**                                                                       */
+/**   System                                                              */
+/**                                                                       */
+/**************************************************************************/
+/**************************************************************************/
+
+#define FX_SOURCE_CODE
+
+
+/* Include necessary system files.  */
+
+#include "fx_api.h"
+#include "fx_system.h"
+
+
+/**************************************************************************/
+/*                                                                        */
+/*  FUNCTION                                               RELEASE        */
+/*                                                                        */
+/*    _fxe_system_time_set                                PORTABLE C      */
+/*                                                           6.1          */
+/*  AUTHOR                                                                */
+/*                                                                        */
+/*    William E. Lamie, Microsoft Corporation                             */
+/*                                                                        */
+/*  DESCRIPTION                                                           */
+/*                                                                        */
+/*    This function checks for errors in the set the system time call.    */
+/*                                                                        */
+/*  INPUT                                                                 */
+/*                                                                        */
+/*    hour                                  Hour (0-23)                   */
+/*    minute                                Minute (0-59)                 */
+/*    second                                Second (0-59)                 */
+/*                                                                        */
+/*  OUTPUT                                                                */
+/*                                                                        */
+/*    FX_INVALID_HOUR                       Supplied hour is invalid      */
+/*    FX_INVALID_MINUTE                     Supplied minute is invalid    */
+/*    FX_INVALID_SECOND                     Supplied second is invalid    */
+/*    status                                Actual completion status      */
+/*                                                                        */
+/*  CALLS                                                                 */
+/*                                                                        */
+/*    _fx_system_time_set                   Actual system time set call   */
+/*                                                                        */
+/*  CALLED BY                                                             */
+/*                                                                        */
+/*    Application Code                                                    */
+/*                                                                        */
+/*  RELEASE HISTORY                                                       */
+/*                                                                        */
+/*    DATE              NAME                      DESCRIPTION             */
+/*                                                                        */
+/*  05-19-2020     William E. Lamie         Initial Version 6.0           */
+/*  09-30-2020     William E. Lamie         Modified comment(s),          */
+/*                                            resulting in version 6.1    */
+/*                                                                        */
+/**************************************************************************/
+UINT  _fxe_system_time_set(UINT hour, UINT minute, UINT second)
+{
+
+UINT status;
+
+
+    /* Check for invalid hour.  */
+    if (hour > FX_MAXIMUM_HOUR)
+    {
+        return(FX_INVALID_HOUR);
+    }
+
+    /* Check for invalid minute.  */
+    if (minute > FX_MAXIMUM_MINUTE)
+    {
+        return(FX_INVALID_MINUTE);
+    }
+
+    /* Check for invalid second.  */
+    if (second > FX_MAXIMUM_SECOND)
+    {
+        return(FX_INVALID_SECOND);
+    }
+
+    /* Call the actual set system time service.  */
+    status =  _fx_system_time_set(hour, minute, second);
+
+    /* Return status.  */
+    return(status);
+}
+

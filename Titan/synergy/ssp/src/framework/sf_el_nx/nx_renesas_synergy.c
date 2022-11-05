@@ -1,28 +1,17 @@
+/*LDRA_INSPECTED 119 S */
 /**************************************************************************/
 /*                                                                        */
-/*            Copyright (c) 1996-2016 by Express Logic Inc.               */
+/*       Copyright (c) Microsoft Corporation. All rights reserved.        */
 /*                                                                        */
-/*  This software is copyrighted by and is the sole property of Express   */
-/*  Logic, Inc.  All rights, title, ownership, or other interests         */
-/*  in the software remain the property of Express Logic, Inc.  This      */
-/*  software may only be used in accordance with the corresponding        */
-/*  license agreement.  Any unauthorized use, duplication, transmission,  */
-/*  distribution, or disclosure of this software is expressly forbidden.  */
-/*                                                                        */
-/*  This Copyright notice may not be removed or modified without prior    */
-/*  written consent of Express Logic, Inc.                                */
-/*                                                                        */
-/*  Express Logic, Inc. reserves the right to modify this software        */
-/*  without notice.                                                       */
-/*                                                                        */
-/*  Express Logic, Inc.                     info@expresslogic.com         */
-/*  11423 West Bernardo Court               www.expresslogic.com          */
-/*  San Diego, CA  92127                                                  */
+/*       This software is licensed under the Microsoft Software License   */
+/*       Terms for Microsoft Azure RTOS. Full text of the license can be  */
+/*       found in the LICENSE file at https://aka.ms/AzureRTOS_EULA       */
+/*       and in the root directory of this software.                      */
 /*                                                                        */
 /**************************************************************************/
 
 /***********************************************************************************************************************
- * Copyright [2017] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
+ * Copyright [2017-2021] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
  *
  * This file is part of Renesas SynergyTM Software Package (SSP)
  *
@@ -48,9 +37,8 @@
  * Includes   <System Includes> , "Project Includes"
 ***********************************************************************************************************************/
 #include "bsp_api.h"
-
-/*LDRA_NOANALYSIS tx_api.h and nx_api.h are not maintained by Renesas, so LDRA analysis is skipped for these files. */
 #include "tx_api.h"
+/*LDRA_NOANALYSIS tx_api.h and nx_api.h are not maintained by Renesas, so LDRA analysis is skipped for these files. */
 #include "nx_api.h"
 /*LDRA_ANALYSIS */
 #include "nx_renesas_synergy.h"
@@ -208,7 +196,6 @@ ssp_err_t nx_ether_custom_packet_send( NX_PACKET_POOL *pool_ptr,
     NX_ETHERNET_ERROR_RETURN(((UINT)NX_SUCCESS == nx_status), SSP_ERR_OUT_OF_MEMORY);
     nx_status = nx_packet_data_append(packet_ptr, (void *) data, length, packet_ptr->nx_packet_pool_owner, NX_NO_WAIT);
     NX_ETHERNET_ERROR_RETURN(((UINT)NX_SUCCESS == nx_status), SSP_ERR_INTERNAL);
-
 
     /* Adjust the prepend pointer.  */
     packet_ptr->nx_packet_prepend_ptr = packet_ptr->nx_packet_prepend_ptr - NX_ETHERNET_SIZE;
@@ -1181,6 +1168,8 @@ static void nx_rx_interrupt(NX_REC *nx_rec_ptr)
         nx_rec_ptr->driver_rx_bd_index = (nx_rec_ptr->driver_rx_bd_index + bds_in_chain) % (ULONG) NUM_RX_DESC;
 
         rxbd_status = nx_rec_ptr->driver_rx_bd[nx_rec_ptr->driver_rx_bd_index].bd_status;
+
+        bds_in_chain = 1U;
 
     } while (!(rxbd_status & DESCRIPTOR_FLAG_ACTIVE));
 
