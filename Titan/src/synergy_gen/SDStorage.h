@@ -5,13 +5,12 @@
 #include "tx_api.h"
 #include "hal_data.h"
 #ifdef __cplusplus
-extern "C" void SDStorage_entry(void);
-#else
+                extern "C" void SDStorage_entry(void);
+                #else
 extern void SDStorage_entry(void);
 #endif
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 #ifdef __cplusplus
 } /* extern "C" */

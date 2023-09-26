@@ -1,5 +1,5 @@
 /***********************************************************************************************************************
- * Copyright [2015-2021] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
+ * Copyright [2015-2023] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
  * 
  * This file is part of Renesas SynergyTM Software Package (SSP)
  *
@@ -287,8 +287,8 @@ static ssp_err_t sf_el_fx_driver_request_handler(FX_MEDIA * p_fx_media);
  *                                                  Possible values are documented in the FileX User Guide.
  * @retval                                          none.
  *
- * @return                                          Nothing, but updates FileX media control block.This function calls
- *                                                      * sf_el_fx_driver_request_handler
+ * @note                                            This function returns nothing, but updates FileX media control block.This function calls
+ *                                                  sf_el_fx_driver_request_handler
  **********************************************************************************************************************/
 void  SF_EL_FX_BlockDriver (FX_MEDIA * p_fx_media)
 {

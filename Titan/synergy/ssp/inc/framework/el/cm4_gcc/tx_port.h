@@ -26,7 +26,7 @@
 /*  PORT SPECIFIC C INFORMATION                            RELEASE        */
 /*                                                                        */
 /*    tx_port.h                                         Cortex-M4/GNU     */
-/*                                                           6.1.10       */
+/*                                                           6.1.12       */
 /*                                                                        */
 /*  AUTHOR                                                                */
 /*                                                                        */
@@ -50,12 +50,12 @@
 /*                                                                        */
 /*    DATE              NAME                      DESCRIPTION             */
 /*                                                                        */
-/*  06-02-2021      Scott Larson            Initial Version 6.1.7         */
-/*  01-31-2022      Scott Larson            Modified comments, updated    */
-/*                                            typedef to fix misra        */
-/*                                            violation,                  */
-/*                                            fixed predefined macro,     */
-/*                                            resulting in version 6.1.10 */
+/*  04-25-2022      Scott Larson            Modified comments and added   */
+/*                                            volatile to registers,      */
+/*                                            resulting in version 6.1.11 */
+/*  07-29-2022      Scott Larson            Modified comments and         */
+/*                                            described BASEPRI usage,    */
+/*                                            resulting in version 6.1.12 */
 /*                                                                        */
 /**************************************************************************/
 
@@ -170,14 +170,14 @@ typedef unsigned short                          USHORT;
    For example, if the time source is at the address 0x0a800024 and is 16-bits in size, the clock
    source constants would be:
 
-#define TX_TRACE_TIME_SOURCE                    *((ULONG *) 0x0a800024)
+#define TX_TRACE_TIME_SOURCE                    *((volatile ULONG *) 0x0a800024)
 #define TX_TRACE_TIME_MASK                      0x0000FFFFUL
 
 */
 
 #ifndef TX_MISRA_ENABLE
 #ifndef TX_TRACE_TIME_SOURCE
-#define TX_TRACE_TIME_SOURCE                    *((ULONG *) 0xE0001004)
+#define TX_TRACE_TIME_SOURCE                    *((volatile ULONG *) 0xE0001004)
 #endif
 #else
 ULONG   _tx_misra_time_stamp_get(VOID);
@@ -435,7 +435,7 @@ void _tx_vfp_access(void);
                                                         else                                                                                \
                                                         {                                                                                   \
                                                         ULONG  _tx_fpccr;                                                                   \
-                                                            _tx_fpccr =  *((ULONG *) 0xE000EF34);                                           \
+                                                            _tx_fpccr =  *((volatile ULONG *) 0xE000EF34);                                           \
                                                             _tx_fpccr =  _tx_fpccr & ((ULONG) 0x01);                                        \
                                                             if (_tx_fpccr == ((ULONG) 0x01))                                                \
                                                             {                                                                               \
@@ -817,7 +817,7 @@ extern void * __RAM_segment_used_end__;
 
 #ifdef TX_THREAD_INIT
 CHAR                            _tx_version_id[] =
-                                    "Copyright (c) Microsoft Corporation. All rights reserved.  *  ThreadX Cortex-M4/GNU Version 6.1.9 *";
+                                    "Copyright (c) Microsoft Corporation. All rights reserved.  *  ThreadX Cortex-M4/GNU Version 6.1.12 *";
 #else
 #ifdef TX_MISRA_ENABLE
 extern  CHAR                    _tx_version_id[100];

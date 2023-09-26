@@ -5,13 +5,12 @@
 #include "tx_api.h"
 #include "hal_data.h"
 #ifdef __cplusplus
-extern "C" void Management_entry(void);
-#else
+                extern "C" void Management_entry(void);
+                #else
 extern void Management_entry(void);
 #endif
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 #ifdef __cplusplus
 } /* extern "C" */

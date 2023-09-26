@@ -19,15 +19,15 @@ void TitanMain_create(void)
 
     /* Initialize each kernel object. */
     UINT err_g_linked_list_flags;
-    err_g_linked_list_flags = tx_event_flags_create (&g_linked_list_flags, (CHAR *) "List Events");
+    err_g_linked_list_flags = tx_event_flags_create (&g_linked_list_flags, (CHAR*) "List Events");
     if (TX_SUCCESS != err_g_linked_list_flags)
     {
         tx_startup_err_callback (&g_linked_list_flags, 0);
     }
 
     UINT err;
-    err = tx_thread_create (&TitanMain, (CHAR *) "TitanMain", TitanMain_func, (ULONG) NULL, &TitanMain_stack, 4096, 2,
-                            2, 1, TX_AUTO_START);
+    err = tx_thread_create (&TitanMain, (CHAR*) "TitanMain", TitanMain_func, (ULONG) NULL, &TitanMain_stack, 4096, 1, 1,
+                            1, TX_AUTO_START);
     if (TX_SUCCESS != err)
     {
         tx_startup_err_callback (&TitanMain, 0);

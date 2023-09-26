@@ -4,6 +4,11 @@
 
 void motorInit(struct motorController *motorBlock);
 
+struct motorController *motorBlockX, *motorBlockY, *motorBlockZ, *motorBlockT, *motorBlockA, *motorBlockB, *motorBlockC,
+        *motorBlockD;
+struct toolBlock *toolBlockA;
+struct machineGlobals *machineGlobalsBlock;
+
 extern struct node *head;
 extern struct node *tail;
 /* Helix Main entry function */
@@ -13,10 +18,10 @@ void TitanMain_entry(void)
     UINT status;
     ULONG eventFlags;
 
-    if (DEBUGGER)
+    if (DEBUGGERPRIMARY)
         initialise_monitor_handles ();
 
-    if (DEBUGGER)
+    if (DEBUGGERPRIMARY)
     {
         printf ("\Titan controller initializing...");
     }
@@ -24,21 +29,30 @@ void TitanMain_entry(void)
     ioport_level_t pinValue;
     char cmd[3] = "cmd";
 
-    initialise_monitor_handles ();
-    printf ("\Titan controller initializing...");
     initGlobalsBlock ();
     initBuff ();
 //    machineGlobalsBlock->USBBufferB = initUSBBuffer_PoolB (512);
-    if (DEBUGGER)
+    if (DEBUGGERPRIMARY)
     {
-        printf ("\nMotor registers initializing...");
+        printf ("\nMachine Globals OK\nMotor registers initializing...");
     }
     initMotorBlocks ();
+    if (DEBUGGERPRIMARY)
+        printf ("\nMotor Blocks OK");
     initToolBlocks ();
+    if (DEBUGGERPRIMARY)
+        printf ("\nTool Blocks OK");
     initMotors ();
+    if (DEBUGGERPRIMARY)
+        printf ("\nMotors OK");
     initTools ();
+    if (DEBUGGERPRIMARY)
+        printf ("\nTools OK");
 
-    if (DEBUGGER)
+    err = init_timers ();
+    if (DEBUGGERPRIMARY)
+        printf ("\nTimers OK");
+    if (DEBUGGERPRIMARY)
     {
         printf ("\nPrimary initialization complete.");
     }
@@ -53,6 +67,8 @@ void TitanMain_entry(void)
     {
         //parse instructions if there are any available and receiving is not in progress
 //        status = tx_event_flags_get (&g_linked_list_flags, 1, TX_AND, &eventFlags, 10);
+
+//This should be in a separate thread so it does not delay the next command.
         if (machineGlobalsBlock->USBBufferHasData == 1 && machineGlobalsBlock->linkedListNodeCount < 10
                 && machineGlobalsBlock->printJob == 1)
         {
@@ -92,14 +108,20 @@ void TitanMain_entry(void)
 void motorInitX()
 {
     ssp_err_t err;
-    motorBlockX->controlCode = 'x';
+    err = g_external_irqX.p_api->open (g_external_irqX.p_ctrl, g_external_irqX.p_cfg);
     motorBlockX->homing = 0;
-    motorBlockX->dirPin = IOPORT_PORT_06_PIN_04;
-    motorBlockX->stepSize = STEPX;
-    motorBlockX->stepPin = IOPORT_PORT_03_PIN_02;
+    motorBlockX->dirPin = IOPORT_PORT_05_PIN_13;
+    motorBlockX->start = g_timerX.p_api->start;
+    motorBlockX->stop = g_timerX.p_api->stop;
+    motorBlockX->dutyCycleSet = g_timerX.p_api->dutyCycleSet;
+    motorBlockX->periodSet = g_timerX.p_api->periodSet;
+    motorBlockX->g_timer_gpt_x = g_timerX;
+    motorBlockX->stepsPerMM = STEPX;
+    motorBlockX->stepSize = (1.0 / STEPY);
+    motorBlockX->stepPin = IOPORT_PORT_08_PIN_05;
     motorBlockX->stepState = IOPORT_LEVEL_LOW;
-    motorBlockX->limit0Pin = IOPORT_PORT_00_PIN_05;
-    motorBlockX->defaultDir = IOPORT_LEVEL_LOW;
+    motorBlockX->limit0Pin = IOPORT_PORT_00_PIN_08;
+    motorBlockX->defaultDir = IOPORT_LEVEL_HIGH; //Towards Home
     motorBlockX->targetDir = motorBlockX->defaultDir;
     motorBlockX->targetJerkSpeed = DEFAULTJERKSPEEDX;
     g_ioport.p_api->pinWrite (motorBlockX->dirPin, motorBlockX->defaultDir);
@@ -107,7 +129,7 @@ void motorInitX()
     motorBlockX->fwdDir = IOPORT_LEVEL_LOW;
     motorBlockX->homeSpeed = HOMEVX;
     motorBlockX->rapidSpeed = HOMEVX;
-    motorBlockX->limit0State = IOPORT_LEVEL_HIGH;
+    motorBlockX->limit0State = LIMITINACTIVESTATE;
     motorBlockX->intervalSteps = 0;
     motorBlockX->freqSet = 0;
     motorBlockX->setPosSteps = 0;
@@ -232,23 +254,22 @@ void genericMotorInit(struct motorController *motorBlock)
 {
     ssp_err_t err;
     motorBlock->homing = 0;
-    motorBlock->dirPin = IOPORT_PORT_06_PIN_01;
-    motorBlock->stepSize = STEPZ;
-    motorBlock->stepPin = IOPORT_PORT_01_PIN_11;
+    motorBlock->stepsPerMM = STEPX;
+    motorBlock->stepSize = (1.0 / STEPZ);
     motorBlock->stepState = IOPORT_LEVEL_LOW;
-    motorBlock->limit0Pin = IOPORT_PORT_00_PIN_00;
-    motorBlock->defaultDir = IOPORT_LEVEL_LOW;
     motorBlock->targetDir = motorBlock->defaultDir;
     motorBlock->targetJerkSpeed = DEFAULTJERKSPEEDZ;
     g_ioport.p_api->pinWrite (motorBlock->dirPin, motorBlock->defaultDir);
     motorBlock->dir = motorBlock->defaultDir;
     motorBlock->fwdDir = IOPORT_LEVEL_HIGH;
+    motorBlock->defaultDir = IOPORT_LEVEL_LOW;
+    motorBlock->fwdDir = IOPORT_LEVEL_HIGH;
     motorBlock->posSteps = 0;
     motorBlock->targetPosSteps = 0;
     motorBlock->offsetSteps = 0;
-    motorBlock->homeSpeed = HOMEVZ;
-    motorBlock->rapidSpeed = HOMEVZ;
-    motorBlock->limit0State = IOPORT_LEVEL_HIGH;
+    motorBlock->homeSpeed = HOMEVX;
+    motorBlock->rapidSpeed = HOMEVX;
+    motorBlock->limit0State = LIMITINACTIVESTATE;
     motorBlock->intervalSteps = 0;
     motorBlock->freqSet = 0;
     motorBlock->setPosSteps = 0;
@@ -262,6 +283,7 @@ void genericMotorInit(struct motorController *motorBlock)
     motorBlock->targetPosSteps = 0;
     motorBlock->speed = 0;
     motorBlock->frequency = 0;
+    motorBlock->encoderActive = 0;
 }
 
 void toolInitA()
@@ -272,4 +294,48 @@ void toolInitA()
 void getTemp_callback(timer_callback_args_t *p_args)
 {
     machineGlobalsBlock->getUpdate = 1;
+}
+
+void gpt_X_callback(timer_callback_args_t *p_args)
+{
+    stepHandler (motorBlockX);
+}
+
+void gpt_Y_callback(timer_callback_args_t *p_args)
+{
+    stepHandler (motorBlockY);
+}
+
+void gpt_Z_callback(timer_callback_args_t *p_args)
+{
+    stepHandler (motorBlockZ);
+}
+
+void gpt_A_callback(timer_callback_args_t *p_args)
+{
+    stepHandler (motorBlockA);
+}
+
+void gpt_C_callback(timer_callback_args_t *p_args)
+{
+    stepHandler (motorBlockC);
+}
+
+void gpt_T_callback(timer_callback_args_t *p_args)
+{
+    stepHandler (motorBlockT);
+}
+void ext_irqX_callback(external_irq_callback_args_t *p_args)
+{
+    limitHit (motorBlockX);
+}
+
+void ext_irqY_callback(external_irq_callback_args_t *p_args)
+{
+    limitHit (motorBlockY);
+}
+
+void ext_irqZ_callback(external_irq_callback_args_t *p_args)
+{
+    limitHit (motorBlockZ);
 }

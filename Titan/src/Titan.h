@@ -1,13 +1,14 @@
-#include "UDP.h"
+//#include "UDP.h"
 #include <TitanParser.h>
 //#include <Ganymede.h>
 #include "hal_data.h"
 //#include "r_timer_api.h"
+#define DEBUGGERPRIMARY 1
 #define DEBUGGER 0
 #define DEBUG 0
 #define SECONDARYIP IP_ADDRESS(192,168,10,182)
 #define IPADDSTRING "192.168.10.181"
-#define WIFI_PACKET_SIZE 50
+#define WIFI_PACKET_SIZE 53
 #define NXD_MQTT_MAX_MESSAGE_LENGTH 50
 ///Number of bytes in each UDP message. UDP packet:
 /// control(1)|axis(1)|data(8)
@@ -22,31 +23,49 @@
 #define MAXERROR 1.0 /// %
 #define MINPRECISION 1.0 /// %
 #define ACCEL 1
-#define MAXACCEL 500000 // mm/s^2
 ///Number of steps between velocity adjustments.
 #define ACCEL_STEP_INTERVAL 10
 ///Number of equal divisions used for acceleration processes.
 #define ACCEL_DIV 4
 ///Number of OS ticks between acceleration steps.
 #define ACCEL_STEP_TICKS 10
-#define STEPZ 45.472
 #define STEPX 45.472
 #define STEPY 45.472
-#define DEFAULTSPEED 60 //1kHz
-#define DEFAULTSPEEDX 10
-#define DEFAULTSPEEDY 10
-#define DEFAULTSPEEDZ 10
+#define STEPZ 15
+#define STEPA 45.472
+#define STEPC 45.472
+#define STEPT 45.472
+//#define STEPZ 22.5
+//#define STEPX 22.5
+//#define STEPY 22.5
+#define DEFAULTSPEED 1200
 #define DEFAULTJERKSPEEDX 500
 #define DEFAULTJERKSPEEDY 500
 #define DEFAULTJERKSPEEDZ 500
 #define HOME_BACKOFF 250 ///Time in milliseconds the motor runs when reversing away from limit.
-#define HOMEVX 60
-#define HOMEVY 60
-#define HOMEVZ 60
 #define MINV 100
-#define DEBOUNCE_TIME 10 //time in milliseconds for debouncing delay
+#define MINPRECISION 1.0 /// %
+#define MAXACCEL 2000 // mm/s^2
+#define MAXSPEED 500.0 ///Was 110.0
+#define ACCELPERTICK 120
+#define HOME_BACKOFF 250 ///Time in milliseconds the motor runs when reversing away from limit.
+#define HOME_BACKOFF_DISTANCE .3 ///Distance in millimeters to back off of limit.
+#define SOFTLIMITFORWARD 700
+#define SOFTLIMITREVERSE 0
+#define HOMEVX 1200
+#define HOMEVY 1200
+#define HOMEVZ 1200
+#define HOMEVA 1200
+#define HOMEVC 1200
+#define HOMEVT 1200
+#define DEBOUNCE_TIME 75 //time in milliseconds for debouncing delay
+#define ENCODERPULSESPERREVOLUTION 4000
+#define STEPSPERREVOLUTION 1600
 
 #define     UX_STORAGE_BUFFER_SIZE      (64*1024)
+#define DEBUGTEMPERATURE 0
+#define LIMITACTIVESTATE IOPORT_LEVEL_HIGH
+#define LIMITINACTIVESTATE IOPORT_LEVEL_LOW
 
 //long double pi=acos(-1.0L)
 
@@ -77,8 +96,8 @@ struct node
     struct node *next;
 };
 
-struct node *insertLink(char *content);
-struct node *removeLink(struct node *link);
+struct node* insertLink(char *content);
+struct node* removeLink(struct node *link);
 
 /**The motorController struct is stored in a block pool
  there are no #define elements which describe the motor
@@ -98,17 +117,15 @@ struct motorController
 {
     ///Flag used to tell if the motor block has been initialized. True = 1, False = XXX.
     int init;
-    ///controlCode stores the single byte character code used for identifying the target motor or axis.
-    /// Currently this is an ASCII lowercase xyz.
     char controlCode;
-    ///ipAdd holds the IP address of the controller associated with this motor or axis
-    ULONG ipAdd;
-
     ///Flag used to indicate if the motor is in homing mode.
     ///While in homing mode, the motor handler will ignore the state of the limit pins.
     /// Because of this, during a homing routine, the G28 command handler is responsible
     /// for directing motor activity.
     int homing;
+    ///The referenced flag indicates whether the motor has been referenced.
+    char referenced;
+    char hasLimits;
     ///Flag used to indicate whether the speed of the motor is to be set according
     /// to a velocity or frequency.
     /// 0 - Velocity (freq = vel/stepsize)
@@ -132,15 +149,15 @@ struct motorController
     int dirPin;
     ioport_level_t targetDir;
 
-    long int origPosStepsAbs;
+    double origPosStepsAbs;
 
     ///Used to retain the original position, in motor steps, prior to setting target position.
-    long int origPosSteps;
+    double origPosSteps;
 
-    long int posStepsAbs;
+    double posStepsAbs;
 
     ///Used to retain the position, in motor steps.
-    long int posSteps;
+    double posSteps;
 
     double origPosAbs;
 
@@ -153,15 +170,24 @@ struct motorController
     double targetPosAbs;
     ///Used to retain the target position, in mm.
     double targetPos;
-    long int targetPosStepsAbs;
+    double targetPosStepsAbs;
     ///Used to retain the target position, in motor steps.
-    long int targetPosSteps;
+    double targetPosSteps;
 
     ///Retains the offset, in steps, used for relative positioning movements.
     long int offsetSteps;
 
-    ///Used to retain the motor step size, in mm/step.
+    ///Used to retain the motor step size, in steps per mm.
+    char encoderActive;
+    double stepsPerMM;
     double stepSize;
+    double encoderMMPerPulse;
+    double stepsPerEncoderPulse;
+    int encoderAPin;
+    int encoderBPin;
+    ioport_level_t encoderAState;
+    ioport_level_t encoderBState;
+    char encoderCWFWD;
     /**Used to retain the integer value which corresponds to the GPIO pin being used for STEP output.
      This integer value is found in the #define values provided by Renesas headers.*/
     int stepPin;
@@ -205,8 +231,23 @@ struct motorController
     /**String variable which is available for retaining status information about the motor.
      Information held here is reported to the GUI when status updates are requested. Currently used.*/
     char status[50];
-///Function pointer for reference to the Renesas function which starts the GPT timer.
-} *motorBlockX, *motorBlockY, *motorBlockZ, *motorBlockT, *motorBlockA, *motorBlockB, *motorBlockC, *motorBlockD;
+    ///Function pointer for reference to the Renesas function which starts the GPT timer.
+    ssp_err_t (*start)(timer_ctrl_t *const p_ctrl);
+    ///Function pointer for reference to the Renesas function which sets the GPT timer period.
+    ssp_err_t (*periodSet)(timer_ctrl_t *const p_ctrl, timer_size_t const period, timer_unit_t const unit);
+    ///Function pointer for reference to the Renesas function which sets the GPT timer duty cycle.
+    ssp_err_t (*dutyCycleSet)(timer_ctrl_t *const p_ctrl, timer_size_t const duty_cycle,
+            timer_pwm_unit_t const duty_cycle_unit, uint8_t const pin);
+    ///Function pointer for reference to the Renesas function which stops the GPT timer.
+    ssp_err_t (*stop)(timer_ctrl_t *const p_ctrl);
+    /**Each GPT timer has an instance. The "timer_instance_t" datatype stores the GPT timer information
+     required by Renesas functions when starting, stopping, or otherwise adjusting the activity
+     of a GPT timer.*/
+    timer_instance_t g_timer_gpt_x;
+};
+
+extern struct motorController *motorBlockX, *motorBlockY, *motorBlockZ, *motorBlockT, *motorBlockA, *motorBlockB,
+        *motorBlockC, *motorBlockD;
 
 struct toolBlock
 {
@@ -223,7 +264,9 @@ struct toolBlock
     //ADC channel
 
     struct motorController *motorBlock;
-} *toolBlockA;
+};
+
+extern struct toolBlock *toolBlockA;
 
 /**Retains information about the properties and state of the machine
  * At this point there is only one global variable
@@ -234,6 +277,7 @@ struct machineGlobals
     char motorsInit;
     char iniInit;
     char printJob;
+    char chainedMovement;
     ///Array of pointers to motor controller blocks, in series XYZABC.
     struct motorController *controllerBlocks[4];
     ///How many controller blocks there are.
@@ -278,7 +322,7 @@ struct machineGlobals
 
     char UDPFlowControl;
     UINT UDPTimeout;
-    NX_UDP_SOCKET g_udp_sck;
+//    NX_UDP_SOCKET g_udp_sck;
     ///UDPRX is a flag which indicates if data has been received via UDP. Active HIGH.
     char UDPRX;
     char echoWaitStart;
@@ -287,7 +331,9 @@ struct machineGlobals
     double targetPosZ;
     double targetPosT;
     double targetSpeed;
-} *machineGlobalsBlock;
+};
+
+extern struct machineGlobals *machineGlobalsBlock;
 
 /**This struct retains information relevant to instructions after they are parsed.
  * After parsing, information such as floating point data related to character flags to axes ZXY
@@ -331,7 +377,7 @@ void stopMotor(struct motorController *motorBlock);
 double percentError(double target, double source);
 double UDPGetPosition(struct motorController *motorBlock);
 char UDPGetStatus();
-void processUDPRx(NX_PACKET *p_packet);
+//void processUDPRx(NX_PACKET *p_packet);
 void UDPGetToolUpdate();
 void initToolBlocks();
 void UDPSend(ULONG ip_address);
@@ -341,10 +387,11 @@ void rxFile(long long fileSize);
 void serialHandler(char *uartRx);
 void loadINI();
 void saveINI();
-void rebuildLinkedListFromSD ();
+void rebuildLinkedListFromSD();
 void printJob();
 void openGCode();
 void autoBuildPlateLevel();
 void calCmdHandler(struct instruction *data);
 void calRoutine(struct instruction *data, struct motorController *motorBlock, long int targetPosSteps, int targetFreq);
 char isInRange(char in);
+void UDPZeroTool();

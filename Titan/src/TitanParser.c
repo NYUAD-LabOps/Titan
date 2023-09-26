@@ -52,6 +52,18 @@ struct instruction parseLine(struct node *input)
         data.x = returnNumber (trimLine, 'x');
         data.y = returnNumber (trimLine, 'y');
         data.a = returnNumber (trimLine, 'a');
+        data.c = returnNumber (trimLine, 'a');
+        data.f = returnNumber (trimLine, 'f');
+        data.t = returnNumber (trimLine, 't');
+    }
+    else if (strcmp (data.cmd, "G00") == 0)
+    {
+        //get position and speed settings for each motor
+        data.z = returnNumber (trimLine, 'z');
+        data.x = returnNumber (trimLine, 'x');
+        data.y = returnNumber (trimLine, 'y');
+        data.a = returnNumber (trimLine, 'a');
+        data.c = returnNumber (trimLine, 'a');
         data.f = returnNumber (trimLine, 'f');
         data.t = returnNumber (trimLine, 't');
     }
@@ -65,6 +77,10 @@ struct instruction parseLine(struct node *input)
 
     }
     else if (strcmp (data.cmd, "G54") == 0)
+    {
+
+    }
+    else if (strcmp (data.cmd, "G92") == 0)
     {
 
     }
@@ -170,7 +186,9 @@ double returnNumber(char *searchString, char searchChar)
                 return ~0; //return error code
 
             }
-        } else{
+        }
+        else
+        {
             return ~0;
         }
     }

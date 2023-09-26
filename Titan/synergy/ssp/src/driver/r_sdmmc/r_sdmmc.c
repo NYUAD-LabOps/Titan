@@ -1,5 +1,5 @@
 /***********************************************************************************************************************
- * Copyright [2015-2021] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
+ * Copyright [2015-2023] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
  * 
  * This file is part of Renesas SynergyTM Software Package (SSP)
  *
@@ -2820,9 +2820,9 @@ void sdhimmc_dma_req_isr (void)
 
     if (NULL != p_ctrl)
     {
-        transfer_callback_args_t args;
+        volatile transfer_callback_args_t args;
         args.p_context = p_ctrl;
-        r_sdmmc_transfer_callback(&args);
+        r_sdmmc_transfer_callback((transfer_callback_args_t *) &args);
     }
 
     /* Clear the IR flag in the ICU.
@@ -2852,7 +2852,7 @@ void sdhimmc_sdio_isr (void)
         /** Call user p_callback */
         if (NULL != p_ctrl->p_callback)
         {
-            sdmmc_callback_args_t args;
+        	volatile sdmmc_callback_args_t args;
             uint32_t info1 = HW_SDMMC_SDIO_Info1Get(p_ctrl->p_reg);
             if (info1 & 0xC000)
             {
@@ -2865,7 +2865,7 @@ void sdhimmc_sdio_isr (void)
                 args.event     = SDMMC_EVENT_SDIO;
             }
             args.p_context = p_ctrl->p_context;
-            p_ctrl->p_callback(&args);
+            p_ctrl->p_callback((sdmmc_callback_args_t*) &args);
         }
 
         /* Clear interrupt flags */

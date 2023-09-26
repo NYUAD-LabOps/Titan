@@ -26,6 +26,17 @@ void SDStorage_entry(void)
     }
 
     status = fx_media_init0_open ();
+    if (status != FX_SUCCESS)
+    {
+        printf ("\nCould not open SD");
+    }
+    else
+    {
+        printf ("\nSD card ready.");
+    }
+
+    //INI functions are currently disabled.
+    tx_thread_suspend (tx_thread_identify ());
 
     // Try to open the file, 'Helix.ini'.
     fx_return = fx_file_open(&g_fx_media0, &machineGlobalsBlock->iniFile, "Titan.ini",
@@ -39,7 +50,7 @@ void SDStorage_entry(void)
         fx_return = fx_file_create (&g_fx_media0, "Titan.ini");
         if (fx_return != FX_SUCCESS)
         {
-
+            printf ("\nCould not create Titan.ini");
         }
         else
         {
@@ -98,23 +109,26 @@ void rebuildLinkedListFromSD()
     ULONG length_tmp;
     int i, j;
     char isInRangeReturn;
-    memset (machineGlobalsBlock->USBBufferB, 0, 100);
+//    memset (machineGlobalsBlock->USBBufferB, 0, 100);
 
     j = 0;
     do
     {
-        memset (machineGlobalsBlock->USBBufferB, 0, i);
         i = 0;
         do
         {
 
             fx_return = fx_file_read (&machineGlobalsBlock->gcodeFile, (machineGlobalsBlock->USBBufferB + i), 1,
                                       &actual_length);
-            if(fx_return != FX_SUCCESS){
-                printf("\nRead F.");
-            }else{
+            if (fx_return != FX_SUCCESS)
+            {
+                printf ("\nRead F.");
+            }
+            else
+            {
+                //Potential here for actual length greater than one, which is not handled.
                 isInRangeReturn = isInRange (machineGlobalsBlock->USBBufferB[i]);
-                i++;
+                i += actual_length;
             }
         }
         while (actual_length >= 1 && isInRangeReturn == 1 && fx_return == FX_SUCCESS);
@@ -125,10 +139,9 @@ void rebuildLinkedListFromSD()
             insertLink (machineGlobalsBlock->USBBufferB);
             j++;
         }
+        memset (machineGlobalsBlock->USBBufferB, 0, i);
     }
     while (j < 10 && actual_length >= 1 && fx_return == FX_SUCCESS);
-
-
 
     if (actual_length >= 1 && fx_return == FX_SUCCESS)
     {
@@ -140,5 +153,7 @@ void rebuildLinkedListFromSD()
     {
         ///End of file reached, or read error.
         machineGlobalsBlock->USBBufferHasData = 0;
+        if (DEBUGGERPRIMARY)
+            printf ("\nEnd of file.");
     }
 }

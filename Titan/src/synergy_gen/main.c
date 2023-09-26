@@ -3,36 +3,40 @@
 #include "tx_api.h"
 
 extern void TitanMain_create(void);
-extern void posCalc_create(void);
-extern void UDP_create(void);
 extern void UARTWIFI_create(void);
 extern void SDStorage_create(void);
 extern void Management_create(void);
+extern void motorX_thread_create(void);
+extern void motorY_thread_create(void);
+extern void motorZ_thread_create(void);
+extern void motorA_thread_create(void);
+extern void motorC_thread_create(void);
+extern void motorT_thread_create(void);
 
 uint32_t g_ssp_common_thread_count;
 bool g_ssp_common_initialized;
 TX_SEMAPHORE g_ssp_common_initialized_semaphore;
 
 #if defined(__ICCARM__)
-#define WEAK_REF_ATTRIBUTE
-#pragma weak tx_application_define_user               = tx_application_define_internal
-#elif defined(__GNUC__)
-#define WEAK_REF_ATTRIBUTE      __attribute__ ((weak, alias("tx_application_define_internal")))
-#endif
+                #define WEAK_REF_ATTRIBUTE
+                #pragma weak tx_application_define_user               = tx_application_define_internal
+                #elif defined(__GNUC__)
+                #define WEAK_REF_ATTRIBUTE      __attribute__ ((weak, alias("tx_application_define_internal")))
+                #endif
 
 #ifdef TX_USER_TRACE_BUFFER_DECLARE
-TX_USER_TRACE_BUFFER_DECLARE;
-#endif
+				TX_USER_TRACE_BUFFER_DECLARE;
+                #endif
 
 void g_hal_init(void);
 
 /** Weak reference for tx_err_callback */
 #if defined(__ICCARM__)
-#define tx_startup_err_callback_WEAK_ATTRIBUTE
-#pragma weak tx_startup_err_callback  = tx_startup_err_callback_internal
-#elif defined(__GNUC__)
-#define tx_startup_err_callback_WEAK_ATTRIBUTE __attribute__ ((weak, alias("tx_startup_err_callback_internal")))
-#endif
+                #define tx_startup_err_callback_WEAK_ATTRIBUTE
+                #pragma weak tx_startup_err_callback  = tx_startup_err_callback_internal
+                #elif defined(__GNUC__)
+                #define tx_startup_err_callback_WEAK_ATTRIBUTE __attribute__ ((weak, alias("tx_startup_err_callback_internal")))
+                #endif
 void tx_startup_err_callback_internal(void *p_instance, void *p_data);
 void tx_startup_err_callback(void *p_instance, void *p_data)
 tx_startup_err_callback_WEAK_ATTRIBUTE;
@@ -63,15 +67,19 @@ void tx_application_define(void *first_unused_memory)
     }
 
     TitanMain_create ();
-    posCalc_create ();
-    UDP_create ();
     UARTWIFI_create ();
     SDStorage_create ();
     Management_create ();
+    motorX_thread_create ();
+    motorY_thread_create ();
+    motorZ_thread_create ();
+    motorA_thread_create ();
+    motorC_thread_create ();
+    motorT_thread_create ();
 
 #ifdef TX_USER_ENABLE_TRACE
-    TX_USER_ENABLE_TRACE;
-#endif
+					TX_USER_ENABLE_TRACE;
+					#endif
 
     tx_application_define_user (first_unused_memory);
 }

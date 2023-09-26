@@ -1,5 +1,5 @@
 /***********************************************************************************************************************
- * Copyright [2015-2021] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
+ * Copyright [2015-2023] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
  * 
  * This file is part of Renesas SynergyTM Software Package (SSP)
  *
@@ -65,18 +65,21 @@ Macro definitions
 
 /** Block Media Control Block Type */
 
+/** Media partition table update status */
 typedef enum e_sf_el_fx_media_partition_table_update_status
 {
     SF_EL_FX_PARTITION_TABLE_UPDATE_DISABLE = 0U, ///< Partition table update is disabled
     SF_EL_FX_PARTITION_TABLE_UPDATE_ENABLE  = 1U  ///< Partition table update is enabled
 }sf_el_fx_media_partition_table_update_status_t;
 
+/** Media partition exist status */
 typedef enum e_sf_el_fx_media_partition_exist_status
 {
     SF_EL_FX_NO_PARTITIONS       = 0U,  ///< No partition in memory
     SF_EL_FX_MULTIPLE_PARTITIONS = 1U   ///< Multiple partitions in memory
 }sf_el_fx_media_partition_exist_status_t;
 
+/** Media partition types */
 typedef enum e_sf_el_fx_media_partition_type
 {
     SF_EL_FX_PARTITION_TYPE_UNKNOWN                       = 0x00U,  ///< Partition type unknown
@@ -88,6 +91,7 @@ typedef enum e_sf_el_fx_media_partition_type
 	SF_EL_FX_PARTITION_TYPE_EXTENDED_INT13                = 0x0FU   ///< Partition type extended with interrupt 13
 }sf_el_fx_media_partition_type_t;
 
+/** Media initialization status */
 typedef enum e_sf_el_fx_media_init_status
 {
     SF_EL_FX_SYS_UNINIT       = 0U,  ///< System not initialized
@@ -95,24 +99,28 @@ typedef enum e_sf_el_fx_media_init_status
     SF_EL_FX_SYS_INIT_FULL    = 2U   ///< System full initialized
 }sf_el_fx_media_init_status_t;
 
+/** Media MBR/EBR table status */
 typedef enum e_sf_el_fx_media_mbr_ebr_status
 {
     SF_EL_FX_DONOT_EXIST_OR_INVALID = 0x00U, ///< MBR/EBR table do not exist or is invalid
     SF_EL_FX_EXIST_AND_VALID        = 0x01U  ///< MBT/EBR table is valid
 }sf_el_fx_media_mbr_ebr_status_t;
 
+/** Media partition global open status */
 typedef enum e_sf_el_fx_media_partition_global_open_status
 {
     SF_EL_FX_PARTITION_GLOBAL_CLOSE = 0U, ///< All partitions are closed
     SF_EL_FX_PARTITION_GLOBAL_OPEN  = 1U  ///< At least one partition is open
 }sf_el_fx_media_partition_global_open_status_t;
 
+/** Media partition open status */
 typedef enum e_sf_el_fx_media_partition_open_status
 {
     SF_EL_FX_PARTITION_CLOSE = 0U,  ///< Partition is close
     SF_EL_FX_PARTITION_OPEN  = 1U   ///< Partition is open
 }sf_el_fx_media_partition_open_status_t;
 
+/** Media partition format status */
 typedef enum e_sf_el_fx_media_partition_format_status
 {
     SF_EL_FX_PARTITION_UNFORMATED          = 0U,  ///< Partition is not formated
@@ -120,6 +128,7 @@ typedef enum e_sf_el_fx_media_partition_format_status
     SF_EL_FX_PARTITION_POST_RESET_FORMATED = 2U   ///< Partition created after system reset
 }sf_el_fx_media_partition_format_status_t;
 
+/** Media partition EBR buffer update */
 typedef enum e_sf_el_fx_media_partition_ebr_buff_update
 {
     SF_EL_FX_EBR_BUFF_UPDATE_PRESENT = 0U,  ///< Update present EBR table

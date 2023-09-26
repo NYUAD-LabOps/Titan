@@ -1,12 +1,6 @@
 eclipse.preferences.version=1
-environment/project/com.renesas.cdt.managedbuild.gnuarm.config.elf.debug.1540063705/SECURE_BUILD_COMMAND/delimiter=
-environment/project/com.renesas.cdt.managedbuild.gnuarm.config.elf.debug.1540063705/SECURE_BUILD_COMMAND/operation=replace
-environment/project/com.renesas.cdt.managedbuild.gnuarm.config.elf.debug.1540063705/SECURE_BUILD_COMMAND/value=${renesas.support.targetLoc\:synergy-build}/isdebuild
 environment/project/com.renesas.cdt.managedbuild.gnuarm.config.elf.debug.1540063705/append=true
 environment/project/com.renesas.cdt.managedbuild.gnuarm.config.elf.debug.1540063705/appendContributed=true
-environment/project/com.renesas.cdt.managedbuild.gnuarm.config.elf.release.883844211/SECURE_BUILD_COMMAND/delimiter=
-environment/project/com.renesas.cdt.managedbuild.gnuarm.config.elf.release.883844211/SECURE_BUILD_COMMAND/operation=replace
-environment/project/com.renesas.cdt.managedbuild.gnuarm.config.elf.release.883844211/SECURE_BUILD_COMMAND/value=${renesas.support.targetLoc\:synergy-build}/isdebuild
 environment/project/com.renesas.cdt.managedbuild.gnuarm.config.elf.release.883844211/append=true
 environment/project/com.renesas.cdt.managedbuild.gnuarm.config.elf.release.883844211/appendContributed=true
 org.eclipse.cdt.core.formatter.align_composite_type_declarators=false

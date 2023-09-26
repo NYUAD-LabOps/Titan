@@ -1,5 +1,5 @@
 /***********************************************************************************************************************
- * Copyright [2015-2021] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
+ * Copyright [2015-2023] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
  * 
  * This file is part of Renesas SynergyTM Software Package (SSP)
  *
@@ -58,10 +58,10 @@ Macro definitions
 #define TSN_CALIB_BASE_PTR R_TSN_Calibration_Type *
 
 /** Sample and hold bypass applies to these channels. */
-#define ADC_MASK_SAMPLE_HOLD_BYPASS_CHANNELS  (0x3U)
+#define ADC_MASK_SAMPLE_HOLD_BYPASS_CHANNELS  (0x7U)
 
 /** Sample and hold bypass starts at bit 8. */
-#define ADC_MASK_SAMPLE_HOLD_BYPASS_SHIFT     (9U)
+#define ADC_MASK_SAMPLE_HOLD_BYPASS_SHIFT     (8U)
 
 /** Value for ADPGADCR0 to disable PGA */
 #define ADC_ADPGADCR0_DISABLE_PGA (0x0000)

@@ -22,8 +22,8 @@ void Management_entry(void)
     ioport_level_t level;
     ssp_err_t err;
 
-    double tempSet = 300.0;
-    double preHeatTSet = 300.0;
+    double tempSet = 150.0;
+    double preHeatTSet = 150.0;
 
     while (machineGlobalsBlock->globalsInit != 1)
     {
@@ -33,7 +33,7 @@ void Management_entry(void)
     ///Start the conveyor PWM.
     err = g_timer0.p_api->open (g_timer0.p_ctrl, g_timer0.p_cfg);
     err = g_timer0.p_api->start (g_timer0.p_ctrl);
-    err = g_timer0.p_api->periodSet (g_timer0.p_ctrl, 15, TIMER_UNIT_PERIOD_SEC);
+    err = g_timer0.p_api->periodSet (g_timer0.p_ctrl, 10, TIMER_UNIT_PERIOD_SEC);
     err = g_timer0.p_api->dutyCycleSet (g_timer0.p_ctrl, 15, TIMER_PWM_UNIT_PERCENT, 0);
     err = g_timer0.p_api->dutyCycleSet (g_timer0.p_ctrl, 15, TIMER_PWM_UNIT_PERCENT, 1);
 
@@ -48,27 +48,29 @@ void Management_entry(void)
     status = g_adc0.p_api->open (g_adc0.p_ctrl, g_adc0.p_cfg);
     if (status == SSP_SUCCESS)
     {
-        if (1)
+        if (DEBUGTEMPERATURE)
             printf ("\nadc0 open success.");
     }
 
     //Configure ADC Channel
     status = g_adc0.p_api->scanCfg (g_adc0.p_ctrl, g_adc0.p_channel_cfg);
-    if (status == SSP_SUCCESS)
+    if (DEBUGTEMPERATURE)
     {
-        if (1)
+        if (status == SSP_SUCCESS)
+        {
             printf ("\nadc0 scanCfg success.");
-    }
-    else
-    {
-        printf ("\nadc0 scanCfg fail.");
+        }
+        else
+        {
+            printf ("\nadc0 scanCfg fail.");
+        }
     }
 
     //Start the ADC scan
     status = g_adc0.p_api->scanStart (g_adc0.p_ctrl);
     if (status == SSP_SUCCESS)
     {
-        if (1)
+        if (DEBUGTEMPERATURE)
             printf ("\nadc0 scan start success.");
     }
 
@@ -96,18 +98,18 @@ void Management_entry(void)
 //                printf ("\nBed Read: %f", preHeatT);
 //                printf ("\nVoltage Read: %f", voltage);
 //            }
-
+            if (DEBUGTEMPERATURE)
+                printf ("\npreHeatT: %f", preHeatT);
             if (preHeatT < preHeatTSet && preHeatT > 20.0 && preHeatT < 200.0)
             {
 
-                g_timer6.p_api->dutyCycleSet (g_timer6.p_ctrl, 40, TIMER_PWM_UNIT_PERCENT, 1);
+                g_timer6.p_api->dutyCycleSet (g_timer6.p_ctrl, 60, TIMER_PWM_UNIT_PERCENT, 1);
                 //    err = g_ioport.p_api->pinWrite (IOPORT_PORT_03_PIN_14, IOPORT_LEVEL_LOW);
                 //                err = g_ioport.p_api->pinWrite (IOPORT_PORT_02_PIN_06, IOPORT_LEVEL_HIGH); //fan
-                if (PRINTF)
-                {
 
+                if (DEBUGTEMPERATURE)
                     printf ("\nHeating...");
-                }
+
             }
             else if (preHeatT < preHeatTSet && preHeatT > 20.0 && preHeatT > 200.0)
             {
@@ -115,11 +117,9 @@ void Management_entry(void)
                 g_timer6.p_api->dutyCycleSet (g_timer6.p_ctrl, 60, TIMER_PWM_UNIT_PERCENT, 1);
                 //    err = g_ioport.p_api->pinWrite (IOPORT_PORT_03_PIN_14, IOPORT_LEVEL_LOW);
                 //                err = g_ioport.p_api->pinWrite (IOPORT_PORT_02_PIN_06, IOPORT_LEVEL_HIGH); //fan
-                if (PRINTF)
-                {
-
+                if (DEBUGTEMPERATURE)
                     printf ("\nHeating...");
-                }
+
             }
             else if (preHeatT > preHeatTSet)
             {
@@ -127,10 +127,9 @@ void Management_entry(void)
 
                 //    err = g_ioport.p_api->pinWrite (IOPORT_PORT_03_PIN_14, IOPORT_LEVEL_LOW);
                 //                err = g_ioport.p_api->pinWrite (IOPORT_PORT_02_PIN_06, IOPORT_LEVEL_HIGH); //fan
-                if (PRINTF)
-                {
+                if (DEBUGTEMPERATURE)
                     printf ("\nCooling...");
-                }
+
             }
             else
             {
@@ -155,7 +154,7 @@ void Management_entry(void)
         {
             T = (voltage - 1.25) / 0.005;
 
-            if (PRINTF)
+            if (DEBUGTEMPERATURE)
             {
 
                 printf ("\nTemperature Set: %f", tempSet);
@@ -163,18 +162,17 @@ void Management_entry(void)
                 printf ("\nTemperature Read: %f", T);
                 printf ("\nVoltage Read: %f", voltage);
             }
-
+            if (DEBUGTEMPERATURE)
+                printf ("\nT: %f", T);
             if (T < tempSet && T > 20.0 && T < 200.0)
             {
                 err = g_ioport.p_api->pinWrite (IOPORT_PORT_04_PIN_15, IOPORT_LEVEL_LOW); //heater
-                g_timer6.p_api->dutyCycleSet (g_timer6.p_ctrl, 40, TIMER_PWM_UNIT_PERCENT, 0);
+                g_timer6.p_api->dutyCycleSet (g_timer6.p_ctrl, 60, TIMER_PWM_UNIT_PERCENT, 0);
                 //    err = g_ioport.p_api->pinWrite (IOPORT_PORT_03_PIN_14, IOPORT_LEVEL_LOW);
                 //                err = g_ioport.p_api->pinWrite (IOPORT_PORT_02_PIN_06, IOPORT_LEVEL_HIGH); //fan
-                if (PRINTF)
-                {
-
+                if (DEBUGTEMPERATURE)
                     printf ("\nHeating...");
-                }
+
             }
             else if (T < tempSet && T > 20.0 && T >= 200.0)
             {
@@ -182,11 +180,9 @@ void Management_entry(void)
                 g_timer6.p_api->dutyCycleSet (g_timer6.p_ctrl, 60, TIMER_PWM_UNIT_PERCENT, 0);
                 //    err = g_ioport.p_api->pinWrite (IOPORT_PORT_03_PIN_14, IOPORT_LEVEL_LOW);
 //                err = g_ioport.p_api->pinWrite (IOPORT_PORT_02_PIN_06, IOPORT_LEVEL_HIGH); //fan
-                if (PRINTF)
-                {
-
+                if (DEBUGTEMPERATURE)
                     printf ("\nHeating...");
-                }
+
             }
             else if (T > tempSet)
             {
@@ -196,10 +192,9 @@ void Management_entry(void)
 
                 //    err = g_ioport.p_api->pinWrite (IOPORT_PORT_03_PIN_14, IOPORT_LEVEL_LOW);
 //                err = g_ioport.p_api->pinWrite (IOPORT_PORT_02_PIN_06, IOPORT_LEVEL_HIGH); //fan
-                if (PRINTF)
-                {
+                if (DEBUGTEMPERATURE)
                     printf ("\nCooling...");
-                }
+
             }
             else
             {

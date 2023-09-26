@@ -5,54 +5,253 @@ static FX_FILE my_file;
 static FX_FILE ini_file;
 static char *local_buffer;
 
+#define UX_BUFFER_SIZE (128)
+#define CDCACM_FLAG ((ULONG)0x0001)
+
+/* CDC-ACM reception data buffer. */
+static unsigned char buffer[UX_BUFFER_SIZE];
+
+/* A pointer to store CDC-ACM device instance. */
+static UX_SLAVE_CLASS_CDC_ACM *g_cdc = UX_NULL;
+
+/* USBX CDC-ACM Instance Activate User Callback Function */
+VOID ux_cdc_device0_instance_activate(VOID *cdc_instance)
+{
+    /* Save the CDC instance.  */
+    g_cdc = (UX_SLAVE_CLASS_CDC_ACM*) cdc_instance;
+    tx_event_flags_set (&g_cdcacm_activate_event_flags0, CDCACM_FLAG, TX_OR);
+}
+
+/* USBX CDC-ACM Instance Deactivate User Callback Function */
+VOID ux_cdc_device0_instance_deactivate(VOID *cdc_instance)
+{
+    SSP_PARAMETER_NOT_USED(cdc_instance);
+
+    tx_event_flags_set (&g_cdcacm_activate_event_flags0, ~CDCACM_FLAG, TX_AND);
+    g_cdc = UX_NULL;
+}
+
+void error_trap(char *msg, ULONG status);
+void error_trap(char *msg, ULONG status)
+{
+
+    printf ("%s failed. error = %d\n", msg, (int) status);
+
+    while (1)
+    {
+
+    }
+}
+
 /* UARTWIFI entry function */
 void UARTWIFI_entry(void)
 {
+
     UINT fx_return;
     while (machineGlobalsBlock->globalsInit != 1)
     {
         tx_thread_sleep (500);
     }
-    /* TODO: add your own code here */
     UCHAR uartRx[WIFI_PACKET_SIZE];
     UCHAR controlCodeRxBuf[4];
     memset (controlCodeRxBuf, 0, 4);
     int i;
     i = 0;
     memset (uartRx, 0, WIFI_PACKET_SIZE);
-    static uart_cfg_t rx_uart_config;
-    g_sf_comms0.p_api->open (g_sf_comms0.p_ctrl, g_sf_comms0.p_cfg);
+
+    ULONG status;
+    ULONG actual_flags;
+    ULONG actual_length;
+
+    //Call pre-programmed instructions.
+
+    char preProgrammed[WIFI_PACKET_SIZE];
+//    memset (preProgrammed, 0, WIFI_PACKET_SIZE);
+
+    tx_thread_sleep(1000);
+
+    memset (preProgrammed, 0, WIFI_PACKET_SIZE);
+    strcpy (preProgrammed, "PRJ");
+    processReceivedMsg (preProgrammed);
+
+    tx_thread_suspend (tx_thread_identify ());
+
+//Home axes and move forward 5s
+    memset (preProgrammed, 0, WIFI_PACKET_SIZE);
+    strcpy (preProgrammed, "G28 XYZ");
+    processReceivedMsg (preProgrammed);
+
+    //Give it time to process command
+    tx_thread_sleep(500);
+
+    while (motorBlockX->homing || motorBlockY->homing || motorBlockZ->homing)
+        ;
+
+    memset (preProgrammed, 0, WIFI_PACKET_SIZE);
+    strcpy (preProgrammed, "M03 X500");
+    processReceivedMsg (preProgrammed);
+    memset (preProgrammed, 0, WIFI_PACKET_SIZE);
+    strcpy (preProgrammed, "M03 Y500");
+    processReceivedMsg (preProgrammed);
+    memset (preProgrammed, 0, WIFI_PACKET_SIZE);
+    strcpy (preProgrammed, "M03 Z500");
+    processReceivedMsg (preProgrammed);
+    memset (preProgrammed, 0, WIFI_PACKET_SIZE);
+    strcpy (preProgrammed, "M03 A500");
+    processReceivedMsg (preProgrammed);
+    tx_thread_sleep (5000);
 
     while (1)
     {
-        if (i >= 3)
+        memset (preProgrammed, 0, WIFI_PACKET_SIZE);
+        strcpy (preProgrammed, "M03 X500");
+        processReceivedMsg (preProgrammed);
+        memset (preProgrammed, 0, WIFI_PACKET_SIZE);
+        strcpy (preProgrammed, "M03 Y500");
+        processReceivedMsg (preProgrammed);
+        memset (preProgrammed, 0, WIFI_PACKET_SIZE);
+        strcpy (preProgrammed, "M03 Z500");
+        processReceivedMsg (preProgrammed);
+        memset (preProgrammed, 0, WIFI_PACKET_SIZE);
+        strcpy (preProgrammed, "M03 A500");
+        processReceivedMsg (preProgrammed);
+        tx_thread_sleep (5000);
+
+        memset (preProgrammed, 0, WIFI_PACKET_SIZE);
+        strcpy (preProgrammed, "M04 X500");
+        processReceivedMsg (preProgrammed);
+        memset (preProgrammed, 0, WIFI_PACKET_SIZE);
+        strcpy (preProgrammed, "M04 Y500");
+        processReceivedMsg (preProgrammed);
+        memset (preProgrammed, 0, WIFI_PACKET_SIZE);
+        strcpy (preProgrammed, "M04 Z500");
+        processReceivedMsg (preProgrammed);
+        memset (preProgrammed, 0, WIFI_PACKET_SIZE);
+        strcpy (preProgrammed, "M04 A500");
+        processReceivedMsg (preProgrammed);
+        tx_thread_sleep (5000);
+    }
+
+    //USB Currently disabled
+    tx_thread_suspend (tx_thread_identify ());
+
+    printf ("USBX_CDCACM_Device running\n\n");
+
+    /* Check if a CDC device is connected */
+    status = tx_event_flags_get (&g_cdcacm_activate_event_flags0, CDCACM_FLAG, TX_OR, &actual_flags, TX_NO_WAIT);
+    if (status && (status != TX_NO_EVENTS))
+    {
+        error_trap ("tx_event_flags_get 1", status);
+    }
+
+    /* Wait for a CDC device to be connected */
+    while (!(actual_flags & CDCACM_FLAG))
+    {
+
+        printf ("Waiting for a CDC device to be connected...\n");
+
+        /* 1. Wait for the CDCACM event flag */
+        status = tx_event_flags_get (&g_cdcacm_activate_event_flags0, CDCACM_FLAG, TX_OR, &actual_flags,
+        TX_WAIT_FOREVER);
+        if (status)
         {
-            controlCodeRxBuf[0] = controlCodeRxBuf[1];
-            controlCodeRxBuf[1] = controlCodeRxBuf[2];
-            i = 2;
+            error_trap ("tx_event_flags_get 2", status);
         }
 
-        g_sf_comms0.p_api->read (g_sf_comms0.p_ctrl, (controlCodeRxBuf + i), 1, TX_WAIT_FOREVER);
+        printf ("Event detected\n");
+
+    }
+
+    printf ("CDC device connected\n");
+
+    /* Perform an echo function by reading characters from the CDC device and writing them back */
+    while (1)
+    {
+//        if (i >= 3)
+//        {
+//            controlCodeRxBuf[0] = controlCodeRxBuf[1];
+//            controlCodeRxBuf[1] = controlCodeRxBuf[2];
+//            i = 2;
+//        }
+
+        /* 2. Read from the CDC device. This is a blocking call */
+        status = ux_device_class_cdc_acm_read (g_cdc, uartRx, WIFI_PACKET_SIZE, &actual_length);
         i++;
-
-        if (strcmp (controlCodeRxBuf, "@@@") == 0)
+        if (status)
         {
-            g_sf_comms0.p_api->read (g_sf_comms0.p_ctrl, uartRx, WIFI_PACKET_SIZE, TX_WAIT_FOREVER);
+            printf ("Device read fail");
+        }
+        if (uartRx[0] == '@' && uartRx[1] == '@' && uartRx[2] == '@')
+        {
+//            status = ux_device_class_cdc_acm_read (g_cdc, uartRx, WIFI_PACKET_SIZE, &actual_length);
+//            g_sf_comms0.p_api->read (g_sf_comms0.p_ctrl, uartRx, WIFI_PACKET_SIZE, TX_WAIT_FOREVER);
             //        printf ("\n%s", uartRx);
-            serialHandler (uartRx);
 
+            if (actual_length >= 53)
+                serialHandler (uartRx + 3);
+
+            //echo
+            status = ux_device_class_cdc_acm_write (g_cdc, uartRx, WIFI_PACKET_SIZE, &actual_length);
+            if (status)
+            {
+                error_trap ("ux_device_class_cdc_acm_write", status);
+            }
+
+            printf ("%d characters written\n", (int) actual_length);
             ///Clear old data and relinquish.
             memset (uartRx, 0, WIFI_PACKET_SIZE);
-            memset (controlCodeRxBuf, 0, 3);
+//            memset (controlCodeRxBuf, 0, 4);
+//            i = 0;
         }
-
+        printf ("%d characters read\n", (int) actual_length);
         tx_thread_relinquish ();
     }
+//    UINT fx_return;
+//    while (machineGlobalsBlock->globalsInit != 1)
+//    {
+//        tx_thread_sleep (500);
+//    }
+//    /* TODO: add your own code here */
+//    UCHAR uartRx[WIFI_PACKET_SIZE];
+//    UCHAR controlCodeRxBuf[4];
+//    memset (controlCodeRxBuf, 0, 4);
+//    int i;
+//    i = 0;
+//    memset (uartRx, 0, WIFI_PACKET_SIZE);
+//    static uart_cfg_t rx_uart_config;
+//    g_sf_comms0.p_api->open (g_sf_comms0.p_ctrl, g_sf_comms0.p_cfg);
+//
+//    while (1)
+//    {
+//        if (i >= 3)
+//        {
+//            controlCodeRxBuf[0] = controlCodeRxBuf[1];
+//            controlCodeRxBuf[1] = controlCodeRxBuf[2];
+//            i = 2;
+//        }
+//
+//        g_sf_comms0.p_api->read (g_sf_comms0.p_ctrl, (controlCodeRxBuf + i), 1, TX_WAIT_FOREVER);
+//        i++;
+//
+//        if (strcmp (controlCodeRxBuf, "@@@") == 0)
+//        {
+//            g_sf_comms0.p_api->read (g_sf_comms0.p_ctrl, uartRx, WIFI_PACKET_SIZE, TX_WAIT_FOREVER);
+//            //        printf ("\n%s", uartRx);
+//            serialHandler (uartRx);
+//
+//            ///Clear old data and relinquish.
+//            memset (uartRx, 0, WIFI_PACKET_SIZE);
+//            memset (controlCodeRxBuf, 0, 3);
+//        }
+//
+//        tx_thread_relinquish ();
+//    }
 }
 
 void serialHandler(char *uartRx)
 {
     UINT status;
+    ULONG actual_length;
     long long fileSize;
     fileSize = 0;
     UCHAR sendACK[WIFI_PACKET_SIZE];
@@ -75,7 +274,7 @@ void serialHandler(char *uartRx)
             rxFile (fileSize);
         break;
         default:
-            g_sf_comms0.p_api->write (g_sf_comms0.p_ctrl, sendACK, WIFI_PACKET_SIZE, 250);
+            ux_device_class_cdc_acm_write (g_cdc, sendACK, WIFI_PACKET_SIZE, &actual_length);
             processReceivedMsg (uartRx);
     }
 
@@ -84,130 +283,130 @@ void serialHandler(char *uartRx)
 ///This function receives files from the GUI via UART or USB
 void rxFile(long long fileSize)
 {
-    UINT status;
-    int i, parts;
-    UCHAR rxBuf[WIFI_PACKET_SIZE];
-    UCHAR sendACK[WIFI_PACKET_SIZE];
-    memset (sendACK, 0, WIFI_PACKET_SIZE);
-    sendACK[0] = 'A';
-    sendACK[1] = 'C';
-    sendACK[2] = 'K';
-    memset (rxBuf, 0, WIFI_PACKET_SIZE);
-    machineGlobalsBlock->local_bufferIndex = 0;
-    //    long fileSize;
-
-    parts = fileSize / WIFI_PACKET_SIZE;
-
-    //    printf ("\n%s", test);
-
-    long remainder = fileSize % 1024;
-    printf ("\nsize: %lu remainder:%lu", fileSize, remainder);
-
-    //    fx_file_op
-
-    status = fx_file_open(&g_fx_media0, &machineGlobalsBlock->gcodeFile, "testGcode.gcode", FX_OPEN_FOR_WRITE);
-
-    if (status == FX_SUCCESS)
-    {
-        printf ("\nFile open s");
-        fx_file_close (&machineGlobalsBlock->gcodeFile);
-        status = fx_file_delete (&g_fx_media0, "testGcode.gcode");
-        if (status == FX_SUCCESS)
-        {
-            printf ("\nFile del s");
-        }
-        else
-        {
-            printf ("\nFile del f");
-        }
-        status = fx_file_create (&g_fx_media0, "testGcode.gcode");
-        if (status == FX_SUCCESS)
-        {
-            printf ("\nFile create s");
-        }
-        else
-        {
-            printf ("\nFile create f");
-        }
-        status = fx_file_open(&g_fx_media0, &machineGlobalsBlock->gcodeFile, "testGcode.gcode", FX_OPEN_FOR_WRITE);
-        if (status == FX_SUCCESS)
-        {
-            printf ("\nFile open s");
-        }
-        else
-        {
-            printf ("\nFile open f");
-        }
-    }
-    else
-    {
-        printf ("\nFile open f");
-        status = fx_file_create (&g_fx_media0, "testGcode.gcode");
-        if (status == FX_SUCCESS)
-        {
-            printf ("\nFile create s");
-        }
-        else
-        {
-            printf ("\nFile create f");
-        }
-        status = fx_file_open(&g_fx_media0, &machineGlobalsBlock->gcodeFile, "testGcode.gcode", FX_OPEN_FOR_WRITE);
-        if (status == FX_SUCCESS)
-        {
-            printf ("\nFile open s");
-        }
-        else
-        {
-            printf ("\nFile open f");
-        }
-    }
-
-    g_sf_comms0.p_api->write (g_sf_comms0.p_ctrl, sendACK, WIFI_PACKET_SIZE, TX_NO_WAIT);
-
-//    i = 0;
-    while (rxBuf[0] != 'E' || rxBuf[1] != 'N' || rxBuf[2] != 'D')
-    {
-        status = g_sf_comms0.p_api->read (g_sf_comms0.p_ctrl, rxBuf, WIFI_PACKET_SIZE, 250);
-
-        if (status == SSP_SUCCESS)
-        {
-            status = fx_file_write (&machineGlobalsBlock->gcodeFile, rxBuf, WIFI_PACKET_SIZE);
-            if (status != FX_SUCCESS)
-            {
-                printf ("\nFile write f");
-            }
-//            i++;
-//            printf("\n%d", i);
-            g_sf_comms0.p_api->write (g_sf_comms0.p_ctrl, sendACK, WIFI_PACKET_SIZE, 250);
-        }
-        else if (status == 20)
-        {
-            printf ("\nTO");
-//            g_sf_comms0.p_api->write (g_sf_comms0.p_ctrl, sendACK, WIFI_PACKET_SIZE, 250);
-        }
-        else
-        {
-            printf ("\nUART read error:%d", status);
-        }
-
-        //        machineGlobalsBlock->fileTransferIndex += 1000;
-    }
-
-    ///Send Final ACK
-    g_sf_comms0.p_api->write (g_sf_comms0.p_ctrl, sendACK, WIFI_PACKET_SIZE, 250);
-//    ///Read and store remainder
+//    UINT status;
+//    int i, parts;
+//    UCHAR rxBuf[WIFI_PACKET_SIZE];
+//    UCHAR sendACK[WIFI_PACKET_SIZE];
+//    memset (sendACK, 0, WIFI_PACKET_SIZE);
+//    sendACK[0] = 'A';
+//    sendACK[1] = 'C';
+//    sendACK[2] = 'K';
+//    memset (rxBuf, 0, WIFI_PACKET_SIZE);
+//    machineGlobalsBlock->local_bufferIndex = 0;
+//    //    long fileSize;
 //
-//    status = g_sf_comms0.p_api->read (g_sf_comms0.p_ctrl, rxBuf, WIFI_PACKET_SIZE, 250);
-//    if (status == SSP_SUCCESS)
+//    parts = fileSize / WIFI_PACKET_SIZE;
+//
+//    //    printf ("\n%s", test);
+//
+//    long remainder = fileSize % 1024;
+//    printf ("\nsize: %lu remainder:%lu", fileSize, remainder);
+//
+//    //    fx_file_op
+//
+//    status = fx_file_open(&g_fx_media0, &machineGlobalsBlock->gcodeFile, "testGcode.gcode", FX_OPEN_FOR_WRITE);
+//
+//    if (status == FX_SUCCESS)
 //    {
-//        fx_file_write (&machineGlobalsBlock->gcodeFile, rxBuf, remainder);
+//        printf ("\nFile open s");
+//        fx_file_close (&machineGlobalsBlock->gcodeFile);
+//        status = fx_file_delete (&g_fx_media0, "testGcode.gcode");
+//        if (status == FX_SUCCESS)
+//        {
+//            printf ("\nFile del s");
+//        }
+//        else
+//        {
+//            printf ("\nFile del f");
+//        }
+//        status = fx_file_create (&g_fx_media0, "testGcode.gcode");
+//        if (status == FX_SUCCESS)
+//        {
+//            printf ("\nFile create s");
+//        }
+//        else
+//        {
+//            printf ("\nFile create f");
+//        }
+//        status = fx_file_open(&g_fx_media0, &machineGlobalsBlock->gcodeFile, "testGcode.gcode", FX_OPEN_FOR_WRITE);
+//        if (status == FX_SUCCESS)
+//        {
+//            printf ("\nFile open s");
+//        }
+//        else
+//        {
+//            printf ("\nFile open f");
+//        }
 //    }
-
-    fx_media_flush (&g_fx_media0);
-    fx_file_close (&machineGlobalsBlock->gcodeFile);
-
-    printf ("\nFile transfer completed.");
-    printf ("\nFile transfer completed.");
+//    else
+//    {
+//        printf ("\nFile open f");
+//        status = fx_file_create (&g_fx_media0, "testGcode.gcode");
+//        if (status == FX_SUCCESS)
+//        {
+//            printf ("\nFile create s");
+//        }
+//        else
+//        {
+//            printf ("\nFile create f");
+//        }
+//        status = fx_file_open(&g_fx_media0, &machineGlobalsBlock->gcodeFile, "testGcode.gcode", FX_OPEN_FOR_WRITE);
+//        if (status == FX_SUCCESS)
+//        {
+//            printf ("\nFile open s");
+//        }
+//        else
+//        {
+//            printf ("\nFile open f");
+//        }
+//    }
+//
+//    g_sf_comms0.p_api->write (g_sf_comms0.p_ctrl, sendACK, WIFI_PACKET_SIZE, TX_NO_WAIT);
+//
+////    i = 0;
+//    while (rxBuf[0] != 'E' || rxBuf[1] != 'N' || rxBuf[2] != 'D')
+//    {
+//        status = g_sf_comms0.p_api->read (g_sf_comms0.p_ctrl, rxBuf, WIFI_PACKET_SIZE, 250);
+//
+//        if (status == SSP_SUCCESS)
+//        {
+//            status = fx_file_write (&machineGlobalsBlock->gcodeFile, rxBuf, WIFI_PACKET_SIZE);
+//            if (status != FX_SUCCESS)
+//            {
+//                printf ("\nFile write f");
+//            }
+////            i++;
+////            printf("\n%d", i);
+//            g_sf_comms0.p_api->write (g_sf_comms0.p_ctrl, sendACK, WIFI_PACKET_SIZE, 250);
+//        }
+//        else if (status == 20)
+//        {
+//            printf ("\nTO");
+////            g_sf_comms0.p_api->write (g_sf_comms0.p_ctrl, sendACK, WIFI_PACKET_SIZE, 250);
+//        }
+//        else
+//        {
+//            printf ("\nUART read error:%d", status);
+//        }
+//
+//        //        machineGlobalsBlock->fileTransferIndex += 1000;
+//    }
+//
+//    ///Send Final ACK
+//    g_sf_comms0.p_api->write (g_sf_comms0.p_ctrl, sendACK, WIFI_PACKET_SIZE, 250);
+////    ///Read and store remainder
+////
+////    status = g_sf_comms0.p_api->read (g_sf_comms0.p_ctrl, rxBuf, WIFI_PACKET_SIZE, 250);
+////    if (status == SSP_SUCCESS)
+////    {
+////        fx_file_write (&machineGlobalsBlock->gcodeFile, rxBuf, remainder);
+////    }
+//
+//    fx_media_flush (&g_fx_media0);
+//    fx_file_close (&machineGlobalsBlock->gcodeFile);
+//
+//    printf ("\nFile transfer completed.");
+//    printf ("\nFile transfer completed.");
 
 }
 
@@ -395,7 +594,6 @@ void saveINI()
     memcpy ((machineGlobalsBlock->local_buffer + (6 * length_tmp)), motorBlockD, length_tmp);
     memcpy ((machineGlobalsBlock->local_buffer + (7 * length_tmp)), motorBlockT, length_tmp);
 
-
 //    printf ("\nWriting INI data...");
     // Write the file in blocks
     fx_return = fx_file_write (&machineGlobalsBlock->iniFile, machineGlobalsBlock->local_buffer, (8 * length_tmp));
@@ -436,7 +634,8 @@ void loadINI()
     if (DEBUGGER)
         printf ("\nLoading INI...");
 
-    fx_return = fx_file_read (&machineGlobalsBlock->iniFile, machineGlobalsBlock->local_buffer, (8 * length_tmp), &actual_length);
+    fx_return = fx_file_read (&machineGlobalsBlock->iniFile, machineGlobalsBlock->local_buffer, (8 * length_tmp),
+                              &actual_length);
     if (fx_return != FX_SUCCESS)
     {
         if (DEBUGGER)

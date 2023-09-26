@@ -19,8 +19,8 @@ void SDStorage_create(void)
     /* Initialize each kernel object. */
 
     UINT err;
-    err = tx_thread_create (&SDStorage, (CHAR *) "SDStorage", SDStorage_func, (ULONG) NULL, &SDStorage_stack, 4096, 1,
-                            1, 1, TX_AUTO_START);
+    err = tx_thread_create (&SDStorage, (CHAR*) "SDStorage", SDStorage_func, (ULONG) NULL, &SDStorage_stack, 4096, 1, 1,
+                            1, TX_AUTO_START);
     if (TX_SUCCESS != err)
     {
         tx_startup_err_callback (&SDStorage, 0);

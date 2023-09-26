@@ -19,8 +19,8 @@ void Management_create(void)
     /* Initialize each kernel object. */
 
     UINT err;
-    err = tx_thread_create (&Management, (CHAR *) "Management", Management_func, (ULONG) NULL, &Management_stack, 1024,
-                            2, 2, 1, TX_AUTO_START);
+    err = tx_thread_create (&Management, (CHAR*) "Management", Management_func, (ULONG) NULL, &Management_stack, 1024,
+                            1, 1, 1, TX_AUTO_START);
     if (TX_SUCCESS != err)
     {
         tx_startup_err_callback (&Management, 0);

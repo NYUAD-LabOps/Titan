@@ -6,7 +6,7 @@
 #define     ECHO_SERVER_IP_ADDRESS IP_ADDRESS(192,2,2,211)
 static NX_UDP_SOCKET g_udp_sck;
 
-static void g_udp_sck_receive_cb(NX_UDP_SOCKET *);
+static void g_udp_sck_receive_cb(NX_UDP_SOCKET*);
 
 /* UDP entry function */
 void UDP_entry(void)
@@ -46,8 +46,8 @@ void UDP_entry(void)
             printf ("\nLink enabled.");
         }
     }
-    status = nx_udp_socket_create(&g_ip0, &machineGlobalsBlock->g_udp_sck, "UDP Socket", NX_IP_NORMAL, NX_DONT_FRAGMENT,
-                                  NX_IP_TIME_TO_LIVE, 512);
+    status = nx_udp_socket_create (&g_ip0, &machineGlobalsBlock->g_udp_sck, "UDP Socket", NX_IP_NORMAL,
+                                   NX_DONT_FRAGMENT, NX_IP_TIME_TO_LIVE, 512);
     if (DEBUGGER)
     {
         if (NX_SUCCESS != status)
@@ -59,8 +59,7 @@ void UDP_entry(void)
             printf ("\nUDP socket creation successful.");
         }
     }
-    status = nx_udp_socket_bind (&machineGlobalsBlock->g_udp_sck, APP_UDP_PORT_BASE,
-    NX_NO_WAIT);
+    status = nx_udp_socket_bind (&machineGlobalsBlock->g_udp_sck, APP_UDP_PORT_BASE, NX_NO_WAIT);
     if (DEBUGGER)
     {
         if (NX_SUCCESS != status)
@@ -144,14 +143,14 @@ void UDPSend(ULONG ip_address)
         status = nx_packet_allocate (&g_packet_pool0, &my_packet, NX_UDP_PACKET, NX_WAIT_FOREVER);
         /* Check for error.  */
         nx_packet_data_append (my_packet, &machineGlobalsBlock->UDPBuffer, UDPMSGLENGTH, &g_packet_pool0,
-        NX_WAIT_FOREVER);
+                               NX_WAIT_FOREVER);
 
         if (DEBUG)
         {
             printf ("\nSending:%s...", machineGlobalsBlock->UDPBuffer);
         }
 
-        status = nx_udp_socket_send(&machineGlobalsBlock->g_udp_sck, my_packet, SECONDARYIP, 5000);
+        status = nx_udp_socket_send (&machineGlobalsBlock->g_udp_sck, my_packet, SECONDARYIP, 5000);
 
         if (NX_SUCCESS == status)
         {
@@ -167,7 +166,7 @@ void UDPSend(ULONG ip_address)
                 printf ("\nSend fail.");
             }
             printf ("\nSend fail.");
-            nx_packet_release(my_packet);
+            nx_packet_release (my_packet);
         }
 
 //        machineGlobalsBlock->echoWaitStart = 1;
@@ -281,7 +280,7 @@ void processUDPRx(NX_PACKET *p_packet)
         {
             ///An ACK packet was received.
             status = tx_event_flags_set (&g_udp_echo_received, 1, TX_OR);
-            nx_packet_release(p_packet);
+            nx_packet_release (p_packet);
         }
     }
 //    else if (p_packet->nx_packet_prepend_ptr[0] == 'I')
@@ -355,19 +354,22 @@ void processUDPRx(NX_PACKET *p_packet)
 ///A data packet was received.
         memcpy (machineGlobalsBlock->UDPRxBuff, p_packet->nx_packet_prepend_ptr, UDPMSGLENGTH);
         status = tx_event_flags_set (&g_udp_data_received, 1, TX_OR);
-        nx_packet_release(p_packet);
+        nx_packet_release (p_packet);
     }
 }
 
 ///This function is used to run a motor at a target frequency.
 void UDPRunMotorFrequency(struct motorController *motorBlock, double freq)
 {
-    machineGlobalsBlock->UDPBuffer[0] = 'f';
-    machineGlobalsBlock->UDPBuffer[1] = motorBlock->controlCode;
-    memcpy ((machineGlobalsBlock->UDPBuffer + 2), &freq, 8);
+    motorBlock->targetFreq = freq;
 
-    UDPSend (motorBlock->ipAdd);
-    machineGlobalsBlock->motorFreqSet = 1;
+    motorBlock->freqSet = 1;
+//    machineGlobalsBlock->UDPBuffer[0] = 'f';
+//    machineGlobalsBlock->UDPBuffer[1] = motorBlock->controlCode;
+//    memcpy ((machineGlobalsBlock->UDPBuffer + 2), &freq, 8);
+//
+//    UDPSend (motorBlock->ipAdd);
+//    machineGlobalsBlock->motorFreqSet = 1;
 }
 
 void UDPStopMotor(struct motorController *motorBlock)
@@ -376,6 +378,21 @@ void UDPStopMotor(struct motorController *motorBlock)
     machineGlobalsBlock->UDPBuffer[0] = 's';
     machineGlobalsBlock->UDPBuffer[1] = motorBlock->controlCode;
     UDPSend (motorBlock->ipAdd);
+}
+
+void UDPChainedMovement(char on)
+{
+
+    machineGlobalsBlock->UDPBuffer[0] = '7';
+    if (on)
+    {
+        machineGlobalsBlock->UDPBuffer[1] = 1;
+    }
+    else
+    {
+        machineGlobalsBlock->UDPBuffer[1] = 0;
+    }
+    UDPSend (0);
 }
 
 void UDPZeroAxes()
@@ -399,23 +416,58 @@ void UDPZeroAxes()
 //    }
 }
 
-void UDPSetMotorDir(struct motorController *motorBlock, int fwd)
+void UDPZeroTool()
 {
 
-    machineGlobalsBlock->UDPBuffer[0] = 'd';
+    int i;
 
-    machineGlobalsBlock->UDPBuffer[1] = motorBlock->controlCode;
+    while (checkSecondaryHoming () == 1)
+    {
+        tx_thread_sleep (1);
+    }
 
+    machineGlobalsBlock->UDPBuffer[0] = '8';
+    machineGlobalsBlock->UDPBuffer[1] = '8';
+    UDPSend (0);
+
+    ///Only one Secondary.
+//    for (i = 0; i < machineGlobalsBlock->numOfControllers; i++)
+//    {
+//
+//    }
+}
+
+void UDPSetMotorDir(struct motorController *motorBlock, int fwd)
+{
     if (fwd)
     {
-        machineGlobalsBlock->UDPBuffer[2] = 'f';
+        motorBlock->targetDir = motorBlockX->fwdDir;
     }
     else
     {
-        machineGlobalsBlock->UDPBuffer[2] = 'r';
+        if (motorBlock->fwdDir == IOPORT_LEVEL_HIGH)
+        {
+            motorBlock->targetDir = IOPORT_LEVEL_LOW;
+        }
+        else
+        {
+            motorBlock->targetDir = IOPORT_LEVEL_HIGH;
+        }
     }
-
-    UDPSend (motorBlock->ipAdd);
+//    machineGlobalsBlock->UDPBuffer[0] = 'd';
+//
+//    machineGlobalsBlock->UDPBuffer[1] = motorBlock->controlCode;
+//
+//    if (fwd)
+//    {
+//        machineGlobalsBlock->UDPBuffer[2] = 'f';
+//    }
+//    else
+//    {
+//        machineGlobalsBlock->UDPBuffer[2] = 'r';
+//    }
+//
+//    UDPSend (motorBlock->ipAdd);
 }
 
 ///Sets relay high or low. Level is 'h' or 'l'.

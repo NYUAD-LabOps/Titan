@@ -5,13 +5,12 @@
 #include "tx_api.h"
 #include "hal_data.h"
 #ifdef __cplusplus
-extern "C" void TitanMain_entry(void);
-#else
+                extern "C" void TitanMain_entry(void);
+                #else
 extern void TitanMain_entry(void);
 #endif
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 extern TX_EVENT_FLAGS_GROUP g_linked_list_flags;
 #ifdef __cplusplus

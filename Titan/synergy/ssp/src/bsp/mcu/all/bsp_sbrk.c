@@ -1,5 +1,5 @@
 /***********************************************************************************************************************
- * Copyright [2015-2021] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
+ * Copyright [2015-2023] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
  * 
  * This file is part of Renesas SynergyTM Software Package (SSP)
  *
@@ -55,13 +55,15 @@ caddr_t _sbrk(int incr);
 
 
 /*******************************************************************************************************************//**
- * @addtogroup BSP_MCU_SBRK
+ * @ingroup BSP_MCU_COMMON
+ * @defgroup BSP_MCU_SBRK
+ *
  * @{
 ***********************************************************************************************************************/
 
 /*******************************************************************************************************************//**
 * @brief       SSP implementation of the standard library _sbrk() function.
-* @param[in]   inc  The number of bytes being asked for by malloc().
+* @param[in]   incr  The number of bytes being asked for by malloc().
 *
 * @note This function overrides the _sbrk version that exists in the newlib library that is linked with.
 *       That version improperly relies on the SP as part of it's allocation strategy. This is bad in general and
@@ -109,5 +111,5 @@ caddr_t _sbrk(int incr)
 
 #endif
 /******************************************************************************************************************//**
- * @} (end @ingroup BSP_MCU_SBRK)
+ * @} (end defgroup BSP_MCU_SBRK)
  *********************************************************************************************************************/
