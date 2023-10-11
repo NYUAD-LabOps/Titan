@@ -3,7 +3,6 @@
 #include "tx_api.h"
 
 extern void TitanMain_create(void);
-extern void UARTWIFI_create(void);
 extern void SDStorage_create(void);
 extern void Management_create(void);
 extern void motorX_thread_create(void);
@@ -67,7 +66,6 @@ void tx_application_define(void *first_unused_memory)
     }
 
     TitanMain_create ();
-    UARTWIFI_create ();
     SDStorage_create ();
     Management_create ();
     motorX_thread_create ();

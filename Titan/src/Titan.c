@@ -3,10 +3,11 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <Titan.h>
-#include <TitanMain.h>
+//#include <TitanMain.h>
 #include "math.h"
-//#include "hal_data.h"
-//#include <GPT_HAL_MG.h>
+#include "hal_data.h"
+#include <GPT_HAL_MG.h>
+
 
 struct node *head = NULL;
 struct node *tail = NULL;
@@ -30,9 +31,10 @@ void initMotors()
     motorBlockX->referenced = 0;
     motorBlockX->hasLimits = 1;
 
-    motorBlockY->dirPin = IOPORT_PORT_05_PIN_11;
-    motorBlockY->stepPin = IOPORT_PORT_05_PIN_12;
-    motorBlockY->limit0Pin = IOPORT_PORT_04_PIN_08;
+    motorBlockY->stepPin = IOPORT_PORT_01_PIN_03;
+    motorBlockY->dirPin = IOPORT_PORT_01_PIN_04;
+    motorBlockY->enablePin = IOPORT_PORT_01_PIN_05;
+    motorBlockY->limit0Pin = IOPORT_PORT_02_PIN_03;
     motorBlockY->start = g_timerY.p_api->start;
     motorBlockY->stop = g_timerY.p_api->stop;
     motorBlockY->dutyCycleSet = g_timerY.p_api->dutyCycleSet;
@@ -46,8 +48,6 @@ void initMotors()
     motorBlockY->stepSize = (1.0 / STEPY);
     motorBlockY->homeSpeed = HOMEVY;
     motorBlockY->rapidSpeed = HOMEVY;
-    //    err = g_external_irqYA.p_api->open (g_external_irqYA.p_ctrl, g_external_irqYA.p_cfg);
-    //    err = g_external_irqYB.p_api->open (g_external_irqYB.p_ctrl, g_external_irqYB.p_cfg);
     motorBlockY->encoderAPin = IOPORT_PORT_00_PIN_06;
     motorBlockY->encoderBPin = IOPORT_PORT_00_PIN_04;
     motorBlockY->encoderCWFWD = 1;
@@ -55,9 +55,10 @@ void initMotors()
     motorBlockY->referenced = 0;
     motorBlockY->hasLimits = 1;
 
-    motorBlockZ->dirPin = IOPORT_PORT_04_PIN_01;
-    motorBlockZ->stepPin = IOPORT_PORT_04_PIN_00;
-    motorBlockZ->limit0Pin = IOPORT_PORT_07_PIN_07;
+    motorBlockZ->stepPin = IOPORT_PORT_01_PIN_06;
+    motorBlockZ->dirPin = IOPORT_PORT_01_PIN_07;
+    motorBlockZ->enablePin = IOPORT_PORT_06_PIN_00;
+    motorBlockZ->limit0Pin = IOPORT_PORT_02_PIN_02;
     motorBlockZ->start = g_timerZ.p_api->start;
     motorBlockZ->stop = g_timerZ.p_api->stop;
     motorBlockZ->dutyCycleSet = g_timerZ.p_api->dutyCycleSet;
@@ -69,8 +70,6 @@ void initMotors()
     motorBlockZ->fwdDir = IOPORT_LEVEL_HIGH;
     motorBlockZ->stepsPerMM = STEPZ;
     motorBlockZ->stepSize = (1.0 / STEPZ);
-    //    err = g_external_irqAA.p_api->open (g_external_irqAA.p_ctrl, g_external_irqAA.p_cfg);
-    //    err = g_external_irqAB.p_api->open (g_external_irqAB.p_ctrl, g_external_irqAB.p_cfg);
     motorBlockZ->encoderAPin = IOPORT_PORT_00_PIN_05;
     motorBlockZ->encoderBPin = IOPORT_PORT_05_PIN_11;
     motorBlockZ->encoderCWFWD = 0;
@@ -78,9 +77,10 @@ void initMotors()
     motorBlockZ->referenced = 0;
     motorBlockZ->hasLimits = 1;
 
-    motorBlockA->dirPin = IOPORT_PORT_04_PIN_09;
-    motorBlockA->stepPin = IOPORT_PORT_04_PIN_13;
-//    motorBlockA->limit0Pin = IOPORT_PORT_02_PIN_03;
+    motorBlockA->stepPin = IOPORT_PORT_06_PIN_01;
+    motorBlockA->dirPin = IOPORT_PORT_06_PIN_02;
+    motorBlockA->enablePin = IOPORT_PORT_06_PIN_03;
+    motorBlockA->limit0Pin = IOPORT_PORT_03_PIN_05;
     motorBlockA->start = g_timerA.p_api->start;
     motorBlockA->stop = g_timerA.p_api->stop;
     motorBlockA->dutyCycleSet = g_timerA.p_api->dutyCycleSet;
@@ -97,15 +97,10 @@ void initMotors()
     motorBlockA->referenced = 0;
     motorBlockA->hasLimits = 0;
 
-    motorBlockB->controlCode = 'b';
-    motorBlockB->dirPin = IOPORT_PORT_06_PIN_01;
-    motorBlockB->stepPin = IOPORT_PORT_01_PIN_11;
-    motorBlockB->limit0Pin = IOPORT_PORT_00_PIN_00;
-    genericMotorInit (motorBlockB);
-
-    motorBlockC->dirPin = IOPORT_PORT_03_PIN_06;
-    motorBlockC->stepPin = IOPORT_PORT_03_PIN_05;
-    motorBlockC->limit0Pin = IOPORT_PORT_02_PIN_03;
+    motorBlockC->stepPin = IOPORT_PORT_06_PIN_04;
+    motorBlockC->dirPin = IOPORT_PORT_06_PIN_05;
+    motorBlockC->enablePin = IOPORT_PORT_06_PIN_06;
+    motorBlockC->limit0Pin = IOPORT_PORT_03_PIN_04;
     motorBlockC->start = g_timerC.p_api->start;
     motorBlockC->stop = g_timerC.p_api->stop;
     motorBlockC->dutyCycleSet = g_timerC.p_api->dutyCycleSet;
@@ -120,19 +115,11 @@ void initMotors()
     motorBlockC->referenced = 0;
     motorBlockC->hasLimits = 0;
 
-    motorBlockD->controlCode = 'd';
-    motorBlockD->dirPin = IOPORT_PORT_06_PIN_01;
-    motorBlockD->stepPin = IOPORT_PORT_01_PIN_11;
-    motorBlockD->limit0Pin = IOPORT_PORT_00_PIN_00;
-    genericMotorInit (motorBlockD);
-
     motorBlockT->controlCode = 't';
-//    motorBlockT->dirPin = IOPORT_PORT_04_PIN_09;
-//    motorBlockT->stepPin = IOPORT_PORT_04_PIN_13;
-//    genericMotorInit (motorBlockT);
-
-    motorBlockT->dirPin = IOPORT_PORT_04_PIN_10;
-    motorBlockT->stepPin = IOPORT_PORT_04_PIN_14;
+    motorBlockT->stepPin = IOPORT_PORT_06_PIN_07;
+    motorBlockT->dirPin = IOPORT_PORT_10_PIN_00;
+    motorBlockT->enablePin = IOPORT_PORT_10_PIN_01;
+    motorBlockT->limit0Pin = IOPORT_PORT_00_PIN_05;
     motorBlockT->start = g_timerT.p_api->start;
     motorBlockT->stop = g_timerT.p_api->stop;
     motorBlockT->dutyCycleSet = g_timerT.p_api->dutyCycleSet;
@@ -246,33 +233,26 @@ void initMotorBlocks()
     motorBlockY->init = 1;
 
     status = tx_block_allocate (&my_pool2, (VOID**) &memory_ptr, TX_NO_WAIT);
-    motorBlockA = (struct motorController*) memory_ptr;
-    motorBlockA->init = 1;
-
-    status = tx_block_allocate (&my_pool2, (VOID**) &memory_ptr, TX_NO_WAIT);
     motorBlockZ = (struct motorController*) memory_ptr;
     machineGlobalsBlock->controllerBlocks[2] = motorBlockZ;
     motorBlockZ->init = 1;
 
     status = tx_block_allocate (&my_pool2, (VOID**) &memory_ptr, TX_NO_WAIT);
-    motorBlockB = (struct motorController*) memory_ptr;
-    motorBlockB->init = 1;
+    motorBlockA = (struct motorController*) memory_ptr;
+    machineGlobalsBlock->controllerBlocks[3] = motorBlockA;
+    motorBlockA->init = 1;
 
     status = tx_block_allocate (&my_pool2, (VOID**) &memory_ptr, TX_NO_WAIT);
     motorBlockC = (struct motorController*) memory_ptr;
-    machineGlobalsBlock->controllerBlocks[2] = motorBlockZ;
+    machineGlobalsBlock->controllerBlocks[4] = motorBlockC;
     motorBlockC->init = 1;
 
     status = tx_block_allocate (&my_pool2, (VOID**) &memory_ptr, TX_NO_WAIT);
-    motorBlockD = (struct motorController*) memory_ptr;
-    machineGlobalsBlock->controllerBlocks[2] = motorBlockZ;
-    motorBlockD->init = 1;
-
-    status = tx_block_allocate (&my_pool2, (VOID**) &memory_ptr, TX_NO_WAIT);
     motorBlockT = (struct motorController*) memory_ptr;
+    machineGlobalsBlock->controllerBlocks[5] = motorBlockT;
     motorBlockT->init = 1;
 
-    machineGlobalsBlock->numOfControllers = 3;
+    machineGlobalsBlock->numOfControllers = 6;
 
 //    status = tx_block_allocate (&my_pool2, (VOID **) &memory_ptr, TX_NO_WAIT);
 //    motorBlock3 = (struct motorController *) memory_ptr;
@@ -419,6 +399,8 @@ struct node* insertLink(char *content)
 
 /**Releases the block memory of a link, and returns the next link,
  if possible, otherwise a NULL*/
+
+
 struct node* removeLink(struct node *link)
 {
     struct node *tmp;
@@ -465,7 +447,7 @@ struct node* removeLink(struct node *link)
             tail = NULL;
             tmp = NULL;
             ///Clear the linked list event flag.
-            status = tx_event_flags_set (&g_linked_list_flags, 0, TX_AND);
+//            status = tx_event_flags_set (&g_linked_list_flags, 0, TX_AND);
         }
     }
 
@@ -699,39 +681,7 @@ void commandHandler(struct instruction *data)
             }
 
         }
-        if (strchr (data->cmdString, 'b') || strchr (data->cmdString, 'B'))
-        {
-            if (data->b != ~0)
-            {
-                motorBlockB->stepSize = data->b;
-                ///Get Forward Logic Level
-                if (strchr (data->cmdString, 'H'))
-                {
-                    motorBlockB->fwdDir = IOPORT_LEVEL_HIGH;
-                }
-                else
-                {
-                    motorBlockB->fwdDir = IOPORT_LEVEL_LOW;
-                }
-                ///Get Home direction
-                if (strchr (data->cmdString, 'U'))
-                {
-                    motorBlockB->defaultDir = IOPORT_LEVEL_HIGH;
-                }
-                else
-                {
-                    motorBlockB->defaultDir = IOPORT_LEVEL_LOW;
-                }
 
-                if (data->f != ~0)
-                {
-                    motorBlockB->homeSpeed = data->f;
-                }
-
-//                UDPSendINI (motorBlockB);
-            }
-
-        }
         if (strchr (data->cmdString, 'c') || strchr (data->cmdString, 'C'))
         {
             if (data->c != ~0)
@@ -762,39 +712,6 @@ void commandHandler(struct instruction *data)
                 }
 
 //                UDPSendINI (motorBlockC);
-            }
-
-        }
-        if (strchr (data->cmdString, 'd') || strchr (data->cmdString, 'D'))
-        {
-            if (data->d != ~0)
-            {
-                motorBlockD->stepSize = data->d;
-                ///Get Forward Logic Level
-                if (strchr (data->cmdString, 'H'))
-                {
-                    motorBlockD->fwdDir = IOPORT_LEVEL_HIGH;
-                }
-                else
-                {
-                    motorBlockD->fwdDir = IOPORT_LEVEL_LOW;
-                }
-                ///Get Home direction
-                if (strchr (data->cmdString, 'U'))
-                {
-                    motorBlockD->defaultDir = IOPORT_LEVEL_HIGH;
-                }
-                else
-                {
-                    motorBlockD->defaultDir = IOPORT_LEVEL_LOW;
-                }
-
-                if (data->f != ~0)
-                {
-                    motorBlockD->homeSpeed = data->f;
-                }
-
-//                UDPSendINI (motorBlockD);
             }
 
         }
@@ -1442,8 +1359,11 @@ void calRoutine(struct instruction *data, struct motorController *motorBlock, lo
 
 }
 
+
 /**Can be used to return the percent error between a target and current float.
- Useful when determing the percent error of positioning.*/
+ Useful when determining the percent error of positioning.*/
+
+
 double percentError(double target, double actual)
 {
     double diff = fabs (actual - target);
@@ -1507,32 +1427,15 @@ void processReceivedMsg(char *message_buffer)
         {
             stopMotor (motorBlockA);
         }
-        if (strchr (message_buffer, 'b') || strchr (message_buffer, 'B'))
-        {
-            stopMotor (motorBlockB);
-        }
         if (strchr (message_buffer, 'c') || strchr (message_buffer, 'C'))
         {
             stopMotor (motorBlockC);
-        }
-        if (strchr (message_buffer, 'd') || strchr (message_buffer, 'D'))
-        {
-            stopMotor (motorBlockD);
         }
         if (strchr (message_buffer, 't') || strchr (message_buffer, 'T'))
         {
             stopMotor (toolBlockA->motorBlock);
         }
     }
-//    ///Lower flag if terminating message found
-//    else if (message_buffer[0] == 'X' && message_buffer[1] == 'X' && message_buffer[2] == 'X')
-//    {
-//        if (machineGlobalsBlock->local_bufferIndex > 0)
-//        {
-//            USB_Buffer_Transfer ();
-//        }
-//        machineGlobalsBlock->receivingMsg = 0;
-//    }
     else if (message_buffer[0] == 'S' && message_buffer[1] == 'T' && message_buffer[2] == 'P')
     {
 
@@ -1662,6 +1565,7 @@ void UDPHomeMotor(struct motorController *motorBlock)
     motorBlock->homing = 1;
 }
 
+
 /* String Device Framework:
  Byte 0 and 1: Word containing the language ID: 0x0904 for US
  Byte 2 : Byte containing the index of the descriptor
@@ -1670,12 +1574,19 @@ void UDPHomeMotor(struct motorController *motorBlock)
 
 UCHAR g_string_framework[] =
 {
+
 /* Manufacturer string descriptor: Index 1 */
+
 0x09,
   0x04, 0x01, 0x10, 0x54, 0x69, 0x74, 0x61, 0x6e, 0x20, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x6c, 0x65, 0x72,
+
   /* Product string descriptor: Index 2 */
+
   0x09,
   0x04, 0x02, 0x10, 0x54, 0x69, 0x74, 0x61, 0x6e, 0x20, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x6c, 0x65, 0x72,
+
   /* Serial Number string descriptor: Index 3 */
+
   0x09,
   0x04, 0x03, 0x04, 0x30, 0x30, 0x30, 0x31 };
+

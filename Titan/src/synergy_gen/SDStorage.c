@@ -4,7 +4,7 @@
 TX_THREAD SDStorage;
 void SDStorage_create(void);
 static void SDStorage_func(ULONG thread_input);
-static uint8_t SDStorage_stack[4096] BSP_PLACE_IN_SECTION_V2(".stack.SDStorage") BSP_ALIGN_VARIABLE_V2(BSP_STACK_ALIGNMENT);
+static uint8_t SDStorage_stack[8192] BSP_PLACE_IN_SECTION_V2(".stack.SDStorage") BSP_ALIGN_VARIABLE_V2(BSP_STACK_ALIGNMENT);
 void tx_startup_err_callback(void *p_instance, void *p_data);
 void tx_startup_common_init(void);
 extern bool g_ssp_common_initialized;
@@ -19,7 +19,7 @@ void SDStorage_create(void)
     /* Initialize each kernel object. */
 
     UINT err;
-    err = tx_thread_create (&SDStorage, (CHAR*) "SDStorage", SDStorage_func, (ULONG) NULL, &SDStorage_stack, 4096, 1, 1,
+    err = tx_thread_create (&SDStorage, (CHAR*) "SDStorage", SDStorage_func, (ULONG) NULL, &SDStorage_stack, 8192, 1, 1,
                             1, TX_AUTO_START);
     if (TX_SUCCESS != err)
     {

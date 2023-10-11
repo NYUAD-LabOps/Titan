@@ -7,7 +7,7 @@ void motorZ_thread_entry(void)
     /* TODO: add your own code here */
     while (1)
     {
-        motorHandler (motorBlockZ);
+ //       motorHandler (motorBlockZ);
         //allow next waiting thread(s) to run
         tx_thread_relinquish ();
     }

@@ -6,6 +6,8 @@
 #include <TitanMain.h>
 #include "math.h"
 
+
+
 ///The motor handler function makes speed and direction adjustments, and tracks position. Position is
 /// calculated based on number of steps taken and the step size.
 void motorHandler(struct motorController *motorBlock)
@@ -284,7 +286,9 @@ void stopMotor(struct motorController *motorBlock)
 
 }
 
+
 /**Handles behavior when limit switch is activated*/
+
 void limitHit(struct motorController *motorBlock)
 {
     ioport_level_t level;
@@ -500,3 +504,4 @@ void encoderHandler(struct motorController *motorBlock)
     motorBlock->encoderAState = levelA;
     motorBlock->encoderBState = levelB;
 }
+

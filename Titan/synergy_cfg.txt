@@ -562,52 +562,6 @@ Synergy Configuration
   Module "ADC Driver on r_adc"
     Parameter Checking: Enabled
     
-  Module "USBX Device Class CDC-ACM"
-  Module "USBX Device Configuration"
-    Composite Device: Disable
-    
-  Module "USBX on ux"
-  Module "USBX Interface Configuration CDC-ACM"
-  Module "USBX Port DCD on sf_el_ux for USBFS"
-    Full Speed Interrupt Priority: Priority 2
-    LDO Regulator(Only for S3 and S1 part MCUs): Disable
-    
-  Module "USBX Source"
-    Ticks per seconds for USBX system: 
-    Maximum Classes: 
-    Maximum Slave Classes: 
-    Maximum Slave Interfaces: 
-    Maximum Host Class Containers: 
-    Maximum Device Class Containers: 
-    Maximum Host Controllers: 
-    Maximum Devices: 
-    Maximum EDs: 
-    Maximum TDs: 
-    Maximum Isochronous TDs: 
-    Stack size for USBX threads: 
-    Stack size for Enumeration thread: 2048
-    USBX Enumeration Thread Priority: 
-    USBX Standard Thread Priority: 
-    USBX HID Keyboard Class Thread Priority: 
-    USBX HCD Thread Priority: 
-    No Use of Time Slice: Disabled (default)
-    Maximum Slave Logical Units: 
-    Maximum Host Logical Units: 
-    Slave Request Control Maximum Length: 
-    Slave Request Data Maximum Length: 
-    Enforce Safe Alignment: Disabled (default)
-    Control Transfer Timeout: 
-    Non-Control Transfer Timeout: 
-    Disable CDC ACM Non-Blocking Transmission: Yes (default)
-    Bidirectional Endpoint Support: Disable (default)
-    Enable Assert Check: Yes (default)
-    Enable Assertion On Failure Detection: No (default)
-    Host Device Class Code Validation: Disabled (default)
-    USBX Standalone Mode: Disabled (default)
-    
-  Module "USBX Device Class CDC-ACM Source"
-    CDC ACM device write auto zlp enable: Disabled (default)
-    
   Module "External IRQ Driver on r_icu"
     Parameter Checking: Default (BSP)
     
@@ -885,7 +839,7 @@ Synergy Configuration
   Thread "TitanMain"
     Symbol: TitanMain
     Name: TitanMain
-    Stack size (bytes): 4096
+    Stack size (bytes): 8192
     Priority: 1
     Auto start: Enabled
     Time slicing interval (ticks): 1
@@ -894,122 +848,10 @@ Synergy Configuration
       Name: List Events
       Symbol: g_linked_list_flags
       
-  Thread "UARTWIFI"
-    Symbol: UARTWIFI
-    Name: UARTWIFI
-    Stack size (bytes): 4096
-    Priority: 1
-    Auto start: Enabled
-    Time slicing interval (ticks): 1
-    
-    Instance "g_ux_device_class_cdc_acm0 USBX Device Class CDC-ACM"
-      Name: g_ux_device_class_cdc_acm0
-      USBX CDC-ACM instance_activate Function Callback: ux_cdc_device0_instance_activate
-      USBX CDC-ACM instance_deactivate Function Callback: ux_cdc_device0_instance_deactivate
-      USBX CDC-ACM parameter_change Function Callback: NULL
-      Name of generated initialization function: ux_device_class_cdc_acm_init0
-      Auto Initialization: Enable
-      
-      Instance "USBX Device Class CDC-ACM Source"
-        Show linkage warning: Disabled
-        
-      Instance "USBX Device Configuration"
-        Vendor ID: 0x045B
-        Product ID: 0x0000
-        Device Release Number: 0x0000
-        Index of Manufacturer String Descriptor: 1
-        Index of Product String Descriptor: 2
-        Index of Serial Number String Descriptor: 3
-        Class Code: Communications(CDC)
-        Index of String Descriptor describing this configuration: 0x00
-        Size of USB Descriptor in bytes for this configuration (Modify this value only for Vendor-specific Class, otherwise set zero): 0x00
-        Number of Interfaces (Modify this value only for Vendor-specific Class, otherwise set zero): 0x00
-        Self-Powered: Enable
-        Remote Wakeup: Disable
-        Maximum Power Consumption (in 2mA units): 50
-        Supported Language Code: 0x0409
-        Name of USBX String Framework: g_string_framework
-        Total index number of USB String Descriptors in USBX String Framework: 3
-        Name of USBX Language Framework: NULL
-        Number of Languages to support (US English is applied if zero is set): 0
-        Name of generated initialization function: ux_device_init0
-        Auto Initialization: Enable
-        
-        Instance "g_sf_el_ux_dcd_fs_0 USBX Port DCD on sf_el_ux for USBFS"
-          Name: g_sf_el_ux_dcd_fs_0
-          USB Controller Selection: USBFS
-          
-          Instance "g_transfer0 Transfer Driver on r_dmac USBFS FIFO 0"
-            Name: g_transfer0
-            Channel: 0
-            Mode: Block
-            Transfer Size: 1 Byte
-            Destination Address Mode: Fixed
-            Source Address Mode: Incremented
-            Repeat Area (Unused in Normal Mode): Source
-            Destination Pointer: NULL
-            Source Pointer: NULL
-            Number of Transfers: 0
-            Number of Blocks (Valid only in Repeat and Block Mode): 0
-            Offset value: 0
-            Activation Source: USBFS FIFO 0
-            Auto Enable: False
-            Callback: NULL
-            Transfer End Interrupt Priority: Priority 1
-            
-          Instance "g_transfer1 Transfer Driver on r_dmac USBFS FIFO 1"
-            Name: g_transfer1
-            Channel: 1
-            Mode: Block
-            Transfer Size: 1 Byte
-            Destination Address Mode: Incremented
-            Source Address Mode: Fixed
-            Repeat Area (Unused in Normal Mode): Destination
-            Destination Pointer: NULL
-            Source Pointer: NULL
-            Number of Transfers: 0
-            Number of Blocks (Valid only in Repeat and Block Mode): 0
-            Offset value: 0
-            Activation Source: USBFS FIFO 1
-            Auto Enable: False
-            Callback: NULL
-            Transfer End Interrupt Priority: Priority 1
-            
-        Instance "USBX on ux"
-          USBX Pool Memory Name: g_ux_pool_memory
-          USBX Pool Memory Size: 18432
-          User Callback for Host Event Notification(Only valid for USB Host): NULL
-          User Callback for Device Event Notification(Only valid for USB Device): NULL
-          Name of generated initialization function: ux_common_init0
-          Auto Initialization: Enable
-          
-          Instance "USBX Source"
-            Show linkage warning: Disabled
-            
-      Instance "g_usb_interface_desc_cdcacm_0 USBX Interface Configuration CDC-ACM"
-        Name: g_usb_interface_desc_cdcacm_0
-        Interface Number of Communications Class interface: 0x00
-        Interrupt Transfer endpoint to use for Communications Class: Endpoint 3
-        Polling period for Interrupt Endpoint (in mS/125us units for FS/HS): 0x0F
-        Interface Number of Data Class interface: 0x01
-        Bulk In Transfer endpoint to use for Data Class: Endpoint 1
-        Bulk Out Transfer endpoint to use for Data Class: Endpoint 2
-        Index of String Descriptor Describing Communications Class interface (Interface Descriptor:iInterface).: 0x00
-        Index of String Descriptor Describing Data Class interface (Interface Descriptor:iInterface).: 0x00
-        
-    Object "g_cdc_activate_semaphore Semaphore"
-      Name: New Semaphore
-      Symbol: g_cdc_activate_semaphore
-      Initial count: 0
-      
-    Object "g_cdcacm_activate_event_flags0 Event Flags"
-      Name: New Event Flags
-      Symbol: g_cdcacm_activate_event_flags0
-      
   Thread "SDStorage"
     Symbol: SDStorage
     Name: SDStorage
-    Stack size (bytes): 4096
+    Stack size (bytes): 8192
     Priority: 1
     Auto start: Enabled
     Time slicing interval (ticks): 1
@@ -1085,7 +927,7 @@ Synergy Configuration
   Thread "Management"
     Symbol: Management
     Name: Management
-    Stack size (bytes): 1024
+    Stack size (bytes): 8192
     Priority: 1
     Auto start: Enabled
     Time slicing interval (ticks): 1

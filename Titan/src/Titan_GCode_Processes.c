@@ -2,10 +2,10 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include <Titan.h>
-#include <TitanMain.h>
+//#include <Titan.h>
+//#include <TitanMain.h>
 #include "math.h"
-
+/*
 extern struct node *head;
 
 void G00(struct instruction *data)
@@ -41,12 +41,14 @@ void G00(struct instruction *data)
 //    }
 //    UDPSendTargetPosSpeed (data->x, data->y, data->z, data->t, targetSpeed);
 }
-
+*/
 /*Handles G01 commands
  * This function must track the velocity and position of the tool head.
  * Adjustments to motor speed are calculated here. The motor handler function for
  * each respective motor is responsible for making the actual adjustment to STEP timing.
  */
+
+/*
 void G01(struct instruction *data)
 {
     int endReached = 0;
@@ -343,11 +345,13 @@ void G01(struct instruction *data)
     }
 
 }
+*/
 /**Handles behavior of g-code "G28"
  * G28 is the Homing command.
  * Character flags are available for specifying the axes to be homed.
  *
  * */
+/*
 void G28(struct instruction *data)
 {
 
@@ -357,3 +361,4 @@ void G28(struct instruction *data)
         tx_thread_sleep (1);
 
 }
+*/

@@ -42,6 +42,9 @@
 #define DEFAULTJERKSPEEDX 500
 #define DEFAULTJERKSPEEDY 500
 #define DEFAULTJERKSPEEDZ 500
+#define DEFAULTJERKSPEEDA 500
+#define DEFAULTJERKSPEEDC 500
+#define DEFAULTJERKSPEEDT 500
 #define HOME_BACKOFF 250 ///Time in milliseconds the motor runs when reversing away from limit.
 #define MINV 100
 #define MINPRECISION 1.0 /// %
@@ -148,6 +151,8 @@ struct motorController
     ///The direction pin is needed for reference by all movement functions.
     int dirPin;
     ioport_level_t targetDir;
+    int enablePin;
+    ioport_level_t enableState;
 
     double origPosStepsAbs;
 
@@ -246,8 +251,7 @@ struct motorController
     timer_instance_t g_timer_gpt_x;
 };
 
-extern struct motorController *motorBlockX, *motorBlockY, *motorBlockZ, *motorBlockT, *motorBlockA, *motorBlockB,
-        *motorBlockC, *motorBlockD;
+extern struct motorController *motorBlockX, *motorBlockY, *motorBlockZ, *motorBlockT, *motorBlockA, *motorBlockC;
 
 struct toolBlock
 {
@@ -279,7 +283,7 @@ struct machineGlobals
     char printJob;
     char chainedMovement;
     ///Array of pointers to motor controller blocks, in series XYZABC.
-    struct motorController *controllerBlocks[4];
+    struct motorController *controllerBlocks[6];
     ///How many controller blocks there are.
     int numOfControllers;
     ///Current index number for controller list.
