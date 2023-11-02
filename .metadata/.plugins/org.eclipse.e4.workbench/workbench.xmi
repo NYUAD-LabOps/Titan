@@ -85,7 +85,7 @@
               <children xsi:type="advanced:Placeholder" xmi:id="_rnTeal3mEe6M-_1ObLod9A" elementId="org.eclipse.ui.views.BookmarkView" toBeRendered="false" ref="_rnUtz13mEe6M-_1ObLod9A"/>
             </children>
             <children xsi:type="basic:PartSashContainer" xmi:id="_rnTea13mEe6M-_1ObLod9A" containerData="7500" selectedElement="_rnTebF3mEe6M-_1ObLod9A">
-              <children xsi:type="basic:PartSashContainer" xmi:id="_rnTebF3mEe6M-_1ObLod9A" containerData="6389" selectedElement="_rnTebV3mEe6M-_1ObLod9A" horizontal="true">
+              <children xsi:type="basic:PartSashContainer" xmi:id="_rnTebF3mEe6M-_1ObLod9A" containerData="8363" selectedElement="_rnTebV3mEe6M-_1ObLod9A" horizontal="true">
                 <children xsi:type="advanced:Placeholder" xmi:id="_rnTebV3mEe6M-_1ObLod9A" elementId="org.eclipse.ui.editorss" containerData="7500" ref="_rnUtnV3mEe6M-_1ObLod9A"/>
                 <children xsi:type="basic:PartStack" xmi:id="_rnTebl3mEe6M-_1ObLod9A" elementId="topRight" visible="false" containerData="2500" selectedElement="_rnTecl3mEe6M-_1ObLod9A">
                   <tags>Minimized</tags>
@@ -95,7 +95,7 @@
                   <children xsi:type="advanced:Placeholder" xmi:id="_rnTecl3mEe6M-_1ObLod9A" elementId="ilg.gnumcueclipse.managedbuild.packs.ui.views.DocsView" ref="_rnVT313mEe6M-_1ObLod9A"/>
                 </children>
               </children>
-              <children xsi:type="basic:PartStack" xmi:id="_rnTec13mEe6M-_1ObLod9A" elementId="bottom" containerData="3611" selectedElement="_rnTedl3mEe6M-_1ObLod9A">
+              <children xsi:type="basic:PartStack" xmi:id="_rnTec13mEe6M-_1ObLod9A" elementId="bottom" containerData="1637" selectedElement="_rnTedl3mEe6M-_1ObLod9A">
                 <children xsi:type="advanced:Placeholder" xmi:id="_rnTedF3mEe6M-_1ObLod9A" elementId="org.eclipse.ui.views.ProblemView" ref="_rnUt0F3mEe6M-_1ObLod9A"/>
                 <children xsi:type="advanced:Placeholder" xmi:id="_rnTedV3mEe6M-_1ObLod9A" elementId="org.eclipse.ui.views.TaskList" toBeRendered="false" ref="_rnUt1l3mEe6M-_1ObLod9A"/>
                 <children xsi:type="advanced:Placeholder" xmi:id="_rnTedl3mEe6M-_1ObLod9A" elementId="org.eclipse.ui.console.ConsoleView" ref="_rnUt113mEe6M-_1ObLod9A"/>
@@ -503,16 +503,17 @@
       <tags>categoryTag:Help</tags>
     </sharedElements>
     <sharedElements xsi:type="advanced:Area" xmi:id="_rnUtnV3mEe6M-_1ObLod9A" elementId="org.eclipse.ui.editorss" selectedElement="_rnUtnl3mEe6M-_1ObLod9A">
-      <children xsi:type="basic:PartStack" xmi:id="_rnUtnl3mEe6M-_1ObLod9A" elementId="org.eclipse.e4.primaryDataStack" selectedElement="__-bvEGGVEe68J-3BswZSkg">
+      <children xsi:type="basic:PartStack" xmi:id="_rnUtnl3mEe6M-_1ObLod9A" elementId="org.eclipse.e4.primaryDataStack" selectedElement="_rnUtn13mEe6M-_1ObLod9A">
         <tags>org.eclipse.e4.primaryDataStack</tags>
         <tags>EditorStack</tags>
         <tags>active</tags>
-        <tags>noFocus</tags>
         <children xsi:type="basic:Part" xmi:id="_rnUtn13mEe6M-_1ObLod9A" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="[Titan] Synergy Configuration" iconURI="platform:/plugin/com.renesas.cdt.synergy.settingseditor/icons/synergysettings.png" closeable="true">
           <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;com.renesas.cdt.synergy.settingseditor.editors.SynergySettingsEditor&quot; name=&quot;configuration.xml&quot; partName=&quot;[Titan] Synergy Configuration&quot; title=&quot;[Titan] Synergy Configuration&quot; tooltip=&quot;Titan/configuration.xml&quot;>&#xD;&#xA;&lt;properties>&#xD;&#xA;&lt;property IMemento.internal.id=&quot;com.renesas.tools.pinconfigurator.mcuPackageView.helpContext&quot;>com.renesas.cdt.synergy.help.mcuPackageView&lt;/property>&#xD;&#xA;&lt;/properties>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/Titan/configuration.xml&quot;/>&#xD;&#xA;&lt;/editor>"/>
           <tags>Editor</tags>
           <tags>removeOnHide</tags>
           <tags>com.renesas.cdt.synergy.settingseditor.editors.SynergySettingsEditor</tags>
+          <tags>active</tags>
+          <tags>activeOnClose</tags>
         </children>
         <children xsi:type="advanced:Placeholder" xmi:id="_rnUtoV3mEe6M-_1ObLod9A" elementId="com.renesas.qe.motor.view.MotorMainView" toBeRendered="false" ref="_rnVT5l3mEe6M-_1ObLod9A" closeable="true">
           <tags>View</tags>
@@ -563,12 +564,10 @@
           <tags>org.eclipse.cdt.ui.editor.CEditor</tags>
         </children>
         <children xsi:type="basic:Part" xmi:id="__-bvEGGVEe68J-3BswZSkg" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="Management_entry.c" iconURI="platform:/plugin/org.eclipse.cdt.ui/icons/obj16/c_file_obj.gif" closeable="true">
-          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.cdt.ui.editor.CEditor&quot; name=&quot;Management_entry.c&quot; partName=&quot;Management_entry.c&quot; title=&quot;Management_entry.c&quot; tooltip=&quot;Titan/src/Management_entry.c&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/Titan/src/Management_entry.c&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;2710&quot; selectionTopPixel=&quot;1473&quot;/>&#xD;&#xA;&lt;/editor>"/>
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.cdt.ui.editor.CEditor&quot; name=&quot;Management_entry.c&quot; partName=&quot;Management_entry.c&quot; title=&quot;Management_entry.c&quot; tooltip=&quot;Titan/src/Management_entry.c&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/Titan/src/Management_entry.c&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;2710&quot; selectionTopPixel=&quot;1462&quot;/>&#xD;&#xA;&lt;/editor>"/>
           <tags>Editor</tags>
           <tags>removeOnHide</tags>
           <tags>org.eclipse.cdt.ui.editor.CEditor</tags>
-          <tags>active</tags>
-          <tags>activeOnClose</tags>
         </children>
         <children xsi:type="basic:Part" xmi:id="__-QeAGGXEe68J-3BswZSkg" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="r_ioport_api.h" iconURI="platform:/plugin/org.eclipse.cdt.ui/icons/obj16/c_file_obj.gif" closeable="true">
           <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.cdt.ui.editor.CEditor&quot; name=&quot;r_ioport_api.h&quot; partName=&quot;r_ioport_api.h&quot; title=&quot;r_ioport_api.h&quot; tooltip=&quot;Titan/synergy/ssp/inc/driver/api/r_ioport_api.h&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/Titan/synergy/ssp/inc/driver/api/r_ioport_api.h&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;21&quot; selectionOffset=&quot;16230&quot; selectionTopPixel=&quot;3009&quot;/>&#xD;&#xA;&lt;/editor>"/>
@@ -1107,7 +1106,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_rnV6z13mEe6M-_1ObLod9A" elementId="org.eclipse.ui.workbench.file">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_9cJZAF3mEe68J-3BswZSkg" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_rnX2tF3mEe6M-_1ObLod9A"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_G1L64HOyEe6y5_muFZeCDg" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_rnX2tF3mEe6M-_1ObLod9A"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_rnV64F3mEe6M-_1ObLod9A" elementId="additions" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -1137,7 +1136,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_rnV7VV3mEe6M-_1ObLod9A" elementId="org.eclipse.ui.workbench.navigate">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_9cL1QF3mEe68J-3BswZSkg" elementId="org.eclipse.ui.window.pinEditor" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_rnX2aF3mEe6M-_1ObLod9A"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_G1OXIHOyEe6y5_muFZeCDg" elementId="org.eclipse.ui.window.pinEditor" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_rnX2aF3mEe6M-_1ObLod9A"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_rnV7Yl3mEe6M-_1ObLod9A" elementId="group.editor" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -4938,7 +4937,7 @@
   <addons xmi:id="_rnX5CF3mEe6M-_1ObLod9A" elementId="MinMax Addon" contributorURI="platform:/plugin/org.eclipse.platform" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.addons.swt/org.eclipse.e4.ui.workbench.addons.minmax.MinMaxAddon"/>
   <addons xmi:id="_rnX5CV3mEe6M-_1ObLod9A" elementId="org.eclipse.ui.workbench.addon.0" contributorURI="platform:/plugin/org.eclipse.platform" contributionURI="bundleclass://org.eclipse.e4.ui.workbench/org.eclipse.e4.ui.internal.workbench.addons.HandlerProcessingAddon"/>
   <addons xmi:id="_rnX5Cl3mEe6M-_1ObLod9A" elementId="SplitterAddon" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.addons.swt/org.eclipse.e4.ui.workbench.addons.splitteraddon.SplitterAddon"/>
-  <addons xmi:id="_IYS0IKimEeS11vbz3f9ezw" elementId="org.eclipse.ui.ide.addon.0" contributorURI="platform:/plugin/org.eclipse.ui.ide" contributionURI="bundleclass://org.eclipse.ui.ide/org.eclipse.ui.internal.ide.addons.SaveAllDirtyPartsAddon"/>
+  <addons xmi:id="_F75icHOyEe6y5_muFZeCDg" elementId="org.eclipse.ui.ide.addon.0" contributionURI="bundleclass://org.eclipse.ui.ide/org.eclipse.ui.internal.ide.addons.SaveAllDirtyPartsAddon"/>
   <addons xmi:id="_rnX5DF3mEe6M-_1ObLod9A" elementId="org.eclipse.ui.ide.application.addon.0" contributorURI="platform:/plugin/org.eclipse.ui.ide.application" contributionURI="bundleclass://org.eclipse.ui.ide.application/org.eclipse.ui.internal.ide.application.addons.ModelCleanupAddon"/>
   <categories xmi:id="_rnX5DV3mEe6M-_1ObLod9A" elementId="org.eclipse.ui.category.edit" name="Edit"/>
   <categories xmi:id="_rnX5Dl3mEe6M-_1ObLod9A" elementId="org.eclipse.mylyn.builds.ui.category.Commands" name="Builds"/>
